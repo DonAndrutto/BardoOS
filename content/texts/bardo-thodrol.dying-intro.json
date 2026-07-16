@@ -1,0 +1,875 @@
+{
+  "schemaVersion": 1,
+  "id": "bardo-thodrol.dying-intro",
+  "cycle": "zab-chos-zhi-khro",
+  "kind": "instruction",
+  "title": {
+    "bo": "TODO_CONTENT",
+    "phon": null,
+    "en": "TODO_CONTENT"
+  },
+  "source": {
+    "attribution": "TODO_CONTENT",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s0",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s0-b001",
+          "layer": "L4",
+          "form": "title",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s0-b002",
+          "layer": "L4",
+          "form": "colophon",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s0-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s0-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s0-b005",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s0-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b005",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s2-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s3-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s4-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b005",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b008",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b010",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b011",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b012",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b013",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b014",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b015",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b016",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b017",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b018",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b019",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b020",
+          "layer": "L1",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b021",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b022",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b023",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b024",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b025",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b026",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b027",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b028",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b029",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b030",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b031",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b032",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b033",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s4-b034",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s5-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b007",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b008",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b010",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": "TODO_CONTENT"
+        },
+        {
+          "id": "s5-b011",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b012",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b013",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b014",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b015",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "TODO_CONTENT",
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}

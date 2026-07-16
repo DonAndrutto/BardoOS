@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v1';
+const VERSION = 'bardo-os-v2';
 
 const PRECACHE = [
   './',
@@ -20,6 +20,7 @@ const PRECACHE = [
   'assets/fonts/eb-garamond/EBGaramond-Italic[wght].ttf',
   'assets/fonts/inter/Inter[opsz,wght].ttf',
   'content/cycle.json',
+  'content/texts/bardo-thodrol.dying-intro.json',
 ];
 
 self.addEventListener('install', (event) => {

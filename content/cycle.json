@@ -1,4 +1,10 @@
 {
   "schemaVersion": 1,
-  "groups": []
+  "groups": [
+    {
+      "id": "group-1",
+      "heading": { "bo": null, "en": "TODO_CONTENT" },
+      "texts": ["bardo-thodrol.dying-intro"]
+    }
+  ]
 }
