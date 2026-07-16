@@ -1,0 +1,228 @@
+/* Bardo OS — shell and layer rendering (Phase 1).
+   The reading surface proper (modes, controls, auto-scroll) is Phase 2;
+   this file styles the thin shell and the five layer treatments. */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--size-base);
+  line-height: var(--lh-body);
+  font-feature-settings: "kern", "liga", "onum" 1;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tibetan rendering hints (from the reference app) */
+.bo {
+  font-family: var(--font-tibetan);
+  line-height: var(--lh-tibetan);
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ccmp", "rclt";
+}
+
+/* ── Shell ──────────────────────────────────────────────── */
+.app-header {
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-3) var(--sp-4);
+}
+.app-header h1 {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.shell {
+  display: flex;
+  gap: var(--sp-6);
+  max-width: var(--column);
+  margin: 0 auto;
+  padding: var(--sp-5) var(--sp-4) var(--sp-9);
+}
+
+/* Bare navigation — proves the data flows; styled properly in Phase 3 */
+.nav { flex: 0 0 14rem; }
+.nav h2 {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--text-muted);
+  margin: var(--sp-4) 0 var(--sp-2);
+}
+.nav button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+}
+.nav button:hover { background: var(--bg-secondary); }
+.nav button.active { color: var(--accent); background: var(--bg-secondary); }
+
+.reader { flex: 1; min-width: 0; }
+
+@media (max-width: 720px) {
+  .shell { flex-direction: column; }
+  .nav { flex: none; }
+}
+
+/* ── Text chrome ────────────────────────────────────────── */
+.text-title { text-align: center; margin: var(--sp-5) 0 var(--sp-8); }
+.text-title .bo {
+  font-size: calc(var(--size-base) * 1.6);
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+  text-wrap: balance;
+}
+.text-title .en {
+  font-style: italic;
+  color: var(--text-muted);
+  text-wrap: balance;
+}
+
+.section { margin-bottom: var(--sp-7); }
+.section-heading {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+  margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+}
+
+/* ── Blocks: shared bones ───────────────────────────────── */
+.block { margin-bottom: var(--sp-4); text-align: center; }
+.block .bo   { font-size: calc(var(--size-base) * var(--size-tib)); margin-bottom: var(--sp-2); white-space: pre-wrap; }
+.block .phon {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: calc(var(--size-base) * var(--size-phon));
+  letter-spacing: 0.04em;
+  color: var(--phonetics);
+  margin-bottom: var(--sp-1);
+  white-space: pre-wrap;
+}
+.block .en   { max-width: var(--measure); margin: 0 auto; white-space: pre-wrap; }
+
+/* Run labels (◆ READ ALOUD, BARDO RECITATION, LITURGY) */
+.run-label {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+
+/* ── L0 Rubric: quiet, recessive, never spoken ──────────── */
+.block.layer-L0 {
+  color: var(--l0-text);
+  font-style: italic;
+  font-size: calc(var(--size-base) * var(--size-l0));
+}
+.block.layer-L0 .bo {
+  font-size: calc(var(--size-base) * var(--size-l0-tib));
+  color: var(--l0-text);
+  font-style: italic;
+}
+.block.layer-L0 .en { max-width: var(--measure-l0); color: var(--l0-text); }
+
+/* ── L1 Address: left-aligned, gold rule, amber wash ────── */
+.run-L1 {
+  border-left: 3px solid var(--l1-rule);
+  background: var(--l1-wash);
+  padding: var(--sp-4) var(--sp-4) var(--sp-4) var(--sp-5);
+  margin: var(--sp-5) 0;
+  text-align: left;
+}
+.run-L1 .run-label { display: block; margin-bottom: var(--sp-3); }
+.run-L1 .run-label::before { content: "◆  "; }
+.run-L1 .block { text-align: left; }
+.run-L1 .block .en { margin: 0; max-width: var(--measure); color: var(--text); }
+.run-L1 .block:last-child { margin-bottom: 0; }
+
+/* ── L2 Bardo recitation: framed panel, verse ───────────── */
+.run-L2 {
+  max-width: 40rem;
+  margin: var(--sp-6) auto;
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  background: var(--l2-wash);
+  border: 1px solid var(--l2-border);
+  border-radius: var(--radius-lg);
+}
+.run-L2 .run-label { display: block; text-align: center; margin-bottom: var(--sp-4); }
+.run-L2 .block { text-align: left; color: var(--l2-text); }
+.run-L2 .block .bo, .run-L2 .block .en { color: var(--l2-text); }
+.run-L2 .block .en {
+  margin: 0;
+  padding-left: 1.5rem;
+  text-indent: -0.75rem; /* hanging indent for verse lines */
+}
+.run-L2 .block:last-child { margin-bottom: 0; }
+
+/* ── L3 Living liturgy: the reference presentation ──────── */
+.run-L3 .run-label { display: block; text-align: center; margin-bottom: var(--sp-3); }
+.block.layer-L3 .en { color: var(--text-muted); }
+
+/* ── L4 Apparatus: silent; titles and colophons ─────────── */
+.block.layer-L4 { color: var(--l4-text); }
+.block.layer-L4.form-title .en {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: calc(var(--size-base) * 0.85);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--text);
+}
+.block.layer-L4.form-colophon,
+.block.layer-L4.form-prose {
+  font-style: italic;
+  font-size: calc(var(--size-base) * 0.85);
+  border-top: 1px solid var(--border);
+  padding-top: var(--sp-4);
+  max-width: var(--measure-l0);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Verse lines render as real lines */
+.line { display: block; }
+
+/* Declared content gaps stay visible and honest */
+.todo {
+  font-family: var(--font-ui);
+  font-size: 0.7em;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--sp-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

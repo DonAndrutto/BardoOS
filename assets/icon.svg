@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- App icon: the ◆ mark of the read-aloud layer, on parchment.
+       A UI glyph only - deity imagery is supplied by the author (BRIEF §7). -->
+  <rect width="128" height="128" rx="24" fill="#FDFBF7"/>
+  <rect width="128" height="128" rx="24" fill="none" stroke="#B8860B" stroke-width="4"/>
+  <rect x="40" y="40" width="48" height="48" transform="rotate(45 64 64)" fill="#B8860B"/>
+</svg>
