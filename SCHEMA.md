@@ -1,6 +1,6 @@
-# Bardo OS content schema — DRAFT
+# Bardo OS content schema
 
-**Status: draft for approval (Phase 0). Once you approve it, this schema is frozen; any later change requires asking you first (BRIEF §6).**
+**Status: APPROVED and frozen (Phase 0 sign-off, 2026-07-16), with the amendments named at that approval: `phon` required on L3 only; `form` gains `title` and `colophon`. Any further change requires asking first (BRIEF §6).**
 
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
@@ -101,17 +101,18 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 |---|---|---|---|
 | `id` | string | yes | Unique within the text, stable, utterance-grained. Convention: `<sectionId>-b<3-digit ordinal>` (`s1-b004`). Gaps after edits are fine; renumbering is not. |
 | `layer` | enum | yes | `"L0"` \| `"L1"` \| `"L2"` \| `"L3"` \| `"L4"`. See §5. |
-| `form` | enum | yes | `"prose"` \| `"verse"`. Verse renders line-broken and may carry `meter`. |
+| `form` | enum | yes | `"prose"` \| `"verse"` \| `"title"` \| `"colophon"`. Verse renders line-broken and may carry `meter`. `title` and `colophon` are apparatus forms and legal only on L4. |
 | `bo` | string \| null | yes (nullable) | Tibetan text. Multi-line verse: lines joined with `\n`. Subject to the shad-integrity check (§7.8). |
-| `phon` | string \| null | yes (nullable) | Phonetics. Line structure mirrors `bo` where both exist. Whether missing `phon` on spoken layers is an error awaits your answer to open question 3 (architecture doc §8). |
+| `phon` | string \| null | yes (nullable); **non-empty on L3** | Phonetics. Line structure mirrors `bo` where both exist. Approved scope: phonetics belong to the liturgical layer — missing or empty `phon` on L3 is a validation error (a declared gap is `"TODO_CONTENT"`); on every other layer `phon` may be null. |
 | `en` | string \| null | yes; **non-empty on L1/L2/L3** | English. The read-aloud layers must never render empty — an empty spoken block is a validation error; a known gap is `"TODO_CONTENT"`. |
 | `meter` | integer \| null | yes (nullable) | Syllables per line, for metered verse (e.g. `7`, `9`). Only legal when `form` is `"verse"`. Null when unknown — never guessed. |
 | `deityRef` | string \| null | yes (nullable) | Id of a deity in `assets/deities/MANIFEST.json`. A ref to a manifest id that doesn't exist is an error ("orphaned deityRef"). |
 | `day` | integer \| null | yes (nullable) | Day 1–14 of the *bardo* of *dharmatā* sequence, where applicable. |
 | `refrain` | boolean | no (default `false`) | Marks a repeated formula. Consecutive `refrain` blocks group into one framed panel and receive the auto-scroll hold (a mechanism inherited from the Ngondro reference — audit §1). Orthogonal to `layer`. |
+| `boEndsOpen` | boolean | no (default `false`) | Declares that this block's Tibetan legitimately ends without a closing mark, exempting it from the shad-integrity check (§7.8). Only legal when `bo` is non-null. |
 | `note` | string \| null | yes (nullable) | Your note on the block. Apparatus in spirit: rendered quietly in Guide mode only, never in Voice mode, never spoken. |
 
-All eleven keys are written explicitly in every block, nullable ones as `null` (except `refrain`, which may be omitted when false). Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
+The ten core keys (`id`, `layer`, `form`, `bo`, `phon`, `en`, `meter`, `deityRef`, `day`, `note`) are written explicitly in every block, nullable ones as `null`; `refrain` and `boEndsOpen` may be omitted when false. Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
 
 ## 5. The layers, restated as data rules
 
@@ -119,11 +120,11 @@ The definitions are yours (BRIEF §5); these are the *data* consequences:
 
 | layer | Name | Data consequences |
 |---|---|---|
-| `L0` | Rubric | Never spoken. `phon` should be null (warning if present — rubric is not recited). Shown in Guide mode; collapses to a thin marker in Voice mode. |
-| `L1` | Address | Spoken. `en` must be non-empty. The core read-aloud layer. |
-| `L2` | Bardo recitation | Spoken so the dead can take it up. `en` must be non-empty. Typically `form: "verse"` with `meter` set — but that is content judgment, never inferred by tooling. |
-| `L3` | Living liturgy | Spoken by the assembly. `en` must be non-empty. |
-| `L4` | Apparatus | Silent. Titles, colophons, attributions, your notes. Shown in Guide mode; absent from Voice mode. |
+| `L0` | Rubric | Never spoken. `phon` should be null (warning if present — rubric is not recited; the renderer refuses to show it regardless). Shown in Guide mode; collapses to a thin marker in Voice mode. |
+| `L1` | Address | Spoken. `en` must be non-empty. `phon` optional. The core read-aloud layer. |
+| `L2` | Bardo recitation | Spoken so the dead can take it up. `en` must be non-empty. `phon` optional. Typically `form: "verse"` with `meter` set — but that is content judgment, never inferred by tooling. |
+| `L3` | Living liturgy | Spoken by the assembly. `en` **and** `phon` must be non-empty — phonetics belong to the liturgical layer (approved decision). |
+| `L4` | Apparatus | Silent. Titles, colophons, attributions, your notes — `form` is `"title"` or `"colophon"` where those apply, and those two forms are legal only here. Shown in Guide mode; absent from Voice mode. |
 
 Layer assignment of any ambiguous passage is **your decision alone** (BRIEF §11). Content entry that hits an ambiguous passage stops and asks; it does not guess a layer. `TODO_LAYER` is not a value — a block whose layer is genuinely undecided stays out of the file until you decide.
 
@@ -165,10 +166,10 @@ Shape only; every text field is deliberately `TODO_CONTENT`.
   "meter": null, "deityRef": null, "day": null, "refrain": true, "note": null }
 ```
 
-**L4 — apparatus** (colophon; silent):
+**L4 — apparatus** (a colophon; silent — an in-section subheading would be the same shape with `"form": "title"`):
 
 ```jsonc
-{ "id": "s6-b001", "layer": "L4", "form": "prose",
+{ "id": "s6-b001", "layer": "L4", "form": "colophon",
   "bo": "TODO_CONTENT", "phon": null, "en": "TODO_CONTENT",
   "meter": null, "deityRef": null, "day": null, "note": null }
 ```
@@ -182,11 +183,11 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 1. File is not valid JSON / not valid UTF-8.
 2. Unknown `schemaVersion`.
 3. Missing or unknown `layer` (BRIEF §6).
-4. Missing or unknown `kind`, `cycle`, or `form`; `meter` present on prose; `day` outside 1–14; any type mismatch.
+4. Missing or unknown `kind`, `cycle`, or `form`; `form` of `"title"` or `"colophon"` on any layer other than L4; `meter` present on a non-verse form; `day` outside 1–14; any type mismatch.
 5. Unknown/extra field anywhere (strict contract — catches typos in bulk entry).
-6. Empty or missing `en` on a spoken layer (L1/L2/L3). The string `"TODO_CONTENT"` is *not* an error — it is a declared gap, counted and reported (see below). An empty string is an undeclared gap and fails.
+6. Empty or missing `en` on a spoken layer (L1/L2/L3), and empty or missing `phon` on L3. The string `"TODO_CONTENT"` is *not* an error — it is a declared gap, counted and reported (see below). An empty string is an undeclared gap and fails.
 7. Orphaned `deityRef` — id absent from `assets/deities/MANIFEST.json`.
-8. **Shad-integrity**: every non-null, non-`TODO_CONTENT` `bo` value must end with a Tibetan closing mark — proposed set: `།` (U+0F0D), `༎` (U+0F0E), `༏` `༐` `༑` (U+0F0F–U+0F11), `༔` (U+0F14) — unless the block carries `"boEndsOpen": true` for a genuinely open-ended line. *The brief's `᭼` I read as a mojibake for the shad; this exact rule, the mark set, and the override name need your confirmation — it is a statement about the text, so it is yours (open question 6).*
+8. **Shad-integrity** (rule confirmed at Phase 0 sign-off): every non-null, non-`TODO_CONTENT` `bo` value must end with a Tibetan closing mark — `།` (U+0F0D), `༎` (U+0F0E), `༏` `༐` `༑` (U+0F0F–U+0F11), or `༔` (U+0F14) — unless the block carries `"boEndsOpen": true`. That flag is the deliberate escape for verses that legitimately end open: the validator never breaks on a declared case, and never guesses about an undeclared one. Blocks with no Tibetan are never flagged.
 9. **The forbidden title** (BRIEF §2): a repo-wide scan of every text file — content, code, comments, docs, meta tags. The pattern is assembled at runtime from character fragments so the string itself appears nowhere in the repository, including inside the validator. The one permitted historical note, if you ever write it, gets an explicit allowlist entry for that file.
 10. Duplicate text `id` across the corpus; duplicate section/block `id` within a text.
 11. Cycle-manifest integrity: every text on disk in exactly one group; no dangling text ids.
@@ -195,8 +196,7 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 
 - `TODO_CONTENT` census — count per file, per field, per layer, printed on every run so the state of the corpus is always visible. (CI stays green while content is incomplete; the gaps are declared, not hidden.)
 - `phon` present on L0 (rubric is not recited).
-- `phon` missing on L1/L2/L3 — becomes an error or stays a warning depending on your phonetics answer (open question 3).
-- Non-NFC Unicode normalization in `bo` (proposed as a warning; Tibetan input methods vary — tell me if you want this strict or gone).
+- Non-NFC Unicode normalization in `bo` (warning; Tibetan input methods vary).
 
 ## 8. What the schema deliberately does not preclude (BRIEF §4)
 
