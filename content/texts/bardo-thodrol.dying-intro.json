@@ -58,7 +58,7 @@
         },
         {
           "id": "s0-b004",
-          "layer": "L0",
+          "layer": "L4",
           "form": "prose",
           "bo": null,
           "phon": null,
@@ -807,7 +807,7 @@
           "meter": null,
           "deityRef": null,
           "day": null,
-          "note": "TODO_CONTENT"
+          "note": null
         },
         {
           "id": "s5-b011",
