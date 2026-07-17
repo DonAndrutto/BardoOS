@@ -108,13 +108,15 @@ body {
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
 }
 
-/* ── Blocks: shared bones ───────────────────────────────── */
-.block { margin-bottom: var(--sp-4); text-align: center; }
-.block .bo   { font-size: calc(var(--size-base) * var(--size-tib)); margin-bottom: var(--sp-2); white-space: pre-wrap; }
+/* ── Blocks: shared bones ───────────────────────────────────
+   --size-block lets a layer raise its own floor (L1 never drops
+   below 19px however small the global setting goes). */
+.block { --size-block: var(--size-base); margin-bottom: var(--sp-4); text-align: center; font-size: var(--size-block); }
+.block .bo   { font-size: calc(var(--size-block) * var(--size-tib)); margin-bottom: var(--sp-2); white-space: pre-wrap; }
 .block .phon {
   font-family: var(--font-ui);
   font-weight: 600;
-  font-size: calc(var(--size-base) * var(--size-phon));
+  font-size: calc(var(--size-block) * var(--size-phon));
   letter-spacing: 0.04em;
   color: var(--phonetics);
   margin-bottom: var(--sp-1);
@@ -136,10 +138,10 @@ body {
 .block.layer-L0 {
   color: var(--l0-text);
   font-style: italic;
-  font-size: calc(var(--size-base) * var(--size-l0));
+  font-size: calc(var(--size-block) * var(--size-l0));
 }
 .block.layer-L0 .bo {
-  font-size: calc(var(--size-base) * var(--size-l0-tib));
+  font-size: calc(var(--size-block) * var(--size-l0-tib));
   color: var(--l0-text);
   font-style: italic;
 }
@@ -155,7 +157,7 @@ body {
 }
 .run-L1 .run-label { display: block; margin-bottom: var(--sp-3); }
 .run-L1 .run-label::before { content: "◆  "; }
-.run-L1 .block { text-align: left; }
+.run-L1 .block { --size-block: max(19px, var(--size-base)); text-align: left; }
 .run-L1 .block .en { margin: 0; max-width: var(--measure); color: var(--text); }
 .run-L1 .block:last-child { margin-bottom: 0; }
 
@@ -203,6 +205,20 @@ body {
   margin-right: auto;
 }
 
+/* Repeated formulas share one framed panel; the auto-scroll engine
+   holds on it (no pulse, no glow — nothing animates but the scroll). */
+.refrain-group {
+  max-width: 40rem;
+  margin: var(--sp-5) auto;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--l2-wash);
+  border: 1px solid var(--l2-border);
+  border-radius: var(--radius-lg);
+}
+.refrain-group .block:last-child { margin-bottom: 0; }
+/* Inside the L2 panel a nested frame would be noise — the panel already frames. */
+.run-L2 .refrain-group { border: none; background: none; padding: 0; margin: 0 0 var(--sp-4); }
+
 /* Verse lines render as real lines */
 .line { display: block; }
 
@@ -217,6 +233,110 @@ body {
   border-radius: var(--radius-sm);
   padding: 0 var(--sp-2);
 }
+
+/* ── Bottom bar: every control, one-handed, bottom third ── */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: var(--sp-3) var(--sp-4);
+  padding-bottom: max(var(--sp-3), env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+.bar-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  pointer-events: auto;
+  flex-wrap: wrap;
+}
+.bar-group {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-1);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: var(--radius-md);
+}
+.bar-btn {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--dur-2), color var(--dur-2);
+}
+@media (hover: hover) {
+  .bar-btn:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--text); }
+}
+.bar-btn:focus { outline: none; }
+.bar-btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.bar-btn.active {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.bar-btn-text {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0 var(--sp-2);
+}
+.speed-val {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 1.1rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Content never hides behind the bar */
+.shell { padding-bottom: 7rem; }
+
+/* ── Voice mode: the mode you use when someone is dying ─── */
+body.voice .app-header,
+body.voice .nav,
+body.voice .lang-group { display: none; }
+body.voice .shell { padding-top: var(--sp-4); }
+body.voice .reader { --measure: 36rem; }
+body.voice .section-heading { opacity: 0.6; }
+
+/* A collapsed rubric: one thin, identical, peekable marker */
+.voice-collapsed { margin: var(--sp-4) 0; font-size: var(--size-block); }
+.l0-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.l0-marker:focus { outline: none; }
+.l0-marker:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.l0-marker-line { width: 2rem; height: 1px; background: var(--border); }
+.l0-marker-dot { font-style: normal; line-height: 1; }
+.l0-peek { display: none; padding-top: var(--sp-2); }
+.voice-collapsed.open .l0-peek { display: block; }
+.voice-collapsed.open .l0-marker-dot { color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
