@@ -58,7 +58,10 @@ export function set(key, value) {
 export function clampFont(px) {
   const n = Number(px);
   if (!Number.isFinite(n)) return FONT_DEFAULT;
-  return Math.max(FONT_MIN, Math.min(FONT_MAX, Math.round(n / FONT_STEP) * FONT_STEP));
+  // Clamp and keep whole pixels; no grid-snapping — the default is 19,
+  // so ±2 steps walk 17/19/21…, and snapping to even values would make
+  // the first tap jump 3px instead of 2.
+  return Math.max(FONT_MIN, Math.min(FONT_MAX, Math.round(n)));
 }
 
 // The size the reading surface actually uses in the current mode.

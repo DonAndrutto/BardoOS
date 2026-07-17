@@ -126,7 +126,7 @@ export function renderText(text, container) {
 
   const title = el('header', 'text-title', container);
   if (state.showBo && text.title.bo != null) fillInline(el('div', 'bo', title), text.title.bo);
-  if (text.title.en != null) fillInline(el('div', 'en', title), text.title.en);
+  if (state.showEn && text.title.en != null) fillInline(el('div', 'en', title), text.title.en);
 
   for (const section of text.sections) {
     const sec = el('section', 'section', container);
