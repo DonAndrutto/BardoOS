@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "groups": [
+    {
+      "id": "preliminaries",
+      "heading": { "bo": null, "en": "Preliminaries" },
+      "texts": []
+    },
+    {
+      "id": "bardo-life",
+      "heading": { "bo": null, "en": "The Bardo of This Life" },
+      "texts": []
+    },
+    {
+      "id": "bardo-dream",
+      "heading": { "bo": null, "en": "The Bardo of Dream" },
+      "texts": []
+    },
+    {
+      "id": "bardo-meditation",
+      "heading": { "bo": null, "en": "The Bardo of Meditation" },
+      "texts": []
+    },
+    {
+      "id": "bardo-dying",
+      "heading": { "bo": null, "en": "The Bardo of Dying" },
+      "texts": [
+        {
+          "id": "bardo-thodrol.dying-intro",
+          "title": "TODO_CONTENT",
+          "status": "translated"
+        }
+      ]
+    },
+    {
+      "id": "bardo-dharmata",
+      "heading": { "bo": null, "en": "The Bardo of Dharmatā" },
+      "texts": []
+    },
+    {
+      "id": "bardo-becoming",
+      "heading": { "bo": null, "en": "The Bardo of Becoming" },
+      "texts": []
+    },
+    {
+      "id": "prayers-liturgies",
+      "heading": { "bo": null, "en": "Prayers & Liturgies" },
+      "texts": [
+        {
+          "id": "prayer.calling-buddhas-for-aid",
+          "title": "Calling on the Buddhas for Aid",
+          "status": "forthcoming"
+        },
+        {
+          "id": "prayer.protection-from-fear",
+          "title": "Protection from Fear",
+          "status": "forthcoming"
+        },
+        {
+          "id": "prayer.deliverance-perilous-straits",
+          "title": "Deliverance from the Perilous Straits",
+          "status": "forthcoming"
+        },
+        {
+          "id": "prayer.root-verses-six-bardos",
+          "title": "Root Verses of the Six Bardos",
+          "status": "forthcoming"
+        }
+      ]
+    },
+    {
+      "id": "iconography",
+      "heading": { "bo": null, "en": "Iconography" },
+      "texts": []
+    }
+  ]
+}

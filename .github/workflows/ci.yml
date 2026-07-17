@@ -1,0 +1,19 @@
+# Bardo OS CI: run the content validator. That is all it does.
+# There is no build — what is in the repo is what ships. Deleting this
+# workflow would not change what deploys (docs/architecture.md §2).
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate content against SCHEMA.md
+        run: node scripts/validate.mjs

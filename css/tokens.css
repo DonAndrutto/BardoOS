@@ -1,0 +1,120 @@
+/* Bardo OS — design tokens.
+   Approved palette: docs/layer-palette.md (Phase 0).
+   Base inherited from the KGK Ngondro reference (docs/ngondro-audit.md §2);
+   layer tokens L0–L4 are Bardo's own. */
+
+/* ── Faces (vendored, OFL — assets/fonts/) ─────────────── */
+@font-face {
+  font-family: 'Jomolhari';
+  src: url('../assets/fonts/jomolhari/Jomolhari-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('../assets/fonts/eb-garamond/EBGaramond[wght].ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('../assets/fonts/eb-garamond/EBGaramond-Italic[wght].ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter/Inter[opsz,wght].ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ── Day ──────────────────────────────────────────────── */
+  --bg: #FDFBF7;
+  --bg-secondary: #f5f0ea;
+  --text: #1c1917;               /* 16.9:1 on --bg */
+  --text-muted: #78716c;         /*  4.6:1 on --bg */
+  --accent: #8B0000;             /*  9.7:1 on --bg */
+  --gold: #B8860B;
+  --phonetics: #44403c;          /*  9.9:1 on --bg */
+  --border: #e7e5e4;
+
+  /* Layer tokens */
+  --l0-text: var(--text-muted);
+  --l1-rule: var(--gold);
+  --l1-wash: rgba(232, 158, 39, 0.08);
+  --l2-text: #5D4037;            /* 8.5:1 on its panel */
+  --l2-wash: rgba(139, 0, 0, 0.03);
+  --l2-border: color-mix(in srgb, var(--accent) 16%, var(--border));
+  --l4-text: var(--text-muted);
+  --label: var(--accent);
+
+  /* ── Type ─────────────────────────────────────────────── */
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-ui: 'Inter', sans-serif;
+  --font-tibetan: 'Jomolhari', serif;
+
+  /* User text size: min 16 / default 19 / max 48 (approved).
+     Phase 1 ships the default only; the control arrives in Phase 2. */
+  --size-base: 19px;
+  --size-tib: 1.5;      /* multipliers on --size-base */
+  --size-phon: 0.9;
+  --size-l0: 0.85;
+  --size-l0-tib: 1.2;
+
+  --lh-tight: 1.25;
+  --lh-snug: 1.45;
+  --lh-body: 1.65;
+  --lh-tibetan: 1.85;
+  --ls-caps: 0.14em;
+  --ls-caps-sm: 0.16em;
+
+  --measure: 32rem;      /* spoken-layer English measure */
+  --measure-l0: 24rem;   /* rubric is physically narrower */
+  --column: 56rem;
+
+  /* ── Spacing (4px scale, from the reference) ──────────── */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.5rem;
+  --sp-8: 3rem;
+  --sp-9: 4rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Motion: nothing animates in Bardo OS beyond the scroll itself.
+     These exist only for state transitions on controls. */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+}
+
+/* ── Night: dim, not inverted (approved at ~11:1) ───────── */
+[data-theme="dark"] {
+  --bg: #171412;
+  --bg-secondary: #201c19;
+  --text: #cfc8bf;               /* 11.1:1 on --bg */
+  --text-muted: #8f867c;         /*  5.1:1 on --bg */
+  --accent: #FF9933;             /*  8.6:1 on --bg */
+  --gold: #FF9933;
+  --phonetics: #c4bcb1;          /*  9.8:1 on --bg */
+  --border: #3a342e;
+
+  --l0-text: var(--text-muted);
+  --l1-wash: rgba(255, 153, 51, 0.10);
+  --l2-text: #D7CCC8;            /* 10.8:1 on its panel */
+  --l2-wash: rgba(255, 153, 51, 0.05);
+  --l2-border: color-mix(in srgb, var(--accent) 24%, var(--border));
+  --l4-text: var(--text-muted);
+  --label: var(--accent);
+}
