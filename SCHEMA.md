@@ -43,23 +43,29 @@ No other top-level fields are legal. The validator rejects unknown fields everyw
 
 ## 2. The cycle manifest — `content/cycle.json`
 
-The home screen makes the shape of the cycle legible (BRIEF §4). That shape lives in exactly one place:
+The home screen makes the shape of the cycle legible (BRIEF §4). That shape lives in exactly one place. *(Revised at the owner's Phase 3 direction: text entries became objects carrying `title` and `status`, so the whole cycle can be presented honestly — including texts whose translation is still forthcoming.)*
 
 ```jsonc
 {
   "schemaVersion": 1,
   "groups": [
     {
-      "id": "TODO-group-id",
+      "id": "TODO-category-id",
       "heading": { "bo": null, "en": "TODO_CONTENT" },
-      "texts": ["TODO-text-id", "TODO-other-text-id"]
+      "texts": [
+        { "id": "TODO-text-id", "title": "TODO_CONTENT", "status": "translated" },
+        { "id": "TODO-other-text-id", "title": "TODO_CONTENT", "status": "forthcoming" }
+      ]
     }
   ]
 }
 ```
 
-- `groups[]` is the display order. Every text file must appear in exactly one group; a text on disk that is missing here (or listed twice, or listed but missing on disk) is a validation error.
-- Group headings are your words (`TODO_CONTENT` until supplied). Texts are never merged or concatenated by the renderer — a group is a visual shelf, nothing more.
+- `groups[]` is the display order; a group is a category of the cycle (a *bardo*, or a supplementary shelf). `texts` may be empty while a category awaits its catalogue.
+- Each text entry: `id` (kebab-case), `title` (the English title as shown in navigation — the owner's words, `TODO_CONTENT` until supplied), `status` (`"translated"` \| `"forthcoming"`).
+- `status` is enforced against the disk, both ways: a `translated` entry without `content/texts/<id>.json` is an error, and so is a `forthcoming` entry whose file already exists. Every text file on disk must appear exactly once, as `translated`.
+- A `forthcoming` entry is metadata only — no content exists anywhere for it, and its id may still be renamed (ids freeze when content lands). The reader shows it locked.
+- Texts are never merged or concatenated by the renderer — a group is a visual shelf, nothing more.
 
 ## 3. Sections
 

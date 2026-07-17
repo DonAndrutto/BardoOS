@@ -267,6 +267,11 @@ function checkText(path, file, deityIds, textIds) {
 }
 
 // ── Cycle manifest ──────────────────────────────────────────────────
+// Text entries are objects {id, title, status}; status is enforced
+// against the disk both ways so navigation can never lie about what
+// is readable (SCHEMA.md §2, revised at the owner's Phase 3 direction).
+const STATUSES = ['translated', 'forthcoming'];
+
 function checkCycle(textIds) {
   const file = 'content/cycle.json';
   const c = readJSON(join(ROOT, file), file);
@@ -282,6 +287,7 @@ function checkCycle(textIds) {
     if (typeof g !== 'object' || g === null) { err(file, where, 'group must be an object'); return; }
     checkKeys(file, where, g, ['id', 'heading', 'texts']);
     if (!nonEmpty(g.id)) err(file, where, 'group id must be a non-empty string');
+    else if (!ID_PATTERN.test(g.id)) err(file, where, `group id "${g.id}" is not kebab-case`);
     else if (groupIds.has(g.id)) err(file, where, `duplicate group id "${g.id}"`);
     else groupIds.add(g.id);
     if (typeof g.heading !== 'object' || g.heading === null) err(file, where, '"heading" must be an object');
@@ -290,14 +296,27 @@ function checkCycle(textIds) {
       if (!nonEmpty(g.heading.en)) err(file, where, 'heading "en" must be a non-empty string');
       else countTodos(file, `${where} :: heading.en`, g.heading.en);
     }
-    if (!Array.isArray(g.texts) || g.texts.length === 0) {
-      err(file, where, '"texts" must be a non-empty array of text ids');
+    // A category may be empty while it awaits its catalogue.
+    if (!Array.isArray(g.texts)) {
+      err(file, where, '"texts" must be an array of text entries');
       return;
     }
-    g.texts.forEach((id) => {
-      if (!isString(id)) { err(file, where, 'text ids must be strings'); return; }
-      seen.set(id, (seen.get(id) || 0) + 1);
-      if (!textIds.has(id)) err(file, where, `dangling text id "${id}" — no valid text declares this id`);
+    g.texts.forEach((t, ti) => {
+      const tw = `${where} :: texts[${ti}]${t && t.id ? ` (${t.id})` : ''}`;
+      if (typeof t !== 'object' || t === null) { err(file, tw, 'text entry must be an object {id, title, status}'); return; }
+      checkKeys(file, tw, t, ['id', 'title', 'status']);
+      if (!nonEmpty(t.id)) { err(file, tw, 'text "id" must be a non-empty string'); return; }
+      if (!ID_PATTERN.test(t.id)) err(file, tw, `text id "${t.id}" is not kebab-case`);
+      if (!nonEmpty(t.title)) err(file, tw, '"title" must be a non-empty string (TODO_CONTENT for a declared gap)');
+      else countTodos(file, `${tw} :: title`, t.title);
+      if (!STATUSES.includes(t.status)) {
+        err(file, tw, `unknown status "${t.status}" (known: ${STATUSES.join(', ')})`);
+      } else if (t.status === 'translated' && !textIds.has(t.id)) {
+        err(file, tw, `status "translated" but no valid content/texts/${t.id}.json exists`);
+      } else if (t.status === 'forthcoming' && textIds.has(t.id)) {
+        err(file, tw, `status "forthcoming" but content/texts/${t.id}.json exists — mark it "translated"`);
+      }
+      seen.set(t.id, (seen.get(t.id) || 0) + 1);
     });
   });
   for (const [id, n] of seen) {
