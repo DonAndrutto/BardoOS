@@ -197,23 +197,55 @@ async function boot() {
     note(reader, 'No texts in the cycle yet.');
     return;
   }
+  // The shape of the cycle, legible at a glance: collapsible categories,
+  // every text present — readable ones clickable, forthcoming ones locked.
+  // Titles come from the manifest; the id is the honest fallback while a
+  // title is still TODO_CONTENT.
+  const LOCK_ICON =
+    '<svg class="nav-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
+    '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+
   for (const group of cycle.groups) {
-    const h = document.createElement('h2');
-    h.textContent = group.heading.en;
-    nav.appendChild(h);
-    for (const id of group.texts) {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.textContent = id; // replaced by the title once known; the id is the honest fallback
-      b.title = id;
-      b.addEventListener('click', () => openText(id, b));
-      nav.appendChild(b);
-      loadText(id).then((t) => {
-        if (t.title.en && t.title.en !== TODO) b.textContent = t.title.en;
-      }).catch(() => {});
+    const cat = document.createElement('details');
+    cat.className = 'nav-cat';
+    cat.open = true;
+    const summary = document.createElement('summary');
+    summary.textContent = group.heading.en;
+    cat.appendChild(summary);
+
+    for (const entry of group.texts) {
+      const label = entry.title !== TODO ? entry.title : entry.id;
+      if (entry.status === 'translated') {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'nav-text';
+        b.textContent = label;
+        b.title = entry.id;
+        b.addEventListener('click', () => openText(entry.id, b));
+        cat.appendChild(b);
+      } else {
+        const d = document.createElement('div');
+        d.className = 'nav-text locked';
+        d.innerHTML = LOCK_ICON; // static icon markup only — never content
+        const body = document.createElement('span');
+        body.className = 'nav-locked-body';
+        const t = document.createElement('span');
+        t.className = 'nav-locked-title';
+        t.textContent = label;
+        const note = document.createElement('small');
+        note.className = 'nav-note';
+        note.textContent = 'Translation forthcoming. Support the translator.';
+        body.appendChild(t);
+        body.appendChild(note);
+        d.appendChild(body);
+        cat.appendChild(d);
+      }
     }
+    nav.appendChild(cat);
   }
-  const first = nav.querySelector('button');
+  const first = nav.querySelector('button.nav-text');
   if (first) first.click();
 
   if ('serviceWorker' in navigator) {

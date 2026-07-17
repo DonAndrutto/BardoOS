@@ -47,18 +47,29 @@ body {
   padding: var(--sp-5) var(--sp-4) var(--sp-9);
 }
 
-/* Bare navigation — proves the data flows; styled properly in Phase 3 */
-.nav { flex: 0 0 14rem; }
-.nav h2 {
+/* ── Navigation: the shape of the cycle, legible at a glance ── */
+.nav { flex: 0 0 15rem; }
+
+.nav-cat { margin-bottom: var(--sp-3); }
+.nav-cat summary {
   font-family: var(--font-ui);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--ls-caps-sm);
   color: var(--text-muted);
-  margin: var(--sp-4) 0 var(--sp-2);
+  padding: var(--sp-2) var(--sp-1);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  -webkit-user-select: none;
+  user-select: none;
 }
-.nav button {
+.nav-cat summary::marker { color: var(--text-light, var(--text-muted)); }
+.nav-cat summary:hover { color: var(--text); }
+.nav-cat summary:focus { outline: none; }
+.nav-cat summary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
+.nav button.nav-text {
   display: block;
   width: 100%;
   text-align: left;
@@ -71,8 +82,32 @@ body {
   padding: var(--sp-2) var(--sp-3);
   cursor: pointer;
 }
-.nav button:hover { background: var(--bg-secondary); }
-.nav button.active { color: var(--accent); background: var(--bg-secondary); }
+.nav button.nav-text:hover { background: var(--bg-secondary); }
+.nav button.nav-text.active { color: var(--accent); background: var(--bg-secondary); }
+.nav button.nav-text:focus { outline: none; }
+.nav button.nav-text:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
+/* Forthcoming: present but locked — never color alone (icon + note) */
+.nav-text.locked {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  color: var(--text-muted);
+  opacity: 0.65;
+  cursor: default;
+}
+.nav-lock { width: 12px; height: 12px; flex: none; margin-top: 0.25em; }
+.nav-locked-body { display: block; min-width: 0; }
+.nav-locked-title { display: block; font-family: var(--font-body); font-size: 0.95rem; }
+.nav-note {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
 
 .reader { flex: 1; min-width: 0; }
 
