@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 1,
+  "id": "prayer.calling-buddhas-for-aid",
+  "cycle": "zab-chos-zhi-khro",
+  "kind": "prayer",
+  "title": {
+    "bo": "ཨཾ༔ ཟབ་ཆོས་ཞི་ཁྲོ་དགོངས་པ་རང་གྲོལ་ལས༔\nསངས་རྒྱས་དང་བྱང་ཆུབ་སེམས་དཔའ་རྣམས་ལ་ར་མདའ་སྦྲན་པ་ནི༔",
+    "phon": "om zab chö shi tro gong pa rang drol lé\nsang gyé dang jang chub sem pa nam la ra da dren pa ni",
+    "en": "The Calling upon the Buddhas and Bodhisattvas for Help"
+  },
+  "source": {
+    "attribution": "From the profound cycle called \"The Peaceful and Wrathful Deities, The Profound Dharma of Self-liberated Wisdom Mind\"; a treasure of Tertön Karma Lingpa. English translation from The Stairway to the Pure Lands by Lopen Phuntsho Gyaltshen (2009).",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": { "bo": null, "en": "Calling on the Buddhas for Aid" },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ༀ༔ དཀོན་མཆོག་གསུམ་ལ་དངོས་སུ་འབྱོར་པ་དང་ཡིད་ཀྱིས་སྤྲུལ་པའི་མཆོད་པ་འབུལ༔ ལག་ཏུ་སྤོས་དྲི་ཞིམ་པོ་ཐོགས་ཏེ་གདུང་བའི་ཤུགས་དྲག་པོས་འདི་སྐད་དོ༔",
+          "phon": "om kön chok sum la ngö su jor pa dang yi kyi trul pé chö pa bul / lak tu pö dri shim po tok té dung wé shuk drak pö di ké do",
+          "en": "Make offerings to the Three Jewels with actually displayed or mentally visualized offerings. Holding fragrant incense, make an outcry with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ཕྱོགས་བཅུ་ན་བཞུགས་པའི་སངས་རྒྱས་དང་བྱང་ཆུབ་སེམས་དཔའ༔ ཐུགས་རྗེ་དང་ལྡན་པ༔",
+          "phon": "chok chu na shuk pé sang gyé dang jang chub sem pa / tuk jé dang den pa",
+          "en": "The Buddhas and Bodhisattvas dwelling across the ten directions, who posses compassion,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b003",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "མཁྱེན་པ་དང་ལྡན་པ༔ སྤྱན་དང་ལྡན་པ༔ བརྩེ་བ་དང་ལྡན་པ༔",
+          "phon": "khyen pa dang den pa / chen dang den pa / tsé wa dang den pa",
+          "en": "Knowledge, eyes of insights, and love,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b004",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "འགྲོ་བའི་སྐྱབས་སུ་གྱུར་པ་རྣམས་ཐུགས་རྗེའི་དབང་གིས་གནས་འདིར་བྱོན་ཅིག༔",
+          "phon": "dro wé kyab su gyur pa nam tuk jé wang gi né dir jön chik",
+          "en": "And who have become the places of refuge for migrators, may all of you, out of compassion, come to this place!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b005",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "དངོས་སུ་འབྱོར་པ་དང་ཡིད་ཀྱིས་སྤྲུལ་པའི་མཆོད་པ་བཞེས་ཤིག༔",
+          "phon": "ngö su jor pa dang yi kyi trul pé chö pa shyé shik",
+          "en": "Please accept offerings that are offered by actually displaying or through mental emanation!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b006",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ཐུགས་རྗེ་ཅན་ཁྱེད་རྣམས་ལ་མཁྱེན་པའི་ཡེ་ཤེས༔ བརྩེ་བའི་ཐུགས་རྗེ༔ མཛད་པའི་ཕྲིན་ལས༔ སྐྱོབ་པའི་ནུས་མཐུ་བསམ་གྱིས་མི་ཁྱབ་པ་མངའ་བ་ལགས་པས༔",
+          "phon": "tuk jé chen khyé nam la khyen pé yé shé / tsé wé tuk jé / dzé pé trin lé / kyob pé nü tu sam gyi mi khyab pa nga wa lak pé",
+          "en": "O compassionate ones, as you possess an inconceivable all-knowing gnosis, loving compassion, execution of enlightened activities, and the power to rescue;",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b007",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ཐུགས་རྗེ་ཅན་ཁྱེད་རྣམས་ཀྱིས་ཆེ་གེ་མོ་ཞེས་བྱ་བ་འདི་ནི་འཇིག་རྟེན་འདི་ནས་ཕ་རོལ་དུ་ནི་འགྲོ༔",
+          "phon": "tuk jé chen khyé nam kyi ché gé mo shyé ja wa di ni jik ten di né pa rol du ni dro",
+          "en": "O compassionate ones, this person known as (insert the name of the deceased) has left this world for the other world of future.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b008",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "འཇིག་རྟེན་འདི་ནི་བོར༔ སྐྱས་ཆེན་པོས་ནི་འདེགས༔ གྲོགས་ནི་མེད༔ སྡུག་བསྔལ་ནི་ཆེ༔",
+          "phon": "jik ten di ni bor / kyé chen pö ni dek / drok ni mé / duk ngal ni ché",
+          "en": "He has shunned this world. He is taken away by death. He has no friends. The suffering for him is too severe.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b009",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "སྐྱབས་ནི་མེད༔ མགོན་ནི་མེད༔ དཔུང་གཉེན་ནི་མེད༔ ཚེ་འདིའི་སྣང་བ་ནི་ནུབ༔",
+          "phon": "kyab ni mé / gön ni mé / pung nyen ni mé / tsé di nang wa ni nub",
+          "en": "He has no refuge. He has no protector. He has no guardians. His vision of this life has eclipsed.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b010",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "འགྲོ་བ་གཞན་དུ་ནི་འགྲོ༔ མུན་ནག་འཐུག་པོར་ནི་འཇུག༔ གཡང་ས་ཆེན་པོར་ནི་ལྟུང་༔",
+          "phon": "dro wa shyen du ni dro / mün nak tuk por ni juk / yang sa chen por ni tung",
+          "en": "He has migrated for the other world. He is groping in the dense darkness. He is fallen over the precipitous cliff.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b011",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ནགས་ཁྲོད་འཐུག་པོར་ནི་འཇུག༔ ལས་ཀྱི་དབང་གིས་ནི་དེད༔ དགོན་པ་ཆེན་པོར་ནི་འགྲོ༔",
+          "phon": "nak trö tuk por ni juk / lé kyi wang gi ni dé / gön pa chen por ni dro",
+          "en": "He is running through the thickest of wild jungles. He is chased by the power of karmic consequences. He is gone into extreme solitude.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b012",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "རྒྱ་མཚོ་ཆེན་པོས་ནི་ཁྱེར༔ ལས་ཀྱི་རླུང་གིས་ནི་བདས༔ ས་ཚུགས་མེད་པའི་ཕྱོགས་སུ་ནི་འགྲོ༔",
+          "phon": "gya tso chen pö ni khyer / lé kyi lung gi ni dé / sa tsuk mé pé chok su ni dro",
+          "en": "He is being swept away by a great ocean. He is chased by karmic wind. He is walking toward a direction with no place of stable respite.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b013",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "གཡུལ་ངོ་ཆེན་པོར་ནི་འཇུག༔ གདོན་ཆེན་པོས་ནི་ཟིན༔ གཤིན་རྗེའི་ཕོ་ཉ་ལ་ནི་འཇིགས་ཤིང་སྐྲག༔",
+          "phon": "yul ngo chen por ni juk / dön chen pö ni zin / shin jé po nya la ni jik shing trak",
+          "en": "He is entering a great melee. A malignant spirit has possessed him. He is terrified and scared of the messengers of death.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b014",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ལས་ཀྱི་སྲིད་པ་ན་ཡང་སྲིད་པ་ལ་ནི་འཇུག༔ དབང་ནི་མེད༔ གཅིག་པུར་འགྲོ་དགོས་པའི་དུས་ལ་བབས་ན༔",
+          "phon": "lé kyi si pa na yang si pa la ni juk / wang ni mé / chik pur dro gö pé dü la bab na",
+          "en": "Even in the Bardo of becoming, he is engaged in causes for further becoming. He has no power. And when it is time for him to go all alone;",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b015",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ཐུགས་རྗེ་ཅན་ཁྱེད་རྣམས་ཀྱིས་ཆེ་གེ་མོ་སྐྱབས་མེད་པ་འདི་ལ་སྐྱབས་མཛོད་ཅིག༔",
+          "phon": "tuk jé chen khyé nam kyi ché gé mo kyab mé pa di la kyab dzö chik",
+          "en": "O your compassionate ones, (insert the name of the deceased) grant him refuge who has no refuge.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b016",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "མགོན་མཛོད་ཅིག༔ དཔུང་གཉེན་མཛོད་ཅིག༔ བར་དོའི་མུན་ནག་ཆེན་པོ་ལས་སྐྱོབས་ཤིག༔",
+          "phon": "gön dzö chik / pung nyen dzö chik / bar dö mün nak chen po lé kyob shik",
+          "en": "Please protect him. Please guard him. Please save him from the dense darkness of the Bardo.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b017",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ལས་ཀྱི་རླུང་དམར་ཆེན་པོ་ལས་ཟློག་ཅིག༔ གཤིན་རྗེའི་འཇིགས་སྐྲག་ཆེན་པོ་ལས་སྐྱོབས་ཤིག༔",
+          "phon": "lé kyi lung mar chen po lé lok chik / shin jé jik trak chen po lé kyob shik",
+          "en": "Save him from the fiery wind of the karma. Save him from the terrifying terror of the messengers of death.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b018",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "བར་དོའི་འཕྲང་རིང་ཆེན་པོ་ལས་སྒྲོལ་ཞིག༔ ཐུགས་རྗེ་ཅན་ཁྱེད་རྣམས་ཐུགས་རྗེ་མ་ཆུང་ཞིག༔",
+          "phon": "bar dö trang ring chen po lé drol shyik / tuk jé chen khyé nam tuk jé ma chung shyik",
+          "en": "Liberate him from the deep abyss of the Bardo. O compassionate ones, please do not let your compassion be small.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b019",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ར་མདའ་མཛོད་ཅིག༔ ངན་སོང་གསུམ་དུ་མ་བཏང་ཞིག༔",
+          "phon": "ra da dzö chik / ngen song sum du ma tang shyik",
+          "en": "Please assist him. Please do not let him slip away into unfortunate destinations.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b020",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "སྔོན་གྱི་དམ་བཅའ་མ་གཡེལ་བར་ཐུགས་རྗེའི་ཤུགས་མྱུར་དུ་ཕྱུངས་ཤིག༔",
+          "phon": "ngön gyi dam cha ma yel war tuk jé shuk nyur du chung shik",
+          "en": "Please, without forgetting your promises made earlier; quickly muster the power of your compassion.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b021",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "སངས་རྒྱས་དང་བྱང་ཆུབ་སེམས་དཔའ་རྣམས་ཀྱིས་ཆེ་གེ་མོ་འདི་ལ་ཐུགས་རྗེ་ཐབས་དང་ནུས་པ་མ་ཆུང་ཞིག༔",
+          "phon": "sang gyé dang jang chub sem pa nam kyi ché gé mo di la tuk jé tab dang nü pa ma chung shyik",
+          "en": "O the Buddhas and Bodhisattvas, toward (insert the name of the deceased), please do not belittle your compassion, skill and power.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b022",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "ཐུགས་རྗེས་ཟུངས་ཤིག༔ སེམས་ཅན་ལས་ངན་པའི་དབང་དུ་མ་བཏང་ཞིག༔",
+          "phon": "tuk jé zung shik / sem chen lé ngen pé wang du ma tang shyik",
+          "en": "Hold him with your compassion. Please do not let sentient beings be swayed away by bad karmas.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b023",
+          "layer": "L3",
+          "form": "prose",
+          "bo": "དཀོན་མཆོག་གསུམ་གྱིས་བར་དོའི་སྡུག་བསྔལ་ལས་བསྐྱབ་ཏུ་གསོལ༔",
+          "phon": "kön chok sum gyi bar dö duk ngal lé kyab tu sol",
+          "en": "O the Three Jewels please save him from suffering of the Bardo!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b024",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཞེས་མོས་གུས་དྲག་པོའི་སྒོ་ནས་བདག་གཞན་ཐམས་ཅད་ཀྱིས་ལན་གསུམ་དུ་བྱའོ༔",
+          "phon": "shyé mö gü drak pö go né dak shyen tam ché kyi len sum du ja'o",
+          "en": "Thus, with strong faith and devotion, both self and others, should repeat this for three times.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}

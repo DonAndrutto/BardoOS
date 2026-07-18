@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "id": "prayer.root-verses-six-bardos",
+  "cycle": "zab-chos-zhi-khro",
+  "kind": "prayer",
+  "title": {
+    "bo": "ཨྃ༔ བར་དོ་དྲུག་གི་རྩ་ཚིག་བཞུགས་སོ༔",
+    "phon": "om bar do druk gi tsa tsik shuk so",
+    "en": "The Root Verses of the Six Bardos"
+  },
+  "source": {
+    "attribution": "Taught by Padmasambhava and revealed by Tertön Karma Lingpa at Daglha Gonpo Palri, per the colophon. English translation from The Stairway to the Pure Lands by Lopen Phuntsho Gyaltshen (2009).",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": { "bo": null, "en": "Root Verses of the Six Bardos" },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཨྃ༔ ཀྱེ་མ་བདག་ལ་སྐྱེ་གནས་བར་དོ་འཆར་དུས་འདིར༔\nཚེ་ལ་ལོང་མེད་ལེ་ལོ་སྤང་བྱས་ནས༔",
+          "phon": "om kyé ma dak la kyé né bar do char dü dir\ntsé la long mé lé lo pang jé né",
+          "en": "O alas! At the time when the Bardo of Birth and Living, arises in me,\nSince there is no certainty in life, may we, having shunned laziness,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཐོས་བསམ་སྒོམ་གསུམ་མ་ཡེངས་ལམ་ལ་འཇུག༔\nསྣང་སེམས་ལམ་སློང་སྐུ་གསུམ་མངོན་འགྱུར་བྱ༔",
+          "phon": "tö sam gom sum ma yeng lam la juk\nnang sem lam long ku sum ngön gyur ja",
+          "en": "Without distraction, engage into the path of listening, reflecting and meditation!\nHaving accepted appearances and mind as the path, may we manifestly actualize the three Kayas!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b003",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "མི་ལུས་ལན་གཅིག་ཐོབ་པའི་དུས་ཚོད་འདིར༔\nཡེངས་མ་ལམ་ལ་སྡོད་པའི་དུས་ཚོད་མིན༔",
+          "phon": "mi lü len chik tob pé dü tsö dir\nyeng ma lam la dö pé dü tsö min",
+          "en": "At the time when we have achieved this single-time human rebirth,\nIt is not right for us to stroll on the path to distractions!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b004",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་རྨི་ལམ་བར་དོ་འཆར་དུས་འདིར༔\nགཏི་མུག་རོ་ཉལ་བག་མེད་སྤང་བྱས་ནས༔",
+          "phon": "kyé ma dak la mi lam bar do char dü dir\nti muk ro nyal bak mé pang jé né",
+          "en": "O alas! At the time when the Bardo of Dream arises in me,\nHaving shunned the dead-body like ignorant sleep and carelessness,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b005",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "དྲན་པ་ཡེངས་མེད་གནས་ལུགས་ངང་ལ་འཇུག༔\nརྨི་ལམ་བཟུང་ནས་སྤྲུལ་བསྒྱུར་འོད་གསལ་སྦྱང་༔",
+          "phon": "dren pa yeng mé né luk ngang la juk\nmi lam zung né trul gyur ö sal jang",
+          "en": "And with undistracted mindfulness, may we engage into the innate state!\nHaving mastery over dreams, may we practice manifest-transform exercises and the luminosity!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b006",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "དུད་འགྲོ་བཞིན་དུ་ཉལ་བར་མ་བྱེད་ཅིག༔\nགཉིད་དང་མངོན་སུམ་འདྲེས་པའི་ཉམས་ལེན་གཅེས༔",
+          "phon": "dü dro shyin du nyal war ma jé chik\nnyi dang ngön sum dré pé nyam len ché",
+          "en": "Let us sleep not like an animal!\nIt is dearly crucial to practice the merging of sleep and awake-state as one!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b007",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་བསམ་གཏན་བར་དོ་འཆར་དུས་འདིར༔\nརྣམ་གཡེང་འཁྲུལ་པའི་ཚོགས་རྣམས་སྤང་བྱས་ནས༔",
+          "phon": "kyé ma dak la sam ten bar do char dü dir\nnam yeng trul pé tsok nam pang jé né",
+          "en": "O alas! At the time when the Bardo of Samadhi arises in me,\nHaving shunned the host of confusing distractions,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b008",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཡེངས་མེད་འཛིན་མེད་མཐའ་བྲལ་ངང་ལ་འཇུག༔\nབསྐྱེད་རྫོགས་གཉིས་ལ་བརྟན་པ་ཐོབ་པར་བྱ༔",
+          "phon": "yeng mé dzin mé ta dral ngang la juk\nkyé dzok nyi la ten pa tob par ja",
+          "en": "May we enter into the undistracted, limitless state without grasping,\nAnd achieve the stability of the two stages (generation and completion)!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b009",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "བྱ་བ་སྤངས་ནས་རྩེ་གཅིག་བསྒོམ་དུས་འདིར༔\nཉོན་མོངས་འཁྲུལ་པའི་དབང་དུ་མ་བཏང་ཞིག༔",
+          "phon": "ja wa pang né tsé chik gom dü dir\nnyön mong trul pé wang du ma tang shyik",
+          "en": "In this time, having shunned business while practicing one-pointedly,\nMay we let not ourselves be swayed away by the delusion of kleshas!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b010",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་འཆི་ཁ་བར་དོ་འཆར་དུས་འདིར༔\nཀུན་ལ་ཆགས་སེམས་ཞེན་འཛིན་སྤང་བྱས་ནས༔",
+          "phon": "kyé ma dak la chi kha bar do char dü dir\nkün la chak sem shyen dzin pang jé né",
+          "en": "O alas! At the time when the Bardo of Death arises before me,\nHaving shunned attachment and clinging to anything,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b011",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "གདམས་ངག་གསལ་བའི་ངང་ལ་མ་ཡེངས་འཇུག༔\nརང་རིག་སྐྱེ་མེད་ནམ་མཁའི་དབྱིངས་སུ་འཕོ༔",
+          "phon": "dam ngak sal wé ngang la ma yeng juk\nrang rik kyé mé nam khé ying su po",
+          "en": "May we enter the state where key instructions are clear without distraction,\nAnd transfer our own Rigpa into the sphere of unborn space!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b012",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "འདུས་བྱས་ཤ་ཁྲག་ལུས་དང་བྲལ་ལ་ཁད༔\nམི་རྟག་སྒྱུ་མ་ཡིན་པར་ཤེས་པར་བྱ༔",
+          "phon": "dü jé sha trak lü dang dral la khé\nmi tak gyu ma yin par shé par ja",
+          "en": "When it is time to separate from the compounded, body of flesh and blood,\nMay we know the process as impermanence and illusion!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b013",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་ཆོས་ཉིད་བར་དོ་འཆར་དུས་འདིར༔\nཀུན་ལ་དངངས་སྐྲག་འཇིགས་སྣང་སྤང་བྱས་ནས༔",
+          "phon": "kyé ma dak la chö nyi bar do char dü dir\nkün la ngang trak jik nang pang jé né",
+          "en": "O alas! At the time when the Bardo of Dharmata arises for me,\nHaving overcome fear and panic regarding anything,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b014",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "གང་ཤར་རང་སྣང་རིག་པ་ངོ་ཤེས་འཇུག༔\nབར་དོའི་སྣང་ཚུལ་ཡིན་པར་ཤེས་པར་བྱ༔",
+          "phon": "gang shar rang nang rik pa ngo shé juk\nbar dö nang tsul yin par shé par ja",
+          "en": "May we enter the recognition of ones own Rigpa, knowing appearances to be one's own reflections,\nAnd know that those are the way of appearances in the state of Bardo!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b015",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "དོན་ཆེན་འགགས་ལ་ཐུག་པའི་དུས་ཤིག་ཡིན༔\nརང་སྣང་ཞི་ཁྲོའི་ཚོགས་ལ་མ་འཇིགས་ཤིག༔",
+          "phon": "dön chen gak la tuk pé dü shik yin\nrang nang shi trö tsok la ma jik shik",
+          "en": "This is the momentous time, great turning point, the crucial hour,\nAnd may we never be afraid of the hosts of one's self-appearances - the peaceful and wrathful deities!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b016",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་སྲིད་པ་བར་དོ་འཆར་དུས་འདིར༔\nའདུན་པ་རྩེ་གཅིག་སེམས་ལ་བཟུང་བྱས་ནས༔",
+          "phon": "kyé ma dak la si pa bar do char dü dir\ndün pa tsé chik sem la zung jé né",
+          "en": "O alas! At the time when the Bardo of Existence arises before me,\nWith one-pointed intention maintained in my mind,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b017",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "བཟང་པོ་ལས་ཀྱི་འཕྲོ་ལ་ནན་གྱིས་མཐུད༔\nམངལ་སྒོ་བཀག་ནས་རུ་ལོག་དྲན་པར་བྱ༔",
+          "phon": "zang po lé kyi tro la nen gyi tü\nngal go kak né ru lok dren par ja",
+          "en": "May we put effort to connect to the continuity of wholesome karma,\nAnd having blocked the door of the womb, may we be mindful of the reversal of Samsara!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b018",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "སྙིང་རུས་དག་སྣང་དགོས་པའི་དུས་ཤིག་ཡིན༔\nམིག་སེར་སྤངས་ལ་བླ་མ་ཡབ་ཡུམ་བསྒོམ༔",
+          "phon": "nying rü dak nang gö pé dü shik yin\nmik ser pang la la ma yab yum gom",
+          "en": "This is the time when we require perseverance and pure perception!\nMay we shun jealousy and visualize one's Guru and his consort!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b019",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "འཆི་བ་འོང་སྙམ་མེད་པའི་བློ་རིང་པོ༔\nདོན་མེད་ཚེ་འདིའི་བྱ་བ་བསྒྲུབ་བསྒྲུབས་ནས༔",
+          "phon": "chi wa ong nyam mé pé lo ring po\ndön mé tsé di ja wa drub drub né",
+          "en": "The procrastinating mind that does not think death may come,\nKeeps on engaging in meaningless activities of this life,",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b020",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ད་རེས་སྟོང་ལོག་བྱས་ན་ཤིན་ཏུ་འཁྲུལ༔\nདགོས་ངོ་ཤེས་པ་དམ་པའི་ལྷ་ཆོས་ཡིན༔",
+          "phon": "da ré tong lok jé na shin tu trul\ngö ngo shé pa dam pé lha chö yin",
+          "en": "And wastes this opportunity today, it should be a grave error!\nHence, knowing the purpose of this life is the sublime Dharma!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b021",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "ད་ལྟ་ཉིད་དུ་ལྷ་ཆོས་མི་བྱེད་དམ༔\nགྲུབ་ཆེན་རྣམས་ཀྱི་ཞལ་ནས་འདི་སྐད་གསུངས༔",
+          "phon": "da ta nyi du lha chö mi jé dam\ndrub chen nam kyi shyal né di ké sung",
+          "en": "Will you really not practice the Dharma, right now?\nThat is how the great-accomplished adepts taught us!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b022",
+          "layer": "L3",
+          "form": "verse",
+          "bo": "བླ་མའི་གདམས་ངག་སེམས་ལ་མ་བཞག་ན༔\nརང་གིས་རང་ཉིད་བསླུ་བར་མི་འགྱུར་རམ༔",
+          "phon": "la mé dam ngak sem la ma shyak na\nrang gi rang nyi lu war mi gyur ram",
+          "en": "And if these Gurus key instructions are not kept in the mind,\nAre we not decieving ourselves?",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}
