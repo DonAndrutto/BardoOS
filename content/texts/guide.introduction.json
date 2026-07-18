@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "guide.introduction",
+  "cycle": "app",
+  "kind": "guide",
+  "title": {
+    "bo": null,
+    "phon": null,
+    "en": "Introduction"
+  },
+  "source": {
+    "attribution": "TODO_CONTENT",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": { "bo": null, "en": "TODO_CONTENT" },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "TODO_CONTENT",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}

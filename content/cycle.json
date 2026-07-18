@@ -2,6 +2,22 @@
   "schemaVersion": 1,
   "groups": [
     {
+      "id": "guide",
+      "heading": { "bo": null, "en": "Guide" },
+      "texts": [
+        {
+          "id": "guide.introduction",
+          "title": "Introduction",
+          "status": "translated"
+        },
+        {
+          "id": "guide.how-to-use",
+          "title": "How to Use This App",
+          "status": "translated"
+        }
+      ]
+    },
+    {
       "id": "preliminaries",
       "heading": { "bo": null, "en": "Preliminaries" },
       "texts": [
