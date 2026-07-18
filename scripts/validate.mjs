@@ -14,8 +14,10 @@ const TODO = 'TODO_CONTENT';
 const LAYERS = ['L0', 'L1', 'L2', 'L3', 'L4'];
 const SPOKEN = ['L1', 'L2', 'L3'];
 const FORMS = ['prose', 'verse', 'title', 'colophon'];
-const KINDS = ['instruction', 'liturgy', 'prayer', 'diagnostic', 'phowa'];
-const CYCLES = ['zab-chos-zhi-khro', 'dudjom-six-bardos'];
+// 'guide' and 'app' cover the app's own Guide texts (SCHEMA.md, Phase 3
+// amendments) — material of the instrument, not of either textual cycle.
+const KINDS = ['instruction', 'liturgy', 'prayer', 'diagnostic', 'phowa', 'guide'];
+const CYCLES = ['zab-chos-zhi-khro', 'dudjom-six-bardos', 'app'];
 
 // Tibetan closing marks: shad, nyis shad, tsheg shad ×3, gter tsheg.
 const BO_TERMINATORS = ['།', '༎', '༏', '༐', '༑', '༔'];
@@ -40,6 +42,10 @@ const SCAN_SKIP_EXTS = new Set(['.ttf', '.otf', '.woff', '.woff2', '.png', '.jpg
 const errors = [];
 const warnings = [];
 const todoCensus = new Map(); // "file :: field-path" → count
+// prayerRefs are collected during text checks and resolved after the
+// cycle manifest is read — a ref may legally point at a forthcoming
+// text, which exists only there.
+const prayerRefs = []; // { file, where, ref }
 
 function err(file, where, message) {
   errors.push(`${file}${where ? ` :: ${where}` : ''} :: ${message}`);
@@ -114,7 +120,7 @@ function checkBlock(file, sectionId, block, i, ctx) {
 
   checkKeys(file, where, block,
     ['id', 'layer', 'form', 'bo', 'phon', 'en', 'meter', 'deityRef', 'day', 'note'],
-    ['refrain', 'boEndsOpen']);
+    ['refrain', 'boEndsOpen', 'prayerRef', 'pl']);
 
   if (!nonEmpty(block.id)) err(file, where, 'block id must be a non-empty string');
   else if (!ID_PATTERN.test(block.id)) err(file, where, `block id "${block.id}" is not kebab-case`);
@@ -132,7 +138,7 @@ function checkBlock(file, sectionId, block, i, ctx) {
     err(file, where, `form "${block.form}" is legal only on L4 (apparatus)`);
   }
 
-  for (const f of ['bo', 'phon', 'en', 'note']) {
+  for (const f of ['bo', 'phon', 'en', 'note', 'pl']) {
     if (f in block && !isNullableString(block[f])) err(file, where, `"${f}" must be a string or null`);
   }
 
@@ -163,6 +169,11 @@ function checkBlock(file, sectionId, block, i, ctx) {
     }
   }
 
+  if (block.prayerRef !== null && block.prayerRef !== undefined) {
+    if (!nonEmpty(block.prayerRef)) err(file, where, '"prayerRef" must be a non-empty string or null');
+    else prayerRefs.push({ file, where, ref: block.prayerRef });
+  }
+
   if (block.day !== null && block.day !== undefined) {
     if (!Number.isInteger(block.day) || block.day < 1 || block.day > 14) {
       err(file, where, `"day" must be an integer 1–14 or null (got ${JSON.stringify(block.day)})`);
@@ -190,7 +201,7 @@ function checkBlock(file, sectionId, block, i, ctx) {
     warn(file, where, 'Tibetan is not NFC-normalized');
   }
 
-  for (const f of ['bo', 'phon', 'en', 'note']) {
+  for (const f of ['bo', 'phon', 'en', 'note', 'pl']) {
     if (isString(block[f])) countTodos(file, `${where} :: ${f}`, block[f]);
   }
 }
@@ -274,11 +285,12 @@ const STATUSES = ['translated', 'forthcoming'];
 
 function checkCycle(textIds) {
   const file = 'content/cycle.json';
+  const manifest = new Map(); // text id → group id (for prayerRef resolution)
   const c = readJSON(join(ROOT, file), file);
-  if (!c) return;
+  if (!c) return manifest;
   checkKeys(file, null, c, ['schemaVersion', 'groups']);
   if (c.schemaVersion !== 1) err(file, null, `unknown schemaVersion ${c.schemaVersion}`);
-  if (!Array.isArray(c.groups)) { err(file, null, '"groups" must be an array'); return; }
+  if (!Array.isArray(c.groups)) { err(file, null, '"groups" must be an array'); return manifest; }
 
   const seen = new Map(); // text id → times listed
   const groupIds = new Set();
@@ -317,6 +329,7 @@ function checkCycle(textIds) {
         err(file, tw, `status "forthcoming" but content/texts/${t.id}.json exists — mark it "translated"`);
       }
       seen.set(t.id, (seen.get(t.id) || 0) + 1);
+      manifest.set(t.id, g.id);
     });
   });
   for (const [id, n] of seen) {
@@ -324,6 +337,23 @@ function checkCycle(textIds) {
   }
   for (const id of textIds) {
     if (!seen.has(id)) err(file, null, `text "${id}" exists on disk but is not in the cycle manifest`);
+  }
+  return manifest;
+}
+
+// ── prayerRef resolution (after the manifest is read) ───────────────
+// A cross-link must point at a text the cycle lists — translated or
+// forthcoming. Pointing outside the Prayers & Liturgies shelf is legal
+// but usually a slip, so it warns.
+const PRAYERS_GROUP = 'prayers-liturgies';
+
+function checkPrayerRefs(manifest) {
+  for (const { file, where, ref } of prayerRefs) {
+    if (!manifest.has(ref)) {
+      err(file, where, `orphaned prayerRef "${ref}" — not in content/cycle.json`);
+    } else if (manifest.get(ref) !== PRAYERS_GROUP) {
+      warn(file, where, `prayerRef "${ref}" points outside the ${PRAYERS_GROUP} shelf`);
+    }
   }
 }
 
@@ -358,7 +388,7 @@ const textFiles = existsSync(textsDir)
 for (const f of textFiles) {
   checkText(join(textsDir, f), `content/texts/${f}`, deityIds, textIds);
 }
-checkCycle(textIds);
+checkPrayerRefs(checkCycle(textIds));
 scanForbidden();
 
 // ── Report ──────────────────────────────────────────────────────────

@@ -42,9 +42,10 @@ One text = one file: `content/texts/<text-id>.json`. The id is kebab-case, dots 
 }
 ```
 
-- `cycle`: `zab-chos-zhi-khro` or `dudjom-six-bardos`.
-- `kind`: `instruction`, `liturgy`, `prayer`, `diagnostic`, or `phowa`.
+- `cycle`: `zab-chos-zhi-khro` or `dudjom-six-bardos` (`app` exists too, but only for the app's own Guide texts — you will not create those).
+- `kind`: `instruction`, `liturgy`, `prayer`, `diagnostic`, `phowa`, or `guide` (same caveat).
 - Every block writes all ten core keys, using `null` where a value is absent. `refrain` and `boEndsOpen` are added only when true.
+- Two more optional keys exist, added only when they carry a value: `prayerRef` (a cross-link to a prayer — **the author decides where these go; never add one yourself**) and `pl` (the author's Polish translation, when supplied; mirror `en`'s line structure). Omit both otherwise.
 
 ## 2. Split the source into blocks
 
@@ -80,13 +81,15 @@ If a passage is shaded but reads like a stage direction, or unshaded but reads l
 
 ## 5. Register the text in the cycle
 
-Add the text id to exactly one group in `content/cycle.json`:
+Add the text to exactly one group in `content/cycle.json`. An entry is an object — id, the navigation title (the author's words), and status:
 
 ```json
-{ "id": "group-1", "heading": { "bo": null, "en": "TODO_CONTENT" }, "texts": ["my-text-id"] }
+{ "id": "group-1", "heading": { "bo": null, "en": "TODO_CONTENT" }, "texts": [
+  { "id": "my-text-id", "title": "TODO_CONTENT", "status": "translated" }
+] }
 ```
 
-Every text on disk must appear in the manifest exactly once, or validation fails.
+Every text on disk must appear in the manifest exactly once, as `"translated"`, or validation fails. (A `"forthcoming"` entry is the opposite case: catalogued, but no file on disk yet.)
 
 ## 6. Validate
 
@@ -106,6 +109,7 @@ No installation, no packages — just Node 18 or newer. `OK — the contract hol
 | `empty "phon" on L3` | Liturgy without phonetics | `TODO_CONTENT` until the author supplies them |
 | `Tibetan does not end with a closing mark` | `bo` ends mid-stream | Check you copied the full passage; if the source truly ends open, `"boEndsOpen": true` |
 | `orphaned deityRef` | A deity id not in `assets/deities/MANIFEST.json` | Leave `deityRef: null` unless the id exists |
+| `orphaned prayerRef` | A cross-link to a text id not in `content/cycle.json` | Refs are the author's to place; ask before touching one |
 | `dangling text id` / `not in the cycle manifest` | File and `cycle.json` disagree | Step 5 |
 | `duplicate block id` | Two blocks share an id | Ids are `s<n>-b<3 digits>`, unique per text |
 | `contains the forbidden title` | The one string that never appears in this project | Remove it. The work is the *Bardo Thödröl*. |

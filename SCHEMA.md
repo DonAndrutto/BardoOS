@@ -2,6 +2,8 @@
 
 **Status: APPROVED and frozen (Phase 0 sign-off, 2026-07-16), with the amendments named at that approval: `phon` required on L3 only; `form` gains `title` and `colophon`. Any further change requires asking first (BRIEF §6).**
 
+**Phase 3 amendments (owner-directed, 2026-07-18):** blocks gain two optional fields — `prayerRef` (cross-link to a prayer in the cycle; the validator rejects orphaned refs) and `pl` (Polish translation, entirely optional on every layer, default null); `kind` gains `"guide"` and `cycle` gains `"app"` for the app's own Guide texts (Introduction, How to Use This App). No existing field changed meaning.
+
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
 A deliberate rule about the examples in this document: **every piece of textual content is the literal placeholder `TODO_CONTENT`.** I do not author, paraphrase, or approximate any Tibetan or English text, including in documentation (BRIEF §0.2). The examples show shape, not words. `TODO_CONTENT` is also the sanctioned marker for real gaps during content entry: it means "a human must supply this" and the validator counts and reports every one.
@@ -33,8 +35,8 @@ A deliberate rule about the examples in this document: **every piece of textual 
 |---|---|---|---|
 | `schemaVersion` | integer | yes | Always `1` for now. Exists so a future migration is possible without guessing. |
 | `id` | string | yes | Kebab-case, unique across the whole corpus, **stable forever** — ids are the anchors for resume-position, cross-references, and any future audio sync. Renaming an id after content ships is a breaking act; don't. |
-| `cycle` | enum | yes | `"zab-chos-zhi-khro"` or `"dudjom-six-bardos"`. Which body of material the text belongs to. *(Names are my proposal — confirm or correct the second one especially.)* |
-| `kind` | enum | yes | `"instruction"` \| `"liturgy"` \| `"prayer"` \| `"diagnostic"` \| `"phowa"` (BRIEF §6). Drives grouping on the home screen, nothing else. |
+| `cycle` | enum | yes | `"zab-chos-zhi-khro"`, `"dudjom-six-bardos"`, or `"app"`. Which body of material the text belongs to; `"app"` is for material belonging to the instrument itself (the Guide shelf), not to either textual cycle. *(Cycle names are my proposal — confirm or correct the second one especially.)* |
+| `kind` | enum | yes | `"instruction"` \| `"liturgy"` \| `"prayer"` \| `"diagnostic"` \| `"phowa"` \| `"guide"` (BRIEF §6; `"guide"` added at the owner's Phase 3 direction). Drives grouping on the home screen, nothing else. |
 | `title` | object | yes | `bo` and `phon` are string-or-null; `en` is a required non-empty string. The full honest title of the text — each text is first-class (BRIEF §4). |
 | `source` | object | yes | `attribution` (string, required, `TODO_CONTENT` until you supply it) and `notes` (string or null). Provenance is apparatus; it renders as L4-style material, silently. |
 | `sections` | array | yes, ≥1 | See §3. |
@@ -116,9 +118,11 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 | `day` | integer \| null | yes (nullable) | Day 1–14 of the *bardo* of *dharmatā* sequence, where applicable. |
 | `refrain` | boolean | no (default `false`) | Marks a repeated formula. Consecutive `refrain` blocks group into one framed panel and receive the auto-scroll hold (a mechanism inherited from the Ngondro reference — audit §1). Orthogonal to `layer`. |
 | `boEndsOpen` | boolean | no (default `false`) | Declares that this block's Tibetan legitimately ends without a closing mark, exempting it from the shad-integrity check (§7.8). Only legal when `bo` is non-null. |
+| `prayerRef` | string \| null | no (default `null`) | Cross-link: the text id of a prayer in the cycle that this block mentions. The reader renders a tappable link that jumps to that prayer. The id must appear in `content/cycle.json` — a ref to an unlisted id is an error ("orphaned prayerRef"); a ref to a text outside the Prayers & Liturgies shelf is a warning. The owner decides which blocks carry refs; tooling never infers one. |
+| `pl` | string \| null | no (default `null`) | Polish translation of the block, mirroring `en`'s line structure where both exist. **Entirely optional on every layer** — no layer requires it, and its absence is never an error or a warning. The renderer does not display it yet; the field exists so the corpus can carry Polish ahead of the interface (owner's Phase 3 direction). |
 | `note` | string \| null | yes (nullable) | Your note on the block. Apparatus in spirit: rendered quietly in Guide mode only, never in Voice mode, never spoken. |
 
-The ten core keys (`id`, `layer`, `form`, `bo`, `phon`, `en`, `meter`, `deityRef`, `day`, `note`) are written explicitly in every block, nullable ones as `null`; `refrain` and `boEndsOpen` may be omitted when false. Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
+The ten core keys (`id`, `layer`, `form`, `bo`, `phon`, `en`, `meter`, `deityRef`, `day`, `note`) are written explicitly in every block, nullable ones as `null`; `refrain` and `boEndsOpen` may be omitted when false, and `prayerRef` and `pl` may be omitted when null (so their arrival does not churn every existing file). Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
 
 Inline tokens inside `bo`/`phon`/`en` strings — the only three the renderer recognizes; content is never parsed as HTML:
 
@@ -198,7 +202,7 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 4. Missing or unknown `kind`, `cycle`, or `form`; `form` of `"title"` or `"colophon"` on any layer other than L4; `meter` present on a non-verse form; `day` outside 1–14; any type mismatch.
 5. Unknown/extra field anywhere (strict contract — catches typos in bulk entry).
 6. Empty or missing `en` on a spoken layer (L1/L2/L3), and empty or missing `phon` on L3. The string `"TODO_CONTENT"` is *not* an error — it is a declared gap, counted and reported (see below). An empty string is an undeclared gap and fails.
-7. Orphaned `deityRef` — id absent from `assets/deities/MANIFEST.json`.
+7. Orphaned `deityRef` — id absent from `assets/deities/MANIFEST.json`. Orphaned `prayerRef` — id absent from `content/cycle.json` (a cross-link must point at a text the cycle actually lists, translated or forthcoming).
 8. **Shad-integrity** (rule confirmed at Phase 0 sign-off): every non-null, non-`TODO_CONTENT` `bo` value must end with a Tibetan closing mark — `།` (U+0F0D), `༎` (U+0F0E), `༏` `༐` `༑` (U+0F0F–U+0F11), or `༔` (U+0F14) — unless the block carries `"boEndsOpen": true`. That flag is the deliberate escape for verses that legitimately end open: the validator never breaks on a declared case, and never guesses about an undeclared one. Blocks with no Tibetan are never flagged.
 9. **The forbidden title** (BRIEF §2): a repo-wide scan of every text file — content, code, comments, docs, meta tags. The pattern is assembled at runtime from character fragments so the string itself appears nowhere in the repository, including inside the validator. The one permitted historical note, if you ever write it, gets an explicit allowlist entry for that file.
 10. Duplicate text `id` across the corpus; duplicate section/block `id` within a text.
@@ -209,6 +213,7 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 - `TODO_CONTENT` census — count per file, per field, per layer, printed on every run so the state of the corpus is always visible. (CI stays green while content is incomplete; the gaps are declared, not hidden.)
 - `phon` present on L0 (rubric is not recited).
 - Non-NFC Unicode normalization in `bo` (warning; Tibetan input methods vary).
+- `prayerRef` pointing at a text outside the Prayers & Liturgies shelf (legal, but usually a slip — the mechanism exists for prayers).
 
 ## 8. What the schema deliberately does not preclude (BRIEF §4)
 
