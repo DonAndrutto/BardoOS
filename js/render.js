@@ -23,15 +23,19 @@ function el(tag, className, parent) {
 }
 
 // Text goes in as data, comes out as DOM text nodes — no HTML parsing of
-// content, ever. Verse lines split on \n; declared gaps (TODO_CONTENT)
-// are marked visibly rather than hidden.
+// content, ever. The only inline tokens are \n (verse lines), TODO_CONTENT
+// (declared gaps, marked visibly rather than hidden), and **…** (emphasis,
+// SCHEMA §4 — a paired marker, never interpreted as prose).
 function fillInline(node, value) {
   const lines = String(value).split('\n');
   for (const line of lines) {
     const target = lines.length > 1 ? el('span', 'line', node) : node;
-    line.split(TODO).forEach((piece, j, pieces) => {
-      if (piece) target.appendChild(document.createTextNode(piece));
-      if (j < pieces.length - 1) el('span', 'todo', target).textContent = TODO;
+    line.split('**').forEach((seg, k) => {
+      const dest = k % 2 ? el('strong', 'em', target) : target;
+      seg.split(TODO).forEach((piece, j, pieces) => {
+        if (piece) dest.appendChild(document.createTextNode(piece));
+        if (j < pieces.length - 1) el('span', 'todo', dest).textContent = TODO;
+      });
     });
   }
 }

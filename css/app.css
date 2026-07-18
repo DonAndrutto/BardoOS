@@ -312,6 +312,13 @@ body.fs .app-header { display: none; }
 /* Verse lines render as real lines */
 .line { display: block; }
 
+/* Inline emphasis (**…** in content): bold, leaning toward the accent —
+   different enough to be found at a glance, quiet enough not to shout. */
+.em {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--accent) 45%, var(--text));
+}
+
 /* Declared content gaps stay visible and honest */
 .todo {
   font-family: var(--font-ui);

@@ -120,6 +120,12 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 
 The ten core keys (`id`, `layer`, `form`, `bo`, `phon`, `en`, `meter`, `deityRef`, `day`, `note`) are written explicitly in every block, nullable ones as `null`; `refrain` and `boEndsOpen` may be omitted when false. Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
 
+Inline tokens inside `bo`/`phon`/`en` strings — the only three the renderer recognizes; content is never parsed as HTML:
+
+- `\n` — verse line break;
+- `TODO_CONTENT` — a declared gap (rendered visibly, counted by the validator);
+- `**…**` — emphasis on a span within the text (rendered bold in a color leaning toward the accent). Markers come in pairs; the words between them are still the owner's words, never edited when adding emphasis.
+
 ## 5. The layers, restated as data rules
 
 The definitions are yours (BRIEF §5); these are the *data* consequences:
