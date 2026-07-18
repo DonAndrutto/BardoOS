@@ -11,9 +11,21 @@
 // auto-scroll geometry stays honest — inherited from the reference.
 
 import { state } from './store.js';
+import { cycleEntry } from './data.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
 const TODO = 'TODO_CONTENT';
+
+// Static icon markup only — never content (same discipline as the nav).
+const ARROW_ICON =
+  '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const LOCK_ICON =
+  '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
+  '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
 
 function el(tag, className, parent) {
   const node = document.createElement(tag);
@@ -50,12 +62,37 @@ function visibleFields(block) {
   return fields;
 }
 
+// A block's prayerRef renders as a tappable link to that prayer —
+// title from the manifest (the owner's words), never authored here.
+// A ref to a still-forthcoming prayer shows locked, going nowhere.
+function prayerRefEl(block) {
+  const entry = cycleEntry(block.prayerRef);
+  const title = entry && entry.title !== TODO ? entry.title : block.prayerRef;
+  const wrap = el('div', 'prayer-ref');
+  if (entry && entry.status === 'translated') {
+    const btn = el('button', 'prayer-link', wrap);
+    btn.type = 'button';
+    btn.dataset.prayerRef = block.prayerRef;
+    btn.innerHTML = ARROW_ICON;
+    el('span', 'prayer-link-title', btn).textContent = title;
+  } else {
+    const span = el('span', 'prayer-link locked', wrap);
+    span.innerHTML = LOCK_ICON;
+    const body = el('span', 'prayer-link-body', span);
+    el('span', 'prayer-link-title', body).textContent = title;
+    el('small', 'prayer-link-note', body).textContent =
+      'Translation forthcoming. Support the translator.';
+  }
+  return wrap;
+}
+
 function blockEl(block, fields) {
   const div = el('div', `block layer-${block.layer} form-${block.form}`);
   div.dataset.blockId = block.id;
   for (const f of fields) {
     fillInline(el('div', f === 'bo' ? 'bo' : f, div), block[f]);
   }
+  if (block.prayerRef) div.appendChild(prayerRefEl(block));
   return div;
 }
 
@@ -75,6 +112,7 @@ function collapsedL0(block, fields) {
   for (const f of fields) {
     fillInline(el('div', f === 'bo' ? 'bo' : f, peek), block[f]);
   }
+  if (block.prayerRef) peek.appendChild(prayerRefEl(block));
   return wrap;
 }
 

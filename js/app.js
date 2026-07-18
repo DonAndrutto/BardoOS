@@ -249,8 +249,14 @@ async function boot() {
     $('btnFs').style.display = 'none';
   }
 
-  // Rubric peeking in Voice mode (delegated: markers are re-rendered often)
+  // Rubric peeking in Voice mode, and prayer cross-links — both
+  // delegated: the reader's contents re-render often.
   $('reader').addEventListener('click', (e) => {
+    const link = e.target.closest('.prayer-link');
+    if (link && link.dataset.prayerRef) {
+      openText(link.dataset.prayerRef);
+      return;
+    }
     const btn = e.target.closest('.l0-marker');
     if (!btn) return;
     const wrap = btn.closest('.voice-collapsed');

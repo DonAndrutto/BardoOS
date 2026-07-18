@@ -337,6 +337,47 @@ body.nav-open .nav { display: block; }
 /* Inside the L2 panel a nested frame would be noise — the panel already frames. */
 .run-L2 .refrain-group { border: none; background: none; padding: 0; margin: 0 0 var(--sp-4); }
 
+/* ── Prayer cross-links: a mentioned prayer, one tap away ──
+   Never color alone: border, icon, and type treatment carry it. */
+.prayer-ref { margin-top: var(--sp-3); }
+.prayer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+  padding: var(--sp-1) var(--sp-3);
+  font-family: var(--font-body);
+  font-size: calc(var(--size-block, var(--size-base)) * 0.85);
+  text-align: left;
+  color: var(--accent);
+  background: none;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--dur-2);
+}
+@media (hover: hover) {
+  .prayer-link:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+}
+.prayer-link:focus { outline: none; }
+.prayer-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.prayer-link-icon { width: 14px; height: 14px; flex: none; }
+.prayer-link.locked {
+  color: var(--text-muted);
+  border-color: var(--border);
+  opacity: 0.75;
+  cursor: default;
+}
+.prayer-link-body { display: block; min-width: 0; }
+.prayer-link-note {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Verse lines render as real lines */
 .line { display: block; }
 
