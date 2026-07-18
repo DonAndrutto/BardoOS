@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v7';
+const VERSION = 'bardo-os-v8';
 
 const PRECACHE = [
   './',
@@ -13,6 +13,7 @@ const PRECACHE = [
   'css/app.css',
   'js/app.js',
   'js/data.js',
+  'js/i18n.js',
   'js/render.js',
   'js/scroll.js',
   'js/store.js',
@@ -22,7 +23,17 @@ const PRECACHE = [
   'assets/fonts/eb-garamond/EBGaramond-Italic[wght].ttf',
   'assets/fonts/inter/Inter[opsz,wght].ttf',
   'content/cycle.json',
+  // Every translated text — offline must not depend on what the
+  // reader happened to open while they still had a connection.
+  'content/texts/bardo-thodrol.becoming-intro.json',
+  'content/texts/bardo-thodrol.dharmata-intro.json',
   'content/texts/bardo-thodrol.dying-intro.json',
+  'content/texts/guide.how-to-use.json',
+  'content/texts/guide.introduction.json',
+  'content/texts/prayer.calling-buddhas-for-aid.json',
+  'content/texts/prayer.deliverance-perilous-straits.json',
+  'content/texts/prayer.protection-from-fear.json',
+  'content/texts/prayer.root-verses-six-bardos.json',
 ];
 
 self.addEventListener('install', (event) => {
