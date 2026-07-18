@@ -78,6 +78,41 @@ body {
 body.nav-open .menu-toggle { color: var(--accent); }
 body.nav-open .menu-caret { transform: rotate(180deg); }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: none;
+}
+/* The title yields before the controls do on a narrow screen. */
+.app-header h1 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Donate: replicated from the Ngondro reference header — small,
+   bordered, discreet; a link out, never a pattern. */
+.donate-link {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 var(--sp-2);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-2), color var(--dur-2), border-color var(--dur-2);
+}
+.donate-link:hover,
+.donate-link:focus-visible {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+.donate-link:focus { outline: none; }
+.donate-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
 /* The header disappears when the screen is given wholly to the text. */
 body.fs .app-header { display: none; }
 @media (display-mode: fullscreen) {
