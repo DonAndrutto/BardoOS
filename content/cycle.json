@@ -4,22 +4,56 @@
     {
       "id": "preliminaries",
       "heading": { "bo": null, "en": "Preliminaries" },
-      "texts": []
+      "texts": [
+        {
+          "id": "ngondro.illuminator-of-the-path",
+          "title": "The Illuminator of the Path to Liberation: An instructional manual for training one's own continuum, the preliminaries for the completion stage (sampannakrama) of the six bardos, from the Profound Dharma: The Self-Liberation of the Wisdom Mind of the Peaceful and Wrathful Deities",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngondro.taming-the-continuum",
+          "title": "An Appendix for Taming One's Own Continuum: The preliminaries of the Self-Liberation of the Wisdom Mind, experiential and direct instructions on the bardo",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "bardo-life",
       "heading": { "bo": null, "en": "The Bardo of This Life" },
-      "texts": []
+      "texts": [
+        {
+          "id": "khrid.birth-bardo",
+          "title": "The Self-Liberation of the Alaya (kun-gzhi): The instructional manual for the Bardo of Birth",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "bardo-dream",
       "heading": { "bo": null, "en": "The Bardo of Dream" },
-      "texts": []
+      "texts": [
+        {
+          "id": "khrid.dream-bardo",
+          "title": "The Self-Liberation of Delusion: The instructional manual for the Bardo of Dreams",
+          "status": "forthcoming"
+        },
+        {
+          "id": "dream.surya-chandra",
+          "title": "The Enhancement of the Great Liberation through Hearing: The Surya Chandra (Sun and Moon) Bardo of Dreams",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "bardo-meditation",
       "heading": { "bo": null, "en": "The Bardo of Meditation" },
-      "texts": []
+      "texts": [
+        {
+          "id": "khrid.meditation-bardo",
+          "title": "The Self-Liberation of Rigpa: The instructional manual for the Bardo of Meditative Concentration (dhyana)",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "bardo-dying",
@@ -29,18 +63,90 @@
           "id": "bardo-thodrol.dying-intro",
           "title": "TODO_CONTENT",
           "status": "translated"
+        },
+        {
+          "id": "diagnostic.signs-of-death",
+          "title": "The Self-Liberation of Signs: The indications of death",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ritual.ransoming-death",
+          "title": "The Profound Ransoming from Death: From the \"Dark-Brown Hill\" (pho-ri smug-chung) Compendium of Chronicles",
+          "status": "forthcoming"
+        },
+        {
+          "id": "phowa.mindfulness",
+          "title": "The Self-Liberation of Mindfulness: Instructions on the Bardo of the Moment of Death, entitled Phowa (The Transference of Consciousness)",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.dying-luminous-sun",
+          "title": "The Essence of the Luminous Sun: A mirror that clarifies the pointing-out instructions on the Bardo of the Moment of Death",
+          "status": "forthcoming"
         }
       ]
     },
     {
       "id": "bardo-dharmata",
       "heading": { "bo": null, "en": "The Bardo of Dharmatā" },
-      "texts": []
+      "texts": [
+        {
+          "id": "bardo-thodrol.dharmata-intro",
+          "title": "The Great Liberation through Hearing: Pointing-out instructions on the Bardo of Dharmata",
+          "status": "forthcoming"
+        },
+        {
+          "id": "khrid.dharmata-bardo",
+          "title": "The Self-Liberation of Seeing: The instructional manual for the Bardo of Dharmata",
+          "status": "forthcoming"
+        },
+        {
+          "id": "appendix.ground-luminosity",
+          "title": "An Appendix for Introducing the Ground Luminosity: From the Self-Liberation of Seeing pointing-out instructions",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.togal-seeing",
+          "title": "The Self-Liberation of Seeing: Pointing-out instructions on Tögal (Direct Crossing) in the Bardo of Dharmata",
+          "status": "forthcoming"
+        },
+        {
+          "id": "appendix.dharmata-pointing-out",
+          "title": "An Appendix to the Pointing-out Instructions on the Bardo of Dharmata",
+          "status": "forthcoming"
+        },
+        {
+          "id": "appendix.butter-lamps",
+          "title": "An Appendix to the Pointing-out via Butter Lamps: From the Self-Liberation of Seeing pointing-out instructions",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.crystal",
+          "title": "The Self-Liberation of Seeing: Pointing-out via a crystal",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "bardo-becoming",
       "heading": { "bo": null, "en": "The Bardo of Becoming" },
-      "texts": []
+      "texts": [
+        {
+          "id": "bardo-thodrol.becoming-intro",
+          "title": "The Great Liberation through Hearing: A reminder and pointing-out instructions on the Bardo of Existence (srid-pa)",
+          "status": "forthcoming"
+        },
+        {
+          "id": "khrid.becoming-bardo",
+          "title": "The Self-Liberation of Existence: The instructional manual for the Bardo of Existence",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.virtue-and-vice",
+          "title": "The Self-Liberation of Existence: The instructions that reveal the own-forms of virtue and vice; pointing-out the Bardo of Existence",
+          "status": "forthcoming"
+        }
+      ]
     },
     {
       "id": "prayers-liturgies",
@@ -64,6 +170,77 @@
         {
           "id": "prayer.root-verses-six-bardos",
           "title": "Root Verses of the Six Bardos",
+          "status": "forthcoming"
+        }
+      ]
+    },
+    {
+      "id": "supporting-texts",
+      "heading": { "bo": null, "en": "Supporting Texts" },
+      "texts": [
+        {
+          "id": "support.six-bardos",
+          "title": "The Self-Liberation of Delusion: The supporting teachings for the six bardos",
+          "status": "forthcoming"
+        },
+        {
+          "id": "khrid.lower-gate-great-bliss",
+          "title": "The Self-Liberation of Attachment: Instructions on the Lower Gate of Great Bliss (mahasukha)",
+          "status": "forthcoming"
+        },
+        {
+          "id": "manual.all-illuminating-mirror",
+          "title": "The All-Illuminating Mirror: A manual of instructions on the six bardo teachings",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.naked-seeing",
+          "title": "The Self-Liberation of Naked Insight: Pointing-out instructions on Rigpa",
+          "status": "forthcoming"
+        },
+        {
+          "id": "outline.self-liberation-of-the-key",
+          "title": "The Self-Liberation of the Key: A topical outline (sa-bcad)",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.purity-of-mandalas",
+          "title": "The Self-Liberation of Seeing: The complete purity of mandalas and deities",
+          "status": "forthcoming"
+        },
+        {
+          "id": "history.brahmin-conch-garlanded",
+          "title": "A Concise History of the Brahmin Conch-Garlanded",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.charnel-ground",
+          "title": "Introducing Impermanence as an Exhortation: Based on delivering a corpse to the charnel ground",
+          "status": "forthcoming"
+        },
+        {
+          "id": "appendix.charnel-ground",
+          "title": "The Exhortation of Impermanence: An appendix to the introduction to the charnel ground",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.clay-effigy",
+          "title": "The Sequential Stages of Introducing the Arising, Entering, and Abiding of Consciousness: Based on the clay effigy of a woman",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.three-kayas",
+          "title": "Pointing-out the Three Kayas: From the profound dharma of the Great Perfection (Dzogchen)",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.six-lamps",
+          "title": "The Self-Liberation of Knowing Awareness: Pointing-out the Six Lamps",
+          "status": "forthcoming"
+        },
+        {
+          "id": "ngotro.concise-bardo-intro",
+          "title": "A Concise Introduction to the Bardo",
           "status": "forthcoming"
         }
       ]
