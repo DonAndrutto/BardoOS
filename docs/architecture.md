@@ -95,7 +95,7 @@ C is rejected outright. The existing React prototype stays as design reference o
 | No destructive gestures | No swipe navigation anywhere. Navigation is explicit taps in the bottom bar. Browser back is the only back. |
 | One-handed | All controls in a bottom bar (Ngondro's layout, kept); nothing essential in the header. |
 | No animation | The `tokens.css` motion block defines only the scroll; entrance/pulse animations from Ngondro are not ported. `prefers-reduced-motion` handling kept regardless. |
-| Auto-scroll | The Ngondro engine, lifted (audit §1), plus a visible speed value. |
+| Auto-scroll | The Ngondro engine, lifted (audit §1). The speed readout was removed at the owner's direction (2026-07-18) — the ± buttons act silently and the bottom bar keeps to a single row on phones. |
 | Text size | Min 16 / default 19 / max 48 (approval pending), anchor-compensated re-render. |
 | Dim night mode | Palette doc; `prefers-color-scheme` respected on first run. |
 

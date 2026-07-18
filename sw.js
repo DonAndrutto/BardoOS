@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v8';
+const VERSION = 'bardo-os-v9';
 
 const PRECACHE = [
   './',
@@ -30,6 +30,7 @@ const PRECACHE = [
   'content/texts/bardo-thodrol.dying-intro.json',
   'content/texts/guide.how-to-use.json',
   'content/texts/guide.introduction.json',
+  'content/texts/ngotro.virtue-and-vice.json',
   'content/texts/prayer.calling-buddhas-for-aid.json',
   'content/texts/prayer.deliverance-perilous-straits.json',
   'content/texts/prayer.protection-from-fear.json',

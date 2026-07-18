@@ -1,0 +1,572 @@
+{
+  "schemaVersion": 1,
+  "id": "ngotro.virtue-and-vice",
+  "cycle": "zab-chos-zhi-khro",
+  "kind": "instruction",
+  "title": {
+    "bo": "སྲིད་པ་བར་དོའི་ངོ་སྤྲོད་དགེ་སྡིག་རང་གཟུགས་སྟོན་པའི་གདམས་པ་སྲིད་པ་རང་གྲོལ།",
+    "phon": null,
+    "en": "The Self-Liberation of Existence: The instructions that reveal the own-forms of virtue and vice; pointing-out the Bardo of Existence"
+  },
+  "source": {
+    "attribution": "A treasure text concealed by Guru Padmasambhava and revealed by the tertön Karma Lingpa (གྲུབ་ཐོབ་ཀརྨ་གླིང་པ)",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": {
+        "bo": null,
+        "en": "Homage and Introduction"
+      },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L1",
+          "form": "verse",
+          "bo": "ཆོས་སྐུ་སྐྱེ་མེད་ཀུན་བཟང་ཡབ་ཡུམ་དང་༔\nལོངས་སྐུ་འགགས་མེད་པདྨ་ཞི་ཁྲོའི་ལྟ༔\nསྤྲུལ་སྐུ་རང་བྱང་ ༨། པདྨ་འབྱུང་གནས་ལ༔\nགུས་པས་ཕྱག་འཚལ་བར་དོ་གྲོལ་བར་ཤོག༔",
+          "phon": null,
+          "en": "Homage to the dharmakāya, the unborn Samantabhadra father and mother;\nHomage to the sambhogakāya, the unobstructed Padma peaceful and wrathful deities;\nHomage to the nirmāṇakāya, the self-manifest Padmākara!\nThrough this homage, may we be liberated in the bardo.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "པདྨ་ཞི་ཁྲོའི་བར་དོ་ཐོས་གྲོལ་ལས༔དབང་སྐར་ངོ་སྤྲོད་ཀ་དུ་ད་ཨ ༢ན་། མཐོང་གྲོལ་ཆེན་མོ་ཡི༔ཆོས་ཉིད་བར་དོའི་ངོ་སྤྲོད་གོང་དུ་སོང་༔",
+          "phon": null,
+          "en": "From The Great Liberation through Hearing in the Bardo: The Introduction to the Signs of Death, the introduction to the bardo of the true nature has been given above.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "heading": {
+        "bo": "དུ་ནི་སྲིད་པ་བར་དོའི་ངོ་སྤྲོད་བསྟན",
+        "en": "Here, the Introduction to the Bardo of Becoming is Taught"
+      },
+      "blocks": [
+        {
+          "id": "s2-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འདིར་སྲིད་པ་བར་དོའི་ངོ་སྤྲོད་བསྟན་པར་བྱ་སྟེ༔ངོ་སྤྲོད་གོང་མ་རྣམས་ཚར་བའི་རྗེས་སུ༔ཡང་བླ་མ་གཤིན་རྗེ་ཆོས་ཀྱི་རྒྱལ་པོའི་རསག་གསག་སིའིག་ལ་།",
+          "phon": null,
+          "en": "Here, the introduction to the bardo of becoming will be taught. After the previous introductions are complete, the scene of the teacher, Yama, the Dharma King, appears.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "བེར་ནག་པོ་གཅིག་གྱོན༔མགོ་ལ་གླུང་མགོའི་འབག་ཅིག་གོན༔ལག་ན་ཞགས་པ་ནག་པོ་གཅིག་ཐོགས་ལ་གཡས་སུ་འཁོད༔འབྱུང་པོ་སྤེའུའི་མགོ༔སྤྲེའུའི་གདོང་ཅན༔ལག་ན་བྲེ་སྲང་ཁྱེར་བ༔དུར་ཕག་མགོ་ཅན༔ལག་ན་ཁྲམ་ཤིང་ཐོགས་པ༔སྟག་པ་སྒྲུལ་མགོ་སྦྲུལ་གྱི་མགོ་ཅན༔ལག་ན་མེ་ལོང་ཐོགས་པ༔གཏུམ་པོ་དོམ་གྱི་མགོ་ཅན་ལག་ན་སྙུད་པ་ཐོགས་པ༔རྔམ་པ་སེང་མགོ་སེདྨེའི་མགོ་ཅན་ལག་ན་ཐོ་བ་ཐོགས་པ༔འདབ་ཆགས་ཁྱུང་མགོ་ཁྱུང་གི་མགོ་ཅན་ལག་ན་ཀི་ག་ལོང་ར་ཨིགི་ཀལགལ་གསག་།",
+          "phon": null,
+          "en": "He wears a single black cloak. On his head he wears a single turban of ox-hide. In his hand he holds a single black noose and he sits to the right. The spirit with a monkey head and a monkey face holds scales. The one with a pig head holds a tally stick. The one with a tiger head and a snake head holds a mirror. The fierce one with a bear head holds an arrow. The terrifying one with a lion head and a snow lion head holds a hammer. The bird with a garuḍa head holds... (incomplete).",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ལྷན་གཅིག་སྐྱེས་པའི་འདྲེས་ཁྲོ་འབག་ནག་པོ་གཅིག་གོན༔གོས་ནག་གཅིག་གྱོན་ནས་རྡེའུ་ནག་པོའི་སྣོད་ཁྱེར༔",
+          "phon": null,
+          "en": "The innate demon wears a single wrathful black turban, a single black garment, and carries a vessel of black pebbles.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཆོས་ཀྱི་རྒྱལ་པོའི་མདུན་ན་གཡས་ཕྱོགས་སུ་སྣམ་བུ་དཀར་པོ་གཅིག་ལམ་དཀར་པོའི་ཚུལ་དུ་རྐྱང་པ་རྗེའི་སྣ་དེར༔མི་གཉིས་ཐུགས་རྗེ་ཆེན་པོའི་ཆ་ལུགས་ཞལ་གཅིག་ཕྱག་བཞི་པའི་ཚུལ་དུ་རྒྱན་གྱི་བརྒྱན་ལ༔ཁྲི་ཐོག་ཏུ་ཡོལ་བས་སྒྱིབ་ལ་སྣ་ལ་བཞག༔གཡོན་དུ་སྣམ་བུ་ནག་པོ་གཅིག་ལམ་ནག་པོའི་ཚུལ་དུ་བསྐྱང་ལ༔མུན་ཁང་ནག་པོ་གཅིག་གི་སྒྱོར་སྣ་གཏད་ལ་བཞུག༔",
+          "phon": null,
+          "en": "In front of the Dharma King, to his right, a white cotton path is laid out, and there appears an image of a single being with one face and four arms in the form of the Great Compassionate One, adorned with ornaments, seated on a throne covered by a curtain. To his left, a black cotton path is laid out like a dark road, leading toward a single black house of darkness, placed facing the mouth of a black gorge.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་མི་གཞན་གྱི་ཁྱིམ་དུ་མི་གཅིག་ཚེ་འདུས་དང་ལྷན་དཔལ་སྐྱེས་ཞེས་བྱ་བ་མིང་བཏགས་པ་ཅིག་སྦས་ལ་བཞག༔ཟུར་ཅིག་ཏུ་སྡིག་ཅན་རིགས་ངན་གདོལ་པ་ཞེས་བྱ་བའི་ཚེ་འདས་མིང་བཏགས་ཤིང་སྦྲས་ལ་བཞག་སྟེ༔དེར་ཆོས་ཀྱི་རྒྱལ་པོས་ཁུམ་ཤིང་དེ་ལ་ཁྲུམ་རིས་ཅིག་བྲིས་ཏེ༔ཀྱི་རྭ་ཤ་གླང་མགོ༔འཇིག་རྟེན་མི་ཡུལ་བྲང་ཁང་གཅིག་ནས་མི་གཅིག་ཚེའི་དུས་ཙལ་བབ་པ་འདྲའོ༔དེའི་ཁྲམ་ལ་བབ་ནས་བྱུང་ངོ་༔ཅེས་གསུང་པ་དང་༔",
+          "phon": null,
+          "en": "Then, in the house of another person, a being who has completed his lifespan and is named \"Innate Glorious\" is placed in hiding. In a corner, a deceased being labeled \"sinful low-caste chandala\" is placed in a woodpile. The Dharma King draws a tally mark on that wooden tally. \"Ox-headed Raksha, from a certain lodging of the human world, a person whose lifespan's count has fallen due, has appeared on my tally.\" So he speaks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རག་ཤ་གླང་མགོས་སདགག་པ་སྦྲུལ་མགོ་ལ་བོས་ཏེ༔ཀྱི་གདུག་པ་སྦྲུལ་མགོ་ཁྱོད་ཀྱི་མེ་ལོང་ལ་ལྟོས་ཤིག༔ཚེ་ལས་འདས་པ་དེ་ཡུལ་ནི་གང་༔རིགས་ནི་གང་༔མིང་ནི་ཅི་ཟེར་ལྟོས་དང་བྱས་པས༑གདུག་པ་སྦྲུལ་མགོས་འདི་སྐད་ང་།",
+          "phon": null,
+          "en": "Ox-headed Raksha calls Snake-head, saying: \"You, Fierce Snake-head, look in your mirror. That deceased being—where is his homeland? What is his caste? What is his name? Look!\" Thus commanded, Fierce Snake-head speaks:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱི་ཚེ་ལས་འདས་པ་དུས་ལ་བབ་པ་དེ༔ཡུལ་ནི་རྒྱུ་གར་ཟང་གླིང་དུ་འདུག༔གྲོང་ནི་ཤན་པའི་གྲོང་ཁྱེར་ཤན་ཏི་ནག་པོར་འདུག༔རིགས་ནི་མི་རིགས་བཞིའི་ནང་། ༤༡ཨུ། ནས་གདོལ་པའི་རིགས་སུ་འདུག༔མིང་ནི་སྟིག་ཅན་དམྱལ་བ་འབུམ་ཞེས་ཟེར༔ཁོ་ཡི་ཚེའི་གྲངས་ཐེམ་ནས་ཁྲམ་ལ་བབ་པར་འདུག་གོ༔ད་རྒྱུག་ཅིག་བྱས་པས༔",
+          "phon": null,
+          "en": "\"That deceased being whose time has come: his land is in India, in Zangling. His town is the town of Shanti Nagpo ('Black Peace'). His caste, among the four castes, is the chandala caste. His name is called 'Sinful One, Hundred Thousand Hells.' His life's count has fallen onto the tally from the register. Run and fetch him!\" So they dispatch him.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རག་ཤ་གླང་མགོ་དང་༔དུར་ཕག་མགོ་དང་༔ལྷན་ཅིག་སྐྱེས་པའི་འདྲེ་གསུམ་རྒྱུག་ནས་སོང་བའི་རྗེས་སུ༔ལྷན་ཅིག་སྐྱེས་པའི་ལྷ་ཡང་སྡོང་གྲོགས་ལ་རྒྱུག་པ་དང་༔",
+          "phon": null,
+          "en": "Ox-headed Raksha, Pig-head, and the innate demon—these three run off. Then the innate deity also runs as a companion.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b009",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་རྣམས་ཀྱི་མི་ཡུལ་བྲང་ཁང་ནས་སྡིག་ཅན་ཁོ་རྙེད་མ་ཐག་ཏུ༔རྐེ་ནས་ཞགས་པ་ནག་པོས་འཁྱུད་ནས་གླང་མགོ་ཅན་དང་༔དུར་ཕག་མགོ་གཉིས་ཀྱིས་ལག་པ་ནས་ཁྲིད༔ལྷན་ཅིག་སྐྱེས་པའི་འདྲེ་ཡི་རྡེའུ་ནག་པོ་བུར་པོ་ཅིག་བུར་ནས་རྒྱབ་ནས་དེད་པའི་ཚོ༔ལྷན་ཅིག་སྐྱེས་པའི་ལྟས་རྡེའུ་དཀར་པའི་སྣོད་གཅིག་ཏུ་རྡེའུ་དཀར་པོ་རྔོག་མ་དྲག་བཅུག་ནས་ངོ་ཚ་བཞིན་དུ་གྲོགས་ངན་ལ་འབད་པའི་ཚུལ་གྱི་དར་དཀར་པོ་གཅིག་ཐོགས་ཐལ་མོ་སྦྱར་བ་རག་ཤ་གླང་མགོ་ལ་ཞུ་བ་ཕུལ་ཀྱང་མ་ཐུབ་པར་སྐད་ངན་ཙི་རི་རི་རྒྱལ་པོའི་དྲང་དུ་ཁྲིད་ཅིང་དེར་འཁོད་པ་དང་༔",
+          "phon": null,
+          "en": "From that being's lodging, as soon as they find the sinner, they lasso his neck with the black noose, Ox-head and Pig-head seize his hands and lead him. The innate demon blows on his black pebble vessel and pushes from behind. Meanwhile, the innate deity, having put a quantity of fine white pebbles into a white pebble vessel, looking ashamed and pretending to help his bad companion, holding a white silk scarf and with joined palms, petitions Ox-headed Raksha but cannot succeed. Weeping and wailing, they lead him into the presence of the king and seat him there.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b010",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཆོས་ཀྱི་རྒྱལ་པོས་འདི་སྐད་འདྲིའོ༔ཀ་ཡེ་མི་ནག་པོ་བྲེ་སྲང་ཁུར་པ་ཁྱོད་སུ་ཡིན༔གང་ནས་འོང་༔ངའི་མདུན་ན་མིག་གིས་ལྟ་མི་ཕོད་པ་ཅི་ཡིན༔ཁྱོད་མི་ལུས་ནི་ཐོབ་པར་འདྲ་བ་འདུག་པ་ལ་**དཀར་པོ་དགེ་བའི་ལས**་མ་ཆད་པ་ཙམ་ཅིག་ཡོད་དམ༔**ནག་པོ་སྡིག་པའི་ལས**་ལ་འཛེམ་ལོང་བྱས་སམ། །བཤད་རྒྱ་ཅི་འདྲ་ཡོད་ད་ལྟ་ལ་འུར་ཤོད་ཅིག༔ཅེས་དྲིས་པ་དང་༔",
+          "phon": null,
+          "en": "The Dharma King then interrogates him: \"Hey! Black man, you who carry scales, who are you? Where have you come from? Why can you not bear to look before me? You seem to have obtained a human body. Have you any unbroken **white virtuous deeds**? Have you ever shunned and avoided **black evil deeds**? Whatever explanation you have, speak it out loud now!\" So he asks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b011",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "སྡིག་ཅན་དེས་འདི་སྐད་ཅེས་ཞུའོ༔ཀྱི་ཧུད་ཀྱི་ཧུད་གཤིན་རྗེ་ཆེན་གྱི་རྒྱལ་པོའི་དྲུང་དུ་ཞུ་ན༔བདག་གིས་མི་ལུས་ཙམ་པོ་ཅིག་ཐོབ་པ་ལགས་ཏེ༔ལོངས་སྤྱོད་ནི་ཆུང་༔ཟས་གོས་ནི་ངན༔བུ་སྨད་ནི་མང་བས་བཟའ་རྒྱ་མེད་པས༔སེམས་ཅན་མང་པོའི་སྲོག་ལ་འབགས་པ་ལགས༔འབྲས་བཟའ་རྒྱ་མེད་ནས་ལོ་མང་པོ་ལོན༔ཟས་སུ་ཤ་དྲོན་མོ་ཟ་བ་ལས་གཞན་ནི་མེད༔འབྲས་ཆང་དང་དཀར་ཆང་མ་མྱོང་ནས་ལོ་མང་པོ་ལོན༔སྒོམ་དུན་དབཀཞག་འཐུང་པ་ཡིན་ལགས༔",
+          "phon": null,
+          "en": "The sinful one replies: \"Kyi-hü kyi-hü! I petition before the great Dharma King. I obtained a mere human body. My possessions were few, my food and clothing poor, my family large, so I lacked the means to hire workers. Therefore, I took the lives of many beings. Lacking the means to buy grain, for many years my food was nothing but fresh meat. For many years I did not taste rice beer or white beer. I drank the dregs of beer.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b012",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ག་མི་ཡུལ་བྲང་ཁང་དུ་དགེ་བའི་བཤེས་གཉེན་ཡིན་ཟེར་བ་མང་པོས༔སྡིག་པ་བྱས་པའི་ཉེས་དམིགས་དང་༔དགེ་བ་བྱས་པའི་ཕན་ཡོན་མང་དུ་གསུང་ཞིང་འདུག་ན་ཡང་༔བདག་ནི་དེའི་དྲུང་དུ་ཡང་མ་ཕྱིན༔ཡང་མི་ཀུན་ན་རེ༔ཁྱོད་འདི་ལྟ་བུའི་སྡིག་པ་མ་བྱེད༔ནམ་ཞིག་འཆི་བ་ཞེས་བྱ་བ་འོང་གིས༔དེ་ཙ་ན་ཁྱོད་དམྱལ་བར་འགྲོ༔དེ་བས་སྡིག་པ་སྤྱོང་དགེ་བ་སྒྲུབ་ཅིག་ཟེར་ནས༔གྲོས་འདེབས་སུ་བྱ་ཡང་༔བདག་གིས་བསམ་པ་ལ༔དམྱལ་བ་ཡོད་ཟེར་བ་ཨེ་བདེན་མི་ཤེས༔དམྱལ་བར་ཕྱིན་ཟེར་ནས་ལོག་པ་ནི་མི་འདུག་སྙམ་ནས༔མི་རྣམས་ལ་བདག་གིས་ལན་སྲས་པ་དམྱལ་བར་ཕྱིན་ནས་ལོག་པ་སུ་ཡོད༔དམྱལ་བ་ཡོད་པ་རང་ག་ན་ཡོད༔ཁ་བདེ་ལྟེ་བདེའི་རྫུན་ཚིག་ཡིན༔འདི་མན་ཆད་ནི་ས་རྫོང་རྡེ་རྫོང་ཡིན༔དམྱལ་བ་མེད། འདི་ཡན་ཆད་ན་ནམ་མཁའ་སྟོང་པ་ཡིན༔སངས་རྒྱས་མེད༔ད་ལྟ་གསོན་པའི་དུས་སུ་བསད་ཅིང་ཟོས་པས་ཆོག༔ཤི་ཙམ་ན་ལུས་ནི་དུར་ཁྲོད་དུ་བསྐྱལ༔བྱ་གཅན་ཟན་གྱི་ཟོས་ནས་མེད་པར་འགྲོ༔སེམས་ནི་ཡལ་ནས་འགྱོ༔དེ་ཙ་ན་དམྱལ་བ་ན་འགྲོ་མཁན་སུ་ཡི་བྱེད༔ཧ་ཧ་ཞེས་སྨྲ་ཞིང་༔དམྱལ་བ་རང་མི་བདེན་སྙམ་ནས་སྡིག་པ་བྱས་པ་ཡིན༔",
+          "phon": null,
+          "en": "In that lodging in the human world, many who were called spiritual teachers would extensively explain the faults of committing evil and the benefits of doing good, but I never went into their presence. Moreover, everyone said to me: 'Do not do such evil. What is called death will come. At that time you will go to hell. Therefore, abandon evil and accomplish virtue!' So they advised. But in my mind I thought: 'I do not know if it is true that hell exists. I have never seen anyone return after going to hell. Where is this hell that exists? It is just a lie from happy-go-lucky people. Below this earth is just stone and rock strata; there is no hell. Above is empty sky; there are no buddhas. Right now, while alive, it is fine to kill and eat. When we die, the body is taken to the charnel ground; birds and wild beasts eat it and it becomes nothing. The mind disappears. At that time, who is there to go to hell?' Ha ha! So I spoke, and thinking hell was not real, I committed evil.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b013",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེས་དམྱལ་བ་བདེན་པར་གྱུར་ན་ཡང་༔ཚེ་ཕྱི་མ་ཕ་གིར་ལུས་པ་ཡིན༔ད་ལྟ་ལྟེ་རྒྱབ་གཉིས་པོ་ཕྱིད་པར་བྱང་ན༔ཕྱི་མ་ཅི་འདྲའང་འདྲ་སྙམ་པ་ཡང་བྱུང་༔དེ་ལྟར་མ་གོ་མ་རིག་བླུན་པོའི་དབང་གིས་སྡིག་པ་བྱས་པ་ལགས༔ཁྱོད་ཆོས་ཀྱི་རྒྱལ་པོ་དང་༔རག་ཤ་གླང་མགོ་ལ་སོགས་པ་རྣམས་དངོས་སུ་ཡོད་པ་འདི་ང་ལ་རྒྱས་མེད་པས་ལན༔ཁྱོད་རྣམས་བར་དོའི་ཡུལ་འདིར་ཡོད་པ་ཆ་ཡོད་བཞིན་དུ༔ཁྱོད་རྣམས་ལ་བསྙས་པ་བྱས་ནས་སྡིག་པ་བྱས་པ་མ་ཡིན་ནོ༔། མ་གོ་མ་རིག་པས་ལན་པ་ལགས༔ད་ཁྱོད་དཔོན་གཡོག་ང་ལ་ཁྲིམས་མི་གཏུགས་པར་ཞུ༔ང་མི་ཡུལ་དུ་ཡོད་དུས་འདི་འདྲ་མངོན་སུམ་དུ་ཡོད་པ་ཆ་ཡོད་སྡིག་པ་མི་བྱེད་པ་ལགས་ཏེ༔ད་ནི་ངན་པའི་བློ་སྣ་ཕྱི་ན་ལུས༔ཁྱེད་ནི་ཆོས་ཀྱི་རྒྱལ་པོ་ཡིན་ཟེར་བས༔ཀྱི་ཧུད་ཀྱི་ཧུད་བདག་ལ་སྙིང་རྗེ་མཛོད༔བདག་གི་གྲོགས་རྟེན་མཛོད། འདི་ནས་མར་ལ་སྡུག་བསྔལ་ཆེན་པོ་ཡོད་ན༔ཆོས་ཀྱི་རྒྱལ་པོ་ཁྱེད་ཀྱི་ང་འདི་ནས་མར་ལ་མི་བཏང་བར་ཡང་མི་ཡུལ་དུ་གཏོང་རོགས་མཛོད༔དེ་ནས་སྡིག་པ་མི་བྱེད་པ་ལགས༔དགེ་བ་བྱེད་ལགས༔ཀྱི་ཧུད་ཀྱི་ཧུད་ཅེས་ཟེར་བ་དང་༔",
+          "phon": null,
+          "en": "Even if hell were real, the next life would be someone else's body. Now, just let my back and belly be satisfied; whatever happens in the future, let it happen! Such thoughts also arose. Thus, through the power of misunderstanding, ignorance, and dullness, I committed evil. You, Dharma King, Ox-headed Raksha, and the others—since I had no knowledge that you truly exist, I did not commit evil with the intention of mocking you, although you are present here in this bardo realm. It was due to ignorance and misunderstanding. Now I beg you: do not apply the law to me, a lordless beggar. While I was in the human world, had I known of such a direct presence as this, I would not have committed evil. Now, after the fact, my bad mental attitude has changed. You are called the Dharma King, so: kyi-hü kyi-hü, have compassion on me! Be my refuge! From here downward, if there is great suffering, do not send me down there, but send me back to the human world. Then I will not commit evil; I will do virtue. Kyi-hü kyi-hü!\" So he says.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b014",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་ལྷན་ཅིག་སྐྱེས་པའི་ལྟས་དར་དཀར་པོ་ཅིག་ཕྱག་ཏུ་ཕུལ་ནས་འདི་སྐད་ཞུའི༔ཀྱེ་མ་ཆེས་རྒྱལ་ཐུགས་ཀྱི་དགོངས་མཛོད་དང་༔ཟང་གླིང་རིགས་ངན་གདོལ་བ་ཟེར་བ་འདི༔དགེ་སྡིག་མ་ཤེས་གཏི་མུག་རྨོངས་པ་ཡི༔མ་རིག་དབང་གི་སྡིག་པ་བྱས་པ་ཡིན། གོ་བཞིན་རིག་ནས་བྱས་པ་མི་ཡིན་པས༔འདི་ལ་ཆད་པ་བཅད་དུ་མི་འཚལ་ལོ༔དགེ་བའི་ལས་ཀྱང་ཅུང་ཟད་བྱས་པ་ཡོད༔ཆུ་ཆེན་གཅིག་ལ་མི་དྲུག་མ་ཐར་བས༔། དགེ་བའི་སེམས་ཀྱིས་དྲག་པོ་ཆུ་ལས་བསྐལ༔དེའི་རྟགས་སུ་རྡེའུ་དཀར་པོ་དྲག༔གཞན་ཡང་དེ་དང་འདྲ་བའི་དགེ་བ་ཡང་༔ཞོར་ལ་བསགས་པ་ཅི་ཡོད་ཅི་ཆ་བས་ཆོས་རྒྱལ་ཆེན་པོའི་དགོངས་པ་གློད་པར་ཞུ༔ཞེས་ཞུས་ནས་ཕྱག་གསུམ་བཙལ་བ་དང་༔",
+          "phon": null,
+          "en": "Then the innate deity, offering a white silk scarf in his hand, speaks: \"Kye ma! Great king, please consider in your heart: This one called 'low-caste chandala of Zangling,' not knowing good and evil, blinded by ignorance, committed evil through the power of ignorance. He did not do it knowingly and deliberately, so please do not decree punishment for him. He also has some small accumulation of virtuous deeds. Once, six people were drowning in a great river; with a virtuous mind, he pulled them from the water. As a sign of that, here is a fine white pebble. Besides that, whatever incidental virtue he may have accumulated, please, great Dharma King, relax your mind.\" So he petitions and prostrates three times.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b015",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་འདྲེ་ནག་པོས་སྨྲས་པ༔ཧ་ཧ་ལྷ་དཀར་པོ་ཁྱོད་དེ་ཙམ་བཤད་རྒྱུ་ཡོད་དམ༔ཁྱོད་སྣོད་སྟོང་ཐོག་པ་ངོ་ཚ་འམ༔ཁོ་རིགས་ངན་གདོལ་བ་ཞེས་པ་འདི༔མི་ཚེ་སྡིག་ལ་བསྐལ༔དགེ་བའི་སྐལ་པ་བཅད། སེམས་ཅན་མཐོང་ཚད་བསད༔ལྟོ་ནི་ཤ་དྲོན་མོ་ལ་བྱས༔སྐེམ་ནི་ཁྲག་དྲོན་མོ་ལ་བྱས༔ཚིག་རྩུབ་མོ་རྒྱན་དུ་སྨྲས༔ཕུའི་རི་དྭགས་ཉེས་མེད་བསད༔མདའི་ཉུ་ཉེས་མེད་བསད༔བར་གྱི་སྤྲང་པོ་ཉེས་མེད་བརྡངས༔བཤེས་གཉེན་ཡོངས་ལ་སྐར་པ་བཏབ༔གཙུག་ལག་ཁང་ལ་མི་ཆེན་བཤེད༔རྒྱ་མཚོ་ཆེ་ལ་དུག་ཆེན་བཏབ༔ནགས་རི་ཆེན་པོ་མེ་ཡིས་བསྲེགས༔ཕ་མ་བརྡང་ཞིང་སྐུ་གདུང་བཅོམ༔ད་ལྟར་རྒྱ་གར་ཟང་གླིང་ན༔སྡིག་པ་ཁྱོད་ལས་ཆེ་བ་མེད༔རྡེའུ་ནག་པོ་སྤངས་ལ་ལྟོས༔",
+          "phon": null,
+          "en": "Then the black demon retorts: \"Ha ha! White deity, do you have that much to say? Are you not ashamed to carry an empty vessel? This one called low-caste chandala: his whole life was steeped in sin; he cut off any share of virtue. He killed every being he saw. He made his food fresh meat. He made his drink warm blood. He spoke harsh words as his ornament. He killed the innocent deer of the highlands. He killed the innocent fish of the lowlands. He beat the innocent beggars in between. He slandered all his spiritual teachers. He set great fire to the temple. He poured great poison into the great ocean. He set great forests ablaze with fire. He beat his parents and destroyed their remains. Now in India, in Zangling, there is no one with greater evil than you. Look at the heap of black pebbles!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b016",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཁྱོད་ངོ་ང་ཡིས་མ་ཤེས་ན༔གླིང་ནི་རྒྱ་གར་ཟང་གླིང་ཡིན༔གྲོང་ནི་ཤུན་ཏི་ནག་པོ་ཡིན༔ཕ་ནི་ཤུན་པ་ཁྲི་དཔོན་ཡིན༔ལོ་བརྒྱུད་ལོན་ནས་འདི་རུ་འོང་༔མ་ནི་ཤན་མོ་དཔལ་སྙིད་ཡིན༔ལོ་ལྔའི་གོང་ནས་འདི་རུ་འོང་༔ཁྱོད་རང་བཤན་པ་གདོལ་ཕྱག་ཡིན༔དུ་ལྟ་འདི་རུ་མ་སླེབས་སམ༔ལོ་ནི་ཆུ་མོ་ཕག་ལོ་ཡིན༔ད་ལོ་ཟས་གྲངས་ཐེམ་པ་ཡིན༔རྒྱ་གར་ཤར་ཕྱོགས་པ་རྣམས་ཀྱིས༔བཤན་པ་ལག་དམར་ཟེར་བ་ཡིན༔རྒྱ་གར་ལྷོ་ཕྱོགས་པ་རྣམས་ཀྱིས༔སྡིག་ཅན་དམྱལ་བ་འབུམ་ཞེས་ཟེར། རྒྱ་གར་ནུབ་ཕྱོགས་པ་རྣམས་ཀྱིས༔རིགས་ངན་གདོལ་པ་ནག་པོ་ཟེར༔རྒྱ་གར་བྱང་ཕྱོགས་པ་རྣམས་ཀྱིས༔ནག་པོ་ཀུན་བསད་ཟེར་བ་ཡིན༔རིགས་ནི་གདོལ་པ་ནག་པོའི་རིགས༔རྒྱུད་ནི་སྡིག་ཅན་བཤན་པའི་རྒྱུད༔ཕ་ཚེ་བུ་རྒྱུད་མ་ལུས་པ༔དམྱལ་བའི་ལམ་རྒྱུད་མཁན་པོ་ཁྱོད༔གསོད་པའི་དུས་སུ་དགའ་དགའ་འདྲ༔ཟ་བའི་དུས་སུ་ཞིམ་ཞིམ་འདྲ༔། ༔ད་ལྟ་ཞིམ་པོ་ཨ་བྱུང་ངམ༔ཁ་མཁས་ལྕེ་བདེས་ཅི་ལ་ཕན༔སེམས་ཅན་ས་ཡའི་སྲོག་ལན་ཆགས༔སྡུག་བསྔལ་མྱོང་རེས་ཁྱོད་ལ་བབ༔",
+          "phon": null,
+          "en": "\"If I do not recognize your face: the continent is India, Zangling. The town is Shanti Nagpo. Your father is the butcher Khi-pon; he passed away years ago and came here. Your mother is the butcheress Dpal-nyid; she came here five years ago. You yourself are a butcher, a chandala. When did you arrive here? The year is the female water pig year. This year your food-count fell due. Eastern Indians call you 'Red-handed Butcher.' Southern Indians call you 'Sinful One, Hundred Thousand Hells.' Western Indians call you 'Low-caste Black Chandala.' Northern Indians call you 'Black One, Slaughterer of All.' Your caste is the low-caste black chandala caste. Your lineage is the sinful butcher lineage. Father, sons, and lineage—all of them—you are an expert guide on the road to hell. When killing, you seem delighted. When eating, you seem to relish it. Now, does it still taste sweet? What is the use of a glib mouth and smooth tongue? The debt of countless beings' lives has fallen on you; it is time for you to experience suffering.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b017",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཁྱོད་ཀྱི་སྡུག་བསྔལ་མ་མྱོང་ན༔སེམས་ཅན་ས་ཡ་ཕམ་དྲག་སྟེ༔དམྱལ་བ་འབུམ་ཁྱོད་རྒྱལ་ཡང་དྲག༔ཁྱོད་རང་གི་ལན་པ་ལ༔ཆོས་ཀྱི་རྒྱལ་པོ་སྐུ་ཆེ་ཡང་༔ཁྱོད་ཀྱི་སྡིག་པ་བཀག་ཏུ་མེད༔ཆེ་སྟེ་གཙུག་ལག་བསྲེགས་པ་ནས༔ཆུང་སྟེ་སྲོ་ཤིག་བསད་པ་ཡིས༔རྡེའུ་བསགས་པ་འདི་ཡིན་ནོ༔ཁྱོད་རང་འགྲོ་གྲབས་བྱས་པས་ཆོག༔ལམ་ནག་འདིར་ལ་འུར་གདོངས༔ཟངས་རྒྱ་མཁར་སྦྱོར་ཡངས་ཤོང་ཆེ༔ཁྲོ་ཆུ་ཁོལ་མ་ཏ་རླབས་དྲག༔ལས་ཀྱི་མེ་དཔུང་ཚང་ཆེ༔གཤིན་རྗེའི་ཕོ་ཉ་སྙིང་རྗེ་ཆུང་༔ཆོས་ཀྱི་རྒྱལ་པོ་གདོང་རེ་དྲག༔ལས་ཀྱི་མཚོན་ཆ་རྩེ་མོ་རྣོ༔ལས་རླུང་ནག་པོ་ངན་པ་ཆེ༔དེ་འདྲའི་ཡུལ་དུ་འགྲོ་རེ་རུང་༔",
+          "phon": null,
+          "en": "If you do not experience your suffering, the multitude of beings will be devastated, and even a hundred thousand hells would be too good for you. \"As for your answer to the Dharma King, though his power is great, he cannot block your evil deeds. From the great act of burning a temple down to the small act of killing a flea—this is the heap of pebbles accumulated. You, get ready to go! Hurry down that black road! The copper cauldron's door is vast and deep; the raging boiling bronze is heaving with waves. The fire of your karma is a blazing mass. Yama's messengers have little compassion. The Dharma King's face is stern. The weapons of karma are sharp-pointed. The black wind of karma is fierce and evil. It is fitting that you go to such a place.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b018",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "སྙིང་རྗེ་ཡང་རྗེ་སྟེ་ཚིམ་ཡང་ཚིམ༔བྲེ་ལོག་སྲང་ལོག་བཙུགས་པ་ཡི༔བྲེ་སྲུང་རྒྱབ་ཏུ་ཁུར་རུང་ཡོད༔སེམས་ཅན་མང་པོ་བསད་པ་ཡི༔མཚོན་ཆ་ལོག་ལ་བཏགས་རུང་ཡོད༔ཁ་རེང་སྤོན་གཏེལ་ཁྱོད་ལ་མེད༔དམྱལ་ཁམས་བཅོ་བརྒྱད་གྲོང་ཁྱེར་དུ༔དུ་ནི་འགྲེ་བུའི་དུས་ལ་བབ༔ཅེས་ཟེར་ནས་ཀ་བིད་པར་བརྩུམ་པ་དང་༔",
+          "phon": null,
+          "en": "\"Have pity and be satisfied! You carry the weight of false scales on your back. You carry the reversed weapons of killing many beings. There is no boasting or trickery for you here. Now go into the eighteen hell realms, your eternal city!\" So he shouts, clenching his fist.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "heading": {
+        "bo": null,
+        "en": "The Dharma King's Pronouncement on the First Sinner"
+      },
+      "blocks": [
+        {
+          "id": "s3-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་ཆོས་ཀྱི་རྒྱལ་པོའི་ཞལ་ནས༔ཀྱེ་མ་ཨ་ཙ་མ་ནང་རེ་འཇིགས༔མི་ལུས་ཐོབ་ཚེ་དགེ་སྤྱོད་དོན་ཆེ་བས༔ངན་སོང་གནས་སྤྲང་ཐར་པའི་ལམ་དུ་འགྲེ༔བདེ་དང་སྐྱིད་པས་ནམ་ཡང་མི་སྟོངས་སྟེ༔ཁྱོད་ཀྱི་མི་ལུས་ད་རེས་ཐོབ་དུས་འདིར༔དགེ་བའི་ལས་ལས་བཞིན་དོར་ནས་སུ༔སྡིག་པའི་ལས་ལ་ཧབ་ཐོབ་བྱས་པ་ཡིས༔ཐོབ་དཀའི་མི་ལུས་དོན་ཆེན་ཆུད་ཟོས་ནས༔སྟོང་ལོག་མིན་པ་ཙམ་ཅིག་མ་བྱས་པས༔སྡིག་པའི་ཁུར་པོ་ཁུར་བས་སྙིང་རེ་རྗེ༔རང་གིས་ལས་བྱས་རང་ལ་སྨིན་ཙམ་ན༔སངས་རྒྱས་སྟོང་གིས་མཐུན་ཀྱང་སྐྱོབ་ས་མེད༔ངས་ནི་འདི་ལ་ཅི་ཡང་མ་ལན་ནོ༔རང་དབང་ཡོད་ཚེ་འདུན་མ་ནོར་བ་ཡི༔སྡིག་པའི་འབྲས་བུ་རང་ལ་སྨིན་ཙམ་ན༔སྤྲེ་སྔགས་འདོན་ཀྱང་སྙིང་རེ་རྗེ་མཁན་མེད༔ད་ལྟ་ང་ལ་རེ་ཡང་བྱ་ཐབས་མེད༔སྣང་སྲིད་གསལ་བའི་ལས་ཀྱི་མེ་ལོང་འདི༔དགེ་སྡིག་རང་གཟུགས་དངོས་སུ་སྟོན་ཙམ་ན༔སྡིག་ཅན་ཚོ་ལ་ལས་ཅིག་མ་བྱུང་ངམ༔",
+          "phon": null,
+          "en": "Then from the mouth of the Dharma King: \"Kye ma! Ah tsa ma! What a pitiful, terrifying sight! Having obtained a human body, the practice of virtue is most meaningful; it is the path to liberation from the miserable realms of bad rebirth. Happiness and well-being are never satisfied, yet now that you have obtained a human body, you abandoned the opportunity for virtuous deeds and instead rushed headlong into evil deeds. Thus you have wasted the great purpose of this hard-won human life. You have not done a single thing that is not empty and futile. Carrying the heavy load of evil is truly pitiable! When the fruit of your own deeds ripens upon you, even a thousand buddhas together could not protect you. I have no answer for this. When you had your own freedom, if you had not mistaken your aim, but now the fruit of your evil is ripening upon you—even if you chant mantras and spells, there is no one to pity you. Now there is nothing I can do for you. This karmic mirror, luminous with all appearance-existence, directly shows virtue and evil in their own forms. Has this not happened to all you sinners?",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ལྷན་ཅིག་སྐྱེས་པའི་ལྷ་དང་འདྲེ་གཉིས་ཀྱིས༔དཀར་ནག་ལས་ཀྱི་རྡེའུ་གཤེར་ཙམ་ན༔དགེ་བ་བསགས་པའི་མི་ནི་རེ་དགའ་ཡང་༔སྡིག་པ་བསགས་པའི་མི་ཁྱོད་གྱོད་རེ་ཆེ༔ཐམས་ཅད་འགྲིམས་པའི་འཕྲང་འགག་དམར་པོ་འདིར༔ལས་ཀྱི་གཤིན་རྗེས་ཁྲིམས་རར་ཚུད་ཙམ་ན༔ཁ་དྲུག་བཙན་ཀྱང་འདི་རུ་བྱ་ཐབས་མེད༔སྡིག་པོ་ཆེ་ཀུན་གློ་སྙིང་གས་ལ་ཁད༔མི་དགེ་བྱས་པས་ལས་ཀྱི་བརྡ་དེད་འདི༔ནམ་མཁའི་ཐོག་ལས་མགྱོགས་ཤིང་ཤུགས་དྲག་པོས༔བྲོས་པས་མི་ཐར་འགྱོད་པས་མི་ཕན་ན༔འཛམ་གླིང་མི་རྣམས་ཆོས་ལ་མི་འབད་པ༔ཨ་ཙ་མ་ནང་ཡི་བྱ་ཐབས་མེད༔",
+          "phon": null,
+          "en": "\"As the innate deity and demon compare the black and white pebbles of karma, the person who accumulated virtue is full of hope and joy, but you, who accumulated evil, are full of anguish. Here at this narrow red pass where all must travel, once you are brought into the court of karma by Yama, even if you are a powerful wrestler, there is nothing you can do here. All you great sinners, strike your hearts with sorrow! This karmic summons, driven by your non-virtue, is swifter and more powerful than anything in the sky. You cannot escape by running; regret does not help. Oh, people of Jambudvīpa, who do not exert yourselves in Dharma—ah tsa ma, what can be done?",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དཀར་ནག་ལས་ཀྱི་གྲངས་རྟིས་ཞིབ་ལུགས་འདི༔ཕྲ་ཞིང་ཕྲ་བའི་སྡིག་ཀྱང་མི་བྱེད་ན༔སྡིག་པ་མི་འཛོམ་མི་རྣམས་ཅི་དྲན་ན༔ཐར་ལམ་དཀར་པོའི་ལམ་གྱི་བདེ་ལུགས་སམ་ངན་སོང་ནག་པོའི་ལམ་གྱི་སྡུག་ཚོད་ལ༔འཛམ་གླིང་མི་རྣམས་སྡིག་སྤངས་དགེ་མི་བསྒྲུབ༔ཡིད་ཆད་འགྱོད་ཀྱང་ལས་ལ་བཅོས་སུ་མེད༔ལས་ནི་ལུས་དང་གྲིབ་མ་བཞིན་དུ་འགྲོགས༔དཀར་པོ་དགེ་བའི་སྟོང་མང་ཡི་འཛིན༔ནག་པོ་སྡིག་པའི་ཆད་པང་ཡི་བཅོད༔ཡོ་སྲང་གཟུ་ལྟ་ལེགས་ཉེས་བརྟགས་བཅད་པས༔ཁྱོད་རང་འགྱོད་ཀྱང་བདག་གིས་བཅོས་སུ་མེད༔ད་ནི་སྙིང་རྗེ་ཆེ་ཡང་བྱ་ཐབས་མེད༔ནག་པོའི་ལམ་ལ་དམྱལ་ཁམས་གནས་སུ་སོང་༔འཕགས་པའི་ཐུགས་རྗེས་བཟུང་ཀྱང་མི་ཟིན་ན༔ང་ཡི་ཁྱོད་ལ་བྱ་ཐབས་ཅི་ཡང་མེད༔སེམས་ཅན་ལས་ལ་སྤྱད་པར་རྒྱལ་བས་གསུངས༔ད་ནི་གླང་མགོ་ཅན་གྱི་ཁྱོད་ཁྲིད་སོང་༔ཁྱོད་ཀྱི་སྡིག་སྒྲིབ་མྱུར་དུ་དག་ནས་ཀྱང་༔མཐར་ཐུག་སངས་རྒྱས་གོ་འཕང་ཐོབ་པར་ཤོག༔ཅེས་གསུངས་པ་དང་༔",
+          "phon": null,
+          "en": "\"This detailed calculation of black and white deeds: if you do not commit even the slightest and subtlest evil, then evil will not accumulate. People, whatever you think, look: the path of liberation, the white path, brings comfort, and the path of bad rebirth, the black path, brings suffering. Yet, people of Jambudvīpa, you do not abandon evil and do not accomplish virtue. Though you despair and regret, karma cannot be altered. Karma follows like the body and its shadow. The white side is held up by thousands of virtues; the black side is weighed down by evil. By carefully weighing with scales and measures, judging right and wrong, even if you regret, I cannot change it. Now, no matter how much I pity you, nothing can be done. Go along the black path to the realms of hell. Even if the noble ones hold you with compassion, if you cannot be caught, then I have no means at all for you. The Victorious Ones have said that sentient beings are governed by their karma. Now, Ox-head will lead you away. May your evil and obscurations be swiftly purified, and may you ultimately attain the state of buddhahood.\" So he speaks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རག་ཤ་གླང་མགོ་ན་རེ༔ཁྱོད་རང་གི་ལན་པས་འགྱོད་ཀྱང་ཅི་ལ་ཕན༔ངེད་ཅག་རྣམས་ཀྱི་ཅི་ཡང་ལན་པ་མེད༔བདེན་རྫུན་གྱི་ཤན་ཕྱེད་བྱེད་པ་ཡིན་ཅིང་༔ཁྱོད་རང་ལ་ལན་ཆགས་མེད་ན༔ངེད་ཀྱི་ཁྱོད་ལ་གནོད་པ་ཅི་ལ་བྱེད་དོན་མེད་དེ༔ད་ཁྱོད་རང་གི་ལས་ཡིན་པས༔མྱུར་དུ་འདོངས་ཟེར་ནས་ཞགས་པ་ནག་པོས་ཁྲིད༔འདྲེ་ནག་པོས་ཕྱིན་ནས་དེད་ནས་སྣམ་བུ་ནག་པོའི་ལམ་དུ་ཁྲིད་དེ༔མུན་ཁང་ནང་དུ་རྒྱོབ་སོད་ཀྱི་སྒྲ་སྒྲོག༔སྐད་ངན་སྣ་ཚོགས་འདོན་དུ་བཅུག་གོ༔",
+          "phon": null,
+          "en": "Ox-headed Raksha says: \"What use is your regret for your own response? We have no answer at all. We simply distinguish truth from falsehood. Since you have no response, there is no point in our harming you. Now, since it is your own karma, quickly proceed!\" So saying, they lead him with the black noose; the black demon goes behind and drives him; they lead him down the path of black cotton. Inside the house of darkness, the sound of beating and killing resounds, and he is made to utter various lamentations.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "heading": {
+        "bo": null,
+        "en": "The Teacher's Admonition"
+      },
+      "blocks": [
+        {
+          "id": "s4-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་བླ་མས་ཀྱང་འོ་རིགས་ཀྱི་བུ་རྣམས༔སྡིག་པ་བྱས་པ་ལ་འདི་ལྟ་བུའི་ཤན་འབྱེད་དང་སྡུག་བསྔལ་འདི་ལྟ་བུ་ཡོད༔རང་ཅག་ཚོ་ལ་ཡང་འདི་ལྟ་བུ་ཅིག་ངེས་པས༔དེའི་དུས་སུ་ཕེ་རབ་རང་དོན་གྱི་མདོ་དོན་ཡོད་མེད་རང་ལ་རག་ལས་པས༔། ད་ལྟ་ནས་དགེ་བ་ལ་འབད༔སྡིག་པ་ལ་འཛེམ་པ་གལ་ཆེའི༔རིགས་ཀྱི་བུ་རྣམས་ཞེས་པ་ལ་སོགས་པ་རྒྱས་པར་བཀྲོལ་ལོ༔",
+          "phon": null,
+          "en": "Then the teacher says: \"O children of my lineage! For those who commit evil, such discrimination and suffering exist. This will certainly happen to us as well. At that time, the essential point of whether or not we can help ourselves rests entirely upon ourselves. Therefore, from now on, strive in virtue! It is crucial to be cautious of evil. O children of my lineage!\" and so forth, he elaborates extensively.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "heading": {
+        "bo": null,
+        "en": "The Second Case: The Householder Dpal-skyes"
+      },
+      "blocks": [
+        {
+          "id": "s5-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་ཡང་ཆོས་ཀྱི་རྒྱལ་པོས༔ཁྲུམ་ཤིང་དེ་ལ་ཁྲུམ་རིས་ཅིག་བྲིས་ལ༔ཀྱེ་རག་ཤ་གླང་མགོ་ཡང་འཇིག་རྟེན་མི་ཡུལ་བྲང་ཁང་ཅིག་ནས༔མི་གཅིག་ཟས་གྲངས་ཐེམ་ནས་ཡོད་པར་འདུག་ངའི་ཁྲམ་ལ་བབ་ནས་བྱུང་ངོ་གསུངས་པ་དང་༔རག་ཤ་གླང་མགོས་གདུག་པ་སྦྲུལ་མགོ་བོས་ནས༔ཀྱེ་གདུག་པ་སྦྲུལ་མགོ་ཁྱེད་ཀྱི་མེ་ལོང་ལ་ལྟོས་ལ་ཚེ་ལས་འདས་པ་དེ་གར་འདུག་ལྟོས་དང་བྱས་པས༔གདུག་པ་སྦྲུལ་མགོས་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "Then again, the Dharma King draws a tally mark on the wooden tally. \"Hey, Ox-headed Raksha! Also, from a certain lodging in the human world, there is a person whose food-count has run out and who has appeared on my tally. Go fetch him!\" So he commands. Ox-headed Raksha calls Fierce Snake-head: \"Hey, Fierce Snake-head, look in your mirror. See where that deceased being is.\" Fierce Snake-head says:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱེ་ཚེ་ལས་འདས་པ་དུས་ལ་བབ་པ་དེ༔ཡུལ་ནི་རྒྱ་གར་བྱང་ཤར་ཡུལ་དུ་འདུག༔གྲོང་ཁྱེར་ནི་ཀ་མ་རུ་པ་ཞེས་བྱ་བར་འདུག༔རིགས་ནི་མི་རིགས་བཞིའི་ནང་ནས་རྗེ་རིགས་སུ་འདུག༔མིང་ནི་ཁྱིམ་བདག་དཔལ་སྐྱེས་སུ་འདུག༔ཁོང་དུས་ཚོད་བསོད་ནམས་ཟད་ནས་ཟས་གྲངས་ཐེམ་ནས་ཁྲམ་ལ་བབ་འདུག༔ད་རྒྱུག་ཅིག་བྱས་པས༔རག་ཤ་གླང་མགོ་དང་༔དུར་ཕག་མགོ་དང་༔ལྷན་གཅིག་སྐྱེས་པའི་འདྲེ་གསུམ་རྒྱུག་ནས་སོང་བའི་རྗེས་སུ༔ལྷན་ཅིག་སྐྱེས་པའི་ལྷ་ཡང་སྡོང་གྲོགས་ལ་རྒྱུག་པས༔དེ་རྣམས་ཀྱི་མི་ཡུལ་ཀ་མ་རུ་པ་ནས་ཁྱིམ་བདག་དཔལ་སྐྱེས་རྙེད་ནས༔གླུང་མགོ་ཅན་གྱིས་ཁྲིད༔ཕག་མགོ་ཅན་གྱི་ལག་ནས་བཟུང་༔ལྷན་ཅིག་སྐྱེས་པའི་འདྲེས་ཕྱི་ནས་དེད༔ལྷན་ཅིག་སྐྱེས་པའི་ལྷས་སྡོང་གྲོགས་བྱེད་ཅིང་༔ཆོས་ཀྱི་རྒྱལ་པོའི་དྲུང་དུ་ཁྲིད་ཅིང་འཁོད་པ་དང་༔",
+          "phon": null,
+          "en": "\"Hey! That deceased being whose time has come: his land is in northeastern India. His city is called Ka-ma-ru-pa. His caste, among the four castes, is the royal caste. His name is the householder Dpal-skyes. His lifespan and merit are exhausted, and his food-count has fallen onto the tally. Run and fetch him!\" So they dispatch. Ox-headed Raksha, Pig-head, and the innate demon—these three run off. The innate deity also runs as a companion. From that being's lodging, in Ka-ma-ru-pa, they find the householder Dpal-skyes. Ox-head leads him; Pig-head seizes him by the hand; the innate demon drives him from behind; the innate deity acts as his companion. They lead him into the presence of the Dharma King and seat him.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་ཆོས་ཀྱི་རྒྱལ་པོས་འདི་སྐད་ཅེས་འདྲིའོ༔འོ་རིགས་ཀྱི་བུ་ཚེ་ལས་འདས་པ་ཁྱེད་འཇིག་རྟེན་མི་ཡུལ་བྲང་ཁང་ནས་འོངས་སམ༔ཐོབ་པར་དཀའ་བ་དལ་འབྱོར་གྱི་མི་ལུས་ཐོབ༔མཇལ་བར་དཀའ་བ་སངས་རྒྱས་ཀྱི་བསྟན་པ་དང་མཇལ༔སྐྱེ་བར་དཀའ་བ་འཛམ་བུ་གླིང་དུ་སྐྱེས་པ་ཅིག་ཡིན་པར་འདུག༔**དཀར་པོ་དགེ་བའི་ལས**་ཁྱོད་ཅི་བསགས་ཡོད༔མི་ཡུལ་བྲང་ཁང་ན་བསྡད་པའི་དུས་སུ༔སེམས་དཀར་པོ་ལུས་གཙང་མ་བསམ་མནོ་ཆོས་ལ་བྱས་སམ༔འདུས་བྱས་ཀྱི་དགེ་བ་ཡོན་གྱི་བསླས་པ་ཅི་ཡོད༔སྐུ་གསུང་ཐུགས་རྟེན་བཞེངས་པ༔གསུང་རབ་བྲིས་ཤིང་ཀློག་འདོན་དུ་བཅུག་པ༔ཚ་ཚ་བཏབ་པ༔ཆུ་གཏོར་བཏང་བ༔ལམ་གྱི་རྡོ་འབུར་གསལ་བ༔ལམ་ངན་འཚོརམ་མི་བདེ་བའི་གནོད་པ་གསལ་བ༔ཡར་ལ་མཆོད་པ་ཕུལ་བ༔མར་ལ་སྦྱིན་གཏོང་བྱས་པ༔གྲོག་ཚངས་སུ་ཟན་འབྲུ་གཏོར་བ་ཡན་ཆད་ཀྱི་ཕྲ་ཞིང་ཕྲ་བ་ནས་བསགས་པའི་དགེ་བ་ཅི་ཡོད༔གཞན་ཡང་ཐོས་བསམ་སྒོམ་གསུམ་བྱས་པ༔བསྙེན་གནས་དང་སྤང་གནས་བསྲུང་བ༔སྒོམ་དབང་ཁྲིད་ཞུས་པ་ལ་སོགས་པའི་དགེ་བ་བསགས་པ་ཅི་ཡོད་པ་ད་ལྟ་མགྱོགས་པར་ཤོད་ཅིག༔",
+          "phon": null,
+          "en": "Again, the Dharma King interrogates him: \"O child of my lineage, deceased being, have you come from a lodging in the human world? You seem to have obtained the precious human body of freedom and connection, so difficult to find. You have encountered the difficult-to-encounter teachings of the Buddha. You were born in the difficult-to-be-born-in Jambudvīpa. What **white virtuous deeds** have you accumulated? During your stay in the lodging of the human world, with a pure mind and clean body, did you direct your thoughts to the Dharma? What accumulations of conditional virtue and offerings have you made? Have you erected supports of body, speech, and mind? Have you written scriptures and had them read and recited? Have you made tsa-tsa? Have you offered water torma? Have you cleared rocks from roads? Have you removed obstacles that make bad roads dangerous? Have you made offerings above? Have you given generosity below? Have you accumulated virtue down to the subtle and finest level, such as scattering food and grain on anthills? Furthermore, have you accumulated the virtues of study, contemplation, and meditation? Have you observed the eight precepts and the fasting precepts? Have you requested empowerments and meditation instructions? Now, quickly tell all the virtue you have accumulated!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "**ནག་པོ་སྡིག་པའི་ལས**༔ལུས་ཀྱི་སྒོ་ནས་ཆེ་སྟེ་ཕ་དང་མ་མན་ཆད་ཆུང་ཏེ་ཤིག་དང་སྲོ་མ་ཡན་གྱི་སྲོག་བཅད་པ༔མ་བྱིན་པ་ལེན་པ་མི་ཚངས་པ་སྤྱོད་པ་ལ་སོགས་པ་ལུས་ཀྱི་སྡིག་པ་བསགས་པ་ཅི་ཡོད༔ངག་གི་སྒོ་ནས་འཆལ་བ༔ཚིག་རྩུབ་མོ༔ཕྲ་མ་དང་རྫུན་སྨྲ་བ་ལ་སོགས་པ་ངག་གི་སྡིག་པ་བསགས་པ་ཅི་ཡོད༔ཡིད་ཀྱི་སྒོ་ནས་བརྣབ་སེམས་དང་གནོད་སེམས་དང་༔ལོག་པར་ལྟ་བ་ལ་སོགས་པ་ཡིད་ཀྱི་སྒོ་ནས་སྡིག་པ་བསགས་པ་ཅི་ཡོད༔གཞན་ཡང་མཚམས་མེད་པ་ལྔ་དང་༔དེ་དང་ཉེ་བ་ལྔ་ལ་སོགས་པ་ལུས་ངག་ཡིད་གསུམ་གྱིས་ཀུན་ནས་བླངས་ཏེ་བསགས་པའི་སྡིག་པ་མི་དགེ་བ་ཅི་ཡོད༔ཞིབ་ལ་གསལ་བ་ད་ལྟ་མགྱོགས་པར་ཤོད་ཅིག༔ཅེས་དྲིས་ལ༔",
+          "phon": null,
+          "en": "\"What **black evil deeds** have you committed? Through the door of body, from the greatest, such as killing your father and mother, down to the smallest, such as killing lice and nits—what evil of taking life have you accumulated? What stealing, what sexual misconduct, and other physical evils? Through the door of speech, what lying, harsh speech, divisive speech, idle chatter, and other verbal evils have you accumulated? Through the door of mind, what covetousness, malice, wrong view, and other mental evils have you accumulated? Furthermore, what non-virtuous evils have you accumulated by engaging in the five heinous deeds with immediate retribution, the five approximate heinous deeds, and so forth, through body, speech, and mind? Now, quickly and clearly tell all in detail!\" So he asks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་ཚེ་འདས་དེ་བྲེད་ཅིང་འདར་བའི་ཚུལ་གྱིས་འདི་སྐད་ཞུའོ༔ཆོས་ཀྱི་རྒྱལ་པོའི་དྲང་དུ་ཞུ་བ༔ང་རྒྱ་གར་བྱང་ཤར་ཀ་མ་རུ་པའི་གྲོང་དུ་སྡོད་པའི་ཁྱིམ་བདག་དཔལ་སྐྱེས་ཞེས་བྱ་བ་དེ་ཡིན་ལགས༔འཁོར་བ་རྟེན་བུ་སྤྱད་ཀྱང་ཡོད༔རང་ཟས་ཟ་ཞིང་རང་ཆུ་འཐུང་བའི་སྐྱོམ་ཆུང་ཅིག་ཡིན་ལགས༔དད་པ་དང་ལྡན༔བླ་མ་བཟང་པོ་ཡུལ་དུ་བྱོན་པ་ཐམས་ཅད་ལ་ཡང་བསོད་སྙོམས་བཟང་པོ་རེ་ཡང་ཕུལ༔གཞན་ལ་དགེ་བ་ལ་བསྐྱལ༔རང་ཡང་དགེ་སེམས་བཟང་པོས་ཀུན་ནས་བླངས་ཏེ༔ལྷ་ཁང་ལ་ཞིག་གསོ་ཡང་བྱས་ཤིང་༔ཤི་ངེས་པའི་སྲོག་མང་པོ་བསླུས༔དབང་ཁྲིད་ཟབ་མོ་ཡང་ཡང་ཐོབ༔མགྲོན་ལམ་འཕྲང་བསལ༔སྡོདན་ཡིག་དྲུག་འདོན༔བསྙེན་གནས་དང་སྨན་གནས་བསྲུང་༔ཡར་དཀོན་མཆོག་ལ་མཆོད་པ་ཕུལ༔མར་ངན་སློང་ལ་སྦྱིན་པ་བཏང་བའི་ཁྱིམ་པ་བྱོ་རྙི་སཏུ་སེམས་དཔའ་ཅིག་ཡིན་ལགས༔དེ་ལྟར་བྱས་པའི་དོན་ལ་མི་ཀུན་གྱིས་ཀྱང་ཁྱིམ་བདག་དཔལ་འབྱོར་ཅན་ཟེར་བ་ཡིན་ལགས༔ངའི་དགེ་བའི་རྒྱན་ལ་ནི་འདི་ལྟར་ལགས༔",
+          "phon": null,
+          "en": "Then that deceased person, trembling and quivering, replies: \"I petition before the Dharma King. I am that very person who dwelt in the town of Ka-ma-ru-pa in northeastern India, the householder named Dpal-skyes. Though I maintained a household life, I was but a small being eating my own food and drinking my own water. I had faith. Whenever good teachers came to the area, I always offered them fine alms. I encouraged others toward virtue. With a virtuous and good mind myself, I engaged in restoring temples that had fallen into disrepair. I ransomed many lives that were certain to be killed. I repeatedly received profound empowerments and instructions. I repaired dangerous paths for travelers. I recited the six-syllable mantra regularly. I observed the eight precepts and the fasting precepts. I made offerings above to the Three Jewels. I gave generosity below to beggars. I was a householder, a bodhisattva. On account of these deeds, everyone called me the householder 'Glorious and Wealthy.' Such is my garland of virtue.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ནག་པོ་སྡིག་པའི་ལས་ནི༔སེམས་ཅན་གཅིག་གི་སྲོག་ལ་ཡང་མ་འབགས་པ་ཅིག་བྱེད་དགོས་སྙམ་ཀྱང་༔འཇིག་རྟེན་ལོག་པ་འཁོར་བ་རུ་སོང་བས་བུ་གཅིག་ཡོད་པ་དེ་ལ་ཆུང་མ་ལེན་པའི་ཕྱིར་སེམས་ཅན་བཅུའི་སྲོག་ལ་འབགས་ལགས༔དེའི་སྡིག་བཤགས་རྡོ་རྗེ་གཅོད་པ་བརྒྱ་ཚར་ཅིག་བཏོན་ལགས༔གྲོང་པའི་ཁྱིམ་ཚེས་ཀྱི་ཁྲལ་ཕྱིར་སེམས་ཅན་མང་པའི་སྲོག་ལ་འབགས་པ༔དེ་ལ་ཡང་འགྱོད་པ་མང་པོ་སྐྱེས༔བཤགས་པ་ཡང་བྱས༔གཞན་ཡང་འཇིག་རྟེན་གྱི་ཁྱིམ་པར་སོང་བས༔སྟབས་དང་གཤིས་ཀྱིས་རྐང་འོག་ལག་འོག་ཏུ་འཆི་བ་ཨེ་ཡོད་བསམ་ནས་འགྱོད་པ་མང་དུ་བྱུང་༔དེས་དགེ་སྡིག་གི་མཚན་དེ་བཙུགས་ལགས་པས༔དེ་ལུགས་ཀྱི་ཐུགས་དགོངས་བཏང་ནས་ཐུགས་རྗེས་འཛིན་པར་ཞུ་ལགས༔ཞེས་ཞུས་པས༔",
+          "phon": null,
+          "en": "\"As for black evil deeds: I did not knowingly take even the life of a single being. However, as I was a worldly, confused, deluded person, for the sake of my one son to find a wife, I was involved in the taking of ten beings' lives. To confess that evil, I recited the Vajra Cutter one hundred times. For the sake of taxes to the village households, I was involved in the lives of many beings. For that too, I felt great remorse and made confessions. Otherwise, just by being a worldly householder, due to circumstance and nature, I sometimes wondered whether beings underfoot or underhand might die. I felt much regret about that. So it was that I established the signs of virtue and evil. Please, from the depths of your wisdom, let your compassion take hold of me!\" So he petitions.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་ཆོས་ཀྱི་རྒྱལ་པོས་འདི་སྐད་བརྗོད་དོ༔འོ་ན་ཁྱོད་ཀྱི་ཟེར་བ་དེ་བདེན་པར་གྱུར་ན་དགེ་སྡིག་རྒྱ་འབྲས་ལ་བསམ་མནོ་ལེགས་པར་བཏང་ནས་འདུག་སྟེ༔འོན་ཀྱང་ཁྱོད་མིའི་རིགས་དེ་རྫུན་མཁས་པ་ཡིན༔ངས་ལས་ཀྱི་མེ་ལོང་ལ་དྲི་ཨང་གསུང་སྟེ་མེ་ལོང་བསྟན་ནས་ཨེ་མ་ལྟོས་ཤིག་སྐལ་ལྡན་རིགས་ཀྱི་བུ༔སྣང་སྲིད་གསལ་བའི་ལས་ཀྱི་མེ་ལོང་འདི༔དུས་གསུམ་མཁྱེན་པའི་སྤྱན་ལས་གསལ༔ལས་ཀྱི་དགེ་སྡིག་རང་གཟུགས་དངོས་སུ་སྟོན་ཙ་ན༔ཁྱོད་མི་ཡུལ་གྱི་དགེ་སྡིག་ཅི་བྱས་ཀུན༔དུས་ད་ལྟ་མངོན་སུམ་འཆར་ཙམ༔ཁྱོད་རྫུན་དང་གཡ་སྒྱུ་ཅི་བྱེད་ཨ༔ད་ལྟ་ལྟོས་ཤིག་མེ་ལོང་འདིར་ལྟོས༔ཞེས་ཟེར་ཏེ་མེ་ལོང་ལ་ལྟས་ནས༔འོ་ད་ལྟ་ཁྱོད་ཟེར་བའི་དགེ་སྡིག་བྱས་ཚུལ་དེ་རྣམས་རྫུན་མིན་པར་འདུག་གེ༔པོ་སྐྱེས་པ་ཡིན་ནེ༔ལམ་དཀར་པོ་ལ་བཏང་གི་ཤོག༔ཅེས་གསུངས་པ་དང་༔",
+          "phon": null,
+          "en": "Then the Dharma King speaks: \"Now, if what you say is true, then you have carefully considered the distinction between virtue and evil, cause and effect. However, you humans are skilled at lying. I will look in the karmic mirror.\" He displays the mirror and says: \"Ah, look, fortunate child! This karmic mirror, luminous with all appearance-existence, is clearer than the eyes that know the three times. As it directly shows the forms of karmic virtue and evil, whatever virtue and evil you did in the human world, right now, in this very moment, appears directly. How can you lie and deceive? Look now, look into this mirror!\" So he commands. When the householder looks into the mirror, he sees that the account of his deeds, as he told them, is not false. \"O man, you are good. Go along the white path! Let him go!\" So he declares.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་འདྲེ་ནག་འདི་སྐད་བརྗོད་དོ༔ཀ་ཡེ་ཆོས་ཀྱི་རྒྱལ་པོའི་དྲུང་དུ་ཞུ་རྒྱུ་ཡོད༔མི་ངན་པ་ཁྱིམ་བདག་དཔལ་སྐྱེས་ཟེར་བ་འདི༔མི་ཚེ་སྡིག་པ་སྐལ་ནས་འདོད་ཕུགས་སུ་གཙུག༔མིང་ནི་ཁྱིམ་བདག་དཔལ་སྐྱེས་བྱ་བ་ཡིན༔བླ་དྭགས་མིང་ནི་སྤེ་མགོ་ཟེར་བ་ཡིན༔དད་པ་མེད་པའི་ཁྱིམ་བདག་དཔལ་འབྱོར་གྱིས༔ཁོའི་ལོ་ནི་གླང་གི་ལོ་པ་ཡིན༔ཡུལ་ནི་གྲོང་ཁྱེར་ཀ་མ་རུ་པ་ཡིན༔རིགས་ནི་རྗེ་རིགས་ཡིན་སྟེ་སྡིག་པ་བྱས༔གྲོང་སྟོད་རྒྱུག་ནས་ཕ་བསད་འཐབ་མོ་སྤྲད༔གྲོང་སྨད་རྒྱུག་ནས་ཁྱིམ་ཚེས་འཁྲུག་པ་སྤྲད༔ཁྱིམ་ཚེས་སབྷི་བྷ་དྲའི་རྔ་མོང་ལ༔རྡོ་ཀུན་རྒྱབ་ནས་བསད་ཀྱང་མིན་རྫུན་བཏབ༔ཡིག་མཁན་པྲན་མ་ཏིའི་གླུང་པོ་ཆེ༔ཕྲུ་གུ་གཡང་ལ་བསད་ནས་མིན་རྫུན་བཏབ༔ད་ལྟ་ཉིད་དུ་རྡེའུ་གཤེར་བས་ཆོག༔དཀར་པོའི་ལམ་ལ་འགྲོ་རྒྱ་ཅི་ལ་ཡོད༔ནག་པོའི་ལམ་ལ་ཁྲིད་པས་ཆོག་པ་ཡོད༔བེར་ནས་རྡེའུ་ནག་པོ་ཕུལ་གསུམ་ཙམ་ཞིག་བྱོ་བ་དང་༔",
+          "phon": null,
+          "en": "Then the black demon speaks: \"Hey! I have something to say in the presence of the Dharma King. This evil man, called the householder Dpal-skyes: though his life was dedicated to sin, his wishes were set from the start. His name is 'Householder Dpal-skyes' (Glorious Birth), but his nickname is 'Monkey-head.' Without faith, the householder 'Glorious Wealth': his year is the iron ox year. His land is the city of Ka-ma-ru-pa. His caste is royal, yet he committed evil. He ran to the upper part of the village and started fights that killed fathers. He ran to the lower part of the village and started disputes that ruined households. During a household marriage for Subhi Bhadra, he hit and killed everyone with stones, then lied and denied it. The scribe Prana-mati's elephant—he killed its calf in a pit and lied and denied it. Now, let the pebbles be weighed! What grounds does he have to go on the white path? It is fitting to lead him on the black path!\" So saying, he pours out about three handfuls of black pebbles.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b009",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་ལྷ་དཀར་པོས་འདི་སྐད་ཞུའི༔ཆོས་ཀྱི་རྒྱལ་པོའི་དྲང་དུ་ཞུ་བ་ལགས༔ཁྱིམ་བདག་དཔལ་འབྱོར་ཅན་འདི་དད་པ་ཆེ༔ཆོས་ལ་མོས་ཤིང་སྡིག་ལ་འཛེམ་པར་བྱས༔རྒྱལ་པོ་མ་ཧཱ་ར་ཛའི་དྲུང་དུ་ནི༔མི་ངན་ལྔ་བརྒྱ་ཙམ་གཅིག་ཁྲིམས་ལ་ཐུགས༔གསེར་སྲང་ལྔ་བརྒྱ་བཏང་ནས་སྲོག་བསླུ་སོ༔རྒྱ་གར་གྲོང་ཁྱེར་ཀ་མ་རུ་པ་ན༔ཁྱིམ་བདག་དཔལ་སྐྱེས་ཁོ་ན་དད་པ་ཆེ༔དུ་ལྟ་རང་ལ་རྡེའུ་གཤེར་བས་ཆོག། ནག་པོའི་ལམ་ལ་འགྲོ་དོན་ཅི་ལ་ཡོད༔དཀར་པོའི་ལམ་ལ་ད་ལྟ་ཁྲིད་ནས་འགྲོ༔ཟེར་ནས་རྡེའུ་དཀར་བྲེ་དྲུག་ཙམ་ཅིག་བྱོ་བ་དང་༔",
+          "phon": null,
+          "en": "Then the white deity petitions: \"I petition before the Dharma King. This householder, Glorious Wealth, has great faith. He has respect for Dharma and has been cautious of evil. In the presence of King Maha-raja, there were about five hundred evil men on trial. He paid five hundred gold coins and ransomed their lives. In the town of Ka-ma-ru-pa in India, the householder Dpal-skyes alone has great faith. Now, let the pebbles be weighed! What reason is there for him to go on the black path? Now, lead him on the white path!\" So saying, he pours out about six handfuls of white pebbles.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b010",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འབྱུང་པོ་སྤྲེ་གདོང་ན་རེ༔ལྷ་དང་འདྲེ་གཉིས་མ་འཆམ་མི་དགོས་ཀྱིས༔ང་ཡི་ན་རག་སྲུང་ལ་བཏེགས་ཙ་ན༔དགེ་སྡིག་ཆེ་ཆུང་སྲང་རན་དོས་གཏན་ལ་དབབ༔ད་ལྟ་ཉིད་ལ་བལྟས་པས་གསལ་བ་ཡིན༔ མཽ། ཟེར་ནས་རྡེའུ་སྲང་ལ་འཇལ་བས༔གསུམ་ལོག་གི་དཀར་པོ་ལྕི་བ་དང་༔",
+          "phon": null,
+          "en": "The spirit with the monkey face says: \"There is no need for the deity and demon to quarrel. When I lift them on my scales, the weight of virtue and evil, great and small, will be definitively settled by weight. Look now, it is clear!\" Saying this, he weighs the pebbles on the scales. The white pebbles outweigh the black by three measures.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b011",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཆོས་ཀྱི་རྒྱལ་པོས་འདི་སྐད་གསུངས༔ཨེ་མ་ཧོ༔མི་ལུས་ཐོབ་ནས་ཆོས་ལ་སྤྲོ་བ་རྣམས༔རང་མདུན་རང་གི་ལེགས་པར་སྒྲུབ་པ་འདི༔གཞན་གྱི་རྐ་ཞིང་འཕྲོག་ཏུ་མི་གཏུབ་པས༔རང་གིས་དགེ་བས་རང་ཉིད་བདེ་བ་ཐོབ༔ཁྱིམ་བདག་འབྱོར་བ་ཅན་གྱི་ལས་འདི་འདྲ༔སེམས་ཅན་ཀུན་གྱིས་བྱས་ན་ཅི་མ་རུང་༔སྤྱན་རས་གཟིགས་ལ་གསོལ་བ་མྱུར་དུ་ཐོབ༔དཀར་པོའི་ལམ་ལ་དུ་ལྟ་ལ་འུར་ཐོངས༔ཅེས་བརྗོད་ལ༔",
+          "phon": null,
+          "en": "The Dharma King then declares: \"E ma ho! For those who, having obtained a human body, delight in Dharma: this excellent accomplishment that is clearly before you cannot be stolen by another's cleverness. Through your own virtue, you have won your own happiness. Such is the karma of the householder 'Glorious Wealth.' If all sentient beings could do this, how wonderful it would be! Swiftly obtain your prayers to Avalokiteśvara! Go now, quickly, on the white path!\"",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b012",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཤར་པོ་ཏ་ལ་ཡི་རྩེ་མོ་རུ༔ཡི་དམ་ཐུགས་རྗེ་ཆེན་པོ་ལ་གསོལ་བ་འདེབས༔སེམས་ཉིད་ཆོས་སྐུར་རྟོགས་པར་བྱིན་གྱིས་རློབས༔ཞེས་གསོལ་བ་བཏབ༔སངས་རྒྱས་དང་བྱང་ཆུབ་སེམས་དཔའ་རྣམས་ལ་རམ་མདའ་སྦྱན་པའི་སྨོན་ལམ་ཡང་བཏབ༔",
+          "phon": null,
+          "en": "Then he says: \"On the peak of the Potala mountain in the east, pray to your chosen deity, the Great Compassionate One: 'May the nature of mind be realized as dharmakāya; grant your blessings!'\" So they pray. They also make aspiration prayers to the buddhas and bodhisattvas, including the king Ramenda's prayer.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b013",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་བར་དོའི་མངལ་སྒྲོ་འགག་པ་དང་། མངལ་བསྡོམ་པའི་ངོ་སྤྲོད་བཏབ༔དེ་རྗེས་དག་པ་སངས་རྒྱས་ཀྱི་ཞིང་དུ་འགྲོ་ངོ་སྤྲོད་བཏབ་མ་ཐག༔ཡེལ་བ་འུབ་ཀྱི་སྣས་ལ་ཐུགས་རྗེ་ཆེན་པོའི་སུ་ཁྲ་ལམ་གྱི་བསྟུན། སྣམ་བུ་དཀར་པོའི་ལམ་ལ་ཁྲིད་ཅིང་གོས་བཟང་པོ་གྱོན༔བརྒྱན་བཟང་པོ་བཏགས༔གཟེངས་བསྟོད་ལ༔འོ་རིགས་ཀྱི་བུ༔མི་ལུས་ཐོབ་པའི་དོན་གོ་འདི་ལྟ་བུ་ཅིག་དགའ་པ་ཡིན༔དགའ་བ་སྐྱེད་མཛོད༔ཅེས་བརྗོད་དོ༔",
+          "phon": null,
+          "en": "Then the introduction to closing the womb entrance and binding the womb of the bardo is given. Immediately after that, the introduction to going to the pure buddha field is given. From the Western Pure Land, the Great Compassionate One, in a form with many faces, leads them along the white cotton path, dresses them in fine garments, adorns them with fine ornaments, praises them, and says: \"O child of my lineage, having obtained a human body, such a meaningful accomplishment is a cause for joy. Rejoice!\" So he speaks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b014",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་སྤྱན་རས་གཟིགས་ཀྱི་སྨོན་ལམ་འདི་གསུམ་བཏབ་བོ༔ཨོ་མ་ཅི་པདྨེ་ཧུ་ཧི༔དཔལ་སྐྱེས་ཁྱོད་ཀྱི་གཙོ་བྱས་སེམས་ཅན་རྣམས༔འབྲུ་དྲུག་སྙིང་པོས་ལམ་སྣ་འདྲེན་པར་ཤོག༔ཁམས་གསུམ་འཁོར་བ་དོང་ནས་སྤྲུགས་པར་ཤོག༔ན་རག་དམྱལ་བ་ཟད་ཅིང་སྟོང་པར་ཤོག༔ཞེས་སྨོན་ལམ་བཏབ་པོ༔ཡིག་དྲུག་བསྐྱལ༔",
+          "phon": null,
+          "en": "Then he makes three aspiration prayers of Avalokiteśvara: \"Om Mani Padme Hum Hri! Dpal-skyes, and all sentient beings led by you, may the six-syllable essence guide you on the path! May you be shaken from the depths of the three realms of saṃsāra! May the hells of torment be emptied and exhausted!\" Thus he prays. He sends the six syllables.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "heading": {
+        "bo": null,
+        "en": "Conclusion of the Teacher's Admonition"
+      },
+      "blocks": [
+        {
+          "id": "s6-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་བླ་མས་འོ་རིགས་ཀྱི་བུ་རྣམས༔སྡིག་ཅན་བཤན་པ་ལག་དམར་དང་༔དད་ལྡན་ཁྱིམ་བདག་དཔལ་སྐྱེས་གཉིས༔དགེ་སྡིག་སོ་སོར་བསགས་ལུགས་ཀྱིས༔སྐྱིད་སྡུག་ཁྱད་པར་འདི་ལ་ལྟོས༔རང་རེ་ཚོ་ལ་ཡང་འདི་ལྟ་བུ་མགྱོགས་པར་འོང་བས་དགེ་བ་ལ་འབད་ཅིང་སྡིག་པ་ལ་འཛེམ་པ་ཤིག་ཏུ་གལ་ཆེའོ༔ཞེས་བརྗོད་ལ་དབང་སྐུར༔བཀྲ་ཤིས་བརྗོད༔བསྟོད་བ་སྨོན་ལམ༔བསྡུ་ཆོག་བྱའོ༔",
+          "phon": null,
+          "en": "Then the teacher says: \"O children of my lineage, look at the difference in happiness and suffering between the sinful butcher 'Red Hands' and the faithful householder 'Dpal-skyes,' each according to their accumulated virtue and evil! This will swiftly come to us as well. Therefore, it is crucial to strive in virtue and be cautious of evil.\" So he speaks. Then he gives the empowerment, pronounces auspicious verses, offers praise, makes aspiration prayers, and performs the concluding ritual.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "heading": {
+        "bo": null,
+        "en": "Colophon"
+      },
+      "blocks": [
+        {
+          "id": "s7-b001",
+          "layer": "L4",
+          "form": "colophon",
+          "bo": "ཨེ་མ་བདག་འདྲ་པདྨ་འབྱུང་གནས་ཀྱིས༔དམྱལ་གནས་དངོས་སུ་མཐོང་ནས་ནི༔མ་འོངས་སེམས་ཅན་རྣམས་ལ་ཕན་ཕྱིར་དུ༔བར་དོ་ཐོས་གྲོལ་ཆོས་ཀྱི་ཆ་རྐྱེན་སྡེབས༔སྐྱེས་བུ་ལས་ཅན་ཅིག་དང་འཕྲུད་པར་ཤོག༔དགེ་སྡིག་རང་གཟུགས་བསྟན་པའི་གདམས་པ༔སྲིད་པ་རང་གྲོལ་ཞེས་བྱ་བ་རྫོགས་སོ༔ཤུབླེ༔བྷ་ཝཏུ།",
+          "phon": null,
+          "en": "E ma! I, Padmākara, having directly seen the hell realms, for the benefit of future sentient beings, have composed this supplementary instruction to The Bardo Liberation through Hearing. May it meet with a person of karmic fortune. This instruction, showing virtue and evil in their own forms, called Self-Liberation of Samsara, is complete. Śubham astu! May it be auspicious!",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}
