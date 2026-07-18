@@ -282,9 +282,15 @@ async function boot() {
     '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
     '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
 
+  // Prayers & Liturgies reads as a collection of its own within the
+  // cycle (owner's Phase 3 direction) — bracketed and set apart.
+  const COLLECTION_GROUPS = new Set(['prayers-liturgies']);
+
   for (const group of cycle.groups) {
     const cat = document.createElement('details');
-    cat.className = 'nav-cat';
+    cat.className = COLLECTION_GROUPS.has(group.id)
+      ? 'nav-cat nav-cat-collection'
+      : 'nav-cat';
     cat.open = true;
     const summary = document.createElement('summary');
     summary.textContent = group.heading.en;
