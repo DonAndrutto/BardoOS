@@ -1,0 +1,1143 @@
+{
+  "schemaVersion": 1,
+  "id": "bardo-thodrol.dharmata-intro",
+  "cycle": "zab-chos-zhi-khro",
+  "kind": "instruction",
+  "title": {
+    "bo": "ཆོས་ཉིད་བར་དོའི་ངོ་སྤྲོད་ཐོས་གྲོལ་ཆེན་མོ།",
+    "phon": null,
+    "en": "The Great Liberation through Hearing: Pointing-out instructions on the Bardo of Dharmata"
+  },
+  "source": {
+    "attribution": "A treasure revealed by Guru Padmasambhava",
+    "notes": null
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": {
+        "bo": null,
+        "en": "TODO_CONTENT"
+      },
+      "blocks": [
+        {
+          "id": "s1-b001",
+          "layer": "L4",
+          "form": "title",
+          "bo": "བར་དོ་ཐོས་གྲོལ་ཆེན་མོ",
+          "phon": null,
+          "en": "The Great Liberation through Hearing in the Bardos",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null,
+          "boEndsOpen": true
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L4",
+          "form": "title",
+          "bo": null,
+          "phon": null,
+          "en": "Part One (continued) — The Bardo of Reality: Days One to Six",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b003",
+          "layer": "L4",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "How to read this text.  The shaded passages marked ◆ READ ALOUD are the words spoken directly to the deceased. Everything else is guidance for the reader and is not spoken aloud. The indented verses are the prayers the deceased is to repeat and remember; they are set in meter so that they can be memorized. Tibetan is given above each English passage.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "heading": {
+        "bo": null,
+        "en": "ii.  The Great Pointing Out of the Bardo of Reality"
+      },
+      "blocks": [
+        {
+          "id": "s2-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེ་ནས་བར་དོ་གསུམ་པ་ཡང་ཟེར༔ ཆོས་ཉིད་བར་དོ་འཆར་དེ༔ བར་དོ་གསུམ་པ་ལས་ཀྱི་འཁྲུལ་སྣང་བྱ་བ་ཤར་དུ་འོང་བས༔ འདིའི་དུས་སུ་ཆོས་ཉིད་བར་སོའི་ངོ་སྤྲོད་ཆེན་པོ་ཀློག་པ་གལ་ཆེ་སྟེ༔ སྟོབས་དང་ཕན་ཡོན་ཤིན་ཏུ་ཆེའོ༔",
+          "phon": null,
+          "en": "If liberation has still not come through the pointings-out above, then the bardo of reality — also called the third bardo — will dawn. It is in this third phase that the bewildering apparitions born of karma appear. So at this juncture this Great Pointing Out of the Bardo of Reality must be read aloud: its power and its benefit are very great.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེ་ཙ་ན་ཉེ་དུས་དུ་སྐད་སྨྲེ་སྔགས་འདོན་ཟས་སྐལ་བཅད༔ གོས་བཤུས༔ མལ་ས་འཆག་པ་ལ་སོགས་རང་གིས་ཁོང་རྣམས་མཐོང་ཡང་༔ ཁོང་རྣམས་ཀྱིས་རང་མ་མཐོང་༔ ཁོང་རྣམས་ཀྱིས་རང་ལ་བོས་པ་ཐོས་ཀྱང་༔ རང་གིས་ཁོང་རྣམས་ལ་བོས་པ་མ་ཐོས་པས༔ སྙིང་མི་གདའ་ཕྱད་དེ་འགྲོའོ༔",
+          "phon": null,
+          "en": "At about this time the mourners are weeping and lamenting; the dead one's share of food is no longer served, the clothes are stripped away, the bed is broken down. The deceased can see them, but they cannot see the deceased; can hear them calling, but they cannot hear the answering call. And so the dead one turns away, sick at heart.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེའི་ཚེ་སྒྲ་འོད་ཟེར་གསུམ་གྱི་སྣང་བ་ཤར་ནས༔ འཇིགས་སྐྲག་མདངས་གསུམ་གྱིས་འོ་བརྒྱལ་ནས་འོངས་པས༔ འདིའི་དུས་སུ་ཆོས་ཉིད་བར་དོའི་ངོ་སྤྲོད་ཆེན་མོ་གདབ་པར་བྱ་སྟེ༔ ཚེ་འདས་ཀྱི་མིང་ནས་བོས་ལ་སྒྲ་དག་ཅིང་ཚིག་གསལ་བར་འདི་སྐད་དུ་བཤད་དོ༔",
+          "phon": null,
+          "en": "At that time the appearances of the three — sounds, lights, and rays — will dawn, and the deceased, worn out by fear, terror, and awe, is on the way. So now this Great Pointing Out of the Bardo of Reality is to be given. Call the deceased by name, and with clear sound and distinct words say this:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ མ་ཡེངས་པར་འདུན་པ་དྲག་པོས་ཉོན་ཅིག༔ བར་དོ་རྣམ་པ་དྲུག་ཡིན་ཏེ༔ རང་བཞིན་སྐྱེས་གནས་ཀྱི་བར་དོ་དང་༔ རྨི་ལམ་བར་དོ་དང་༔ ཏིང་ངེ་འཛིན་བསམ་གཏན་གྱི་བར་དོ་དང་༔ འཆི་ཁའི་བར་དོ་དང་༔ ཆོས་ཉིད་བར་དོ་དང་༔ ལུགས་འབྱུང་སྲིད་པའི་བར་དོ་དེ་དྲུག་གོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen with intense attention and do not be distracted. There are six bardos: the natural bardo of this life; the bardo of dream; the bardo of meditative absorption; the bardo of dying; the bardo of reality; and the bardo of becoming, in which existence takes shape again. These are the six.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རིགས་ཀྱི་བུ༔ ཁྱོད་ལ་བར་དོ་གསུམ་འབྱུང་སྟེ༔ འཆི་ཁའི་བར་དོ་དང་༔ ཆོས་ཉིད་བར་དོ་དང་༔ སྲིད་པ་བར་དོ་དང་གསུམ་འཆར་བ་ལས༔ ཁ་སང་ཕན་ཆད་འཆི་ཁའི་བར་དོ་ལ་ཆོས་ཉིད་འོད་གསལ་ཤར་ཡང་ཁྱོད་ཀྱིས་ངོས་མ་ཟིན་པས༔ འདིར་འཁྱམས་དགོས་བྱུང་བ་ཡིན་ནོ༔ ད་ནི་ཁྱོད་ལ་ཆོས་ཉིད་བར་དོ་དང་༔ སྲིད་པ་བར་དོ་གཉིས་འབྱུང་སྟེ༔ བདག་གིས་ངོ་སྤྲད་པ་རྣམས་ཁྱོད་རང་མ་ཡེངས་པར་ངོས་ཟིན་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "Child of the Noble Family, three bardos will dawn for you: the bardo of dying, the bardo of reality, and the bardo of becoming. Of these three, until yesterday you were in the bardo of dying. The clear light of reality dawned there, but you did not recognize it — and so you have had to wander here. Now the bardo of reality and the bardo of becoming will dawn for you. Recognize what I now point out to you, and do not wander.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ ད་ནི་འཆི་བ་ཞེས་བྱ་བ་དེ་སླེབ་པ་ཡིན་ནོ༔ འཇིག་རྟེན་འདི་ནས་ནི་འགྲོ་སྟེ༔ ཁྱོད་གཅིག་པོ་ནི་མ་ཡིན༔ ཀུན་ལ་འབྱུང་བས་ཚེ་འདི་ལ་ཆགས་པ་དང་ཞེན་པ་ནི་མ་བྱེད་ཅིག༔ ཆགས་པ་དང་ཞེན་པ་བྱས་ཀྱང་སྡོད་དབང་ནི་མེད༔ ཁྱོད་རང་འཁོར་བར་འཁྱམས་པ་ལས་མི་འོང་༔ མ་ཆགས་ཤིག་མ་ཞེན་ཅིག༔ དཀོན་མཆོག་གསུམ་དྲན་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, what is called death has now arrived. You are leaving this world — but you are not alone in this: it comes to everyone. Do not cling to this life; do not yearn for it. Even if you cling and yearn, you have no power to stay; you will only go on wandering in saṃsāra. Do not cling. Do not yearn. Remember the Three Jewels.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ ཆོས་ཉིད་བར་དོའི་སྣང་བ་ལ་འཇིགས་སྐྲག་ཇི་ལྟར་ཤར་ནས་བྱུང་ཡང་༔ ཁྱོད་རང་ཚིག་འདི་མ་བརྗེད་པར་གྱིས་ལ་ཚིག་དོན་ཡིད་ལ་དྲན་བཞིན་དུ་སོང་ཞིག༔ དེས་ངོ་འཕྲོད་པའི་གནད་ཡོད་དོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, however terrifying the appearances of the bardo of reality may be, do not forget these words. Go forward remembering their meaning — in them lies the vital point of recognition:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b008",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་བདག་ལ་ཆོས་ཉིད་བར་དོ་ཤར་དུས་འདིར༔ ཀུན་ལ་དངངས་སྐྲག་འཇིགས་སྣང་སྤངས་བྱས་ནས༔ གང་སྣང་རང་ཤར་རིག་པར་ངོ་ཤེས་བྱ༔ བར་དོའི་སྣང་ཚུལ་ཡིན་པར་ཤེས་པར་བྱ༔ དོན་ཆེན་འགག་ལ་ཐུག་པའི་དུས་ཚོད་འདིར༔ རང་སྣང་ཞི་ཁྲོའི་ཚོགས་ལ་འཇིགས་མི་བྱ༔",
+          "phon": null,
+          "en": "Alas! as the bardo of reality dawns on me,\nI cast aside all awe, all dread, all fear;\nWhatever dawns, I'll know as rigpa, rising free —\nFor so the bardo's visions all appear.\nNow, at this pass where the great purpose hangs in sway,\nI shall not fear the peaceful-wrathful throng:\nThey are but my own self-display.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b009",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་སྐད་ངག་ནས་ལྷང་ལྷང་བརྗོད་ལ༔ ཚིག་དོན་ཡིད་ལ་དྲན་བཞིན་དུ་སོང་ཞིག༔ དེས་འཇིགས་སྐྲག་གི་སྣང་བ་ཇི་ལྟར་ཤར་ཡང་རང་སྣང་དུ་ངེས་པར་ངོ་འཕྲོད་པའི་གནད་ཡོད་པས་མ་བརྗེད་ཅིག༔",
+          "phon": null,
+          "en": "Go forward reciting these words aloud, ringing and clear, remembering their meaning. Do not forget them — for here is the vital point: however terrifying appearances may dawn, they will with certainty be recognized as your own self-display.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b010",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ་ཁྱོད་ཀྱི་ལུས་དང་སེམས་བྲལ་བའི་དུས་སུ༔ ཆོས་ཉིད་དག་པའི་སྣང་བ་ཕྲ་ལ་དྭངས་པ༔ གསལ་ལ་འཚེར་བ་རང་བཞིན་བཀྲག་གསལ་ལ་ཉམས་ང་བ༔ སོས་ཁའི་ཐང་ལ་སྨིག་རྒྱུ་བཞིན་མེར་མེར་འཆར་དུ་འོང་ངོ་༔ དེ་ལ་མ་འཇིགས་ཤིག༔ མ་སྐྲག་ཅིག༔ མ་དངངས་ཤིག༔ དེ་ནི་ཁྱོད་རང་གི་ཆོས་ཉིད་ཀྱི་རང་མདངས་ཡིན་པས་ངོ་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, when your mind parts from your body, the pure appearances of reality will dawn — subtle and limpid, luminous and dazzling, naturally brilliant and awesome, shimmering like a mirage over a plain in summer. Do not fear them. Do not be terrified. Do not be awed. They are the natural radiance of your own reality — recognize them.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b011",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འོད་ཀྱི་ནང་ནས་ཆོས་ཉིད་ཀྱི་རང་སྒྲ་སྒྲ་དག་ལ་ལྡིར་ཆེ་བ༔ འབྲུག་སྟོང་དུས་གཅིག་ལ་ལྡིར་བ་ཙམ་དུ་དི་རི་རི་འོང་ངོ་༔ དེ་ཡང་ཁྱོད་རང་གི་ཆོས་ཉིད་ཀྱི་རང་སྒྲ་ཡིན་པས༔ དེ་ལ་མ་འཇིགས་ཤིག༔ མ་སྐྲག་ཅིག༔ མ་དངངས་ཤིག༔",
+          "phon": null,
+          "en": "From within the light, the natural sound of reality will roll out, pure and vast, like a thousand thunders pealing at once. That too is the natural sound of your own reality. Do not fear it. Do not be terrified. Do not be awed.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b012",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཁྱོད་ལ་བག་ཆགས་ཡིད་ཀྱི་ལུས་བྱ་བ་གཅིག་ཡོད་ཀྱིས༔ རྡོས་བཅས་ཤ་ཁྲག་གི་ལུས་ནི་མེད་པས༔ སྒྲ་འོད་ཟེར་གསུམ་གང་བྱུང་ཡང་ཁྱོད་ལ་གནོད་པ་མི་འོང་སྟེ༔ ཁྱོད་ལ་འཆི་རྒྱུ་མེད་དོ༔ ཁྱོད་རང་གི་རང་སྣང་དུ་ངོ་ཤེས་པ་ཙམ་གྱིས་ཆོག་གོ༔ བར་དོ་ཡིན་པར་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "What you have now is a mental body (yid lus), a body of habitual tendencies — not a solid body of flesh and blood. So whatever sounds, lights, or rays may come, they cannot harm you: there is nothing in you left to die. It is enough simply to recognize them as your own self-display. Know this to be the bardo.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b013",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ་ད་ལྟ་རང་སྣང་དུ་ངོ་མ་ཤེས་ན༔ མི་ཡུལ་དུ་བསྒོམ་སྒྲུབ་ཇི་ལྟར་བྱས་ཀྱང་༔ ད་ལྟའི་གདམས་པ་འདི་དང་མ་འཕྲད་ན༔ འོད་ཀྱིས་འཇིགས་སོ༔ སྒྲས་དངངས་སོ༔ ཟེར་གྱིས་སྐྲག་གོ༔ གདམས་པའི་གནས་འདི་མ་ཤེས་ན་སྒྲ་འོད་ཟེར་གསུམ་ངོ་མ་ཤེས་ནས་འཁོར་བར་འཁྱམ་མོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, if you do not recognize them now as self-display — whatever meditation and practice you may have done in the human world, if you have not met this present instruction — the lights will frighten you, the sounds will daunt you, the rays will terrify you. If you do not grasp this vital point of the teaching, you will not recognize the sounds, the lights, and the rays, and you will wander on in saṃsāra.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b014",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ ཞག་ཕྱེད་དང་བཞིའི་བར་དུ་བརྒྱལ་ནས་འགྲོ་སྟེ༔ བརྒྱལ་སངས་པ་དང་ང་ལ་ཅི་བྱུང་བ་སྙམ་པའི་སྣང་བ་འབྱུང་སྟེ༔ ཁྱོད་ཀྱིས་བར་དོར་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དེའི་ཚེ་འཁོར་བ་རུ་ལོག་ནས༔ སྣང་བ་ཐམས་ཅད་འོད་དང་སྐུ་རུ་འཆར་རོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, if you have moved on without recognition, you will have lain unconscious for three and a half days. Then you will wake from the swoon and wonder, 'What has happened to me?' Recognize it as the bardo. At that time saṃsāra is turned back on itself, and all appearances dawn as lights and as forms of the buddhas.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "heading": {
+        "bo": null,
+        "en": "The First Day — Vairocana"
+      },
+      "blocks": [
+        {
+          "id": "s3-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ནམ་མཁའ་ཐམས་ཅད་ཁ་དོག་མཐིང་ཁར་འཆར་རོ༔ དེའི་དུས་སུ་དབུས་ཕྱོགས་ཐིག་ལེ་བརྡལ་བའི་ཞིང་ཁམས་ནས༔ བཅོམ་ལྡན་རྣམ་པར་སྣང་མཛད་སྐུ་མདོག་དཀར་པོ་སེངྒེའི་ཁྲི་ལ་བཞུགས་པ༔ ཕྱག་ན་འཁོར་ལོ་རྩིབས་བརྒྱད་བསྣམས་པ༔ ཡུམ་ནམ་མཁའི་དབྱིངས་ཕྱུག་མ་དང་ཞལ་སྦྱར་ནས་རང་ལ་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "On the first day, all space will dawn as blue light. Then, from the central buddha-field, the All-Pervading Sphere, the Blessed Vairocana will dawn before you: his body white, seated on a lion throne, holding an eight-spoked wheel, joined with his consort Ākāśadhātvīśvarī, Queen of the Expanse of Space.",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རྣམ་པར་ཤེས་པའི་ཕུང་པོ་གནས་སུ་དག་པ༔ འོད་མཐིང་ཁ་ཆོས་ཀྱི་དབྱིངས་ཀྱི་ཡེ་ཤེས་ཁ་དོག་མཐིང་ཁ༔ གསལ་ལ་དྭངས་པ༔ བཀྲག་ལ་མཆོར་བ་གཅིག་རྣམ་པར་སྣང་མཛད་ཡབ་ཡུམ་གྱི་ཐུགས་ཀ་ནས་ཁྱོད་རང་གི་མདུན་དུ་མིག་གིས་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "From the heart of Vairocana and his consort, a blue light — the primal awareness of the expanse of reality, the natural purity of your aggregate of consciousness — luminous and limpid, brilliant and lovely, will come and pierce you at the level of your heart, so bright your eyes can hardly bear it.",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་དང་མཉམ་དུ་ལྷའི་འོད་དཀར་པོ་བཀྲག་མེད་ཅིག་ཀྱང་མདུན་དུ་ཟུག་ནས་འོང་ངོ་༔ དེའི་དུས་སུ་ཁྱོད་ལས་ངན་གྱི་དབང་གིས་འོད་མཐིང་ཁ་བཀྲག་དང་ལྡན་པ་ཆོས་ཀྱི་དབྱིངས་ཀྱི་ཡེ་ཤེས་དེ་ལ་ཁྱོད་འཇིགས་པ་དང་སྐྲག་པ་སྐྱེས་ནས་བྲོས་ཤིང་༔ ལྷའི་འོད་དཀར་པོ་བཀྲག་མེད་དེ་ལ་ཁྱོད་དགའ་བའི་འདུ་ཤེས་སྐྱེས་ནས་འོང་གི༔",
+          "phon": null,
+          "en": "Alongside it, a dull white light of the gods will also come and pierce toward you. Then, through the force of bad karma, you will be frightened and terrified of the brilliant blue light — the primal awareness of the expanse of reality — and want to flee it; and toward the dull white light of the gods a feeling of delight will rise in you.",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ཙ་ན་ཁྱོད་འོད་མཐིང་ཁ་གསལ་ལ་འཚེར་བ་དྭངས་ལ་བཀྲག་ཆེ་བ་མཆོག་གི་འོད་གསལ་དེ་ལ་མ་དངངས་ཤིག༔ མ་སྐྲག་པར་དེ་བཞིན་གཤེགས་པའི་འོད་ཟེར་ཆོས་ཀྱི་དབྱིངས་ཀྱི་ཡེ་ཤེས་ཞེས་བྱ་བ་ཡིན་ནོ༔ དེ་ལ་དད་པ་དང་མོས་པ་དུང་དུང་གྱིས་ཤིག༔ བཅོམ་ལྡན་འདས་རྣམ་པར་སྣང་མཛད་ཀྱི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ་སྐྱབས་སུ་མཆིའོ་སྙམ་པའི་མོས་པ་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "At that moment, do not be daunted by the blue light — luminous, dazzling, limpid, of surpassing brilliance — the supreme clear light. Do not fear it. It is the light-ray of the Tathāgata, called the primal awareness of the expanse of reality. Trust it; long for it with devotion; and pray, thinking: 'It is the ray of the Blessed Vairocana's compassion — I take refuge in it.'",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་བཅོམ་ལྡན་འདས་རྣམ་པར་སྣང་མཛད་ཡབ་ཡུམ་གྱིས་ཁྱོད་བར་དོའི་འཕྲང་ལ་བསུ་བ་ལ་འོངས་པ་ཡིན་ནོ༔ རྣམ་པར་སྣང་མཛད་ཀྱི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ༔ ལྷའི་འོད་དཀར་པོ་བཀྲག་མེད་དེ་ལ་དགའ་བར་མ་བྱེད་ཅིག༔ མ་ཆགས་ཤིག་མ་ཞེན་ཅིག༔ དེ་ཁྱོད་ཀྱིས་གཏི་མུག་དྲག་པོ་བསགས་པའི་བག་ཆགས་ཀྱི་བསུ་བའི་ལམ་ཡིན་ནོ༔",
+          "phon": null,
+          "en": "For this is the Blessed Vairocana and his consort, come to meet you on the narrow passage of the bardo; this is the ray of Vairocana's compassion. Do not delight in the dull white light of the gods. Do not cling to it; do not yearn for it. It is the inviting path of your own habits of deep delusion, which you yourself have heaped up.",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལ་ཆགས་ན་ནི་ཁྱོད་ལྷའི་གནས་སུ་འཁྱམས་ཏེ༔ རིགས་དྲུག་ཏུ་འཁྱམས་ནས་ཐར་པའི་ལམ་དགག་པའི་བར་ཆད་ཡིན་པས༔ དེ་ལ་མིག་མི་ལྟ་བར་འོད་མཐིང་ཁ་བཀྲག་མདངས་ཅན་དེ་ལ་མོས་པ་གྱིས་ལ༔ བཅོམ་ལྡན་འདས་རྣམ་པར་སྣང་མཛད་ལ་འདུན་པ་དྲག་པོ་གཏོད་ལ༔ སྨོན་ལམ་འདི་སྐད་བདག་གི་ལད་མོ་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "If you cling to it, you will wander into the realm of the gods and circle among the six classes of beings; it is a detour that blocks the path of liberation. Do not look at it. Long for the blue light, bright and radiant; aim your intent fiercely at the Blessed Vairocana, and repeat this prayer after me:",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b007",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་གཏི་མུག་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ ཆོས་དབྱིངས་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་རྣམ་པར་སྣང་མཛད་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་དབྱིངས་ཕྱུག་མ་ཡིས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་དུ་གསོལ༔ ཡང་དག་རྫོགས་པའི་སངས་རྒྱས་ས་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy deep delusion led astray,\nMay Blessed Vairocana call me home\nAnd shine the radiant light upon my way —\nThe gnosis of the vast expanse, serene and bright;\nMay Dhātvīśvarī, supreme, guard me behind,\nFrom bardo's fearsome passage lead me right,\nDeliver me to perfect Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཞེས་མོས་གུས་དྲག་པོས་སྨོན་ལམ་དེ་སྐད་དུ་བཏབ་པས༔ རྣམ་པར་སྣང་མཛད་ཀྱི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ དབུས་ཕྱོགས་སྟུག་པོ་བཀོད་པའི་ཞིང་ཁམས་སུ༔ ལོངས་སྤྱོད་རྫོགས་པའི་སྐུ་རུ་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the heart of Vairocana and his consort, and you will awaken as the saṃbhogakāya in the central buddha-field, the Dense Array (Ghanavyūha).",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        },
+        {
+          "id": "s3-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཡང་གལ་ཏེ་ངོ་སྤྲད་ཀྱང་ཞེ་སྡང་དང་སྡིག་སྒྲིབ་ཀྱི་རྐྱེན་གྱིས་འོད་དང་ཟེར་ལ་སྐྲག་ནས་བྲོས་ཤིང་སྨོན་ལམ་བཏབ་ན་ཡང་འཁྲུལ་ན༔ ཞག་གཉིས་པ་ལ་རྡོ་རྗེ་སེམས་དཔའི་ལྷ་ཚོགས་དང་༔ དམྱལ་བའི་ལས་ངན་གཉིས་བསུ་བ་ལ་འོང་སྟེ༔ ཡང་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་འབོད་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "Yet if, even after this pointing out, through aversion and dark obscuration the deceased takes fright at the lights and rays and flees, and remains bewildered even after the prayer, then on the second day the host of Vajrasattva's deities and, alongside them, the evil karma that leads to the hells come forward to meet them. Again call the deceased by name, and point out with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": 1,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "heading": {
+        "bo": null,
+        "en": "The Second Day — Vajrasattva-Akṣobhya"
+      },
+      "blocks": [
+        {
+          "id": "s4-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ་མ་ཡེངས་པར་ཉོན་ཅིག༔ ཞག་གཉིས་པ་ལ་འབྱུང་བ་ཆུ་ཐམས་ཅད་རྣམ་པར་དག་པའི་འོད་དཀར་པོ་འཆར་རོ༔ དེའི་དུས་སུ་ཤར་ཕྱོགས་མངོན་པར་དགའ་བའི་ཞིང་ཁམས་ནས༔ བཅོམ་ལྡན་འདས་རྡོ་རྗེ་སེམས་དཔའ་མི་བསྐྱོད་པ་སྐུ་མཐིང་ཁ་ཕྱག་ན་རྡོ་རྗེ་རྩེ་ལྔ་པ་བསྣམས་པ༔ གླང་པོ་ཆེའི་གདན་ལ་བཞུགས་པ༔ ཡུམ་སངས་རྒྱས་སྤྱན་མ་དང་ཞལ་སྦྱར་ནས་རང་ལ་འཆར་རོ༔ བྱང་ཆུབ་སེམས་དཔའ་སའི་སྙིང་པོ་དང་༔ བྱམས་པ་མཻ་ཏྲི་གཉིས་ལ༔ སེམས་མ་ལཱ་སྱ་མ་དང་པུཥྤེ་མ་གཉིས་ཀྱིས་བསྐོར་ནས་འཇའ་དང་འོད་ཀྱི་ཀློང་ནས་སངས་རྒྱས་ཀྱི་སྐུ་དྲུག་ཏུ་འཆར་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen without wandering. On the second day, the purity of the whole element of water will dawn as white light. Then, from the eastern buddha-field, Manifest Joy (Abhirati), the Blessed Vajrasattva-Akṣobhya will dawn before you: his body blue, holding a five-pointed vajra, seated on an elephant throne, joined with his consort Buddhalocanā. They are circled by the two male bodhisattvas Kṣitigarbha and Maitreya and the two female bodhisattvas Lāsyā and Puṣpā — six buddha-forms shining out of an expanse of rainbow light.",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "གཟུགས་ཀྱི་ཕུང་པོ་གནས་སུ་དག་པ༔ འོད་དཀར་པོ་མེ་ལོང་ལྟ་བུའི་ཡེ་ཤེས་དཀར་ལ་མཚེར་བ༔ གསལ་ལ་དྭངས་པ་གཅིག་རྡོ་རྗེ་སེམས་དཔའ་ཡབ་ཡུམ་གྱི་ཐུགས་ཀ་ནས་ཁྱོད་རང་གི་མདུན་དུ་མིག་གིས་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔ དེ་དང་མཉམ་དུ་དམྱལ་བའི་འོད་དུད་ཁ་བཀྲག་མེད་ཅིག་ཀྱང་མདུན་དུ་ཡེ་ཤེས་ཀྱི་འོད་དང་གཤིབས་མར་ཟུག་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "From the heart of Vajrasattva and his consort, a white light — the mirror-like primal awareness, the natural purity of your aggregate of form — white and dazzling, luminous and limpid, will come and pierce you at the level of your heart, so bright your eyes can hardly bear it. Alongside that light of primal awareness, a dull, smoke-colored light of the hells will also come and pierce toward you.",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེའི་དུས་སུ་ཁྱོད་ཞེ་སྡང་གི་དབང་གིས་འོད་དཀར་པོ་བཀྲག་མདངས་དང་ལྡན་པ་དེ་ལ་ཁྱོད་འཇིགས་པ་དང་༔ སྐྲག་པ་སྐྱེས་ནས་བྲོས་ཤིང་༔ དམྱལ་བའི་འོད་དུད་ཁ་བཀྲག་མེད་དེ་ལ་ཁྱོད་དགའ་བའི་འདུ་ཤེས་སྐྱེས་ནས་འོང་གི༔ དེ་ཙ་ན་ཁྱོད་འོད་དཀར་པོ་དཀར་ལ་འཚེར་བ་གསལ་ལ་དྭངས་པ་དེ་ལ་མ་འཇིགས་པར་ཡེ་ཤེས་སུ་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དེ་ལ་དད་པ་དང་མོས་པ་དུང་དུང་གྱིས་ཤིག༔ བཅོམ་ལྡན་འདས་རྡོ་རྗེ་སེམས་དཔའི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ་སྐྱབས་སུ་མཆིའོ་སྙམ་པའི་མོས་པ་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "Then, through the force of aversion, you will be frightened and terrified of the brilliant white light and want to flee it; and toward the dull smoky light of the hells a feeling of delight will rise in you. At that moment, do not fear the white light — white and dazzling, luminous and limpid — but recognize it as primal awareness. Trust it; long for it with devotion; and pray, thinking: 'It is the ray of the Blessed Vajrasattva's compassion — I take refuge in it.'",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནས་བཅོམ་ལྡན་འདས་རྡོ་རྗེ་སེམས་དཔའ་ཡབ་ཡུམ་ཁྱོད་བར་དོའི་འཕྲང་ལ་བསུ་བ་ལ་འོངས་པ་ཡིན་ནོ༔ རྡོ་རྗེ་སེམས་དཔའི་ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུ་ཡིན་པས་མོས་པ་གྱིས་ཤིག༔ དམྱལ་བའི་འོད་དུད་ཁ་བཀྲག་མེད་དེ་ལ་དགའ་བར་མ་བྱེད་ཅིག༔ དེ་ཁྱོད་ཀྱི་ཞེ་སྡང་དྲག་པོས་བསགས་པའི་སྡིག་སྒྲིབ་ཀྱི་བསུ་བའི་ལམ་ཡིན་ནོ༔",
+          "phon": null,
+          "en": "For this is Vajrasattva and his consort, come to meet you on the narrow passage of the bardo. This is the light-ray hook of Vajrasattva's compassion — long for it. Do not delight in the dull smoky light of the hells: it is the inviting path of the dark deeds heaped up by your own fierce aversion.",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལ་ཆགས་ན་ནི་དམྱལ་བའི་གནས་སུ་ལྷུང་སྟེ༔ སྡུག་བསྔལ་སྲན་མི་བཟོད་པའི་འདམ་དུ་ཚུད་དེ༔ ཐར་པའི་དུས་མི་འབྱུང་གིས༔ དེ་ནི་ཐར་པའི་ལམ་དགག་པའི་བར་ཆད་ཡིན་པས༔ མིག་མི་བལྟ་བར་ཞེ་སྡང་སྤོངས་ཤིག༔ དེ་ལ་མ་ཆགས་ཤིག༔ མ་ཞེན་ཅིག༔ འོད་དཀར་པོ་གསལ་ལ་མཚེར་བ་དེ་ལ་མོས་པ་གྱིས་ལ༔ བཅོམ་ལྡན་འདས་རྡོ་རྗེ་སེམས་དཔའ་ལ་འདུན་པ་དྲག་པོ་གཏོད་ལ༔ སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "If you cling to it, you will fall into the hells, sink into a mire of unbearable suffering, and find no time of escape. It is a detour that blocks the path of liberation. Do not look at it; give up aversion. Do not cling to it; do not yearn for it. Long for the white light, luminous and dazzling; aim your intent fiercely at the Blessed Vajrasattva, and pray:",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b006",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་ཞེ་སྡང་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ མེ་ལོང་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་རྡོ་རྗེ་སེམས་དཔས་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་སངས་རྒྱས་སྤྱན་མས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་དུ་གསོལ༔ ཡང་དག་རྫོགས་པའི་སངས་རྒྱས་ས་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy deep aversion led astray,\nMay Vajrasattva now direct me home\nAnd shine the radiant light upon my way —\nThe mirror gnosis, stainless, dazzling white;\nMay Buddhalocanā guard me behind,\nFrom bardo's fearsome passage lead me right,\nDeliver me to perfect Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཞེས་མོས་གུས་དྲག་པོས་སྨོན་ལམ་དེ་སྐད་དུ་བཏབ་པས༔ བཅོམ་ལྡན་འདས་རྡོ་རྗེ་སེམས་དཔའི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ ཤར་ཕྱོགས་མངོན་པར་དགའ་བའི་ཞིང་ཁམས་སུ༔ ལོངས་སྤྱོད་རྫོགས་པའི་སྐུར་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the heart of the Blessed Vajrasattva, and you will awaken as the saṃbhogakāya in the eastern buddha-field, Manifest Joy.",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        },
+        {
+          "id": "s4-b008",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཡང་དེ་ལྟར་དུ་ངོ་སྤྲད་ཀྱང་ང་རྒྱལ་དང་སྡིག་སྒྲིབ་ཆེ་བའི་གང་ཟག་ལ་ལ་ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུ་ལ་འཇིགས་ཏེ་བྲོས་པས༔ ཡང་ཞག་གསུམ་པ་ལ་བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་གྱི་ལྷ་ཚོགས་དང་༔ མིའི་འོད་ལམ་གཉིས་བསུ་བ་ལ་འོངས་ཏེ༔ ཡང་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་འབོད་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "Yet even after this pointing out, some, heavy with pride and obscuration, take fright at the light-ray hook of compassion and flee. So on the third day the Blessed Ratnasambhava's host of deities and, alongside them, the light-path of the human realm come forward to meet them. Again call the deceased by name, and point out with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": 2,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "heading": {
+        "bo": null,
+        "en": "The Third Day — Ratnasambhava"
+      },
+      "blocks": [
+        {
+          "id": "s5-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ་མ་ཡེངས་པར་ཉོན་ཅིག༔ ཞག་གསུམ་པ་ལ་འབྱུང་བ་ས་ཐམས་ཅད་རྣམ་པར་དག་པའི་འོད་སེར་པོ་འཆར་རོ༔ དེའི་དུས་སུ་ལྷོ་ཕྱོགས་དཔལ་དང་ལྡན་པའི་ཞིང་ཁམས་སེར་པོ་ནས་བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་སྐུ་མདོག་སེར་པོ་ཕྱག་ན་ནོར་བུ་རིན་པོ་ཆེ་བསྣམས་པ༔ རྟ་མཆོག་གི་གདན་ལ་བཞུགས་པ༔ ཡུམ་མཆོག་མཱ་མ་ཀི་དང་ཞལ་སྦྱར་ནས་རང་ལ་འཆར་དུ་འོང་ངོ་༔ བྱང་ཆུབ་སེམས་དཔའ་ནམ་མཁའི་སྙིང་པོ་དང་༔ ཀུན་ཏུ་བཟང་པོ་གཉིས་ལ༔ སེམས་མ་མཱ་ལྱ་མ་དང་དྷཱུ་པེ་མ་གཉིས་ཀྱིས་བསྐོར་ནས༔ འཇའ་དང་འོད་ཀྱི་ཀློང་ནས་སངས་རྒྱས་ཀྱི་སྐུ་དྲུག་ཏུ་འཆར་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen without wandering. On the third day, the purity of the whole element of earth will dawn as yellow light. Then, from the yellow southern buddha-field, the Glorious (Śrīmat), the Blessed Ratnasambhava will dawn before you: his body yellow, holding a precious jewel, seated on a horse throne, joined with his supreme consort Māmakī. They are circled by the two male bodhisattvas Ākāśagarbha and Samantabhadra and the two female bodhisattvas Mālyā and Dhūpā — six buddha-forms shining out of an expanse of rainbow light.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཚོར་བའི་ཕུང་པོ་དབྱིངས་སུ་དག་པ༔ འོད་སེར་པོ་མཉམ་པ་ཉིད་ཀྱི་ཡེ་ཤེས་སེར་ལ་མཚེར་བ་ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ༔ གསལ་ལ་དྭངས་པ་མིག་གིས་བལྟ་མི་བཟོད་པ་གཅིག༔ རིན་ཆེན་འབྱུང་ལྡན་ཡབ་ཡུམ་གྱི་ཐུགས་ཀ་ནས་ཁྱོད་རང་གི་སྙིང་གི་ཐད་ཀར་མིག་གིས་བལྟ་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔ དེ་དང་མཉམ་དུ་མིའི་འོད་སྔོན་པོ་བཀྲག་མེད་གཅིག་ཀྱང་ཡེ་ཤེས་ཀྱི་འོད་དང་གཤིབས་མར་ཁྱོད་རང་གི་སྙིང་ཁར་ཟུག་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "From the heart of Ratnasambhava and his consort, a yellow light — the primal awareness of equality, the natural purity of your aggregate of feeling — yellow and dazzling, adorned with greater and lesser spheres of light, luminous and limpid, unbearable to the eyes, will come and pierce you straight at your heart, so bright your eyes cannot bear to look at it. Alongside that light of primal awareness, a dull blue light of the human realm will also come and pierce your heart.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེའི་དུས་སུ་ཁྱོད་ང་རྒྱལ་གྱི་དབང་གིས་འོད་སེར་པོ་བཀྲག་མདངས་ཅན་དེ་ལ་འཇིགས་སྐྲག་སྐྱེས་ནས་བྲོས་སུ་འོང་གིས༔ མིའི་འོད་སྔོན་པོ་བཀྲག་མེད་དེ་ལ་ཁྱོད་དགའ་བ་དང་༔ ཆགས་སེམས་སྐྱེས་ནས་འོང་གིས༔ དེ་ཙ་ན་ཁྱོད་འོད་སེར་པོ་སེར་ལ་མཚེར་བ་གསལ་ལ་དྭངས་པ་དེ་ལ་མ་འཇིགས་པར་ཡེ་ཤེས་སུ་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དེའི་ངང་ལ་རིག་པ་བྱར་མེད་ཀྱི་ངང་ལ་གློད་ལ་བཞུགས་ཤིག༔",
+          "phon": null,
+          "en": "Then, through the force of pride, you will grow frightened and terrified of the brilliant yellow light and want to flee it; and toward the dull blue light of the human realm delight and clinging will rise in you. At that moment, do not fear the yellow light — yellow and dazzling, luminous and limpid — but recognize it as primal awareness. Within it let your rigpa relax and rest, in a state where there is nothing to do.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཡང་ན་དེ་ལ་དད་པ་དང་མོས་པ་དུང་དུང་གྱིས་ཤིག༔ ཁྱོད་རང་གི་རིག་པའི་རང་མདངས་སུ་ངོ་ཤེས་ན་ནི༔ མོས་གུས་མ་བྱས་སྨོན་ལམ་མ་བཏབ་ཀྱང་སྐུ་དང་འོད་ཟེར་ཐམས་ཅད་ཁྱོད་རང་དང་དབྱེར་མེད་དུ་ཐིམ་ནས་སངས་རྒྱས་པར་འགྱུར་རོ༔ རང་གི་རིག་པའི་རང་མདངས་སུ་མ་ཤེས་ན་ནི༔ བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་གྱི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ་སྐྱབས་སུ་མཆིའོ་སྙམ་པའི་མོས་གུས་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "Or else trust it and long for it with devotion. If you recognize it as the natural radiance of your own rigpa, then even without devotion, even without the prayer, all the forms and rays will dissolve into you inseparably, and you will awaken. If you cannot recognize it as the natural radiance of your own rigpa, then pray with devotion, thinking: 'It is the ray of the Blessed Ratnasambhava's compassion — I take refuge in it.'",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནི་བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་ཁྱོད་བར་དོའི་འཇིགས་སྐྲག་ལ་བསུ་བར་འོང་བ་ཡིན་ནོ༔ རིན་ཆེན་འབྱུང་ལྡན་གྱི་ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུ་ཡིན་པས་མོས་པ་གྱིས་ཤིག༔ མིའི་འོད་སྔོན་པོ་བཀྲག་མེད་དེ་ལ་དགའ་བར་མ་བྱེད་ཅིག༔ ཁྱོད་ཀྱི་ང་རྒྱལ་དྲག་པོས་བསགས་པའི་བག་ཆགས་ཀྱི་བསུ་བའི་ལམ་ཡིན་ནོ༔",
+          "phon": null,
+          "en": "For this is the Blessed Ratnasambhava, come to meet you amid the terrors of the bardo. This is the light-ray hook of Ratnasambhava's compassion — long for it. Do not delight in the dull blue light of the human realm: it is the inviting path of the habits heaped up by your own fierce pride.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལ་ཆགས་ན་ནི་ཁྱོད་མིའི་གནས་སུ་ལྷུང་ནས་སྐྱེ་རྒ་ན་འཆིའི་སྡུག་བསྔལ་ཉམས་སུ་མྱོང་ཞིང་འཁོར་བའི་འདམ་ནས་ཐོན་པའི་དུས་མི་འབྱུང་སྟེ༔ ཐར་པའི་ལམ་བཀག་པའི་བར་ཆད་ཡིན་པས་དེ་ལ་མིག་མི་བལྟ་བར་ང་རྒྱལ་སྤོངས་ཤིག༔ བག་ཆགས་སྤོངས་ཤིག༔ མ་ཆགས་ཤིག༔ མ་ཞེན་ཅིག༔ འོད་སེར་པོ་སེར་ལ་མཚེར་བ་དེ་ལ་མོས་པ་གྱིས་ཤིག༔ བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་ལ་འདུན་པ་རྩེ་གཅིག་ཏུ་གཏོད་ལ་སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "If you cling to it, you will fall into the human realm, taste the sufferings of birth, aging, sickness, and death, and find no time to climb out of the swamp of saṃsāra. It is a detour that blocks the path of liberation. Do not look at it. Give up pride; give up your habits. Do not cling; do not yearn. Long for the yellow light, golden and dazzling; aim your intent single-pointedly at the Blessed Ratnasambhava, and pray:",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b007",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་ང་རྒྱལ་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ མཉམ་ཉིད་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་རིན་ཆེན་འབྱུང་ལྡན་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་མཱ་མ་ཀི་ཡིས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་དུ་གསོལ༔ ཡང་དག་རྫོགས་པའི་སངས་རྒྱས་ས་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy deep-set pride led far astray,\nMay Ratnasambhava now call me home\nAnd shine the radiant light upon my way —\nThe gnosis of equality, golden-bright;\nMay Māmakī, supreme, guard me behind,\nFrom bardo's fearsome passage lead me right,\nDeliver me to perfect Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་སྐད་མོས་གུས་དྲག་པོས་སྨོན་ལམ་བཏབ་པས༔ བཅོམ་ལྡན་འདས་རིན་ཆེན་འབྱུང་ལྡན་གྱི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ ལྷོ་ཕྱོགས་དཔལ་དང་ལྡན་པའི་ཞིང་ཁམས་སུ་ལོངས་སྤྱོད་རྫོགས་པའི་སྐུར་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the heart of the Blessed Ratnasambhava, and you will awaken as the saṃbhogakāya in the southern buddha-field, the Glorious.",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        },
+        {
+          "id": "s5-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེ་ལྟར་དུ་ངོ་སྤྲད་པས་དབང་པོ་ཇི་ལྟར་ཞན་ཡང་གྲོལ་བར་ཐེ་ཚོམ་མེད་དོ༔ ཡང་དེ་ལྟར་ལན་མང་དུ་ངོ་སྤྲད་ཀྱང་སྡིག་པོ་ཆེ་ལ་སོགས་པ་དང་༔ དམ་ཚིག་ཉམས་པ་ལ་སོགས་པའི་སྐལ་ཆད་ཀྱི་རིགས་ལ་ད་དུང་ཡང་ངོ་མི་འཕྲོད་པའི་རིགས་འོང་སྟེ༔ འདོད་ཆགས་དང་སྡིག་སྒྲིབ་ཀྱིས་བསྐྱོད་ནས་སྒྲ་འོད་ལ་འཇིགས་ཏེ་བྲོས་པས༔ ཞག་བཞི་པ་ལ༔ བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་ཀྱི་ལྷ་ཚོགས་དང་༔ འདོད་ཆགས་དང་སེར་སྣ་ལས་གྲུབ་པའི་ཡི་དྭགས་ཀྱི་འོད་ལམ་གཉིས་ཀྱིས་བསུ་བ་ལ་འོང་སྟེ༔ ཡང་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་འབོད་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "Pointed out in this way, there is no doubt they will be freed, however weak their faculties. Yet even after many such pointings-out, there are some — great evildoers, breakers of samaya, those whose share of fortune has run dry — who still do not recognize. Shaken by desire and obscuration, they take fright at the sounds and lights and flee. So on the fourth day the Blessed Amitābha's host of deities and, alongside them, the light-path of the hungry ghosts, born of desire and greed, come forward to meet them. Again call the deceased by name, and point out with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": 3,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "heading": {
+        "bo": null,
+        "en": "The Fourth Day — Amitābha"
+      },
+      "blocks": [
+        {
+          "id": "s6-b001",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ་མ་ཡེངས་པར་ཉོན་ཅིག༔ ཞག་བཞི་པ་ལ་འབྱུང་བ་མེ་རྣམ་པར་དག་པའི་འོད་དམར་པོ་འཆར་རོ༔ དེའི་དུས་སུ་ནུབ་ཕྱོགས་བདེ་བ་ཅན་གྱི་ཞིང་ཁམས་དམར་པོ་ནས༔ བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་སྐུ་མདོག་དམར་པོ༔ ཕྱག་ན་པདྨ་བསྣམས་པ་རྨ་བྱའི་གདན་ལ་བཞུགས་པ༔ ཡུམ་མཆོག་གོས་དཀར་མོ་དང་ཞལ་སྦྱར་ནས་རང་ལ་འཆར་དུ་འོང་ངོ་༔ བྱང་ཆུབ་སེམས་དཔའ་སྤྱན་རས་གཟིགས་དང་༔ འཇམ་དཔལ་གཉིས་ལ༔ སེམས་མ་གཱི་ཏི་མ་དང་༔ ཨཱ་ལོ་ཀེ་མ་གཉིས་ཀྱིས་བསྐོར་ནས་འཇའ་འོད་ཀྱི་ཀློང་ནས་སངས་རྒྱས་ཀྱི་སྐུ་དྲུག་ཏུ་འཆར་ནས་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen without wandering. On the fourth day, the purity of the element of fire will dawn as red light. Then, from the red western buddha-field, the Blissful (Sukhāvatī), the Blessed Amitābha will dawn before you: his body red, holding a lotus, seated on a peacock throne, joined with his supreme consort Pāṇḍaravāsinī. They are circled by the two male bodhisattvas Avalokiteśvara and Mañjuśrī and the two female bodhisattvas Gītā and Ālokā — six buddha-forms shining out of an expanse of rainbow light.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འདུ་ཤེས་ཀྱི་ཕུང་པོ་གནས་སུ་དག་པ༔ འོད་དམར་པོ་སོ་སོར་རྟོགས་པའི་ཡེ་ཤེས་དམར་ལ་འཚེར་བ་ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ༔ གསལ་ལ་དྭངས་པ༔ བཀྲག་ལ་འཚེར་བ་གཅིག་སྣང་བ་མཐའ་ཡས་ཡབ་ཡུམ་གྱི་ཐུགས་ཀ་ནས༔ ཁྱོད་རང་གི་སྙིང་གི་ཐད་ཀར་མིག་གིས་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔ དེ་ལ་མ་འཇིགས་ཤིག༔ དེ་དང་མཉམ་དུ་ཡི་དྭགས་ཀྱི་འོད་སེར་པོ་བཀྲག་མེད་པ་ཅིག་ཀྱང་༔ ཡེ་ཤེས་ཀྱི་འོད་དང་གཤིབས་མར་ཁྱོད་ལ་འཆར་དུ་འོང་བས༔ དེ་ལ་དགའ་བར་མ་བྱེད་ཅིག༔ ཆགས་ཞེན་སྤོངས་ཤིག༔",
+          "phon": null,
+          "en": "From the heart of Amitābha and his consort, a red light — the discerning primal awareness, the natural purity of your aggregate of perception — red and dazzling, adorned with greater and lesser spheres of light, luminous and limpid, brilliant and gleaming, will come and pierce you straight at your heart, so bright your eyes can hardly bear it. Do not fear it. Alongside that light of primal awareness, a dull yellow light of the hungry ghosts will also dawn for you. Do not delight in it; give up clinging and yearning.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེའི་དུས་སུ་ཁྱོད་འདོད་ཆགས་དྲག་པོའི་དབང་གིས༔ འོད་དམར་པོ་བཀྲག་མདངས་ཅན་དེ་ལ་ཁྱོད་སྐྲག་པ་སྐྱེས་ནས་བྲོས་སུ་འོང་ཞིང་༔ ཡི་དྭགས་ཀྱི་འོད་སེར་པོ་བཀྲག་མེད་དེ་ལ་ཁྱོད་དགའ་བ་དང་ཆགས་སེམས་སྐྱེས་ནས་འོང་གིས༔ དེ་ཙ་ན་ཁྱོད་འོད་དམར་པོ་བཀྲག་ལ་འཚེར་བ་གསལ་ལ་དྭངས་པ་དེ་ལ་མ་འཇིགས་པར་ཡེ་ཤེས་སུ་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དེའི་ཐོག་ཏུ་རིག་པ་བྱར་མེད་ཀྱི་ངང་དུ་གློད་ལ་ཞོག་ཅིག༔ ཡང་ན་དེ་ལ་དད་པ་དང་མོས་པ་དུང་དུང་གྱིས་ཤིག༔ ཁྱོད་རང་གི་རིག་པའི་རང་མདངས་སུ་ངོ་ཤེས་ན་ནི༔ མོས་གུས་མ་བྱས་སྨོན་ལམ་མ་བཏབ་ཀྱང་སྐུ་དང་འོད་ཟེར་ཐམས་ཅད་ཁྱོད་རང་དང་དབྱེར་མེད་དུ་ཐིམ་ནས་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Then, through the force of fierce desire, you will grow terrified of the brilliant red light and want to flee it; and toward the dull yellow light of the hungry ghosts delight and clinging will rise in you. At that moment, do not fear the red light — brilliant and gleaming, luminous and limpid — but recognize it as primal awareness. Upon it let your rigpa relax and rest, in a state where there is nothing to do. Or else trust it and long for it with devotion. If you recognize it as the natural radiance of your own rigpa, then even without devotion, even without the prayer, all the forms and rays will dissolve into you inseparably, and you will awaken.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལྟར་མ་ཤེས་ན༔ བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་ཀྱི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ་སྐྱབས་སུ་མཆིའོ་སྙམ་པའི་མོས་གུས་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔ དེ་ནི་བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་ཀྱི་ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུ་ཡིན་ནོ་མོས་པ་གྱིས་ཤིག༔ མ་བྲོས་ཤིག༔ བྲོས་ཀྱང་ཁྱོད་རང་དང་འདུ་འབྲལ་མེད་པར་འོང་ངོ་༔ མ་འཇིགས་ཤིག༔ ཡི་དྭགས་ཀྱི་འོད་སེར་པོ་བཀྲག་མེད་དེ་ལ་ཆགས་པར་མ་བྱེད་ཅིག༔ དེ་ནི་འདོད་ཆགས་དྲག་པོས་བསགས་པའི་ཡི་དྭགས་ཀྱི་བསུ་བའི་ལམ་ཡིན་ནོ༔",
+          "phon": null,
+          "en": "If you cannot recognize it so, then pray with devotion, thinking: 'It is the ray of the Blessed Amitābha's compassion — I take refuge in it.' This is the light-ray hook of the Blessed Amitābha's compassion — long for it. Do not flee. Even if you flee, it will come with you, inseparable. Do not fear it. Do not cling to the dull yellow light of the hungry ghosts: it is the inviting path of the fierce desire you yourself have heaped up.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལ་ཆགས་ན་ཁྱོད་ཡི་དྭགས་ཀྱི་གནས་སུ་ལྷུང་ནས་བཀྲེས་སྐོམ་གྱི་སྡུག་བསྔལ་བཟོད་གླགས་མེད་པ་མྱོང་སྟེ༔ ཐར་ལམ་བཀག་པའི་བར་ཆད་ཡིན་པས༔ དེ་ལ་མ་ཆགས་པར་ཆགས་སེམས་སྤོངས་ཤིག༔ མ་ཞེན་ཅིག༔ འོད་དམར་པོ་གསལ་ལ་འཚེར་བ་དེ་ལ་མོས་པ་གྱིས་ལ༔ བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་ཡབ་ཡུམ་ལ་འདུན་པ་རྩེ་གཅིག་ཏུ་གཏོད་ལ༔ སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "If you cling to it, you will fall into the realm of the hungry ghosts and taste the unbearable sufferings of hunger and thirst. It is a detour that blocks the path of liberation. Do not cling to it; give up clinging; do not yearn. Long for the red light, luminous and dazzling; aim your intent single-pointedly at the Blessed Amitābha and his consort, and pray:",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b006",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་འདོད་ཆགས་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ སོར་རྟོགས་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་སྣང་བ་མཐའ་ཡས་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་གོས་དཀར་མོ་ཡིས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་དུ་གསོལ༔ ཡང་དག་རྫོགས་པའི་སངས་རྒྱས་ས་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy deep desire led astray,\nMay Amitābha now direct me home\nAnd shine the radiant light upon my way —\nThe gnosis of discernment, ruby-bright;\nMay Pāṇḍaravāsinī guard me behind,\nFrom bardo's fearsome passage lead me right,\nDeliver me to perfect Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་སྐད་མོས་གུས་དྲག་པོས་སྨོན་ལམ་བཏབ་པས༔ བཅོམ་ལྡན་འདས་སྣང་བ་མཐའ་ཡས་འོད་དཔག་མེད་ཀྱི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ ནུབ་ཕྱོགས་བདེ་བ་ཅན་གྱི་ཞིང་ཁམས་སུ་ལོངས་སྤྱོད་རྫོགས་པའི་སྐུ་རུ་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the heart of the Blessed Amitābha, Boundless Light, and you will awaken as the saṃbhogakāya in the western buddha-field, the Blissful.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        },
+        {
+          "id": "s6-b008",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེས་ནི་མི་གྲོལ་མི་སྲིད་དོ༔ ཡང་དེ་ལྟར་དུ་ངོ་སྤྲད་ཀྱང་སེམས་ཅན་བག་ཆགས་དང་འགྲོགས་ཡུན་རིང་བའི་སྟབས་ཀྱིས་བག་ཆགས་མི་སྤོང་བར་ཕྲག་དོག་དང་ལས་ངན་གྱི་དབང་གིས་སྒྲ་འོད་ལ་དངངས་སྐྲག་སྐྱེས་ཏེ༔ ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུས་མི་ཟིན་པར༔ ཞག་ལྔ་པའི་བར་དུ་མར་ལ་འཁྱམས་ཏེ༔",
+          "phon": null,
+          "en": "By this it is impossible not to be freed. Yet even after such a pointing out, beings so long companioned with their habits cannot give them up: driven by envy and bad karma, they grow terrified of the sounds and lights. Not caught by the light-ray hook of compassion, they wander downward into the fifth day.",
+          "meter": null,
+          "deityRef": null,
+          "day": 4,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "heading": {
+        "bo": null,
+        "en": "The Fifth Day — Amoghasiddhi"
+      },
+      "blocks": [
+        {
+          "id": "s7-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཡང་དེའི་ཚེ་བཅོམ་ལྡན་འདས་དོན་ཡོད་གྲུབ་པའི་ལྷ་ཚོགས་ཐུགས་རྗེའི་འོད་ཟེར་དང་བཅས་ཏེ་བསུ་བ་ལ་བྱོན་ནོ༔ ཉོན་མོངས་པ་ཕྲག་དོག་ལས་གྲུབ་པའི་ལྷ་མ་ཡིན་གྱི་འོད་ལམ་གྱིས་ཀྱང་བསུ་བ་ལ་འོང་ངོ་༔ དེའི་ཚེ་ཡང་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་འབོད་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "At that time the Blessed Amoghasiddhi's host of deities, resplendent with the light-rays of compassion, comes forward to meet them; and the light-path of the demigods, formed of the affliction of envy, also comes to meet them. Again call the deceased by name, and point out with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ མ་ཡེངས་པར་ཉོན་ཅིག༔ ཞག་ལྔ་པ་ལ་འབྱུང་བ་རླུང་ཐམས་ཅད་རྣམ་པར་དག་པའི་འོད་ལྗང་ཁུ་འཆར་རོ༔ དེའི་དུས་སུ་བྱང་ཕྱོགས་ལས་རབ་བརྩེགས་པའི་ཞིང་ཁམས་ལྗང་ཁུ་ནས༔ བཅོམ་ལྡན་འདས་སངས་རྒྱས་དོན་ཡོད་གྲུབ་པ་གཙོ་འཁོར་སྐུ་མདོག་ལྗང་ཁུ་ཕྱག་ན་རྡོ་རྗེ་རྒྱ་གྲམ་བསྣམས་པ༔ ནམ་མཁའ་ལྡིང་ཤང་ཤང་གི་ཁྲི་ལ་བཞུགས་པ༔ ཡུམ་དམ་ཚིག་སྒྲོལ་མ་དང་ཞལ་སྦྱར་ནས་ཁྱོད་རང་ལ་འཆར་དུ་འོང་ངོ་༔ སེམས་དཔའ་ཕྱག་ན་རྡོ་རྗེ་དང་༔ སྒྲིབ་པ་རྣམ་པར་སེལ་བ་གཉིས་ལ༔ སེམས་མ་གྷནྡྷེ་མ་དང་༔ ནཱིར་ཏི་མ་གཉིས་ཀྱིས་བསྐོར་ནས་འཇའ་དང་འོད་ཀྱི་ཀློང་ནས་སངས་རྒྱས་ཀྱི་སྐུ་དྲུག་ཏུ་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen without wandering. On the fifth day, the purity of the whole element of wind will dawn as green light. Then, from the green northern buddha-field, Perfected Activity, the Blessed Buddha Amoghasiddhi with his circle will dawn before you: his body green, holding a crossed vajra, seated on a throne of the sky-soaring shang-shang bird, joined with his consort Samayatārā. They are circled by the two male bodhisattvas Vajrapāṇi and Nivāraṇaviṣkambhin and the two female bodhisattvas Gandhā and Nartī — six buddha-forms shining out of an expanse of rainbow light.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འདུ་བྱེད་ཀྱི་ཕུང་པོ་གནས་སུ་དག་པ་འོད་ལྗང་ཁུ་བྱ་བ་གྲུབ་པའི་ཡེ་ཤེས་ལྗང་ལ་འཚེར་བ༔ གསལ་ལ་དྭངས་པ་བཀྲག་ལ་ཉམས་ང་བ༔ ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་སྤྲས་པ་ཅིག༔ དོན་ཡོད་གྲུབ་པ་ཡབ་ཡུམ་གྱི་ཐུགས་ཀ་ནས་ཁྱོད་རང་གི་སྙིང་གི་ཐད་ཀར་མིག་གིས་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔ དེ་ལ་མ་འཇིགས་པར་ཁྱོད་རང་གི་རིག་པའི་རང་རྩལ་ཡིན་པས་ཆགས་སྡང་ཉེ་རིང་མེད་པའི་བཏང་སྙོམས་བྱར་མེད་ཆེན་པོའི་ངང་དུ་ཞོག་ཅིག༔",
+          "phon": null,
+          "en": "From the heart of Amoghasiddhi and his consort, a green light — the all-accomplishing primal awareness, the natural purity of your aggregate of formations — green and dazzling, luminous and limpid, brilliant and awesome, adorned with greater and lesser spheres of light, will come and pierce you straight at your heart, so bright your eyes can hardly bear it. Do not fear it: it is the dynamic potency of your own rigpa. Rest in the great equanimity beyond doing, free of attachment and aversion, of near and far.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་དང་མཉམ་དུ་ལྷ་མ་ཡིན་གྱི་འོད་དམར་པོ་ཕྲག་དོག་གི་རྒྱུ་ལས་གྲུབ་པ་བཀྲག་མེད་པ་ཅིག་ཀྱང་ཡེ་ཤེས་ཀྱི་འོད་དང་ལྷན་ཅིག་ཏུ་ཁྱོད་ལ་འཆར་དུ་འོང་བས༔ དེ་ལ་ཆགས་སྡང་མེད་པའི་བཏང་སྙོམས་བསྒོམས་ཤིག༔ བློ་དམན་པ་ཡིན་ནའང་དེ་ལ་དགའ་བར་མ་བྱེད་ཅིག༔ དེའི་དུས་སུ་ཁྱོད་ཕྲག་དོག་དྲག་པོའི་དབང་གིས་འོད་ལྗང་ཁུ་བཀྲག་ལ་མཚེར་བ་དེ་ལ་ཁྱོད་ཞེད་ནས་བྲོས་སུ་འོང་ཞིང་༔ ལྷ་མ་ཡིན་གྱི་འོད་དམར་པོ་བཀྲག་མེད་དེ་ལ་ཁྱོད་དགའ་བ་དང་ཆགས་སེམས་སྐྱེས་ནས་འོང་གིས༔",
+          "phon": null,
+          "en": "Alongside it, a dull red light of the demigods, formed from the cause of envy, will also dawn for you together with the light of primal awareness. Cultivate an equanimity toward it, free of attachment and aversion — and even if your capacity is small, at least take no delight in it. Then, through the force of fierce envy, you will shrink from the green light, brilliant and dazzling, and want to flee it; and toward the dull red light of the demigods delight and clinging will rise in you.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ཙ་ན་ཁྱོད་འོད་ལྗང་ཁུ་བཀྲག་ལ་མཚེར་བ་གསལ་ལ་དྭངས་པ་དེ་ལ་མ་འཇིགས་པར་ཡེ་ཤེས་སུ་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དེའི་ཐོག་ཏུ་རིག་པ་བྱར་མེད་ཀྱི་ངང་དུ་གློད་ལ་ཞོག་ཅིག༔ བཅོམ་ལྡན་འདས་དོན་ཡོད་གྲུབ་པའི་ཐུགས་རྗེའི་འོད་ཟེར་ཡིན་ནོ་སྐྱབས་སུ་མཆིའོ༔ སྙམ་པའི་མོས་གུས་གྱིས་ལ་གསོལ་བ་ཐོབ་ཅིག༔ དེ་ནི་བཅོམ་ལྡན་འདས་དོན་ཡོད་གྲུབ་པའི་ཐུགས་རྗེའི་ལྕགས་ཀྱུའི་འོད་ཟེར་བྱ་བ་གྲུབ་པའི་ཡེ་ཤེས་བྱ་བ་ཡིན་ནོ༔ མོས་པ་གྱིས་ཤིག༔ མ་བྲོས་ཤིག༔ བྲོས་ཀྱང་ཁྱོད་རང་དང་འབྲལ་མེད་དུ་འོང་ངོ་༔ དེ་ལ་མ་འཇིགས་ཤིག༔ ལྷ་མ་ཡིན་གྱི་འོད་དམར་པོ་བཀྲག་མེད་དེ་ལ་ཆགས་པར་མ་བྱེད་ཅིག༔",
+          "phon": null,
+          "en": "At that moment, do not fear the green light — brilliant and dazzling, luminous and limpid — but recognize it as primal awareness. Upon it let your rigpa relax and rest, in a state where there is nothing to do. And pray with devotion, thinking: 'It is the ray of the Blessed Amoghasiddhi's compassion — I take refuge in it.' This is the light-ray hook of the Blessed Amoghasiddhi's compassion, called the all-accomplishing primal awareness — long for it. Do not flee. Even if you flee, it will come with you, inseparable. Do not fear it. Do not cling to the dull red light of the demigods.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ནི་ཁྱོད་ཀྱི་ཕྲག་དོག་དྲག་པོས་བསགས་པའི་ལས་ཀྱི་བསུ་བའི་ལམ་ཡིན་ནོ༔ དེ་ལ་ཆགས་ན་ནི་ཁྱོད་ལྷ་མ་ཡིན་གྱི་གནས་སུ་ལྷུང་ནས༔ འཐབ་རྩོད་ཀྱི་སྡུག་བསྔལ་བཟོད་གླགས་མེད་པ་མྱོང་སྟེ༔ ཐར་ལམ་བཀག་པའི་བར་ཆད་ཡིན་པས༔ དེ་ལ་མ་ཆགས་པར་ཞེན་པ་སྤོངས་ཤིག༔ མ་ཞེན་ཅིག༔ འོད་ལྗང་ཁུ་གསལ་ལ་མཚེར་བ་དེ་ལ་མོས་པ་གྱིས་ལ༔ བཅོམ་ལྡན་འདས་དོན་ཡོད་གྲུབ་པ་ཡབ་ཡུམ་ལ་འདུན་པ་རྩེ་གཅིག་ཏུ་གཏོད་ལ༔ སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "It is the inviting path of the karma heaped up by your own fierce envy. If you cling to it, you will fall into the realm of the demigods and taste the unbearable sufferings of strife and quarrel. It is a detour that blocks the path of liberation. Do not cling to it; give up yearning; do not yearn. Long for the green light, luminous and dazzling; aim your intent single-pointedly at the Blessed Amoghasiddhi and his consort, and pray:",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b007",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་ཕྲག་དོག་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ བྱ་གྲུབ་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་དོན་ཡོད་གྲུབ་པས་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་དམ་ཚིག་སྒྲོལ་མས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་དུ་གསོལ༔ ཡང་དག་རྫོགས་པའི་སངས་རྒྱས་ས་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nDriven by deep envy, led astray,\nMay Amoghasiddhi direct me home,\nAnd shine the radiant light upon my way —\nThe gnosis of accomplished might;\nMay Samayatārā guard behind,\nFrom bardo's fearsome passage lead me right,\nDeliver me to perfect Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དེ་ལྟར་མོས་གུས་དྲག་པོས་སྨོན་ལམ་བཏབ་པས༔ བཅོམ་ལྡན་འདས་དོན་ཡོད་གྲུབ་པ་ཡབ་ཡུམ་གྱི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ བྱང་ཕྱོགས་ལས་རབ་རྫོགས་པའི་ཞིང་ཁམས་སུ་ལོངས་སྤྱོད་རྫོགས་པའི་སྐུར་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the heart of the Blessed Amoghasiddhi and his consort, and you will awaken as the saṃbhogakāya in the northern buddha-field, Perfected Activity.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        },
+        {
+          "id": "s7-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེ་ལྟར་རིམ་པ་མང་དུ་ངོ་སྤྲད་པས་ལས་འཕྲོ་ཇི་ལྟར་ཞན་ཡང་གཅིག་ལ་ངོས་མ་ཟིན་ཀྱང་གཅིག་ལ་ངོས་ཟིན་ཏེ་གང་རུང་གཅིག་ལ་ངོ་འཕྲོད་དེ་མི་གྲོལ་མི་སྲིད་དོ༔ ཡང་དེ་ལྟར་ལན་མང་དུ་ངོ་སྤྲད་ཀྱང་བག་ཆགས་ཚན་ཆེ་ལ་འཁྲུགས་ཡུན་རིང་༔ དག་སྣང་དང་ཡེ་ཤེས་སྔར་འདྲིས་མེད་པའི་དབང་གིས་ངོ་སྤྲད་ཀྱང་བག་ཆགས་ངན་པས་ཕྱི་ལ་ཁྲིད་དེ༔ ཐུགས་རྗེའི་འོད་ཟེར་གྱི་ལྕགས་ཀྱུས་མ་ཟིན་པར༔ འོད་དང་ཟེར་ལ་དངངས་སྐྲག་སྐྱེས་ནས་མར་ལ་འཁོར་ནས༔",
+          "phon": null,
+          "en": "By such pointing out, stage after stage, however weak the residue of good karma may be — missed at one point, it is caught at another — and recognition at any one of them makes it impossible not to be freed. Yet even after so many pointings-out, some — coarse in habit, long in confusion, unacquainted with pure vision and with primal awareness — are dragged outward by their bad propensities despite it all. Not caught by the light-ray hook of compassion, terrified of the lights and rays, they circle downward.",
+          "meter": null,
+          "deityRef": null,
+          "day": 5,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "heading": {
+        "bo": null,
+        "en": "The Sixth Day — The Five Families Together"
+      },
+      "blocks": [
+        {
+          "id": "s8-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ད་ནི་ཞག་དྲུག་པ་ལ་རིགས་ལྔ་ཡབ་ཡུམ་འཁོར་དང་བཅས་པ་དུས་གཅིག་ལ་འཆར་ནས་འོངས་པས༔ དེའི་ཚེ་རིགས་དྲུག་གི་འོད་དྲུག་ཀྱང་དུས་གཅིག་ལ་ཤར་ནས་འོང་། དེ་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་བོས་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "Now, on the sixth day, the five families — Fathers and Mothers with their retinues — dawn all at once; and at that same moment the six dull lights of the six classes of beings also rise together. Call the deceased by name, and point out with these words:",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ ཁྱོད་ཁ་སང་ཕན་ཆད་རིགས་ལྔ་སོ་སོའི་སྣང་བ་ཤར་ནས༔ ངོ་སྤྲད་ཀྱང་ཁྱོད་བག་ཆགས་ཀྱི་དབང་གིས་དེ་ལ་སྐྲག་དངངས་སྐྱེས་པས་ད་ཕན་ཆད་དུ་འདིར་ལུས་པ་ཡིན་ནོ༔ ཁྱོད་ཀྱིས་གོང་དུ་རིགས་ལྔའི་ཡེ་ཤེས་ཀྱི་རང་མདངས་དེ་རྣམས་རང་སྣང་དུ་ངོ་ཤེས་ན་རིགས་ལྔ་སོ་སོའི་སྐུ་ལ་འཇའ་འོད་དུ་ཐིམ་ནས་ལོངས་སྤྱོད་རྫོགས་པའི་སྐུ་རུ་སངས་རྒྱས་རྒྱུ་ཡིན་པ་ལ༔ རང་སྣང་དུ་མ་ཤེས་པས༔ འདིར་འཁྱམས་པ་ཡིན་ནོ༔ ད་ནི་མ་ཡེངས་པར་ཉོན་ཅིག༔ རིགས་ལྔ་ཡོངས་རྫོགས་ཀྱི་སྣང་བ་དང་༔ ཡེ་ཤེས་བཞི་སྦྱོར་གྱི་སྣང་བ་ཞེས་བྱ་བ་ཁྱོད་བསུ་བ་ལ་འོང་ངོ་༔ ངོ་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, until yesterday the visions of the five families dawned for you one by one, and though they were pointed out, the force of habit made you shrink from them in terror — and so you are still here. Had you recognized the natural radiance of the five families' primal awareness as your own self-display, you would have dissolved into rainbow light into one or another of the five buddha-forms and awakened as the saṃbhogakāya. But you did not know them as self-display, and so you have wandered here. Now listen without wandering: the vision of the five families complete, and what is called the vision of the four primal awarenesses joined, come to meet you. Recognize them!",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ འབྱུང་བ་བཞིའི་རྣམ་པར་དག་པའི་འོད་ཁ་དོག་བཞི་འཆར་དུ་འོང་ངོ་༔ དེའི་དུས་སུ་དབུས་ཕྱོགས་ཐིག་ལེ་བརྡལ་བའི་ཞིང་ཁམས་ནས༔ སངས་རྒྱས་རྣམ་པར་སྣང་མཛད་ཡབ་ཡུམ་གོང་ལྟར་འཆར་དུ་འོང་ངོ་༔ ཤར་ཕྱོགས་མངོན་པར་དགའ་བའི་ཞིང་ཁམས་ནས༔ སངས་རྒྱས་རྡོ་རྗེ་སེམས་དཔའ་ཡབ་ཡུམ་འཁོར་དང་བཅས་པ་འཆར་དུ་འོང་ངོ་༔ ལྷོ་ཕྱོགས་དཔལ་དང་ལྡན་པའི་ཞིང་ཁམས་ནས༔ སངས་རྒྱས་རིན་ཆེན་འབྱུང་ལྡན་ཡབ་ཡུམ་འཁོར་དང་བཅས་པ་འཆར་དུ་འོང་ངོ་༔ ནུབ་ཕྱོགས་པདྨ་བརྩེགས་པ་བདེ་བ་ཅན་གྱི་ཞིང་ཁམས་ནས༔ སངས་རྒྱས་སྣང་བ་མཐའ་ཡས་ཡབ་ཡུམ་འཁོར་དང་བཅས་པ་འཆར་དུ་འོང་ངོ་༔ བྱང་ཕྱོགས་ལས་རབ་རྫོགས་པའི་ཞིང་ཁམས་ནས༔ སངས་རྒྱས་དོན་ཡོད་གྲུབ་པ་ཡབ་ཡུམ་འཁོར་དང་བཅས་པ་འཇའ་དང་འོད་ཀྱི་ཀློང་ནས་ཁྱོད་ལ་ད་ལྟ་འཆར་རོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, the four colored lights — the purity of the four elements — will now dawn. And with them: from the central field, the All-Pervading Sphere, the Buddha Vairocana and his consort dawn as before; from the eastern field, Manifest Joy, the Buddha Vajrasattva and consort with their retinue; from the southern field, the Glorious, the Buddha Ratnasambhava and consort with their retinue; from the western field of heaped lotuses, the Blissful, the Buddha Amitābha and consort with their retinue; and from the northern field, Perfected Activity, the Buddha Amoghasiddhi and consort with their retinue — dawning for you now, out of an expanse of rainbow light.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ རིགས་ལྔ་ཡབ་ཡུམ་དེ་རྣམས་ཀྱི་ཕྱི་རིམ་དུ༔ སྒོ་བ་ཁྲོ་བོ་རྣམ་པར་རྒྱལ་བ་དང་༔ གཤིན་རྗེ་གཤེད་པོ་དང་༔ རྟ་མགྲིན་རྒྱལ་པོ་དང་༔ བདུད་རྩི་འཁྱིལ་པ་དང་༔ སྒོ་མ་ལྕགས་ཀྱུ་མ་དང་༔ ཞགས་པ་མ་དང་༔ ལྕགས་སྒྲོག་མ་དང་༔ དྲིལ་བུ་མ་དང་༔ ལྷའི་ཐུབ་པ་དབང་པོ་བརྒྱ་བྱིན་དང་༔ ལྷ་མ་ཡིན་གྱི་ཐུབ་པ་ཐག་བཟང་རིས་དང་༔ མིའི་ཐུབ་པ་ཤཱཀྱ་སེངྒེ་དང་༔ བྱོལ་སོང་གི་ཐུབ་པ་སེངྒེ་རབ་བརྟན་དང་༔ ཡི་དྭགས་ཀྱི་ཐུབ་པ་ཁ་འབར་མ་དང་༔ དམྱལ་བའི་ཐུབ་པ་ཆོས་ཀྱི་རྒྱལ་པོ་དང་༔ བཅོམ་ལྡན་འདས་ཐུབ་པ་དྲུག་ཀྱང་འཆར་རོ༔ ཀུན་ཏུ་བཟང་པོ་དང་༔ ཀུན་ཏུ་བཟང་མོ་དང་༔ སངས་རྒྱས་ཐམས་ཅད་ཀྱི་སྤྱི་མེས་ཀུན་བཟང་ཡབ་ཡུམ་གཉིས་ཀྱང་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, around those Fathers and Mothers of the five families, the four wrathful male gatekeepers will also dawn — Vijaya the Victorious, Yamāntaka Slayer of the Lord of Death, Hayagrīva the Horse-Necked King, and Amṛtakuṇḍalin Coil of Nectar — with the four female gatekeepers, She of the Hook, She of the Noose, She of the Chain, and She of the Bell. And the six sages, the blessed ones, will dawn: Indra of a Hundred Sacrifices, sage of the gods; Vemacitra, sage of the demigods; Śākyasiṃha, sage of humans; Sthirasiṃha, sage of the animals; Jvālamukha, sage of the hungry ghosts; and Dharmarāja, sage of the hell-beings. And Samantabhadra and Samantabhadrī — the all-good Father and Mother, forefathers of all the buddhas — will also dawn.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ལོངས་སྐུའི་ལྷ་ཚོགས་བཞི་བཅུ་རྩ་གཉིས་སྙིང་གི་ནང་ནས་ཐོན་ནས་ཁྱོད་རང་གི་མདུན་དུ་འཆར་དུ་འོང་བས༔ ཁྱོད་རང་གི་དག་པའི་སྣང་བ་ལས་འཆར་བ་ཡིན་པས་ངོ་ཤེས་པར་གྱིས་ཤིག༔ ཀྱཻ་རིགས་ཀྱི་བུ༔ ཞིང་ཁམས་དེ་དག་ཀྱང་གཞན་ཞིག་ན་ཡོད་པ་ནི་མ་ཡིན་ཏེ༔ ཁྱོད་རང་གི་སྙིང་གི་ཕྱོགས་བཞི་དབུས་དང་ལྔ་ཡིན་ནོ༔ སྙིང་གི་ནང་ནས་ད་ལྟ་ཕྱིར་ཐོན་ནས་ཁྱོད་རང་ལ་འཆར་བ་ཡིན་ནོ༔ སྐུ་དེ་དག་ཀྱང་གཞན་ཞིག་ནས་འོང་བ་མ་ཡིན་ཏེ༔ ཁྱོད་རང་གི་རིག་པའི་རང་རྩལ་ལས་ཡེ་ནས་ལྷུན་གྱིས་གྲུབ་པ་ཡིན་པས༔ དེ་ལྟར་ཡིན་པར་ངོ་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "These forty-two deities of the saṃbhogakāya come forth from within your own heart and dawn before you. They rise out of your own pure vision — recognize them! O Child of the Noble Family, these buddha-fields are nowhere else: they are the center and four quarters of your own heart. From within your heart they come forth now and dawn before you. Nor do these forms come from anywhere else: from all time they are spontaneously present as the expressive power of your own awareness. Know them to be so!",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ སྐུ་དེ་དག་ཀྱང་མི་ཆེ་བ༔ མི་ཆུང་བ་ཆ་མཉམ་པ༔ རྒྱན་ཁ་དོག་བཞུགས་ཚུལ་དང་༔ གདན་ཁྲི་རང་རང་གི་ཕྱག་རྒྱ་དང་བཅས་ཏེ༔ སྐུ་དེ་དག་ཀྱང་ལྔ་ལྔའི་ཟུང་གིས་ཁྱབ་པ༔ ལྔ་ཚན་རེ་རེ་ལ་འོད་ལྔའི་ཚོམ་བུས་མུ་ཁྱུད་དང་བཅས་པ༔ ཡབ་ཀྱི་ཆ་འཛིན་པའི་རིགས་ཀྱི་སེམས་དཔའ་དང་༔ ཡུམ་གྱི་ཆ་འཛིན་པའི་རིགས་ཀྱི་སེམས་མ་དང་༔ དཀྱིལ་འཁོར་ཐམས་ཅད་གཅིག་ལ་རྫོགས་པར་འཆར་དུ་འོང་བས༔ དེ་ཁྱོད་ཀྱི་ཡི་དམ་གྱི་ལྷ་ཡིན་པས་ངོ་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, these forms are neither large nor small — perfectly proportioned, each with its own ornaments, colors, posture, throne, and hand-gesture. They stand in five couples, Father and Mother, each cluster of five ringed by an aura of five-colored light: the male bodhisattvas of the families attending the Fathers, the female bodhisattvas attending the Mothers. The whole maṇḍala dawns complete in a single moment. They are your own yidam deities — recognize them!",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ རིགས་ལྔ་ཡབ་ཡུམ་དེ་དག་གི་ཐུགས་ཀ་ནས༔ ཡེ་ཤེས་བཞི་སྦྱོར་གྱི་འོད་ཟེར་ཕྲ་ལ་དྭངས་པ༔ ཉི་མའི་འོད་ཟེར་སྦ་ཐག་དྲིལ་བ་ལྟ་བུ་མེར་མེར་ཁྱོད་རང་གི་སྙིང་ཁར་འཆར་དུ་འོང་སྟེ༔ དེ་ཡང་དང་པོ་རྣམ་པར་སྣང་མཛད་ཀྱི་ཐུགས་ཀ་ནས༔ ཆོས་ཀྱི་དབྱིངས་ཀྱི་ཡེ་ཤེས་དཀར་ལ་གསལ་བ༔ བཀྲག་ལ་ཉམས་ང་བའི་འོད་ཟེར་གྱི་སྣམ་བུ་ཅིག༔ ཁྱོད་རང་གི་སྙིང་ཁ་དང་འབྲེལ་མར་འཆར་དུ་འོང་ངོ་༔ འོད་ཟེར་གྱི་སྣམ་བུ་དེའི་སྟེང་དུ༔ ཐིག་ལེ་དཀར་པོ་འོད་ཟེར་དང་ལྡན་པ་མེ་ལོང་ཁ་སྤུབ་པ་ཙམ་པ༔ ཤིན་ཏུ་གསལ་བ་བཀྲག་ལ་འཆར་བ༔ དེ་ཡང་རང་བཞིན་གྱི་ཐིག་ལེ་ལྔ་ལྔས་བརྒྱན་པ༔ དེའི་མཐའ་དང་དབུས་མེད་པར་ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, from the hearts of those five Fathers and Mothers, the rays of the four primal awarenesses joined — fine and limpid, like sunbeams twisted into a rope — will dawn, shimmering, and touch your heart. First, from the heart of Vairocana, a sheet of light-rays, white and luminous, brilliant and awesome — the primal awareness of the expanse of reality — will dawn and fasten upon your heart. Upon that sheet of light a white sphere of light, radiant, like a mirror facing downwards, utterly luminous and brilliant, will dawn — ringed with five spheres of its own nature, each adorned in turn with greater and lesser spheres, an array without center or rim.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རྡོ་རྗེ་སེམས་དཔའི་ཐུགས་ཀ་ནས༔ མེ་ལོང་ལྟ་བུའི་ཡེ་ཤེས་མཐིང་ལ་གསལ་བའི་སྣམ་བུའི་སྟེང་དུ༔ ཐིག་ལེ་སྔོན་པོ་འོད་དང་ལྡན་པ་དཔེར་ན་གཡུའི་ཕོར་པ་ཁ་སྦུབ་པ་ཙམ་པ༔ ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ་འཆར་དུ་འོང་ངོ་༔ རིན་ཆེན་འབྱུང་ལྡན་གྱི་ཐུགས་ཀ་ནས༔ མཉམ་པ་ཉིད་ཀྱི་ཡེ་ཤེས་སེར་ལ་གསལ་བའི་སྣམ་བུའི་སྟེང་དུ༔ ཐིག་ལེ་སེར་པོ་གསེར་གྱི་ཕོར་པ་ཁ་སྦུབ་པ་ལྟ་བུ༔ ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ་འཆར་དུ་འོང་ངོ་༔ སྣང་བ་མཐའ་ཡས་ཀྱི་ཐུགས་ཀ་ནས༔ སོ་སོར་རྟོགས་པའི་ཡེ་ཤེས་དམར་ལ་གསལ་བའི་སྣམ་བུའི་སྟེང་དུ༔ ཐིག་ལེ་དམར་པོ་འོད་ཟེར་དང་ལྡན་པ་དཔེར་ན་བྱུ་རུའི་ཕོར་པ་ཁ་སྦུབ་པ་ལྟ་བུ༔ ཡེ་ཤེས་ཀྱི་མདངས་དང་ལྡན་པ་ཤིན་ཏུ་གསལ་ལ་མཚེར་བ༔ དེ་ཡང་ཐིག་ལེ་ལྔ་ལྔས་བརྒྱན་པ༔ དེའི་མཐའ་དང་དབུས་མེད་པར་ཐིག་ལེ་དང་ཐིག་ཕྲན་གྱིས་བརྒྱན་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔ དེ་རྣམས་ཀྱང་ཁྱོད་རང་གི་སྙིང་ཁ་དང་འབྲེལ་ནས་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "From the heart of Vajrasattva, upon a sheet of blue luminous light — the mirror-like primal awareness — a blue sphere of light will dawn, like an upturned bowl of turquoise, adorned with greater and lesser spheres. From the heart of Ratnasambhava, upon a sheet of yellow luminous light — the primal awareness of equality — a yellow sphere will dawn, like an upturned cup of gold, adorned with greater and lesser spheres. From the heart of Amitābha, upon a sheet of red luminous light — the discerning primal awareness — a red sphere will dawn, like an upturned bowl of coral, glowing with the luster of primal awareness, utterly luminous and dazzling, ringed with five spheres of its own nature, each adorned in turn with greater and lesser spheres, an array without center or rim. All of these too will dawn and fasten upon your heart.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b009",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ དེ་རྣམས་ཀྱང་ཁྱོད་རང་གི་རིག་པའི་རང་རྩལ་ལས་འཆར་བ་ཡིན་ཏེ༔ གཞན་ཞིག་ནས་འོངས་པ་མ་ཡིན་པས༔ དེ་རྣམས་ལ་ཆགས་པར་ཡང་མ་བྱེད་ཅིག༔ སྐྲག་པར་ཡང་མ་བྱེད་ཅིག༔ མི་རྟོག་པའི་ངང་དུ་གློད་ལ་ཞོག་ཅིག༔ དེའི་ངང་ལ་སྐུ་དང་འོད་ཟེར་ཐམས་ཅད་ཁྱོད་རང་ལ་ཐིམ་ནས་སངས་རྒྱས་པར་འགྱུར་རོ༔ ཀྱཻ་རིགས་ཀྱི་བུ༔ བྱ་བ་གྲུབ་པའི་ཡེ་ཤེས་ཀྱི་འོད་ལྗང་ཁུ་ནི་ཁྱོད་རང་གི་རིག་པའི་ཡེ་ཤེས་ཀྱི་རང་རྩལ་མ་རྫོགས་པས་མི་སྣང་ངོ་༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, these too dawn out of the expressive power of your own awareness. They come from nowhere else. Do not cling to them; do not fear them. Relax and rest in a state free of thoughts — and in that state, all the forms and rays will dissolve into you, and you will awaken. O Child of the Noble Family, the green light of the all-accomplishing primal awareness does not appear, because the expressive power of your awareness is not yet perfected.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b010",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ དེ་རྣམས་ནི་ཡེ་ཤེས་བཞི་སྦྱོར་གྱི་སྣང་བ་ཞེས་བྱ་སྟེ༔ རྡོ་རྗེ་སེམས་དཔའ་ཁོང་གསེང་གི་ལམ་ཞེས་བྱ་བ་ཡིན་ནོ༔ དེའི་ཚེ་ཁྱོད་ཀྱིས་སྔར་བླ་མས་ངོ་སྤྲད་པའི་གདམས་ངག་དྲན་པར་གྱིས་ཤིག༔ ཁྱོད་ཀྱིས་ངོ་སྤྲད་དེ་དྲན་ན་སྔར་ཤར་བའི་སྣང་བ་དེ་རྣམས་ལ་ཡིད་ཆེས་ནས་མ་དང་བུ་འཕྲད་པ་ལྟ་བུའམ༔ སྔར་འདྲིས་པའི་མི་ཕྱིས་མཐོང་བ་ཙམ་གྱིས་ངོ་ཤེས་སྒྲོ་འདོགས་ཆོད་པ་ལྟ་བུ༔ རང་སྣང་དུ་ངོ་ཤེས་པས་ཆོས་ཉིད་རྣམ་པར་དག་པའི་ལམ་འགྱུར་བ་མེད་པར་ཡིད་ཆེས་ནས༔ རྒྱུན་གྱི་ཏིང་ངེ་འཛིན་སྐྱེས་ཏེ༔ རིག་པ་ལྷུན་གྲུབ་ཆེན་པོའི་སྐུ་ལ་ཐིམ་ནས་ལོངས་སྤྱོད་རྫོགས་པའི་སྐུར་སངས་རྒྱས་ཏེ་ཕྱིར་མི་ལྡོག་གོ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, this is called the vision of the four primal awarenesses joined; it is also called the hollow passage of Vajrasattva. Now remember the instructions your teacher pointed out to you before. If you remember that pointing out, you will trust the visions that have already dawned and recognize them — like a child running to its mother's lap, like knowing an old friend again at a single glance, all doubt cut through. Recognizing them as your own self-display, trusting the pure, unchanging path of reality, a steady, continuous absorption will be born; you will dissolve into the great body of spontaneously present awareness, awaken as the saṃbhogakāya, and never turn back.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b011",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ ཡེ་ཤེས་ཀྱི་འོད་དང་མཉམ་དུ་མ་དག་འཁྲུལ་པའི་སྣང་བ་རིགས་དྲུག་གི་འོད་དྲུག་ཀྱང་གཅིག་འཆར་དུ་འོང་སྟེ༔ གང་ཞེ་ན༔ ལྷའི་འོད་དཀར་པོ་བཀྲག་མེད་དང་༔ ལྷ་མ་ཡིན་གྱི་འོད་དམར་པོ་བཀྲག་མེད་དང་༔ མིའི་འོད་སྔོན་པོ་བཀྲག་མེད་དང་༔ དུད་འགྲོའི་འོད་ལྗང་ཁུ་བཀྲག་མེད་དང་༔ ཡི་དྭགས་ཀྱི་འོད་སེར་པོ་བཀྲག་མེད་དང་༔ དམྱལ་བའི་འོད་དུད་ཁ་བཀྲག་མེད་དང་༔ དག་པ་ཡེ་ཤེས་ཀྱི་འོད་དང་གཤིབས་མར་འཆར་དུ་འོང་༔ དེ་ཙ་ན་ཁྱོད་གང་ལ་ཡང་འཛིན་པ་དང་༔ ཆགས་པ་མ་བྱེད་པར༔ དམིགས་པ་མེད་པའི་ངང་ལ་གློད་ལ་ཞོག་ཅིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, together with the lights of primal awareness, the six dull lights of the six classes — impure, bewildered appearances — will also dawn at once: the dull white light of the gods, the dull red of the demigods, the dull blue of the humans, the dull green of the animals, the dull yellow of the hungry ghosts, and the dull smoke-colored light of the hells, rising side by side with the pure lights of primal awareness. At that moment do not seize on any of them; do not cling. Relax and rest in a state without reference.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b012",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཁྱོད་དག་པ་ཡེ་ཤེས་ཀྱི་འོད་ལ་སྐྲག་ཅིང་༔ མ་དག་རིགས་དྲུག་འཁོར་བའི་འོད་ལ་ཆགས་ན་ནི༔ འགྲོ་བ་རིགས་དྲུག་གི་ལུས་བླངས་ཏེ༔ འཁོར་བ་སྡུག་བསྔལ་གྱི་རྒྱ་མཚོ་ཆེན་པོ་ནས་ཐར་པའི་དུས་མེད་པས་འོ་བརྒྱལ་ལོ༔ ཀྱཻ་རིགས་ཀྱི་བུ༔ ཁྱོད་བླ་མའི་གདམས་ངག་ངོ་སྤྲོད་མེད་པ་ཅིག་ཡིན་ན་ནི༔ གོང་གི་སྐུ་དང་དག་པ་ཡེ་ཤེས་ཀྱི་འོད་ལ་འཇིགས་ཤིང་སྐྲག་ནས༔ མ་དག་འཁོར་བའི་འོད་ལ་ཆགས་སུ་འོང་བས༔ དེ་ལྟར་མ་བྱེད་པར་དག་པ་ཡེ་ཤེས་ཀྱི་འོད་བཀྲག་ལ་འཚེར་བ་དེ་རྣམས་ལ་མོས་གུས་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "For if you shrink from the pure lights of primal awareness and cling to the impure lights of the six wandering classes, you will take a body among the six classes of beings, and you will wear yourself out — there will be no time of escape from saṃsāra, this great ocean of suffering. O Child of the Noble Family, if you are one who never received a teacher's pointing-out, you will fear these forms and the pure lights of primal awareness and cling to the impure lights of saṃsāra. Do not do so. Long with devotion for the pure lights of primal awareness, brilliant and dazzling.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b013",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "བཅོམ་ལྡན་འདས་རིགས་ལྔ་བདེ་བར་གཤེགས་པའི་ཐུགས་རྗེའི་ཡེ་ཤེས་ཀྱི་འོད་ཟེར་གྱིས་བདག་ལ་ཐུགས་རྗེས་འཛིན་པ་ལ་བྱོན་པར་འདུག་གིས་སྐྱབས་སུ་མཆིའོ་སྙམ་པའི་མོས་པ་གྱིས་ལ༔ འཁྲུལ་པ་རིགས་དྲུག་གི་འོད་ལ་མ་ཆགས་མ་ཞེན་པར༔ སངས་རྒྱས་རིགས་ལྔ་ཡབ་ཡུམ་ལ་འདུན་པ་རྩེ་གཅིག་ཏུ་གཏོད་ལ༔ སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "Think with trust: 'The compassionate rays of primal awareness of the Blessed Ones of the five families, gone to bliss, have come to seize me with compassion — I take refuge in them.' Do not cling, do not yearn toward the bewildering lights of the six classes; aim your intent single-pointedly at the five Fathers and Mothers, the buddhas of the five families, and pray:",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b014",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱེ་མ་དུག་ལྔ་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ ཡེ་ཤེས་བཞི་སྦྱོར་གསལ་བའི་འོད་ལམ་ལ༔ བཅོམ་ལྡན་རྒྱལ་བ་རིགས་ལྔས་ལམ་སྣ་དྲོངས༔ དབྱིངས་ཀྱི་ཡུམ་ཆེན་ལྔ་ཡིས་རྒྱབ་ནས་སྐྱོར༔ མ་དག་རིགས་དྲུག་འོད་ལམ་ལས་བསྒྲལ་དུ་གསོལ༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་ནས་ཀྱང་༔ དག་པའི་ཞིང་མཆོག་ལྔ་རུ་བསྐྱལ་དུ་གསོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy the five fierce poisons led astray,\nMay the five Blessed Conquerors call me home\nAnd shine the radiant light upon my way —\nThe fourfold gnosis fused in one clear light;\nMay the five great Mothers of the expanse guard behind,\nFrom six impure light-paths and the passage of fright,\nDeliver me to the five pure fields of Buddha mind.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b015",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "དེ་ལྟར་དུ་སྨོན་ལམ་བཏབ་པས༔ རང་སྣང་དུ་ངོ་ཤེས་ནས་གཉིས་སུ་མེད་པར་ཐིམ་ནས་སངས་རྒྱའོ༔ འབྲིང་མོས་གུས་དྲག་པོས་རང་ངོ་ཤེས་ནས་གྲོལ་བ་ཐོབ་བོ༔ ཐམས་ཅད་ཀྱང་སྨོན་ལམ་རྣམ་པར་དག་པའི་མཐུས་རིགས་དྲུག་གི་མངལ་གྱི་སྒོ་བཀག་སྟེ༔ ཡེ་ཤེས་བཞི་སྦྱོར་གྱི་དོན་རྟོགས་ནས༔ རྡོ་རྗེ་སེམས་དཔའི་ཁོང་གསེང་གི་ལམ་ལ་སངས་རྒྱས་པར་འགྱུར་རོ༔",
+          "phon": null,
+          "en": "By this prayer, the best recognize their own self-display, dissolve into it beyond duality, and awaken. The middling, through fierce devotion, recognize their own nature and win liberation. And even the least, by the power of pure aspiration, close the womb-doors of the six classes; realizing the meaning of the four primal awarenesses joined, they awaken through the hollow passage of Vajrasattva.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        },
+        {
+          "id": "s8-b016",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཡང་དེ་ལྟར་དུ་ཞི་བ་ལ་གསལ་བར་ངོ་སྤྲད་པས་ཤས་ཆེ་བ་གཅིག་ངོ་འཕྲོད་དེ་གྲོལ་བ་མང་དུ་འབྱུང་ངོ་༔ ཐ་མའི་ཡང་ཐ་མ་མི་ཡུལ་དུ་ཆོས་ཀྱི་བག་ཆགས་ཡེ་ནས་མེད་པའི་སྡིག་ཅན་དང་༔ དམ་ཉམས་ལ་སོགས་པ་འགའ་ཞིག་ལས་ཀྱིས་འཁྲུལ་ནས༔ ངོ་སྤྲད་ཀྱང་མི་འཕྲོད་པར་མར་ལ་འཁྱམས་སུ་འོང་བས༔",
+          "phon": null,
+          "en": "By pointing out the peaceful deities so clearly and in such detail, the greater part attain recognition, and many are freed. Yet the lowest of the low — evildoers who never in the human world acquired the least habit of Dharma, and breakers of samaya — remain bewildered by their karma; even when pointed out, they do not recognize, and they wander on downward.",
+          "meter": null,
+          "deityRef": null,
+          "day": 6,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "heading": {
+        "bo": null,
+        "en": "The Seventh Day — The Awareness Holders"
+      },
+      "blocks": [
+        {
+          "id": "s9-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": "ཞག་བདུན་པ་ལ་དག་པ་མཁའ་སྤྱོད་ཀྱི་ཞིང་ནས་རིག་འཛིན་གྱི་ལྷ་ཚོགས་རྣམས་བསུ་བ་ལ་འོང་བས༔ དེའི་དུས་སུ་ཉོན་མོངས་པ་གཏི་མུག་ལས་གྲུབ་པའི་དུད་འགྲོའི་འོད་ལམ་ཀྱང་བསུ་བ་ལ་འོང་ངོ་༔ དེའི་དུས་སུ་རང་ངོ་སྤྲད་པ་ནི༔ ཚེ་འདས་ཀྱི་མིང་ནས་བོས་ལ་འདི་སྐད་དོ༔",
+          "phon": null,
+          "en": "On the seventh day, the host of awareness holders comes from the pure celestial realm to meet the deceased; and at that same moment the light-path of the animals, formed of the affliction of delusion, also comes to meet them. Here the pointing out is made: call the deceased by name, and say:",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b002",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ མ་ཡེངས་པར་ཉོན་ཅིག༔ ཞག་བདུན་པ་ལ་བག་ཆགས་དབྱིངས་སུ་དག་པའི་འོད་ལྔ་ཁྲ་བོ་འཆར་དུ་འོང་ངོ་༔ དེའི་དུས་སུ་མཁའ་སྤྱོད་ཀྱི་ཞིང་ཁམས་སུ༔ རིག་འཛིན་གྱི་ལྷ་ཚོགས་བསུ་བ་ལ་འོང་སྟེ༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, listen without wandering. On the seventh day, the five-colored light — your habitual tendencies purified into the expanse — will dawn, shimmering and many-hued. At that time, from the celestial realm, the host of awareness holders comes to meet you.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b003",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འཇའ་དང་འོད་དུ་འཐིབ་པའི་དབུས་སུ༔ རྣམ་པར་སྨིན་པའི་རིག་འཛིན་བླ་ན་མེད་པ་པདྨ་གར་གྱི་དབང་ཕྱུག་ཞེས་བྱ་བ༔ སྐུ་མདོག་འོད་ལྔའི་མདངས་དང་ལྡན་པ༔ ཡུམ་མཁའ་འགྲོ་མ་དམར་མོ་སྐུ་ལ་འཁྲིལ་བ༔ གྲི་གུག་དང་ཐོད་ཁྲག་འཛིན་ཅིང་༔ བལྟ་སྟངས་ཀྱི་ཕྱག་རྒྱ་ནམ་མཁའ་ལ་མཛད་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔ དཀྱིལ་འཁོར་དེའི་ཤར་ནས་ས་ལ་གནས་པའི་རིག་འཛིན་ཞེས་བྱ་བ༔ སྐུ་མདོག་དཀར་ཞིང་མདངས་དང་ལྡན་པ༔ ཡུམ་མཁའ་འགྲོ་དཀར་མོ་སྐུ་ལ་འཁྲིལ་ཞིང་གྲི་གུག་དང་ཐོད་ཁྲག་གི་གར་མཛད་ཅིང་༔ བལྟ་སྟངས་ཀྱི་ཕྱག་རྒྱ་ནམ་མཁའ་ལ་མཛད་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔ དཀྱིལ་འཁོར་དེའི་ལྷོ་ནས་ཚེ་ལ་དབང་བའི་རིག་འཛིན་ཞེས་བྱ་བ༔ སྐུ་མདོག་སེར་ཞིང་མཛེས་པའི་དཔེ་བྱད་དང་ལྡན་པ༔ ཡུམ་མཁའ་འགྲོ་མ་སེར་མོ་སྐུ་ལ་འཁྲིལ་བ༔ གྲི་གུག་དང་ཐོད་ཁྲག་གིས་གར་མཛད་ཅིང་༔ བལྟ་སྟངས་ཀྱི་ཕྱག་རྒྱ་ནམ་མཁའ་ལ་མཛད་པ་གཅིག་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "In the heart of this maṇḍala, thick with rainbows and light, dawns the unsurpassed awareness holder of maturation, called Padmanarteśvara, Lord of the Lotus Dance: his body glowing with the radiance of the five lights, embraced by his consort, a red ḍākinī, holding a curved knife and a skull-cup of blood, her gaze fixed in the sky-gazing gesture. From the east of that maṇḍala dawns the awareness holder who dwells on the levels: his body white and lustrous, embraced by his consort, a white ḍākinī, who dances with curved knife and skull-cup of blood, her gaze fixed in the sky-gazing gesture. From the south of that maṇḍala dawns the awareness holder with power over the lifespan: his body yellow, adorned with the fine marks of beauty, embraced by his consort, a yellow ḍākinī, who dances with curved knife and skull-cup of blood, her gaze fixed in the sky-gazing gesture.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b004",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "དཀྱིལ་འཁོར་དེའི་ནུབ་ནས་ཕྱག་རྒྱ་ཆེན་པོའི་རིག་འཛིན་ཞེས་བྱ་བ༔ སྐུ་མདོག་དམར་ཞིང་འཛུམ་པའི་མདངས་དང་ལྡན་པ༔ ཡུམ་མཁའ་འགྲོ་མ་དམར་མོ་སྐུ་ལ་འཁྲིལ་བ༔ གྲི་གུག་དང་ཐོད་ཁྲག་གི་གར་མཛད་ཅིང་༔ བལྟ་སྟངས་ཀྱི་ཕྱག་རྒྱ་ནམ་མཁའ་ལ་མཛད་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔ དཀྱིལ་འཁོར་དེའི་བྱང་ནས་ལྷུན་གྱིས་གྲུབ་པའི་རིག་འཛིན་ཞེས་བྱ་བ༔ སྐུ་མདོག་ལྗང་ཞིང་ཞལ་ཁྲོ་འཛུམ་དང་ལྡན་པ༔ ཡུམ་མཁའ་འགྲོ་མ་ལྗང་ཁུ་སྐུ་ལ་འཁྲིལ་བ༔ གྲི་གུག་དང་ཐོད་ཁྲག་འཛིན་པས་གར་མཛད་ཅིང་༔ བལྟ་སྟངས་ཀྱི་ཕྱག་རྒྱ་ནམ་མཁའ་ལ་མཛད་པ་ཅིག་འཆར་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "From the west of that maṇḍala dawns the awareness holder of mahāmudrā: his body red, his face radiant and smiling, embraced by his consort, a red ḍākinī, who dances with curved knife and skull-cup of blood, her gaze fixed in the sky-gazing gesture. From the north of that maṇḍala dawns the spontaneously present awareness holder: his body green, his face at once wrathful and smiling, embraced by his consort, a green ḍākinī, who dances with curved knife and skull-cup of blood, her gaze fixed in the sky-gazing gesture.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b005",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རིག་འཛིན་དེ་རྣམས་ཀྱི་རོལ་དུ་མཁའ་འགྲོ་མའི་ཚོགས་དཔག་ཏུ་མེད་པ་དང་༔ དུར་ཁྲོད་བརྒྱད་ཀྱི་མཁའ་འགྲོ༔ རིགས་བཞིའི་མཁའ་འགྲོ༔ གནས་གསུམ་མཁའ་འགྲོ༔ གནས་བཅུའི་མཁའ་འགྲོ༔ ཡུལ་ཉི་ཤུ་རྩ་བཞིའི་མཁའ་འགྲོ་རྣམས་དང་༔ དཔའ་མོ་དང་༔ གིང་དང་༔ ཆོས་སྐྱོང་བའི་བསྲུང་མ་དང་བཅས་པ་ཐམས་ཅད་རུས་པའི་རྒྱན་དྲུག་གསོལ་ནས༔ རྔ་དང་༔ རྐང་དུང་དང་༔ ཐོད་རྔ་དང་༔ ཞིང་ལྤགས་ཀྱི་རྒྱལ་མཚན་དང་༔ མི་ལྤགས་ཀྱི་བླ་བྲེས་དང་༔ མི་ལྤགས་ཀྱི་འཕན་དང་༔ མི་གསུར་གྱི་དུད་པ་དང་༔ རོལ་མོའི་བྱེ་བྲག་དཔག་ཏུ་མེད་པ་དང་བཅས་ཏེ༔ འཇིག་རྟེན་གྱི་ཁམས་ཐམས་ཅད་ཁེངས་པ་ཤིག་ཤིག༔ ཡོམ་ཡོམ་འགུལ་འགུལ་དུ་འོང་ངོ་༔ རོལ་མོའི་སྒྲ་ཐམས་ཅད་ཀྱང་མགོ་འགས་པ་ཙམ་དུ་འོང་ངོ་༔ གར་སྣ་ཚོགས་བྱེད་ཅིང་དམ་ཚིག་ཅན་རྣམས་ཀྱི་བསུ་བ་ལ་འོང་ངོ་༔ དམ་ཉམས་རྣམས་ལ་ཆད་པ་བཅད་དུ་འོང་ངོ་༔",
+          "phon": null,
+          "en": "Circling these awareness holders are measureless hosts of ḍākinīs: the ḍākinīs of the eight charnel grounds, the ḍākinīs of the four families, the ḍākinīs of the three abodes, the ḍākinīs of the ten places, the ḍākinīs of the twenty-four lands — together with heroines, kiṃkara attendants, and the guardian protectors of the Dharma. All wear the six bone ornaments and carry drums, thigh-bone trumpets, and skull-drums; they raise banners of hide, canopies and pennants of human skin, and clouds of incense from human flesh, sounding countless kinds of music, until every world-realm is filled with it and set trembling, swaying, and quaking. The whole roar of music comes upon you as if to split your skull. Performing every kind of dance, they come to meet those who have kept their commitments — and to cut off those who have broken them.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b006",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཀྱཻ་རིགས་ཀྱི་བུ༔ བག་ཆགས་དབྱིངས་སུ་དག་པ་ལྷན་ཅིག་སྐྱེས་པའི་ཡེ་ཤེས་ཀྱི་ཁ་དོག་ལྔ་དང་ལྡན་པ༔ མཚོན་སྐུད་སྒྲིལ་མ་ལྟ་བུ༔ ཁྲ་ཤིག་ཤིག་པ༔ མེར་མེར་བ༔ ཕྱམ་ཕྱམ་པ༔ གཅིག་གསལ་ལ་དྭངས་པ༔ བཀྲག་ལ་ཉམས་ང་བ་གཅིག༔ རིག་འཛིན་གྱི་གཙོ་བོ་ལྔའི་ཐུགས་ཀ་ནས་ཁྱོད་རང་གི་ཐད་སྙིང་ཁར་མིག་གིས་མི་བཟོད་པ་ཙམ་དུ་ཟུག་ནས་འོང་ངོ་༔ དེ་དང་མཉམ་དུ་དུད་འགྲོའི་འོད་ལྗང་ཁུ་བཀྲག་མེད་ཅིག་འཆར་དུ་འོང་ངོ་༔ དེའི་དུས་སུ་ཁྱོད་བག་ཆགས་འཁྲུལ་བའི་དབང་གིས༔ འོད་ཁ་དོག་ལྔ་ལྡན་དེ་ལ་སྐྲག་ཅིང་བྲོས་ནས༔ དུད་འགྲོའི་འོད་བཀྲག་མེད་དེ་ལ་ཆགས་སུ་འོང་བས༔ དེ་ཙ་ན་ཁྱོད་འོད་ཁ་དོག་ལྔ་ལྡན་བཀྲག་མདངས་ཅན་དེ་ལ་མ་འཇིགས་ཤིག༔ མ་སྐྲག་ཅིག༔ ཡེ་ཤེས་སུ་རང་ངོ་ཤེས་པར་གྱིས་ཤིག༔",
+          "phon": null,
+          "en": "O Child of the Noble Family, a five-colored light — the purity of your habitual tendencies in the expanse, the coemergent primal awareness — like threads of colored light twisted into a cord, flickering, glowing, unfurling, singularly clear and limpid, brilliant and awesome, will pierce you from the hearts of the five chief awareness holders, striking you straight at the heart so brightly your eyes can hardly bear it. Alongside it, a dull green light of the animals will also dawn. At that moment, through the force of your bewildered habits, you will fear the five-colored light and flee it, and you will be drawn to the dull light of the animals. Now do not fear that brilliant five-colored light. Do not be terrified. Recognize it as primal awareness — your own nature.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b007",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "འོད་ཀྱི་ནང་ཐམས་ཅད་ཆོས་ཀྱི་རང་སྒྲ་འབྲུག་སྟོང་དུས་གཅིག་ལ་ལྡིར་བ་ཙམ་ཡོད་དོ༔ སྒྲ་གྲགས་ལ་ལྡིར་ཆེ་བ༔ འུར་སྒྲ་བསོ་སྒྲ༔ སྐྲག་དངངས་དྲག་པོ་དང་བཅས་ནས་འབྱུང་ངོ་༔ དེ་ལ་མ་འཇིགས་ཤིག༔ མ་བྲོས་ཤིག༔ ཁྱོད་རང་གི་རང་སྣང་རིག་པའི་རང་རྩལ་དུ་རང་ངོ་ཤེས་པར་གྱིས་ཤིག༔ དུད་འགྲོའི་འོད་ལྗང་ཁུ་བཀྲག་མེད་དེ་ལ་མ་ཆགས་ཤིག༔ མ་ཞེན་ཅིག༔ དེ་ལ་ཆགས་ན་ནི་ཁྱོད་གཏི་མུག་དུད་འགྲོའི་གནས་སུ་སྐྱེས་ཏེ༔ གླེན་ལྐུགས་བཀོལ་གཅོད་ཀྱི་སྡུག་བསྔལ་མཐའ་ལས་འདས་པ་མྱོང་སྟེ༔ ཐར་པའི་དུས་མི་འབྱུང་བས་དེ་ལ་མ་ཆགས་ཤིག༔ འོད་ཁ་དོག་ལྔ་ལྡན་གསལ་ལ་འཚེར་བ་དེ་ལ་མོས་པ་གྱིས་ཤིག༔ བཅོམ་ལྡན་འདས་རིག་འཛིན་སློབ་དཔོན་གྱི་ལྷ་ཚོགས་ལ་འདུན་པ་བརྩེ་གཅིག་ཏུ་གཏོད་ལ༔",
+          "phon": null,
+          "en": "Within the light, all the natural sounds of the Dharma resound like a thousand thunderclaps peeling at once — great crashing reverberations, war-cries and rallying roars, breaking forth with fierce, terrifying force. Do not fear them. Do not flee. Recognize them as your own self-display, the expressive power of your own awareness. Do not cling to the dull green light of the animals; do not yearn for it. If you cling to it, you will be born in the animal realm of delusion and taste the boundless sufferings of dullness, muteness, and servitude, with no time of escape — so do not cling to it. Long for the five-colored light, luminous and dazzling, and aim your intent single-pointedly at the divine host of awareness holders, the blessed teachers, thinking:",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b008",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "རིག་འཛིན་དཔའ་བོ་མཁའ་འགྲོ་དང་བཅས་པ་རྣམས་ཀྱིས༔ བདག་དག་པ་མཁའ་སྤྱོད་ཀྱི་གནས་སུ་བསུ་བ་ལ་བྱོན་པར་འདུག་པས༔ ཁྱེད་རྣམས་མཁྱེན༔ བདག་ལྟ་བུའི་སེམས་ཅན་ཚོགས་མ་བསགས་པ༔ དུས་གསུམ་གྱི་བདེ་གཤེགས་རིགས་ལྔའི་ལྷ་ཚོགས་དེ་ཙམ་ཅིག་གི་ཐུགས་རྗེས་བཟུང་ཡང་མ་ཟིན་པ་འདི༔ བདག་འདྲ་བ་ཨ་ཙ་མ་རེ༔ ད་ནི་རིག་འཛིན་གྱི་ལྷ་ཚོགས་ཁྱེད་རྣམས་ཀྱིས་འདི་མན་ཆད་ཅི་ནས་ཀྱང་མ་བཏང་ཅིག༔ ཐུགས་རྗེའི་ལྕགས་ཀྱུས་བཟུང་ཅིག༔ དག་པ་མཁའ་སྤྱོད་ཀྱི་ཞིང་དུ་ད་ལྟ་ཁོ་ན་ནས་དྲང་དུ་གསོལ༔ སྙམ་པའི་འདུན་པ་བརྩེ་གཅིག་ཏུ་གཏོད་ལ་སྨོན་ལམ་འདི་སྐད་དུ་ཐོབ་ཅིག༔",
+          "phon": null,
+          "en": "'You awareness holders, together with your heroes and ḍākinīs, have come to escort me to the pure celestial realm. Look upon me! Beings like me have gathered no accumulations; and though we were held by the compassion of that very host of deities, the five families of the Blessed Ones gone to bliss throughout the three times, we still were not caught. How pitiable are ones like me! Now, host of awareness holders, from this point on do not let me fall any further. Hold me with the hook of your compassion, and lead me this very moment to the pure celestial realm.' Aiming your intent single-pointedly at the maṇḍala of awareness holders, recite this aspiration:",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b009",
+          "layer": "L2",
+          "form": "verse",
+          "bo": "ཀྱཻ་མ་རིག་འཛིན་ལྷ་ཚོགས་རྣམས་ཀྱང་དགོངས་སུ་གསོལ༔ བརྩེ་བ་ཆེན་པོས་ལམ་སྣ་དྲང་དུ་གསོལ༔ བག་ཆགས་དྲག་པོས་འཁོར་བར་འཁྱམས་པའི་ཚེ༔ ལྷན་སྐྱེས་ཡེ་ཤེས་གསལ་བའི་འོད་ལམ་ལ༔ དཔའ་བོ་རིག་འཛིན་ཚོགས་ཀྱིས་ལམ་སྣ་དྲོངས༔ ཡུམ་མཆོག་མཁའ་འགྲོའི་ཚོགས་ཀྱིས་རྒྱབ་ནས་སྐྱོར༔ བར་དོ་འཇིགས་པའི་འཕྲང་ལས་བསྒྲལ་ནས་ཀྱང་༔ དག་པ་མཁའ་སྤྱོད་ཞིང་ཁམས་དེ་རུ་སྐྱོལ༔",
+          "phon": null,
+          "en": "Alas, as through this cyclic world I roam,\nBy fierce ingrained propensities led astray,\nMay the awareness holders call me home,\nAnd with great love direct me on the way;\nOn the coemergent gnosis' radiant light,\nMay the supreme ḍākinīs guard behind,\nThrough bardo's fearsome passage lead me right,\nThe pure celestial realm – at last to find.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b010",
+          "layer": "L1",
+          "form": "prose",
+          "bo": "ཅེས་མོས་གུས་དྲག་པོས་སྨོན་ལམ་བཏབ་པས༔ རིག་འཛིན་ལྷ་ཚོགས་རྣམས་ཀྱི་ཐུགས་ཀར་འཇའ་འོད་དུ་ཐིམ་ནས༔ དག་པ་མཁའ་སྤྱོད་ཀྱི་གནས་སུ་སྐྱེ་བར་ཐེ་ཚོམ་མེད་དོ༔ དགེ་བའི་བཤེས་གཉེན་གྱི་རིགས་ཐམས་ཅད་འདི་ནས་ངོ་འཕྲོད་དེ་གྲོལ་བ་ཤ་སྟག་གོ༔ འདིར་བག་ཆགས་ངན་ཡང་གྲོལ་བར་ངེས་སོ༔",
+          "phon": null,
+          "en": "Praying thus with fierce devotion, you will dissolve into rainbow light in the hearts of the host of awareness holders, and beyond all doubt be born in the pure celestial realm. Every kind of spiritual friend attains recognition at this point, and all alike are freed. Even those of bad propensities are certainly liberated here.",
+          "meter": null,
+          "deityRef": null,
+          "day": 7,
+          "note": null
+        },
+        {
+          "id": "s9-b011",
+          "layer": "L4",
+          "form": "colophon",
+          "bo": "དེ་ཡན་ཆད་ནི་འཆི་ཁའི་བར་དོ་ལ་འོད་གསལ་ངོ་འཕྲོད་པ་དང་༔ ཆོས་ཉིད་ཞི་བའི་བར་དོ་ངོ་སྤྲད་པ་ཐོས་གྲོལ་ཆེན་མོ་ཐལ་ལོ༔ ཨི་ཐི༔ ས་མ་ཡ༔ རྒྱ་རྒྱ་རྒྱ༔",
+          "phon": null,
+          "en": "Thus far: the recognition of clear light in the bardo of dying, and the pointing out of the peaceful deities in the bardo of reality. With this, the Great Liberation through Hearing — Part One — is complete. ITHI. SAMAYA. Sealed, sealed, sealed.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    }
+  ]
+}

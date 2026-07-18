@@ -61,7 +61,7 @@
       "texts": [
         {
           "id": "bardo-thodrol.dying-intro",
-          "title": "TODO_CONTENT",
+          "title": "The Bardo of Dying and the Dawning of the Peaceful Deities",
           "status": "translated"
         },
         {
@@ -93,6 +93,11 @@
         {
           "id": "bardo-thodrol.dharmata-intro",
           "title": "The Great Liberation through Hearing: Pointing-out instructions on the Bardo of Dharmata",
+          "status": "translated"
+        },
+        {
+          "id": "bardo-thodrol.wrathful-elucidation",
+          "title": "An Elucidation of the Appearance of the Wrathful Deities in the Intermediate State of Reality",
           "status": "forthcoming"
         },
         {
@@ -134,7 +139,7 @@
         {
           "id": "bardo-thodrol.becoming-intro",
           "title": "The Great Liberation through Hearing: A reminder and pointing-out instructions on the Bardo of Existence (srid-pa)",
-          "status": "forthcoming"
+          "status": "translated"
         },
         {
           "id": "khrid.becoming-bardo",
