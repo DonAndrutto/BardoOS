@@ -12,6 +12,7 @@
 
 import { state } from './store.js';
 import { cycleEntry } from './data.js';
+import { t } from './i18n.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
 const TODO = 'TODO_CONTENT';
@@ -80,8 +81,7 @@ function prayerRefEl(block) {
     span.innerHTML = LOCK_ICON;
     const body = el('span', 'prayer-link-body', span);
     el('span', 'prayer-link-title', body).textContent = title;
-    el('small', 'prayer-link-note', body).textContent =
-      'Translation forthcoming. Support the translator.';
+    el('small', 'prayer-link-note', body).textContent = t('forthcoming');
   }
   return wrap;
 }

@@ -22,6 +22,7 @@ function defaults() {
     showEn: true,
     scrollSpeed: 2,
     mode: 'guide',        // 'guide' | 'voice'
+    uiLang: 'en',         // interface language: 'bo' | 'en' | 'pl' (master selector)
   };
 }
 
@@ -39,6 +40,7 @@ function load() {
     merged.scrollSpeed = Math.max(1, Math.min(10, Number(merged.scrollSpeed) || d.scrollSpeed));
     if (!['guide', 'voice'].includes(merged.mode)) merged.mode = 'guide';
     if (![null, 'light', 'dark'].includes(merged.theme)) merged.theme = null;
+    if (!['bo', 'en', 'pl'].includes(merged.uiLang)) merged.uiLang = 'en';
     for (const k of ['showBo', 'showPhon', 'showEn']) merged[k] = Boolean(merged[k]);
     return merged;
   } catch {

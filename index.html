@@ -22,6 +22,14 @@
     <h1>Bardo OS</h1>
     <div class="header-actions">
       <a class="donate-link" href="https://www.paypal.com/donate/?business=JZS5LVZKPPY5J&amp;no_recurring=0&amp;item_name=Help+fund+Dharma+translation+projects.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
+      <div class="lang-select" id="langSelect">
+        <button class="lang-select-btn" id="btnUiLang" aria-haspopup="true" aria-expanded="false" aria-label="Interface language">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-code" id="uiLangCode">ENG</span>
+          <svg class="menu-caret" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <ul class="lang-menu" id="uiLangMenu" role="menu" hidden></ul>
+      </div>
     </div>
   </header>
 

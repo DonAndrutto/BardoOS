@@ -3,6 +3,7 @@
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
 import { loadCycle, loadText } from './data.js';
+import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
 import * as scroll from './scroll.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
@@ -126,6 +127,74 @@ function changeFontSize(delta) {
   });
 }
 
+// ── Interface language: the master selector (Yontendzo pattern) ─────
+// Governs the interface strings only — the TIB/PHO/ENG toggles below
+// are a different axis (which content layers show) and stay untouched.
+// English is the only interface with strings today; picking Tibetan or
+// Polish records the choice and the UI falls back to English string by
+// string until the owner supplies those tables (js/i18n.js).
+function buildUiLangMenu() {
+  const menu = $('uiLangMenu');
+  menu.textContent = '';
+  for (const l of UI_LANGS) {
+    const li = document.createElement('li');
+    li.setAttribute('role', 'menuitem');
+    li.tabIndex = 0;
+    li.classList.toggle('active', l.code === state.uiLang);
+    const name = document.createElement('span');
+    name.textContent = l.name;
+    li.appendChild(name);
+    if (!uiLangReady(l.code)) {
+      const pending = document.createElement('small');
+      pending.className = 'menu-pending';
+      pending.textContent = t('interfacePending');
+      li.appendChild(pending);
+    }
+    const pick = () => {
+      setUiLang(l.code);
+      closeUiLangMenu();
+      $('btnUiLang').focus();
+    };
+    li.addEventListener('click', pick);
+    li.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+    });
+    menu.appendChild(li);
+  }
+}
+
+function openUiLangMenu() {
+  $('uiLangMenu').hidden = false;
+  $('btnUiLang').setAttribute('aria-expanded', 'true');
+}
+
+function closeUiLangMenu() {
+  $('uiLangMenu').hidden = true;
+  $('btnUiLang').setAttribute('aria-expanded', 'false');
+}
+
+function applyUiLang() {
+  $('uiLangCode').textContent = UI_LANG_BY_CODE[state.uiLang].label;
+  $('btnUiLang').setAttribute('aria-label', t('interfaceLanguage'));
+  $('btnUiLang').title = t('interfaceLanguage');
+  buildUiLangMenu();
+  // Re-apply every string the app writes itself. With English the only
+  // populated table this changes nothing visible — it is the mechanism
+  // a future translation drops into.
+  document.querySelectorAll('.nav-note').forEach((n) => {
+    n.textContent = t('forthcoming');
+  });
+}
+
+function setUiLang(code) {
+  if (!UI_LANG_BY_CODE[code] || code === state.uiLang) return;
+  set('uiLang', code);
+  // document.documentElement.lang stays "en" deliberately: the rendered
+  // interface is still English until a translation table exists.
+  applyUiLang();
+  rerender();
+}
+
 // ── Sidebar: the catalogue beside the text ──────────────────────────
 // Docked and open by default on a wide screen; an overlay, closed by
 // default, on a narrow one. Voice mode hides it entirely (CSS).
@@ -191,7 +260,7 @@ async function openText(id) {
     window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
-    note(reader, `Could not load this text (${err.message}).`);
+    note(reader, `${t('couldNotLoadText')} (${err.message}).`);
   }
 }
 
@@ -229,7 +298,13 @@ async function boot() {
     }
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navIsOpen() && !desktopNav.matches) {
+    if (e.key !== 'Escape') return;
+    if (!$('uiLangMenu').hidden) {
+      closeUiLangMenu();
+      $('btnUiLang').focus();
+      return;
+    }
+    if (navIsOpen() && !desktopNav.matches) {
       setMenu(false);
       $('btnMenu').focus();
     }
@@ -237,6 +312,16 @@ async function boot() {
   // Crossing the breakpoint resets to that size's sensible default.
   desktopNav.addEventListener('change', (m) => setMenu(m.matches));
   setMenu(desktopNav.matches);
+
+  // Interface-language selector (header, upper right)
+  $('btnUiLang').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if ($('uiLangMenu').hidden) openUiLangMenu(); else closeUiLangMenu();
+  });
+  document.addEventListener('click', (e) => {
+    if (!$('langSelect').contains(e.target)) closeUiLangMenu();
+  });
+  applyUiLang();
 
   // Fullscreen (hidden where the platform can't do it, e.g. iPhone)
   const root = document.documentElement;
@@ -271,11 +356,11 @@ async function boot() {
   try {
     cycle = await loadCycle();
   } catch (err) {
-    note(reader, `Could not load the cycle manifest (${err.message}).`);
+    note(reader, `${t('couldNotLoadCycle')} (${err.message}).`);
     return;
   }
   if (!cycle.groups.length) {
-    note(reader, 'No texts in the cycle yet.');
+    note(reader, t('emptyCycle'));
     return;
   }
   // The shape of the cycle, legible at a glance: collapsible categories,
@@ -319,13 +404,13 @@ async function boot() {
         d.innerHTML = LOCK_ICON; // static icon markup only — never content
         const body = document.createElement('span');
         body.className = 'nav-locked-body';
-        const t = document.createElement('span');
-        t.className = 'nav-locked-title';
-        t.textContent = label;
+        const title = document.createElement('span');
+        title.className = 'nav-locked-title';
+        title.textContent = label;
         const note = document.createElement('small');
         note.className = 'nav-note';
-        note.textContent = 'Translation forthcoming. Support the translator.';
-        body.appendChild(t);
+        note.textContent = t('forthcoming');
+        body.appendChild(title);
         body.appendChild(note);
         d.appendChild(body);
         cat.appendChild(d);
