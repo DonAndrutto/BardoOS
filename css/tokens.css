@@ -77,6 +77,8 @@
   --measure: 32rem;      /* spoken-layer English measure */
   --measure-l0: 24rem;   /* rubric is physically narrower */
   --column: 56rem;
+  --nav-w: 22rem;        /* sidebar width when open */
+  --header-h: 44px;      /* the sidebar hangs from this line */
 
   /* ── Spacing (4px scale, from the reference) ──────────── */
   --sp-1: 0.25rem;

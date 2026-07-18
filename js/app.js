@@ -126,14 +126,18 @@ function changeFontSize(delta) {
   });
 }
 
-// ── Header menu: the catalogue drops from the corner ────────────────
+// ── Sidebar: the catalogue beside the text ──────────────────────────
+// Docked and open by default on a wide screen; an overlay, closed by
+// default, on a narrow one. Voice mode hides it entirely (CSS).
+const desktopNav = window.matchMedia('(min-width: 64rem)');
+
 function setMenu(open) {
-  document.querySelector('.app-header').classList.toggle('menu-open', open);
+  document.body.classList.toggle('nav-open', open);
   $('btnMenu').setAttribute('aria-expanded', String(open));
 }
 
-function menuIsOpen() {
-  return document.querySelector('.app-header').classList.contains('menu-open');
+function navIsOpen() {
+  return document.body.classList.contains('nav-open');
 }
 
 // ── Fullscreen: the whole screen given to the text ──────────────────
@@ -168,12 +172,19 @@ function note(container, message) {
   container.appendChild(p);
 }
 
-async function openText(id, button) {
+async function openText(id) {
   scroll.stop();
-  setMenu(false);
+  // The docked sidebar stays; the overlay gets out of the way.
+  if (!desktopNav.matches) setMenu(false);
   const reader = $('reader');
-  document.querySelectorAll('.nav button').forEach((b) =>
-    b.classList.toggle('active', b === button));
+  document.querySelectorAll('.nav .nav-text[data-text-id]').forEach((b) => {
+    const active = b.dataset.textId === id;
+    b.classList.toggle('active', active);
+    if (active) {
+      const cat = b.closest('.nav-cat');
+      if (cat) cat.open = true; // a jumped-to text is never hidden
+    }
+  });
   try {
     currentText = await loadText(id);
     renderText(currentText, reader);
@@ -208,17 +219,24 @@ async function boot() {
   }
   scroll.onStopped(applyPlayIcon);
 
-  // Header menu: opens down from the corner; any way out closes it
-  $('btnMenu').addEventListener('click', () => setMenu(!menuIsOpen()));
+  // Sidebar: the corner button toggles it. As an overlay (narrow
+  // screens) any way out closes it; docked, it stays until toggled.
+  $('btnMenu').addEventListener('click', () => setMenu(!navIsOpen()));
   document.addEventListener('click', (e) => {
-    if (menuIsOpen() && !document.querySelector('.app-header').contains(e.target)) setMenu(false);
+    if (navIsOpen() && !desktopNav.matches &&
+        !$('nav').contains(e.target) && !$('btnMenu').contains(e.target)) {
+      setMenu(false);
+    }
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuIsOpen()) {
+    if (e.key === 'Escape' && navIsOpen() && !desktopNav.matches) {
       setMenu(false);
       $('btnMenu').focus();
     }
   });
+  // Crossing the breakpoint resets to that size's sensible default.
+  desktopNav.addEventListener('change', (m) => setMenu(m.matches));
+  setMenu(desktopNav.matches);
 
   // Fullscreen (hidden where the platform can't do it, e.g. iPhone)
   const root = document.documentElement;
@@ -278,9 +296,10 @@ async function boot() {
         const b = document.createElement('button');
         b.type = 'button';
         b.className = 'nav-text';
+        b.dataset.textId = entry.id;
         b.textContent = label;
         b.title = entry.id;
-        b.addEventListener('click', () => openText(entry.id, b));
+        b.addEventListener('click', () => openText(entry.id));
         cat.appendChild(b);
       } else {
         const d = document.createElement('div');

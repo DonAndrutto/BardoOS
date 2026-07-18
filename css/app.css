@@ -75,8 +75,8 @@ body {
 .menu-toggle:focus { outline: none; }
 .menu-toggle:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 .menu-caret { transition: transform var(--dur-2); }
-.app-header.menu-open .menu-toggle { color: var(--accent); }
-.app-header.menu-open .menu-caret { transform: rotate(180deg); }
+body.nav-open .menu-toggle { color: var(--accent); }
+body.nav-open .menu-caret { transform: rotate(180deg); }
 
 /* The header disappears when the screen is given wholly to the text. */
 body.fs .app-header { display: none; }
@@ -90,25 +90,37 @@ body.fs .app-header { display: none; }
   padding: var(--sp-5) var(--sp-4) var(--sp-9);
 }
 
-/* ── Navigation: the catalogue, one corner-tap away ─────── */
+/* ── Navigation: the catalogue as a collapsible sidebar ───
+   Docked beside the text on a wide screen, an overlay above it on a
+   narrow one; hidden entirely in Voice mode (rules with the other
+   voice styles below). Nothing slides — the sidebar is either there
+   or not (no animation, BRIEF §9). */
 .nav {
   display: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: var(--header-h);
+  bottom: 0;
   left: 0;
-  width: min(22rem, 100vw);
-  max-height: calc(100vh - 44px);
-  max-height: calc(100dvh - 44px);
+  z-index: 55;
+  width: min(var(--nav-w), 100vw);
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: var(--sp-3) var(--sp-3) var(--sp-5);
+  padding: var(--sp-3) var(--sp-3) var(--sp-7);
   background: var(--bg);
   border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  border-radius: 0 0 var(--radius-lg) 0;
-  box-shadow: 0 16px 32px color-mix(in srgb, var(--text) 12%, transparent);
 }
-.app-header.menu-open .nav { display: block; }
+body.nav-open .nav { display: block; }
+
+/* Overlay (narrow): a shadow separates it from the text beneath. */
+@media (max-width: 63.99rem) {
+  .nav { box-shadow: 0 16px 32px color-mix(in srgb, var(--text) 12%, transparent); }
+}
+/* Docked (wide): the shell moves over and the reader re-centers
+   in the space that remains. */
+@media (min-width: 64rem) {
+  body.nav-open .shell { margin-left: var(--nav-w); max-width: none; }
+  body.nav-open .reader { max-width: var(--column); margin: 0 auto; }
+}
 
 .nav-cat { margin-bottom: var(--sp-3); }
 .nav-cat summary {
@@ -408,6 +420,11 @@ body.fs .app-header { display: none; }
 /* ── Voice mode: the mode you use when someone is dying ─── */
 body.voice .app-header,
 body.voice .lang-group { display: none; }
+/* The sidebar leaves with the header; the shell re-centers. These sit
+   after the nav rules on purpose — at equal specificity, Voice wins. */
+body.voice .nav { display: none; }
+body.voice .shell { margin: 0 auto; max-width: var(--column); }
+body.voice .reader { max-width: none; margin: 0; }
 body.voice .shell { padding-top: var(--sp-4); }
 body.voice .reader { --measure: 36rem; }
 body.voice .section-heading { opacity: 0.6; }
