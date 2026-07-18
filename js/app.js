@@ -111,7 +111,6 @@ function applyPlayIcon() {
 
 function applySpeed() {
   scroll.setSpeed(state.scrollSpeed);
-  $('speedVal').textContent = String(state.scrollSpeed);
 }
 
 function changeSpeed(delta) {

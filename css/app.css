@@ -558,14 +558,15 @@ body.nav-open .nav { display: block; }
   letter-spacing: 0.04em;
   padding: 0 var(--sp-2);
 }
-.speed-val {
-  font-family: var(--font-ui);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  min-width: 1.1rem;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
+/* Narrow screens: the whole bar stays on one row. Groups and buttons
+   give up their fixed minimums and share the width; the 40px height
+   keeps the touch targets honest. */
+@media (max-width: 40rem) {
+  .bottom-bar { padding-left: var(--sp-2); padding-right: var(--sp-2); }
+  .bar-inner { flex-wrap: nowrap; gap: var(--sp-1); }
+  .bar-group { flex: 1 1 auto; min-width: 0; justify-content: space-evenly; padding: 2px; }
+  .bar-btn { min-width: 0; flex: 1 1 auto; }
+  .bar-btn-text { padding: 0; }
 }
 
 /* Content never hides behind the bar */
