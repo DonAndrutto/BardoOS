@@ -126,6 +126,39 @@ function changeFontSize(delta) {
   });
 }
 
+// ── Header menu: the catalogue drops from the corner ────────────────
+function setMenu(open) {
+  document.querySelector('.app-header').classList.toggle('menu-open', open);
+  $('btnMenu').setAttribute('aria-expanded', String(open));
+}
+
+function menuIsOpen() {
+  return document.querySelector('.app-header').classList.contains('menu-open');
+}
+
+// ── Fullscreen: the whole screen given to the text ──────────────────
+function fsElement() {
+  return document.fullscreenElement || document.webkitFullscreenElement || null;
+}
+
+function applyFs() {
+  const fs = Boolean(fsElement());
+  document.body.classList.toggle('fs', fs);
+  $('btnFs').classList.toggle('active', fs);
+  $('btnFs').setAttribute('aria-pressed', String(fs));
+  $('iconExpand').style.display = fs ? 'none' : 'block';
+  $('iconCompress').style.display = fs ? 'block' : 'none';
+}
+
+function toggleFullscreen() {
+  const root = document.documentElement;
+  if (fsElement()) {
+    (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+  } else {
+    (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+  }
+}
+
 // ── Navigation (bare until Phase 3) ─────────────────────────────────
 function note(container, message) {
   container.textContent = '';
@@ -137,6 +170,7 @@ function note(container, message) {
 
 async function openText(id, button) {
   scroll.stop();
+  setMenu(false);
   const reader = $('reader');
   document.querySelectorAll('.nav button').forEach((b) =>
     b.classList.toggle('active', b === button));
@@ -173,6 +207,29 @@ async function boot() {
     $(btn).addEventListener('click', () => toggleLang(key));
   }
   scroll.onStopped(applyPlayIcon);
+
+  // Header menu: opens down from the corner; any way out closes it
+  $('btnMenu').addEventListener('click', () => setMenu(!menuIsOpen()));
+  document.addEventListener('click', (e) => {
+    if (menuIsOpen() && !document.querySelector('.app-header').contains(e.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuIsOpen()) {
+      setMenu(false);
+      $('btnMenu').focus();
+    }
+  });
+
+  // Fullscreen (hidden where the platform can't do it, e.g. iPhone)
+  const root = document.documentElement;
+  if (root.requestFullscreen || root.webkitRequestFullscreen) {
+    $('btnFs').addEventListener('click', toggleFullscreen);
+    for (const ev of ['fullscreenchange', 'webkitfullscreenchange']) {
+      document.addEventListener(ev, () => anchorKept(applyFs));
+    }
+  } else {
+    $('btnFs').style.display = 'none';
+  }
 
   // Rubric peeking in Voice mode (delegated: markers are re-rendered often)
   $('reader').addEventListener('click', (e) => {

@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v5';
+const VERSION = 'bardo-os-v7';
 
 const PRECACHE = [
   './',

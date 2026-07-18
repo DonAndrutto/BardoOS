@@ -26,9 +26,22 @@ body {
 }
 
 /* ── Shell ──────────────────────────────────────────────── */
+/* A thin, constant bar; the catalogue lives behind the corner
+   toggle and drops down over the text instead of beside it. */
 .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  min-height: 44px;
+  padding: 0 var(--sp-4);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid var(--border);
-  padding: var(--sp-3) var(--sp-4);
 }
 .app-header h1 {
   font-family: var(--font-ui);
@@ -39,16 +52,63 @@ body {
   color: var(--accent);
 }
 
-.shell {
+.menu-toggle {
   display: flex;
-  gap: var(--sp-6);
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+  padding: 0 var(--sp-2);
+  margin-left: calc(-1 * var(--sp-2));
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--dur-2);
+}
+.menu-toggle:hover { color: var(--text); }
+.menu-toggle:focus { outline: none; }
+.menu-toggle:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.menu-caret { transition: transform var(--dur-2); }
+.app-header.menu-open .menu-toggle { color: var(--accent); }
+.app-header.menu-open .menu-caret { transform: rotate(180deg); }
+
+/* The header disappears when the screen is given wholly to the text. */
+body.fs .app-header { display: none; }
+@media (display-mode: fullscreen) {
+  .app-header { display: none; }
+}
+
+.shell {
   max-width: var(--column);
   margin: 0 auto;
   padding: var(--sp-5) var(--sp-4) var(--sp-9);
 }
 
-/* ── Navigation: the shape of the cycle, legible at a glance ── */
-.nav { flex: 0 0 15rem; }
+/* ── Navigation: the catalogue, one corner-tap away ─────── */
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(22rem, 100vw);
+  max-height: calc(100vh - 44px);
+  max-height: calc(100dvh - 44px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--sp-3) var(--sp-3) var(--sp-5);
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 var(--radius-lg) 0;
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--text) 12%, transparent);
+}
+.app-header.menu-open .nav { display: block; }
 
 .nav-cat { margin-bottom: var(--sp-3); }
 .nav-cat summary {
@@ -109,12 +169,7 @@ body {
   margin-top: 2px;
 }
 
-.reader { flex: 1; min-width: 0; }
-
-@media (max-width: 720px) {
-  .shell { flex-direction: column; }
-  .nav { flex: none; }
-}
+.reader { min-width: 0; }
 
 /* ── Text chrome ────────────────────────────────────────── */
 .text-title { text-align: center; margin: var(--sp-5) 0 var(--sp-8); }
@@ -257,6 +312,13 @@ body {
 /* Verse lines render as real lines */
 .line { display: block; }
 
+/* Inline emphasis (**…** in content): bold, leaning toward the accent —
+   different enough to be found at a glance, quiet enough not to shout. */
+.em {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--accent) 45%, var(--text));
+}
+
 /* Declared content gaps stay visible and honest */
 .todo {
   font-family: var(--font-ui);
@@ -345,7 +407,6 @@ body {
 
 /* ── Voice mode: the mode you use when someone is dying ─── */
 body.voice .app-header,
-body.voice .nav,
 body.voice .lang-group { display: none; }
 body.voice .shell { padding-top: var(--sp-4); }
 body.voice .reader { --measure: 36rem; }
