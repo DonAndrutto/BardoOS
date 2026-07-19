@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "guide.how-to-use",
+  "id": "guide.welcome",
   "cycle": "app",
   "kind": "guide",
   "title": {
     "bo": null,
     "phon": null,
-    "en": "How to Use This App"
+    "en": "Welcome"
   },
   "source": {
     "attribution": "Written for Bardo OS — the instrument describing itself as built.",
@@ -15,7 +15,7 @@
   "sections": [
     {
       "id": "s1",
-      "heading": { "bo": null, "en": "The Catalogue" },
+      "heading": { "bo": null, "en": "A Note on the Text" },
       "blocks": [
         {
           "id": "s1-b001",
@@ -23,7 +23,19 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The Texts button at the top left opens the catalogue of the whole cycle, arranged as the tradition arranges it: the six bardos in order, each with its instructions and pointing-out texts, followed by the prayers, the supporting texts, and this Guide. Tap a shelf heading to fold or unfold it; tap a title to open the text. Titles whose translation is still forthcoming are listed but locked — the shape of the cycle is shown honestly, including what is not here yet.",
+          "en": "The text the West came to know as The Tibetan Book of the Dead arrived here wrapped in many layers of interpretation—some helpful, some a long way from its original purpose. But the text itself speaks with a simpler, more direct voice. It does not present itself as a philosophy to be studied, a psychology to be analysed, or a curiosity to be compared with other traditions. It comes as a living instruction, whispered into the ear of the dying, chanted beside the dead, and held in the heart by those preparing for their own crossing.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s1-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The Bardo Thödrol Chenmo — the “Great Liberation upon Hearing in the Between” — describes itself in terms of extraordinary intimacy and confidence. It says that this teaching, encountered in the intermediate state, is like a connecting tube inserted into a broken water channel, restoring the flow. It says the reminder is like a catapult that can hurl a heavy tree-trunk in an instant, or the turning of a horse by its bridle. It promises that merely hearing these words, even for those weighed down by great negativity, can transform perception and open the way to liberation. It asks that the words be read aloud, that they be learnt by heart, that they not be forgotten even if one were chased by seven ferocious dogs. And it insists, with startling tenderness, that no prior meditation practice is required — this is a teaching that liberates by being seen, by being heard, and by being read aloud.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -33,7 +45,7 @@
     },
     {
       "id": "s2",
-      "heading": { "bo": null, "en": "Reading a Text" },
+      "heading": { "bo": null, "en": "This Website" },
       "blocks": [
         {
           "id": "s2-b001",
@@ -41,103 +53,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "Each text is presented passage by passage in up to three parallel layers: Tibetan script, phonetics, and English. The TIB, PHO, and ENG buttons in the bottom bar switch each layer on or off — ENG alone for reading aloud in English, all three for study. Phonetics belong chiefly to liturgy that is meant to be chanted; many passages have none.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s2-b002",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The passages differ in what you are meant to do with them. Passages marked ◆ READ ALOUD — shaded, with a gold rule down the left — are spoken directly to the dying or deceased person: read them slowly and plainly, inserting the person's name where the text indicates. Framed panels marked BARDO RECITATION are verses for the deceased to take up and hold. Passages marked LITURGY are recited by the living. Quiet, centered passages like this one are guidance for you, the reader — when to speak, what to prepare, which prayer follows — and are never read aloud. Titles, colophons, and attributions are silent apparatus.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s2-b003",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "When an instruction mentions a prayer that lives elsewhere in the cycle, a link appears beneath the passage; tapping it opens that prayer directly.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        }
-      ]
-    },
-    {
-      "id": "s3",
-      "heading": { "bo": null, "en": "Voice Mode" },
-      "blocks": [
-        {
-          "id": "s3-b001",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The diamond button switches to Voice mode — the mode you use when someone is dying. The header, the catalogue, and the language toggles disappear; only what is spoken remains, set slightly larger. Guidance passages collapse into thin markers on the page — tap one to peek at it, tap it again to close. Everything else steps out of the way. Press the diamond again to return to Guide mode.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        }
-      ]
-    },
-    {
-      "id": "s4",
-      "heading": { "bo": null, "en": "Auto-scroll" },
-      "blocks": [
-        {
-          "id": "s4-b001",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The play button starts a slow, steady scroll, so that both hands stay free. The − and + buttons adjust its pace in ten steps. Touching the page pauses the scroll instantly; after a moment of stillness it resumes on its own, without jumping. When a repeated formula arrives, the scroll rests on it briefly before moving on.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        }
-      ]
-    },
-    {
-      "id": "s5",
-      "heading": { "bo": null, "en": "Comfort of Reading" },
-      "blocks": [
-        {
-          "id": "s5-b001",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The sun and moon button switches between day and night; until you choose, the app follows the device. The magnifier buttons adjust the text size. The frame button enters fullscreen, and the header withdraws. All of these choices are remembered on the device. The globe at the top right selects the interface language — it governs the app's own labels only and never touches the texts; Tibetan and Polish interfaces will appear there when their translations arrive.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        }
-      ]
-    },
-    {
-      "id": "s6",
-      "heading": { "bo": null, "en": "Offline, at the Bedside" },
-      "blocks": [
-        {
-          "id": "s6-b001",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "Bardo OS is an installable web app. Once it has opened on your device, the entire corpus is stored locally and everything works without a connection — add it to your home screen and it behaves like any other app. This matters where the app is most needed: at a bedside, where connectivity cannot be assumed. Nothing here requires an account, and nothing is sent anywhere.",
+          "en": "This website is not an exercise in scholarly knowledge, theory, or research. It is a gathering of instructions, prayers, and materials offered directly to practitioners preparing to die, and to those who assist the dying. Nothing here has been softened for academic comfort or dressed up as metaphor. What you will find are the very resources the tradition has placed in the hands of the dying and their companions, trusting that the sound of these words carries its own power. So come in. Explore the Bardo Instructions, let the prayers settle into your memory, and use the materials as they were always meant to be used. Read them for someone whose breath is growing thin. Read them for yourself as the signs of death draw near. Let them be a familiar voice in the ear of the heart, a steady hand on the bridle when the path ahead seems unknowable. The text’s promise is bold: “Even if all the buddhas of the past, present and future were to search, they would not find a sacred teaching superior to this.” Take that invitation seriously, and let these pages become part of your preparation, your service, and your crossing.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -147,3 +63,4 @@
     }
   ]
 }
+```
