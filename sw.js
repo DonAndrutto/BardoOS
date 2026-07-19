@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v9';
+const VERSION = 'bardo-os-v10';
 
 const PRECACHE = [
   './',
@@ -11,13 +11,16 @@ const PRECACHE = [
   'manifest.webmanifest',
   'css/tokens.css',
   'css/app.css',
+  'css/intro.css',
   'js/app.js',
+  'js/intro.js',
   'js/data.js',
   'js/i18n.js',
   'js/render.js',
   'js/scroll.js',
   'js/store.js',
   'assets/icon.svg',
+  'assets/intro/mandala.webp',
   'assets/fonts/jomolhari/Jomolhari-Regular.ttf',
   'assets/fonts/eb-garamond/EBGaramond[wght].ttf',
   'assets/fonts/eb-garamond/EBGaramond-Italic[wght].ttf',

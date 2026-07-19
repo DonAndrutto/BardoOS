@@ -1,0 +1,118 @@
+/* Bardo OS — the intro veil. Samantabhadra's tagdrol mandala arises,
+   abides, and dissolves over the boot, then the app is simply there.
+   Ported from the Claude Design handoff (mandala-piece.jsx).
+
+   The prototype tinted the artwork every frame with
+   `invert(.94) sepia(.22) saturate(.7) brightness(1.02)`; that filter is
+   baked into assets/intro/mandala.webp offline, so the phone composites
+   seven plain layers instead of seven filtered ones.
+
+   js/intro.js builds the ring layers inside .intro-disc, drives every
+   frame, and removes #intro when the piece ends or the reader taps
+   through. Everything here is decorative — #intro is aria-hidden and
+   never gates the boot underneath it. */
+
+#intro {
+  /* the prototype's 1000px disc on its 1080-tall canvas → 92.6% of vmin */
+  --disc: 92.6vmin;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: radial-gradient(circle at 50% 50%, #16161a 0%, #0f0f10 62%);
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+  cursor: pointer;
+  /* failsafe: should intro.js never run at all, the veil lifts itself */
+  animation: intro-failsafe 600ms ease 12s forwards;
+}
+
+#intro.intro-out {
+  opacity: 0;
+  transition: opacity 480ms ease;
+  pointer-events: none;
+}
+
+@keyframes intro-failsafe {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.intro-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--disc) * 1.4);
+  height: calc(var(--disc) * 1.4);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(212, 165, 90, 0.10) 0%,
+    rgba(212, 165, 90, 0.04) 38%,
+    rgba(212, 165, 90, 0) 68%);
+  opacity: 0;
+}
+
+.intro-disc {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--disc);
+  height: var(--disc);
+  margin-left: calc(var(--disc) / -2);
+  margin-top: calc(var(--disc) / -2);
+}
+
+/* one annulus band (or the static central figure) of the artwork;
+   js/intro.js sets the radial mask, rotation, and opacity per layer */
+.intro-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/intro/mandala.webp');
+  background-size: 100% 100%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* halo of light over the central figure — screen-blended so it reads
+   on the dark plate */
+.intro-halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--disc) * 0.62);
+  height: calc(var(--disc) * 0.62);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(240, 234, 214, 0.55) 0%,
+    rgba(232, 205, 150, 0.26) 28%,
+    rgba(212, 165, 90, 0.12) 46%,
+    rgba(212, 165, 90, 0) 64%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* the sign emerges as the mandala dissolves */
+.intro-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #f0ead6;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: calc(var(--disc) * 0.064);
+  letter-spacing: 0.32em;
+  text-shadow: 0 0 24px rgba(212, 165, 90, 0.35);
+  opacity: 0;
+}
+
+.intro-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
