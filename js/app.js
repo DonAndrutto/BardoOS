@@ -101,6 +101,15 @@ function toggleLang(key) {
   });
 }
 
+// Phonetics belong to the liturgical layer (SCHEMA.md §5): the PHO
+// toggle only appears on liturgies and prayers — on instructions and
+// guides it would be a dead control, so it goes away entirely.
+function applyPhonRelevance() {
+  const kind = currentText ? currentText.kind : null;
+  const relevant = kind === 'liturgy' || kind === 'prayer';
+  $('btnPhon').style.display = relevant ? '' : 'none';
+}
+
 // ── Auto-scroll controls ────────────────────────────────────────────
 function applyPlayIcon() {
   const running = scroll.isRunning();
@@ -262,6 +271,7 @@ async function openText(id) {
     currentText = null;
     note(reader, `${t('couldNotLoadText')} (${err.message}).`);
   }
+  applyPhonRelevance();
 }
 
 async function boot() {

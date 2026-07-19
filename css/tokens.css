@@ -74,8 +74,8 @@
   --ls-caps: 0.14em;
   --ls-caps-sm: 0.16em;
 
-  --measure: 32rem;      /* spoken-layer English measure */
-  --measure-l0: 24rem;   /* rubric is physically narrower */
+  --measure: 38rem;      /* spoken-layer English measure */
+  --measure-l0: 30rem;   /* rubric is physically narrower */
   --column: 56rem;
   --nav-w: 22rem;        /* sidebar width when open */
   --header-h: 44px;      /* the sidebar hangs from this line */

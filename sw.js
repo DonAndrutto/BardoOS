@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v11';
+const VERSION = 'bardo-os-v12';
 
 const PRECACHE = [
   './',
@@ -31,6 +31,7 @@ const PRECACHE = [
   'content/texts/bardo-thodrol.becoming-intro.json',
   'content/texts/bardo-thodrol.dharmata-intro.json',
   'content/texts/bardo-thodrol.dying-intro.json',
+  'content/texts/bardo-thodrol.wrathful-elucidation.json',
   'content/texts/guide.how-to-use.json',
   'content/texts/guide.introduction.json',
   'content/texts/ngotro.virtue-and-vice.json',

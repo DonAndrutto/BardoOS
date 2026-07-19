@@ -238,21 +238,24 @@ body.nav-open .nav { display: block; }
 .nav-cat summary:focus { outline: none; }
 .nav-cat summary:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 
-/* Prayers & Liturgies: a collection within the collection — bracketed
-   by rules, set off by space, its heading in the accent. Never color
-   alone: the separators and the breathing room carry it too. */
+/* Prayers & Liturgies: a collection within the collection — a framed,
+   gently washed panel with its heading in the accent. Never color
+   alone: the frame, the space, and the larger heading carry it too. */
 .nav-cat-collection {
   margin: var(--sp-5) 0;
-  padding: var(--sp-3) 0;
-  border-top: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  padding: var(--sp-3) var(--sp-2);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius: var(--radius-md);
 }
 .nav-cat-collection summary {
   color: var(--accent);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: var(--ls-caps);
 }
 .nav-cat-collection summary:hover { color: var(--accent); }
+.nav-cat-collection button.nav-text { font-weight: 600; }
 
 .nav button.nav-text {
   display: block;
@@ -378,7 +381,7 @@ body.nav-open .nav { display: block; }
 
 /* ── L2 Bardo recitation: framed panel, verse ───────────── */
 .run-L2 {
-  max-width: 40rem;
+  max-width: 44rem;
   margin: var(--sp-6) auto;
   padding: var(--sp-4) var(--sp-5) var(--sp-5);
   background: var(--l2-wash);
@@ -423,7 +426,7 @@ body.nav-open .nav { display: block; }
 /* Repeated formulas share one framed panel; the auto-scroll engine
    holds on it (no pulse, no glow — nothing animates but the scroll). */
 .refrain-group {
-  max-width: 40rem;
+  max-width: 44rem;
   margin: var(--sp-5) auto;
   padding: var(--sp-4) var(--sp-5);
   background: var(--l2-wash);
@@ -581,7 +584,7 @@ body.voice .nav { display: none; }
 body.voice .shell { margin: 0 auto; max-width: var(--column); }
 body.voice .reader { max-width: none; margin: 0; }
 body.voice .shell { padding-top: var(--sp-4); }
-body.voice .reader { --measure: 36rem; }
+body.voice .reader { --measure: 40rem; }
 body.voice .section-heading { opacity: 0.6; }
 
 /* A collapsed rubric: one thin, identical, peekable marker */

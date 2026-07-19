@@ -39,6 +39,7 @@ const FORBIDDEN = new RegExp(
 const FORBIDDEN_ALLOWLIST = new Set([
   'BARDO_OS_BRIEF.md',
   'content/texts/guide.introduction.json',
+  'content/texts/guide.how-to-use.json',
 ]);
 const SCAN_SKIP_DIRS = new Set(['.git', 'node_modules']);
 const SCAN_SKIP_EXTS = new Set(['.ttf', '.otf', '.woff', '.woff2', '.png', '.jpg', '.jpeg', '.webp', '.pdf', '.docx']);
