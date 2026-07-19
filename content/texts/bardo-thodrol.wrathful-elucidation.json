@@ -1,7 +1,6 @@
-```json
 {
   "schemaVersion": 1,
-  "id": "zab-chos-zhi-khro-khro-bo-bardo",
+  "id": "bardo-thodrol.wrathful-elucidation",
   "cycle": "zab-chos-zhi-khro",
   "kind": "instruction",
   "title": {
@@ -571,10 +570,10 @@
           "meter": null,
           "deityRef": null,
           "day": null,
+          "prayerRef": "bardo-thodrol.becoming-intro",
           "note": null
         }
       ]
     }
   ]
 }
-```

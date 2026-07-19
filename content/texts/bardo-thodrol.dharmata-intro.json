@@ -1135,6 +1135,7 @@
           "meter": null,
           "deityRef": null,
           "day": null,
+          "prayerRef": "bardo-thodrol.wrathful-elucidation",
           "note": null
         }
       ]

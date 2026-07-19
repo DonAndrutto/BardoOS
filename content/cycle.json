@@ -114,7 +114,7 @@
         {
           "id": "bardo-thodrol.wrathful-elucidation",
           "title": "An Elucidation of the Appearance of the Wrathful Deities in the Intermediate State of Reality",
-          "status": "forthcoming"
+          "status": "translated"
         },
         {
           "id": "khrid.dharmata-bardo",
@@ -174,13 +174,13 @@
       "heading": { "bo": null, "en": "Prayers & Liturgies" },
       "texts": [
         {
-          "id": "prayer.calling-buddhas-for-aid",
-          "title": "Calling on the Buddhas for Aid",
+          "id": "prayer.root-verses-six-bardos",
+          "title": "Root Verses of the Six Bardos",
           "status": "translated"
         },
         {
-          "id": "prayer.protection-from-fear",
-          "title": "Protection from Fear",
+          "id": "prayer.calling-buddhas-for-aid",
+          "title": "Calling on the Buddhas for Aid",
           "status": "translated"
         },
         {
@@ -189,8 +189,8 @@
           "status": "translated"
         },
         {
-          "id": "prayer.root-verses-six-bardos",
-          "title": "Root Verses of the Six Bardos",
+          "id": "prayer.protection-from-fear",
+          "title": "Protection from Fear",
           "status": "translated"
         }
       ]

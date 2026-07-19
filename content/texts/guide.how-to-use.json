@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "guide.welcome",
+  "id": "guide.how-to-use",
   "cycle": "app",
   "kind": "guide",
   "title": {
@@ -63,4 +63,3 @@
     }
   ]
 }
-```

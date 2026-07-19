@@ -108,6 +108,30 @@
   opacity: 0;
 }
 
+/* the invitation beneath the mandala — appears two seconds into the
+   abiding (js/intro.js adds .show), fades with the rest on dissolve */
+.intro-cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* just below the disc where the screen allows; pinned above the
+     bottom edge where the disc nearly fills the height */
+  top: min(calc(50% + var(--disc) / 2 + 1.5vh), calc(100% - 9vh));
+  text-align: center;
+  color: #d9d2c0;
+  font-family: 'Inter', sans-serif;
+  font-size: max(11px, calc(var(--disc) * 0.024));
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  /* the tracking after the final glyph would off-center the line */
+  padding-left: 0.42em;
+  text-shadow: 0 0 18px rgba(212, 165, 90, 0.3);
+  opacity: 0;
+  transition: opacity 900ms ease;
+  pointer-events: none;
+}
+.intro-cta.show { opacity: 0.85; }
+
 .intro-grain {
   position: absolute;
   inset: 0;
