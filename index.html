@@ -11,8 +11,20 @@
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/intro.css" />
+  <link rel="preload" href="assets/intro/mandala.webp" as="image" type="image/webp" />
 </head>
 <body>
+
+  <!-- The intro veil: the mandala arises, abides, and dissolves while
+       the app boots beneath it. Decorative only — js/intro.js drives
+       it and removes it; a tap or key skips it. -->
+  <div id="intro" aria-hidden="true">
+    <div class="intro-glow"></div>
+    <div class="intro-disc"></div>
+    <div class="intro-label">BARDO OS</div>
+    <div class="intro-grain"></div>
+  </div>
 
   <header class="app-header">
     <button class="menu-toggle" id="btnMenu" aria-expanded="false" aria-controls="nav">
@@ -87,6 +99,7 @@
     </div>
   </div>
 
+  <script type="module" src="js/intro.js"></script>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
