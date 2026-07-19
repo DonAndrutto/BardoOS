@@ -64,7 +64,7 @@
   --size-base: 19px;
   --size-tib: 1.5;      /* multipliers on --size-base */
   --size-phon: 0.9;
-  --size-l0: 0.85;
+  --size-l0: 1.05;   /* explanatory rubric: a touch larger than the recited layers */
   --size-l0-tib: 1.2;
 
   --lh-tight: 1.25;

@@ -353,15 +353,17 @@ body.nav-open .nav { display: block; }
 }
 
 /* ── L0 Rubric: quiet, recessive, never spoken ──────────── */
+/* Upright, not italic: the reader needs the explanatory text legible at
+   a glance at the bedside, and italics cost too much legibility. It sits
+   a touch larger than the recited layers so it reads as the reader's own
+   guidance, still set apart by its muted colour and narrow measure. */
 .block.layer-L0 {
   color: var(--l0-text);
-  font-style: italic;
   font-size: calc(var(--size-block) * var(--size-l0));
 }
 .block.layer-L0 .bo {
   font-size: calc(var(--size-block) * var(--size-l0-tib));
   color: var(--l0-text);
-  font-style: italic;
 }
 .block.layer-L0 .en { max-width: var(--measure-l0); color: var(--l0-text); }
 

@@ -6,7 +6,7 @@
   "title": {
     "bo": null,
     "phon": null,
-    "en": "Welcome"
+    "en": "How to Use Bardo OS"
   },
   "source": {
     "attribution": "Written for Bardo OS — the instrument describing itself as built.",
@@ -15,7 +15,7 @@
   "sections": [
     {
       "id": "s1",
-      "heading": { "bo": null, "en": "A Note on the Text" },
+      "heading": { "bo": null, "en": "A Reading Companion" },
       "blocks": [
         {
           "id": "s1-b001",
@@ -23,19 +23,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The text the West came to know as The Tibetan Book of the Dead arrived here wrapped in many layers of interpretation—some helpful, some a long way from its original purpose. But the text itself speaks with a simpler, more direct voice. It does not present itself as a philosophy to be studied, a psychology to be analysed, or a curiosity to be compared with other traditions. It comes as a living instruction, whispered into the ear of the dying, chanted beside the dead, and held in the heart by those preparing for their own crossing.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s1-b002",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The Bardo Thödrol Chenmo — the “Great Liberation upon Hearing in the Between” — describes itself in terms of extraordinary intimacy and confidence. It says that this teaching, encountered in the intermediate state, is like a connecting tube inserted into a broken water channel, restoring the flow. It says the reminder is like a catapult that can hurl a heavy tree-trunk in an instant, or the turning of a horse by its bridle. It promises that merely hearing these words, even for those weighed down by great negativity, can transform perception and open the way to liberation. It asks that the words be read aloud, that they be learnt by heart, that they not be forgotten even if one were chased by seven ferocious dogs. And it insists, with startling tenderness, that no prior meditation practice is required — this is a teaching that liberates by being seen, by being heard, and by being read aloud.",
+          "en": "Bardo OS is a reading companion for guiding someone through the dying process and the bardo states. At its heart are the words that need to be spoken aloud — clearly marked, easy to find — and the instructions that tell you what to do. This guide walks you through what is here now and what is coming.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -45,7 +33,7 @@
     },
     {
       "id": "s2",
-      "heading": { "bo": null, "en": "This Website" },
+      "heading": { "bo": null, "en": "What's Available Now" },
       "blocks": [
         {
           "id": "s2-b001",
@@ -53,7 +41,423 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "This website is not an exercise in scholarly knowledge, theory, or research. It is a gathering of instructions, prayers, and materials offered directly to practitioners preparing to die, and to those who assist the dying. Nothing here has been softened for academic comfort or dressed up as metaphor. What you will find are the very resources the tradition has placed in the hands of the dying and their companions, trusting that the sound of these words carries its own power. So come in. Explore the Bardo Instructions, let the prayers settle into your memory, and use the materials as they were always meant to be used. Read them for someone whose breath is growing thin. Read them for yourself as the signs of death draw near. Let them be a familiar voice in the ear of the heart, a steady hand on the bridle when the path ahead seems unknowable. The text’s promise is bold: “Even if all the buddhas of the past, present and future were to search, they would not find a sacred teaching superior to this.” Take that invitation seriously, and let these pages become part of your preparation, your service, and your crossing.",
+          "en": "The app currently contains the most commonly taught introductory texts from the Great Liberation Upon Hearing cycle:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The Bardo of Dying and the Dawning of the Peaceful Deities",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "bardo-thodrol.dying-intro",
+          "note": null
+        },
+        {
+          "id": "s2-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The Bardo of Reality: Peaceful Deities (Days One to Six)",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "bardo-thodrol.dharmata-intro",
+          "note": null
+        },
+        {
+          "id": "s2-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The Bardo of Reality: Wrathful Deities (Days Seven onwards)",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "bardo-thodrol.wrathful-elucidation",
+          "note": null
+        },
+        {
+          "id": "s2-b005",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Bardo of Becoming Introduction",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "bardo-thodrol.becoming-intro",
+          "note": null
+        },
+        {
+          "id": "s2-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The Self‑Liberation of Existence: instructions revealing the own‑forms of virtue and vice; pointing‑out the Bardo of Becoming",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "ngotro.virtue-and-vice",
+          "note": null
+        },
+        {
+          "id": "s2-b007",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "A set of four companion prayers is also available, including:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b008",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Saving from Fear",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "prayer.protection-from-fear",
+          "note": null
+        },
+        {
+          "id": "s2-b009",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Deliverance from the Perilous Passage",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "prayer.deliverance-perilous-straits",
+          "note": null
+        },
+        {
+          "id": "s2-b010",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "All texts are presented in their correct order, with every passage clearly tagged so you know what to read aloud and what is instruction for you, the reader. More texts will be added as translations are completed.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "heading": { "bo": null, "en": "What's Coming Soon" },
+      "blocks": [
+        {
+          "id": "s3-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Voice Mode** — a simplified, full‑screen reading view designed specifically for the bedside. It will strip away everything except the words to be spoken, with automatic scrolling and controls optimised for one‑handed use in low light.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Master Language Selector** — a toggle in the header that will allow you to switch the interface language (Tibetan, English, Polish). The content will follow in the future; for now, it sets the infrastructure.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s3-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Additional texts** from the complete cycle, including the full deity‑vision days, more prayers, and instructions for the bardos of dream and meditation.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "heading": { "bo": null, "en": "Browsing the Texts" },
+      "blocks": [
+        {
+          "id": "s4-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "When you open the app in Guide Mode, a sidebar organises the texts by category — Dying, Dharmatā, Becoming, and Prayers. Tap a category to expand it, then tap a text title to load it. Active texts are highlighted; those still being translated show a lock icon.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "heading": { "bo": null, "en": "Reading a Text" },
+      "blocks": [
+        {
+          "id": "s5-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Once a text is loaded, you'll see a colour‑coded view that keeps the different layers distinct:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Gold‑ruled passages (◆ READ ALOUD):** words you speak directly to the dying person. Left‑aligned, large, and unmistakable.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Indented verse panels (BARDO RECITATION):** words the deceased is told to recite themselves. Framed in a soft panel.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Centred prayers (LITURGY):** prayers performed by the living assembly, with Tibetan, phonetics, and translation stacked.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b005",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "**Muted, centred instructions:** stage directions and explanations for you, the reader. Not meant to be spoken.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s5-b006",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "This colour coding works in both light and dark mode, and at any text size.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "heading": { "bo": null, "en": "Auto‑scroll" },
+      "blocks": [
+        {
+          "id": "s6-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The app includes smooth automatic scrolling so you don't have to swipe while reading. Tap the play/pause button or touch the text to pause; after a short pause the scroll resumes. Speed is adjustable with the − and + buttons, and a number shows the current pace. Scrolling stops automatically at the end of the text.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "heading": { "bo": null, "en": "Day and Night Mode" },
+      "blocks": [
+        {
+          "id": "s7-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Tap the sun/moon icon to switch. Night mode uses a deep, warm background — dim enough for a dark room, yet fully readable. The app respects your system preference on first visit; after that your choice sticks.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "heading": { "bo": null, "en": "Text Size and Language Layers" },
+      "blocks": [
+        {
+          "id": "s8-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Use the A− and A+ buttons to adjust the text size (16–48 px). The TIB, PHO, and ENG toggles let you show or hide the Tibetan, phonetic transcription, and English translation. You can use any combination; the last active toggle cannot be turned off so the page never goes blank. Phonetics are provided for the prayer texts; for the bedside pointing‑out texts they are not needed.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "heading": { "bo": null, "en": "What to Expect at the Bedside" },
+      "blocks": [
+        {
+          "id": "s9-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Right now, you can open any of the available instruction texts, use auto‑scroll, and read the gold‑ruled passages aloud. The instructions are clear and the formatting keeps you on track. For the most focused experience, turn on night mode, increase the text size, and keep the device plugged in.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s9-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Once Voice Mode arrives, the experience will become even simpler: one tap to hide everything but the spoken words, with hands‑free scrolling. Until then, use Guide Mode — it is already designed for the task.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "heading": { "bo": null, "en": "Donate" },
+      "blocks": [
+        {
+          "id": "s10-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "A small Donate button appears in the header area. The translations and the app are offered freely. If you wish to support ongoing translation work, you'll be able to do so through a PayPal link. It will never intrude on the reading surface.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "heading": { "bo": null, "en": "If Something Is Unclear" },
+      "blocks": [
+        {
+          "id": "s11-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Please refer to the Introduction text in the Guide section for background on the bardos and the practice.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "guide.introduction",
+          "note": null
+        },
+        {
+          "id": "s11-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "If you have questions about a specific passage or layer, check the stage directions (the muted text) — they often contain the context you need.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "heading": { "bo": null, "en": "May It Be of Benefit" },
+      "blocks": [
+        {
+          "id": "s12-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Bardo OS is built to be steady, simple, and reliable — so you can be fully present for the person who is dying. May it be of benefit.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s12-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "For further assistance contact translation@arybszleger.com",
           "meter": null,
           "deityRef": null,
           "day": null,

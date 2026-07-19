@@ -9,13 +9,16 @@
     "en": "Introduction"
   },
   "source": {
-    "attribution": "Written for Bardo OS, after the owner's essay on the Western reception of the Bardo Thödröl. This Introduction carries the one permitted mention of the invented Western title (BRIEF §2) — it names it in order to set it aside.",
+    "attribution": "Written for Bardo OS. This Introduction carries the one permitted mention of the invented Western title (BRIEF §2) — it names it in order to set it aside.",
     "notes": null
   },
   "sections": [
     {
       "id": "s1",
-      "heading": { "bo": null, "en": "What This Is" },
+      "heading": {
+        "bo": null,
+        "en": "A Note on the Text"
+      },
       "blocks": [
         {
           "id": "s1-b001",
@@ -23,7 +26,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "This app is not an exercise in scholarly knowledge, theory, or research. It is an instrument of practice: an aid for practitioners preparing for their own death, and for those who assist the dying and the dead. Everything in it — the arrangement of the texts, the read-aloud markings, the Voice mode — serves one situation: a person is dying, or has died, and someone is there to help.",
+          "en": "The text the West came to know as The Tibetan Book of the Dead arrived here wrapped in many layers of interpretation—some helpful, some a long way from its original purpose. But the text itself speaks with a simpler, more direct voice. It does not present itself as a philosophy to be studied, a psychology to be analysed, or a curiosity to be compared with other traditions. It comes as a living instruction, whispered into the ear of the dying, chanted beside the dead, and held in the heart by those preparing for their own crossing.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -35,7 +38,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The texts it carries belong to the cycle of bardo instructions concealed by Padmasambhava and revealed by the tertön Karma Lingpa — a cycle best known in the West through a book that most people have heard of and few have read as it was meant to be read. How that happened is worth telling briefly, because this instrument is built against that history.",
+          "en": "The Bardo Thödrol Chenmo — the “Great Liberation upon Hearing in the Between” — describes itself in terms of extraordinary intimacy and confidence. It says that this teaching, encountered in the intermediate state, is like a connecting tube inserted into a broken water channel, restoring the flow. It says the reminder is like a catapult that can hurl a heavy tree-trunk in an instant, or the turning of a horse by its bridle. It promises that merely hearing these words, even for those weighed down by great negativity, can transform perception and open the way to liberation. It asks that the words be read aloud, that they be learnt by heart, that they not be forgotten even if one were chased by seven ferocious dogs. And it insists, with startling tenderness, that no prior meditation practice is required — this is a teaching that liberates by being seen, by being heard, and by being read aloud.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -45,7 +48,10 @@
     },
     {
       "id": "s2",
-      "heading": { "bo": null, "en": "The Archetypal Distortion: the Invention of \"The Tibetan Book of the Dead\"" },
+      "heading": {
+        "bo": null,
+        "en": "This Website"
+      },
       "blocks": [
         {
           "id": "s2-b001",
@@ -53,73 +59,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The popularity of Buddhism in the West — of the Vajrayāna tradition in particular — can arguably be dated from the publication of The Tibetan Book of the Dead by W. Y. Evans-Wentz in 1927. As Donald S. Lopez Jr. notes in his biography of that book, the work may have done as much harm as good: while it popularised Tantric Buddhism and put it on the map of Western readers, it twisted the original into something almost unrecognisable — a vehicle for the editor's own advancement, moulded into what suited the Occidental audience of the time: part self-help psychotherapy, part Romantic fascination with Tibet as an exotic destination.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s2-b002",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The distortion begins with the title. Evans-Wentz christened the text The Tibetan Book of the Dead to draw an explicit parallel with The Egyptian Book of the Dead (itself a Western appellation for the Book of Coming Forth by Day). This was not merely a marketing tactic; it was a theological assertion. By linking the two, Evans-Wentz sought to validate the Theosophical doctrine that all ancient religions share a common esoteric core concerning the afterlife. There is no Tibetan equivalent to his title. The original, Bar-do thos-grol chen-mo, means \"The Great Liberation upon Hearing in the Between.\"",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s2-b003",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "The distortion was then entrenched by Carl Jung's psychological commentary, added to later editions, which transformed a religious liturgy into a psychological treatise. Jung admitted that his interpretation did not accord with the original intention of the text, yet proceeded to psychologise the bardo states, reducing the Peaceful and Wrathful deities and the cosmological realms to \"archetypes\" of the collective unconscious. That move allowed Western readers to consume the text as a manual for self-exploration and individuation without engaging its demanding religious commitments — the literal reality of samsara, and the necessity of liberation from it.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s2-b004",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "Lopez contends that Jung used the text primarily to validate his own psychoanalytic theories: by claiming that ancient Tibetan sages had mapped the \"unconscious,\" he lent an aura of timeless authority to his own twentieth-century constructs. This psychologisation stripped the text of its soteriological urgency. In the Tibetan context, the bardo is a real and terrifying existential crisis in which one's future ontological status is at stake; in the Jungian reading, it becomes a metaphorical journey into the depths of the psyche.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        }
-      ]
-    },
-    {
-      "id": "s3",
-      "heading": { "bo": null, "en": "What This Instrument Is For" },
-      "blocks": [
-        {
-          "id": "s3-b001",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "Bardo OS is built on the opposite premise. Here the Bardo Thödröl is taken as what it declares itself to be: instruction and liturgy — words to be spoken aloud to a dying or dead person, at a particular bedside, at a particular hour, because what happens next matters. The texts are given in full, under their own titles, in the order the cycle gives them; the interface exists to get out of their way.",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s3-b002",
-          "layer": "L0",
-          "form": "prose",
-          "bo": null,
-          "phon": null,
-          "en": "Use it while there is time: read the texts, learn their sequence, take the instructions to heart, so that the words are familiar before they are needed. And keep it at hand for the moment it was made for — when you are the one reading, and someone is listening for whom the bardo is not a metaphor.",
+          "en": "This website is not an exercise in scholarly knowledge, theory, or research. It is a gathering of instructions, prayers, and materials offered directly to practitioners preparing to die, and to those who assist the dying. Nothing here has been softened for academic comfort or dressed up as metaphor. What you will find are the very resources the tradition has placed in the hands of the dying and their companions, trusting that the sound of these words carries its own power. So come in. Explore the Bardo Instructions, let the prayers settle into your memory, and use the materials as they were always meant to be used. Read them for someone whose breath is growing thin. Read them for yourself as the signs of death draw near. Let them be a familiar voice in the ear of the heart, a steady hand on the bridle when the path ahead seems unknowable. The text’s promise is bold: “Even if all the buddhas of the past, present and future were to search, they would not find a sacred teaching superior to this.” Take that invitation seriously, and let these pages become part of your preparation, your service, and your crossing.",
           "meter": null,
           "deityRef": null,
           "day": null,
