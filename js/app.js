@@ -14,15 +14,16 @@ const $ = (id) => document.getElementById(id);
 let currentText = null; // the loaded text JSON currently on screen
 
 // ── Theme: a manual choice wins; otherwise follow the system ────────
-const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-
+// Night is the default (owner's direction, 2026-07-19): the app is for
+// bedsides and small hours, so day is the explicit choice, not dark.
 function applyTheme() {
-  const dark = state.theme ? state.theme === 'dark' : systemDark.matches;
+  const dark = state.theme ? state.theme === 'dark' : true;
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.querySelector('meta[name="theme-color"]')
+    .setAttribute('content', dark ? '#171412' : '#FDFBF7');
   $('iconSun').style.display = dark ? 'none' : 'block';
   $('iconMoon').style.display = dark ? 'block' : 'none';
 }
-systemDark.addEventListener('change', () => { if (!state.theme) applyTheme(); });
 
 // ── Type size: one custom property drives every layer's scale ───────
 function applyFontSize() {

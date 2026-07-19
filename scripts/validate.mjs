@@ -31,11 +31,15 @@ const ID_PATTERN = /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/;
 // The pattern is assembled from fragments so the string itself exists
 // nowhere in this repository, this file included. Case-insensitive,
 // whitespace-tolerant. The allowlist holds the one place the brief
-// quotes it in order to ban it; a future historical note would be
-// added here explicitly.
+// quotes it in order to ban it, plus the one permitted historical note
+// (BRIEF §2): the Guide's Introduction, which names the invented title
+// in order to reject it (owner-directed, 2026-07-19).
 const FORBIDDEN = new RegExp(
   ['tibetan', 'book', 'of', 'the', 'dead'].join('\\s+'), 'i');
-const FORBIDDEN_ALLOWLIST = new Set(['BARDO_OS_BRIEF.md']);
+const FORBIDDEN_ALLOWLIST = new Set([
+  'BARDO_OS_BRIEF.md',
+  'content/texts/guide.introduction.json',
+]);
 const SCAN_SKIP_DIRS = new Set(['.git', 'node_modules']);
 const SCAN_SKIP_EXTS = new Set(['.ttf', '.otf', '.woff', '.woff2', '.png', '.jpg', '.jpeg', '.webp', '.pdf', '.docx']);
 

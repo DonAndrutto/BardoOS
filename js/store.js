@@ -16,7 +16,7 @@ export const VOICE_FLOOR = 20;
 function defaults() {
   return {
     fontSize: FONT_DEFAULT,
-    theme: null,          // null = follow the system; 'light' | 'dark' = manual choice wins
+    theme: null,          // null = never chosen → night (the default); 'light' | 'dark' = manual choice wins
     showBo: true,
     showPhon: true,
     showEn: true,
