@@ -11,7 +11,7 @@
 // auto-scroll geometry stays honest — inherited from the reference.
 
 import { state } from './store.js';
-import { cycleEntry } from './data.js';
+import { cycleEntry, nextInGroup } from './data.js';
 import { t } from './i18n.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
@@ -83,6 +83,20 @@ function prayerRefEl(block) {
     el('span', 'prayer-link-title', body).textContent = title;
     el('small', 'prayer-link-note', body).textContent = t('forthcoming');
   }
+  return wrap;
+}
+
+// A prayer's onward link to the next prayer in the cycle (manifest order).
+// Reuses the prayer-link component; the reader's delegated click handler
+// navigates on data-prayerRef, exactly as an authored cross-link would.
+function nextPrayerEl(entry) {
+  const wrap = el('div', 'prayer-ref prayer-next');
+  el('span', 'prayer-next-label', wrap).textContent = t('nextPrayer');
+  const btn = el('button', 'prayer-link', wrap);
+  btn.type = 'button';
+  btn.dataset.prayerRef = entry.id;
+  el('span', 'prayer-link-title', btn).textContent = entry.title;
+  btn.insertAdjacentHTML('beforeend', ARROW_ICON);
   return wrap;
 }
 
@@ -165,6 +179,11 @@ function renderBlocks(blocks, parent, sectionId) {
 
 export function renderText(text, container) {
   container.textContent = '';
+  // Per-text hooks for CSS scoping (e.g. the intro texts render Tibetan
+  // smaller than English). The renderer sets these; CSS reads them.
+  container.dataset.textId = text.id;
+  container.dataset.kind = text.kind;
+  container.dataset.cycle = text.cycle;
 
   const title = el('header', 'text-title', container);
   if (state.showBo && text.title.bo != null) fillInline(el('div', 'bo', title), text.title.bo);
@@ -178,5 +197,12 @@ export function renderText(text, container) {
     // A section whose blocks are all hidden shows only its heading — in
     // Voice mode even that goes when nothing in it is spoken.
     if (state.mode === 'voice' && sec.children.length === 1) sec.remove();
+  }
+
+  // Prayers carry a link onward to the next prayer in the cycle; the last
+  // one in its group has none. Instrument navigation, not authored content.
+  if (text.kind === 'prayer') {
+    const next = nextInGroup(text.id);
+    if (next) container.appendChild(nextPrayerEl(next));
   }
 }

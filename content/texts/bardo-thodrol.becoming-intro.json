@@ -21,55 +21,6 @@
       },
       "blocks": [
         {
-          "id": "s1-b001",
-          "layer": "L4",
-          "form": "title",
-          "bo": null,
-          "phon": null,
-          "en": "BARDO THÖDRÖL  ·  PART THREE",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s1-b002",
-          "layer": "L4",
-          "form": "title",
-          "bo": null,
-          "phon": null,
-          "en": "The Bardo of Becoming",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
-          "id": "s1-b003",
-          "layer": "L4",
-          "form": "title",
-          "bo": "བར་དོ་ཐོས་གྲོལ་ཆེན་མོ",
-          "phon": null,
-          "en": "The Great Liberation through Hearing in the Bardos",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null,
-          "boEndsOpen": true
-        },
-        {
-          "id": "s1-b004",
-          "layer": "L4",
-          "form": "title",
-          "bo": null,
-          "phon": null,
-          "en": "Part Three — The Bardo of Becoming (the Bardo of Rebirth)",
-          "meter": null,
-          "deityRef": null,
-          "day": null,
-          "note": null
-        },
-        {
           "id": "s1-b005",
           "layer": "L4",
           "form": "title",
