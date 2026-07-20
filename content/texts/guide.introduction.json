@@ -64,6 +64,19 @@
           "deityRef": null,
           "day": null,
           "note": null
+        },
+        {
+          "id": "s2-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "New to the app itself? For what is here now, and how to read it:",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "prayerRef": "guide.how-to-use",
+          "note": null
         }
       ]
     }

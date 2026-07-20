@@ -62,7 +62,7 @@
   /* User text size: min 16 / default 19 / max 48 (approved).
      Phase 1 ships the default only; the control arrives in Phase 2. */
   --size-base: 19px;
-  --size-tib: 1.5;      /* multipliers on --size-base */
+  --size-tib: 1.4;      /* multipliers on --size-base (Tibetan sits a touch closer to the English) */
   --size-phon: 0.9;
   --size-l0: 1.05;   /* explanatory rubric: a touch larger than the recited layers */
   --size-l0-tib: 1.2;
