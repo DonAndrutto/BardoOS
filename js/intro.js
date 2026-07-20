@@ -89,7 +89,17 @@ function dissolving(p) {
 }
 
 // ── The veil itself ─────────────────────────────────────────────────
-const intro = document.getElementById('intro');
+// The markup sits in index.html for the first arising; kept here too so
+// the veil can be summoned again (the Iconography entry replays it, and
+// the mandala arises exactly as it does on opening the app).
+const INTRO_HTML =
+  '<div class="intro-glow"></div>' +
+  '<div class="intro-disc"></div>' +
+  '<div class="intro-label">BARDO OS</div>' +
+  '<div class="intro-cta">OPEN TO EXPLORE</div>' +
+  '<div class="intro-grain"></div>';
+
+let intro = document.getElementById('intro');
 let raf = 0;
 let done = false;
 let dissolveFrom = null; // { at: wall seconds, cum: authored seconds } once tapped
@@ -156,7 +166,14 @@ function paint(els, st, cum) {
 }
 
 async function start() {
+  intro = document.getElementById('intro');
   if (!intro) return;
+  // A fresh arising (first boot, or a replay): clear any prior run's state.
+  cancelAnimationFrame(raf);
+  done = false;
+  dissolveFrom = null;
+  proceedFn = end;
+  intro.classList.remove('intro-out');
   try {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       end();
@@ -218,6 +235,20 @@ async function start() {
   } catch {
     end(); // the veil must never strand the reader outside the app
   }
+}
+
+// Summon the veil again after the app is running — the Iconography
+// entry (Zhitro Mandala) uses this to replay the opening arising. If the
+// original veil already dissolved away, its markup is rebuilt first.
+export function replayIntro() {
+  if (!document.getElementById('intro')) {
+    const veil = document.createElement('div');
+    veil.id = 'intro';
+    veil.setAttribute('aria-hidden', 'true');
+    veil.innerHTML = INTRO_HTML;
+    document.body.appendChild(veil);
+  }
+  start();
 }
 
 start();

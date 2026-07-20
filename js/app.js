@@ -5,6 +5,7 @@
 import { loadCycle, loadText } from './data.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
+import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
 
@@ -425,6 +426,19 @@ async function boot() {
         d.appendChild(body);
         cat.appendChild(d);
       }
+    }
+    // Iconography holds a single affordance, not a text: tapping the
+    // Zhitro Mandala replays the opening arising (js/intro.js).
+    if (group.id === 'iconography') {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'nav-text';
+      b.textContent = 'Zhitro Mandala, Liberation upon Seeing';
+      b.addEventListener('click', () => {
+        if (!desktopNav.matches) setMenu(false);
+        replayIntro();
+      });
+      cat.appendChild(b);
     }
     nav.appendChild(cat);
   }
