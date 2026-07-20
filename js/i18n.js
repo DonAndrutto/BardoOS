@@ -30,6 +30,9 @@ const STRINGS = {
     couldNotLoadText: 'Could not load this text',
     couldNotLoadCycle: 'Could not load the cycle manifest',
     emptyCycle: 'No texts in the cycle yet.',
+    nextPrayer: 'Next prayer',
+    contents: 'Contents',
+    contentsEmpty: 'No sections in this text.',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

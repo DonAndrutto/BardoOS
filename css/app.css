@@ -414,6 +414,28 @@ body.nav-open .nav { display: block; }
   letter-spacing: var(--ls-caps-sm);
   color: var(--text);
 }
+
+/* ── Per-text overrides (scoped by the data-text-id on #reader) ──────
+   The three Bardo instruction intros set their Tibetan *smaller* than the
+   English (owner's direction). Custom properties inherit, so overriding
+   the multipliers here re-sizes every .bo below in these texts only; the
+   oversized Tibetan title is brought under the English title too. */
+#reader[data-text-id="bardo-thodrol.dying-intro"],
+#reader[data-text-id="bardo-thodrol.dharmata-intro"],
+#reader[data-text-id="bardo-thodrol.becoming-intro"] {
+  --size-tib: 0.85;
+  --size-l0-tib: 0.85;
+}
+#reader[data-text-id="bardo-thodrol.dying-intro"] .text-title .bo,
+#reader[data-text-id="bardo-thodrol.dharmata-intro"] .text-title .bo,
+#reader[data-text-id="bardo-thodrol.becoming-intro"] .text-title .bo {
+  font-size: calc(var(--size-base) * 0.95);
+}
+/* "How to read this text" in the Becoming intro reads quieter than the
+   other apparatus titles (owner's direction). Block-scoped. */
+#reader[data-text-id="bardo-thodrol.becoming-intro"] .block[data-block-id="s1-b005"] .en {
+  font-size: calc(var(--size-base) * 0.7);
+}
 .block.layer-L4.form-colophon,
 .block.layer-L4.form-prose {
   font-style: italic;
@@ -478,6 +500,24 @@ body.nav-open .nav { display: block; }
   letter-spacing: 0.02em;
   color: var(--text-muted);
   margin-top: 2px;
+}
+
+/* Onward link at the foot of a prayer — the next prayer in the cycle. */
+.prayer-next {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.prayer-next-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+  margin-bottom: var(--sp-2);
 }
 
 /* Verse lines render as real lines */
@@ -576,6 +616,68 @@ body.nav-open .nav { display: block; }
 
 /* Content never hides behind the bar */
 .shell { padding-bottom: 7rem; }
+
+/* ── Contents: jump to a portion of the current text ────── */
+.contents-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--sp-4);
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.contents-panel[hidden] { display: none; }
+.contents-sheet {
+  width: 100%;
+  max-width: 32rem;
+  max-height: 60vh;
+  margin-bottom: 5.5rem; /* clears the bottom bar */
+  overflow-y: auto;
+  padding: var(--sp-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+.contents-heading {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+}
+.contents-list { list-style: none; margin: 0; padding: 0; }
+.contents-item { margin: 0; }
+.contents-link {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: calc(var(--size-base) * 0.9);
+  color: var(--text);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .contents-link:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+}
+.contents-link:focus { outline: none; }
+.contents-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
 
 /* ── Voice mode: the mode you use when someone is dying ─── */
 body.voice .app-header,

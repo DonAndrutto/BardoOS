@@ -59,7 +59,10 @@ function anchorKept(change) {
 }
 
 function rerender() {
-  if (currentText) renderText(currentText, $('reader'));
+  if (currentText) {
+    renderText(currentText, $('reader'));
+    buildContents();
+  }
 }
 
 // ── Mode ────────────────────────────────────────────────────────────
@@ -219,6 +222,65 @@ function navIsOpen() {
   return document.body.classList.contains('nav-open');
 }
 
+// ── Contents: jump to a major portion of the current text ───────────
+// Built from the rendered sections, so Voice mode's pruning is honoured
+// and placeholder (TODO_CONTENT) headings are skipped. A text with fewer
+// than two real portions has nothing to select, so the control hides.
+function buildContents() {
+  const list = $('contentsList');
+  const group = $('contentsGroup');
+  list.textContent = '';
+  const sections = Array.from(
+    document.querySelectorAll('#reader section[data-section-id]')
+  ).filter((sec) => {
+    const h = sec.querySelector('.section-heading');
+    const label = h ? h.textContent.trim() : '';
+    return label && label !== TODO;
+  });
+  if (sections.length < 2) {
+    group.hidden = true;
+    closeContents();
+    return;
+  }
+  for (const sec of sections) {
+    const li = document.createElement('li');
+    li.className = 'contents-item';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'contents-link';
+    btn.dataset.sectionId = sec.dataset.sectionId;
+    btn.textContent = sec.querySelector('.section-heading').textContent.trim();
+    li.appendChild(btn);
+    list.appendChild(li);
+  }
+  group.hidden = false;
+}
+
+function jumpToSection(id) {
+  const sec = document.querySelector(`#reader section[data-section-id="${CSS.escape(id)}"]`);
+  if (!sec) return;
+  const header = document.querySelector('.app-header');
+  // Header is sticky in Guide mode, hidden in Voice mode (offsetParent null).
+  const offset = header && header.offsetParent !== null
+    ? header.getBoundingClientRect().height + 8 : 8;
+  const y = window.scrollY + sec.getBoundingClientRect().top - offset;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+
+function openContents() {
+  buildContents();
+  if ($('contentsGroup').hidden) return; // nothing to show
+  $('contentsPanel').hidden = false;
+  $('btnContents').setAttribute('aria-expanded', 'true');
+  const first = $('contentsList').querySelector('.contents-link');
+  if (first) first.focus();
+}
+
+function closeContents() {
+  $('contentsPanel').hidden = true;
+  $('btnContents').setAttribute('aria-expanded', 'false');
+}
+
 // ── Fullscreen: the whole screen given to the text ──────────────────
 function fsElement() {
   return document.fullscreenElement || document.webkitFullscreenElement || null;
@@ -255,6 +317,7 @@ async function openText(id) {
   scroll.stop();
   // The docked sidebar stays; the overlay gets out of the way.
   if (!desktopNav.matches) setMenu(false);
+  closeContents();
   const reader = $('reader');
   document.querySelectorAll('.nav .nav-text[data-text-id]').forEach((b) => {
     const active = b.dataset.textId === id;
@@ -267,9 +330,11 @@ async function openText(id) {
   try {
     currentText = await loadText(id);
     renderText(currentText, reader);
+    buildContents();
     window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
+    buildContents();
     note(reader, `${t('couldNotLoadText')} (${err.message}).`);
   }
   applyPhonRelevance();
@@ -299,6 +364,19 @@ async function boot() {
   }
   scroll.onStopped(applyPlayIcon);
 
+  // Contents selector: open the portion list; jump on pick; close on a
+  // backdrop tap. (Escape is handled with the other overlays below.)
+  $('btnContents').addEventListener('click', openContents);
+  $('contentsPanel').addEventListener('click', (e) => {
+    const link = e.target.closest('.contents-link');
+    if (link) {
+      closeContents();
+      jumpToSection(link.dataset.sectionId);
+      return;
+    }
+    if (!e.target.closest('.contents-sheet')) closeContents();
+  });
+
   // Sidebar: the corner button toggles it. As an overlay (narrow
   // screens) any way out closes it; docked, it stays until toggled.
   $('btnMenu').addEventListener('click', () => setMenu(!navIsOpen()));
@@ -310,6 +388,11 @@ async function boot() {
   });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
+    if (!$('contentsPanel').hidden) {
+      closeContents();
+      $('btnContents').focus();
+      return;
+    }
     if (!$('uiLangMenu').hidden) {
       closeUiLangMenu();
       $('btnUiLang').focus();

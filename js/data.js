@@ -12,11 +12,22 @@ async function getJSON(path) {
 // always loads the cycle before rendering any text.
 const cycleIndex = new Map();
 
+// For each text, the next translated text in the same manifest group —
+// so a text can offer a "next in line" link. Null at a group's end.
+const nextInGroupIndex = new Map();
+
 export async function loadCycle() {
   const cycle = await getJSON('content/cycle.json');
   cycleIndex.clear();
+  nextInGroupIndex.clear();
   for (const group of cycle.groups) {
     for (const entry of group.texts) cycleIndex.set(entry.id, entry);
+    // Chain each translated entry to the next translated one in this group
+    // (forthcoming entries have no readable page, so they are skipped).
+    const translated = group.texts.filter((e) => e.status === 'translated');
+    for (let i = 0; i < translated.length; i++) {
+      nextInGroupIndex.set(translated[i].id, translated[i + 1] || null);
+    }
   }
   return cycle;
 }
@@ -24,6 +35,11 @@ export async function loadCycle() {
 // Manifest entry {id, title, status} for a text id, or null.
 export function cycleEntry(id) {
   return cycleIndex.get(id) || null;
+}
+
+// The next translated text in the same manifest group, or null at the end.
+export function nextInGroup(id) {
+  return nextInGroupIndex.get(id) || null;
 }
 
 export function loadText(id) {
