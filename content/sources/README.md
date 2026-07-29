@@ -13,10 +13,13 @@ Current holdings:
 
 - `Bardo Of Dharmatha Peaceful.json` — draft of the peaceful days; the
   entered, validated version is `content/texts/bardo-thodrol.dharmata-intro.json`.
-- `Bardo Of Dharmatha Wrathful.json` — Part Two (the wrathful days,
-  Days 8–12). Not yet entered: the source carries no ◆ READ ALOUD
-  shading, so its layer tagging awaits the owner (docs/catalogue.md,
-  note 5). Catalogued as `bardo-thodrol.wrathful-elucidation`, forthcoming.
+- `Bardo Of Dharmatha Wrathful.json` — an earlier draft of the wrathful
+  days, carrying no ◆ READ ALOUD shading. Superseded for content entry by
+  the shaded document below; kept for reference.
+- `Bardo Thodrol Part Two bilingual.docx` — Part Two, the wrathful days,
+  with the ◆ READ ALOUD shading applied and the days broken out under
+  their own headings. This is the source of record for
+  `content/texts/bardo-thodrol.wrathful-elucidation.json`.
 - `Bardo Thodrol bilingual.docx` — the owner's bilingual working document.
 
 Nothing here ships in the app; the renderer reads `content/texts/` and
