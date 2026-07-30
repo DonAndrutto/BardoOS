@@ -3,6 +3,7 @@
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
 import { loadCycle, loadText } from './data.js';
+import { renderHome, renderTexts } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
 import { replayIntro } from './intro.js';
@@ -13,6 +14,8 @@ const TODO = 'TODO_CONTENT';
 const $ = (id) => document.getElementById(id);
 
 let currentText = null; // the loaded text JSON currently on screen
+let cycle = null;       // the manifest, once loaded
+let view = 'home';      // 'home' | 'texts' | 'text' — what is on the surface
 
 // ── Theme: a manual choice wins; otherwise follow the system ────────
 // Night is the default (owner's direction, 2026-07-19): the app is for
@@ -59,15 +62,22 @@ function anchorKept(change) {
 }
 
 function rerender() {
-  if (currentText) {
-    renderText(currentText, $('reader'));
+  const reader = $('reader');
+  if (view === 'text' && currentText) {
+    renderText(currentText, reader);
     buildContents();
+  } else if (view === 'texts' && cycle) {
+    renderTexts(reader, cycle);
+  } else if (view === 'home') {
+    renderHome(reader);
   }
 }
 
 // ── Mode ────────────────────────────────────────────────────────────
+// Voice mode's chrome belongs to a text: off one it would hide the
+// header, and with it the way back — so the class only lands on a text.
 function applyMode() {
-  document.body.classList.toggle('voice', state.mode === 'voice');
+  document.body.classList.toggle('voice', state.mode === 'voice' && view === 'text');
   $('btnVoice').classList.toggle('active', state.mode === 'voice');
   $('btnVoice').setAttribute('aria-pressed', String(state.mode === 'voice'));
   applyFontSize();
@@ -190,6 +200,8 @@ function applyUiLang() {
   $('uiLangCode').textContent = UI_LANG_BY_CODE[state.uiLang].label;
   $('btnUiLang').setAttribute('aria-label', t('interfaceLanguage'));
   $('btnUiLang').title = t('interfaceLanguage');
+  $('btnHome').setAttribute('aria-label', t('home'));
+  $('btnHome').title = t('home');
   buildUiLangMenu();
   // Re-apply every string the app writes itself. With English the only
   // populated table this changes nothing visible — it is the mechanism
@@ -213,13 +225,22 @@ function setUiLang(code) {
 // default, on a narrow one. Voice mode hides it entirely (CSS).
 const desktopNav = window.matchMedia('(min-width: 64rem)');
 
+let navOpenedAtY = 0; // where the page stood when the overlay opened
+
 function setMenu(open) {
   document.body.classList.toggle('nav-open', open);
   $('btnMenu').setAttribute('aria-expanded', String(open));
+  if (open) navOpenedAtY = window.scrollY;
 }
 
 function navIsOpen() {
   return document.body.classList.contains('nav-open');
+}
+
+// Open *over* the text (narrow screens) rather than docked beside it.
+// Only the overlay gets out of the way by itself.
+function navIsOverlay() {
+  return navIsOpen() && !desktopNav.matches;
 }
 
 // ── Contents: jump to a major portion of the current text ───────────
@@ -313,11 +334,52 @@ function note(container, message) {
   container.appendChild(p);
 }
 
+// Three things can stand on the reading surface: the doorway, the list
+// of available texts, or a text. The body carries which — the bottom
+// bar stands its reading controls down where there is nothing to read.
+function showView(next) {
+  view = next;
+  document.body.dataset.view = next;
+  applyMode();
+}
+
+// Leaving a text for one of the doorway pages: stop the scroll, drop
+// the overlays, and let go of the text (nothing is highlighted in the
+// catalogue while none is open).
+function leaveText() {
+  scroll.stop();
+  closeContents();
+  currentText = null;
+  if (!desktopNav.matches) setMenu(false);
+  document.querySelectorAll('.nav .nav-text[data-text-id]')
+    .forEach((b) => b.classList.remove('active'));
+}
+
+function showHome() {
+  leaveText();
+  showView('home');
+  renderHome($('reader'));
+  buildContents();
+  applyPhonRelevance();
+  window.scrollTo(0, 0);
+}
+
+function showTexts() {
+  if (!cycle) { showHome(); return; }
+  leaveText();
+  showView('texts');
+  renderTexts($('reader'), cycle);
+  buildContents();
+  applyPhonRelevance();
+  window.scrollTo(0, 0);
+}
+
 async function openText(id) {
   scroll.stop();
   // The docked sidebar stays; the overlay gets out of the way.
   if (!desktopNav.matches) setMenu(false);
   closeContents();
+  showView('text');
   const reader = $('reader');
   document.querySelectorAll('.nav .nav-text[data-text-id]').forEach((b) => {
     const active = b.dataset.textId === id;
@@ -342,7 +404,7 @@ async function openText(id) {
 
 async function boot() {
   applyTheme();
-  applyMode();
+  showView('home'); // the doorway is where the app stands until told otherwise
   applyLangs();
   applySpeed();
   applyFontSize();
@@ -380,12 +442,24 @@ async function boot() {
   // Sidebar: the corner button toggles it. As an overlay (narrow
   // screens) any way out closes it; docked, it stays until toggled.
   $('btnMenu').addEventListener('click', () => setMenu(!navIsOpen()));
-  document.addEventListener('click', (e) => {
-    if (navIsOpen() && !desktopNav.matches &&
+  // Any move toward the text dismisses the overlay: a touch on the page
+  // beneath it, or a scroll of that page. pointerdown, not click —
+  // iOS Safari does not deliver a click for a tap on plain prose, and a
+  // drag to scroll starts here too, before a single pixel has moved.
+  document.addEventListener('pointerdown', (e) => {
+    if (navIsOverlay() &&
         !$('nav').contains(e.target) && !$('btnMenu').contains(e.target)) {
       setMenu(false);
     }
   });
+  // Auto-scroll moves the page on its own; that is not the reader
+  // reaching for the text, so it does not close anything.
+  window.addEventListener('scroll', () => {
+    if (navIsOverlay() && !scroll.isRunning() &&
+        Math.abs(window.scrollY - navOpenedAtY) > 4) {
+      setMenu(false);
+    }
+  }, { passive: true });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     if (!$('contentsPanel').hidden) {
@@ -398,7 +472,7 @@ async function boot() {
       $('btnUiLang').focus();
       return;
     }
-    if (navIsOpen() && !desktopNav.matches) {
+    if (navIsOverlay()) {
       setMenu(false);
       $('btnMenu').focus();
     }
@@ -428,9 +502,23 @@ async function boot() {
     $('btnFs').style.display = 'none';
   }
 
-  // Rubric peeking in Voice mode, and prayer cross-links — both
-  // delegated: the reader's contents re-render often.
+  // Home: the app's name in the header is the way back to the doorway.
+  $('btnHome').addEventListener('click', showHome);
+
+  // Rubric peeking in Voice mode, the doorway pages' own links, and
+  // prayer cross-links — all delegated: the reader's contents
+  // re-render often.
   $('reader').addEventListener('click', (e) => {
+    const go = e.target.closest('[data-go]');
+    if (go) {
+      if (go.dataset.go === 'texts') showTexts(); else showHome();
+      return;
+    }
+    const entry = e.target.closest('[data-open-text]');
+    if (entry) {
+      openText(entry.dataset.openText);
+      return;
+    }
     const link = e.target.closest('.prayer-link');
     if (link && link.dataset.prayerRef) {
       openText(link.dataset.prayerRef);
@@ -446,7 +534,6 @@ async function boot() {
   // Navigation
   const nav = $('nav');
   const reader = $('reader');
-  let cycle;
   try {
     cycle = await loadCycle();
   } catch (err) {
@@ -525,8 +612,9 @@ async function boot() {
     }
     nav.appendChild(cat);
   }
-  const first = nav.querySelector('button.nav-text');
-  if (first) first.click();
+  // The app opens on the doorway, not on a text: two ways in, chosen by
+  // the reader (owner's direction, 2026-07-30).
+  showHome();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});

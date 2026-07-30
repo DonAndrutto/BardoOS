@@ -52,6 +52,22 @@ body {
   color: var(--accent);
 }
 
+/* The app's name is the way back to the doorway — it looks exactly as
+   it always did; only the pointer and the focus ring say it is a door. */
+.home-link {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.home-link:focus { outline: none; }
+.home-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
 .menu-toggle {
   display: flex;
   align-items: center;
@@ -208,9 +224,19 @@ body.fs .app-header { display: none; }
 }
 body.nav-open .nav { display: block; }
 
-/* Overlay (narrow): a shadow separates it from the text beneath. */
+/* Overlay (narrow): a shadow separates it from the text beneath, and a
+   quiet scrim marks the rest of the screen as the way out — a touch
+   there, or a scroll of the page, puts the catalogue away (js/app.js).
+   Nothing fades in; it is either there or not (BRIEF §9). */
 @media (max-width: 63.99rem) {
   .nav { box-shadow: 0 16px 32px color-mix(in srgb, var(--text) 12%, transparent); }
+  body.nav-open:not(.voice)::after {
+    content: "";
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    z-index: 54;
+    background: color-mix(in srgb, var(--bg) 55%, transparent);
+  }
 }
 /* Docked (wide): the shell moves over and the reader re-centers
    in the space that remains. */
@@ -325,6 +351,122 @@ body.nav-open .nav { display: block; }
   padding-bottom: var(--sp-2);
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
 }
+
+/* ── The doorway: the screen the app opens on ─────────────
+   Two ways in, and nothing else to decide at 3 a.m. — the available
+   texts, or the Introduction. */
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 16rem);
+  min-height: calc(100svh - 16rem);
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: var(--sp-6) 0;
+}
+.home-options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.home-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  min-height: 5rem;
+  padding: var(--sp-5);
+  text-align: left;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--dur-2), border-color var(--dur-2);
+}
+@media (hover: hover) {
+  .home-option:hover {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  }
+}
+.home-option:focus { outline: none; }
+.home-option:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.home-option-body { display: block; min-width: 0; }
+.home-option-title {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+}
+.home-option-note {
+  display: block;
+  font-size: calc(var(--size-base) * 0.9);
+  color: var(--text-muted);
+  margin-top: var(--sp-2);
+}
+
+/* ── The list of available texts ──────────────────────────
+   The readable half of the catalogue, on the reading surface: two
+   groups, each pointing-out naming the bardo it belongs to. */
+.page-title .en {
+  font-family: var(--font-ui);
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+}
+.text-list { list-style: none; margin: 0; padding: 0; }
+.text-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--sp-3) var(--sp-2);
+  text-align: left;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--dur-2);
+}
+.text-list li:last-child .text-entry { border-bottom: none; }
+@media (hover: hover) {
+  .text-entry:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+}
+.text-entry:focus { outline: none; }
+.text-entry:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.text-entry-body { display: block; min-width: 0; }
+.text-entry-context {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+.text-entry-title {
+  display: block;
+  font-size: calc(var(--size-base) * 0.95);
+  line-height: var(--lh-snug);
+}
+.text-entry-icon { width: 16px; height: 16px; flex: none; color: var(--accent); }
 
 /* ── Blocks: shared bones ───────────────────────────────────
    --size-block lets a layer raise its own floor (L1 never drops
@@ -563,6 +705,9 @@ body.nav-open .nav { display: block; }
   pointer-events: auto;
   flex-wrap: wrap;
 }
+/* A group with nothing to offer is gone, not merely inert: the author
+   display:flex above would otherwise defeat the hidden attribute. */
+.bar-group[hidden] { display: none; }
 .bar-group {
   display: flex;
   align-items: center;
@@ -613,6 +758,17 @@ body.nav-open .nav { display: block; }
   .bar-btn { min-width: 0; flex: 1 1 auto; }
   .bar-btn-text { padding: 0; }
 }
+
+/* Off a text there is nothing to recite, no layers to toggle and
+   nothing worth scrolling by itself: those controls stand down. Day or
+   night and fullscreen remain — they belong to the room, not the text.
+   The doorway keeps nothing but those. */
+body:not([data-view="text"]) #scrollGroup,
+body:not([data-view="text"]) .lang-group,
+body:not([data-view="text"]) #btnVoice { display: none; }
+body[data-view="home"] #sizeGroup { display: none; }
+body:not([data-view="text"]) .bar-inner { justify-content: center; }
+body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 
 /* Content never hides behind the bar */
 .shell { padding-bottom: 7rem; }
