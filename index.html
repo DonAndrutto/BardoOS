@@ -33,7 +33,7 @@
       Texts
       <svg class="menu-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-    <h1>Bardo OS</h1>
+    <h1><button class="home-link" id="btnHome" type="button">Bardo OS</button></h1>
     <div class="header-actions">
       <a class="donate-link" href="https://www.paypal.com/donate/?business=JZS5LVZKPPY5J&amp;no_recurring=0&amp;item_name=Help+fund+Dharma+translation+projects.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
       <div class="lang-select" id="langSelect">
@@ -56,7 +56,7 @@
   <div class="bottom-bar">
     <div class="bar-inner">
 
-      <div class="bar-group" role="group" aria-label="Auto-scroll">
+      <div class="bar-group" id="scrollGroup" role="group" aria-label="Auto-scroll">
         <button class="bar-btn" id="btnSlower" aria-label="Scroll slower">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
@@ -69,7 +69,7 @@
         </button>
       </div>
 
-      <div class="bar-group" role="group" aria-label="Reading mode">
+      <div class="bar-group" id="modeGroup" role="group" aria-label="Reading mode">
         <button class="bar-btn btn-voice" id="btnVoice" aria-label="Voice mode — only the spoken layers" aria-pressed="false">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="7" width="10" height="10" transform="rotate(45 12 12)"/></svg>
         </button>
@@ -95,7 +95,7 @@
         <button class="bar-btn bar-btn-text" id="btnEn" aria-pressed="true">ENG</button>
       </div>
 
-      <div class="bar-group" role="group" aria-label="Text size">
+      <div class="bar-group" id="sizeGroup" role="group" aria-label="Text size">
         <button class="bar-btn" id="btnSmaller" aria-label="Smaller text">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         </button>
