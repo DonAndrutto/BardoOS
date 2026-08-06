@@ -604,8 +604,14 @@ body.nav-open .nav { display: block; }
 .run-L2 .refrain-group { border: none; background: none; padding: 0; margin: 0 0 var(--sp-4); }
 
 /* ── Prayer cross-links: a mentioned prayer, one tap away ──
-   Never color alone: border, icon, and type treatment carry it. */
-.prayer-ref { margin-top: var(--sp-3); }
+   Never color alone: border, icon, and type treatment carry it.
+   A rubric that names several prayers gets one link each, wrapping. */
+.prayer-ref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
 .prayer-link {
   display: inline-flex;
   align-items: center;
@@ -644,8 +650,10 @@ body.nav-open .nav { display: block; }
   margin-top: 2px;
 }
 
-/* Onward link at the foot of a prayer — the next prayer in the cycle. */
+/* Onward link at the foot of a prayer — the next prayer in the cycle.
+   Its label stands above the link, so it keeps the block flow. */
 .prayer-next {
+  display: block;
   margin-top: var(--sp-8);
   padding-top: var(--sp-5);
   border-top: 1px solid var(--border);
@@ -660,6 +668,153 @@ body.nav-open .nav { display: block; }
   letter-spacing: var(--ls-caps-sm);
   color: var(--label);
   margin-bottom: var(--sp-2);
+}
+
+/* ── Iconography: the deity plate and its viewer (BRIEF §7) ──────────
+   Dormant until the owner supplies the images: with no image in the
+   manifest no plate is emitted, and nothing below is reachable. The
+   plate is capped so it never dominates a passage being read aloud;
+   nothing here animates. */
+.deity-plate {
+  margin: var(--sp-4) auto 0;
+  max-width: var(--measure);
+  text-align: center;
+}
+.deity-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+}
+.deity-open:focus { outline: none; }
+.deity-open:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.deity-image {
+  display: block;
+  width: 100%;
+  max-height: 42vh;
+  object-fit: contain;
+}
+.deity-caption {
+  margin-top: var(--sp-2);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+/* The viewer: an overlay, so the page beneath never moves. */
+.deity-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.deity-viewer[hidden] { display: none; }
+.deity-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--sp-5);
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+/* It sits over the picture, so it carries its own ground — a ✕ that
+   vanishes into a bright thangka is a ✕ nobody finds at 3 a.m. */
+.deity-close {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.deity-close:focus { outline: none; }
+.deity-close:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px var(--accent); }
+.deity-viewer-image {
+  display: block;
+  width: 100%;
+  max-height: 58vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+.deity-viewer-name { margin-top: var(--sp-4); }
+.deity-name-line { display: block; color: var(--text); }
+.deity-name-line.bo {
+  font-family: var(--font-tibetan);
+  font-size: calc(var(--size-base) * 1.1);
+  line-height: var(--lh-tibetan);
+}
+.deity-name-line.phon {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: calc(var(--size-base) * 0.8);
+  color: var(--phonetics);
+}
+.deity-name-line.sa {
+  font-family: var(--font-body);
+  font-size: calc(var(--size-base) * 0.9);
+  color: var(--text-muted);
+}
+.deity-name-line.en {
+  font-family: var(--font-body);
+  font-size: calc(var(--size-base) * 0.95);
+}
+.deity-viewer-meta {
+  margin-top: var(--sp-4);
+  display: grid;
+  gap: var(--sp-1);
+  text-align: left;
+}
+.deity-viewer-meta:empty { display: none; }
+.deity-meta-row {
+  display: flex;
+  gap: var(--sp-3);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  padding-top: var(--sp-1);
+  border-top: 1px solid var(--border);
+}
+.deity-meta-label {
+  flex: none;
+  width: 8rem;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+  padding-top: 2px;
+}
+.deity-meta-value { color: var(--text); }
+.deity-viewer-credit {
+  margin-top: var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
 }
 
 /* Verse lines render as real lines */

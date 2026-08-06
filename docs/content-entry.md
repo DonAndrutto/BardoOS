@@ -45,7 +45,7 @@ One text = one file: `content/texts/<text-id>.json`. The id is kebab-case, dots 
 - `cycle`: `zab-chos-zhi-khro` or `dudjom-six-bardos` (`app` exists too, but only for the app's own Guide texts — you will not create those).
 - `kind`: `instruction`, `liturgy`, `prayer`, `diagnostic`, `phowa`, or `guide` (same caveat).
 - Every block writes all ten core keys, using `null` where a value is absent. `refrain` and `boEndsOpen` are added only when true.
-- Two more optional keys exist, added only when they carry a value: `prayerRef` (a cross-link to a prayer — **the author decides where these go; never add one yourself**) and `pl` (the author's Polish translation, when supplied; mirror `en`'s line structure). Omit both otherwise.
+- Two more optional keys exist, added only when they carry a value: `prayerRef` (a cross-link to a prayer — **the author decides where these go; never add one yourself**) and `pl` (the author's Polish translation, when supplied; mirror `en`'s line structure). Omit both otherwise. A `prayerRef` is one id (`"prayer.protection-from-fear"`) or, where one sentence names several prayers, an array of them in the order the sentence names them.
 
 ## 2. Split the source into blocks
 
@@ -108,7 +108,7 @@ No installation, no packages — just Node 18 or newer. `OK — the contract hol
 | `empty "en" on spoken layer` | An L1/L2/L3 block with no English | Copy the source, or `TODO_CONTENT` |
 | `empty "phon" on L3` | Liturgy without phonetics | `TODO_CONTENT` until the author supplies them |
 | `Tibetan does not end with a closing mark` | `bo` ends mid-stream | Check you copied the full passage; if the source truly ends open, `"boEndsOpen": true` |
-| `orphaned deityRef` | A deity id not in `assets/deities/MANIFEST.json` | Leave `deityRef: null` unless the id exists |
+| `orphaned deityRef` | A deity id not in `assets/deities/MANIFEST.json` | Leave `deityRef: null` unless the id exists (see `docs/deity-images.md`) |
 | `orphaned prayerRef` | A cross-link to a text id not in `content/cycle.json` | Refs are the author's to place; ask before touching one |
 | `dangling text id` / `not in the cycle manifest` | File and `cycle.json` disagree | Step 5 |
 | `duplicate block id` | Two blocks share an id | Ids are `s<n>-b<3 digits>`, unique per text |

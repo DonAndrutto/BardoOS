@@ -45,3 +45,34 @@ export function nextInGroup(id) {
 export function loadText(id) {
   return getJSON(`content/texts/${encodeURIComponent(id)}.json`);
 }
+
+// ── Iconography (BRIEF §7) ──────────────────────────────────────────
+// The deity manifest, indexed by id. This is optional data: the roster
+// is the owner's to supply, and until it exists — or if the file is
+// ever missing — the app must read exactly as it does now. So a failure
+// here is not an error; it simply means no plate is ever rendered.
+const deityIndex = new Map();
+
+export async function loadDeities() {
+  deityIndex.clear();
+  try {
+    const manifest = await getJSON('assets/deities/MANIFEST.json');
+    for (const deity of manifest.deities || []) {
+      if (deity && deity.id) deityIndex.set(deity.id, deity);
+    }
+  } catch {
+    // No manifest, no iconography. The texts read the same.
+  }
+  return deityIndex.size;
+}
+
+// The manifest record for a deity id, or null.
+export function deityEntry(id) {
+  return deityIndex.get(id) || null;
+}
+
+// Every deity that dawns on a given day of the bardo of reality, in
+// manifest order — the seam for the day-by-day lookup (BRIEF §7).
+export function deitiesForDay(day) {
+  return [...deityIndex.values()].filter((d) => d.day === day);
+}

@@ -2,7 +2,7 @@
 // Voice mode is the one you use when someone is dying: spoken layers
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
-import { loadCycle, loadText } from './data.js';
+import { loadCycle, loadText, loadDeities, deityEntry } from './data.js';
 import { renderHome, renderTexts } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
@@ -202,6 +202,7 @@ function applyUiLang() {
   $('btnUiLang').title = t('interfaceLanguage');
   $('btnHome').setAttribute('aria-label', t('home'));
   $('btnHome').title = t('home');
+  $('btnDeityClose').setAttribute('aria-label', t('close'));
   buildUiLangMenu();
   // Re-apply every string the app writes itself. With English the only
   // populated table this changes nothing visible — it is the mechanism
@@ -300,6 +301,89 @@ function openContents() {
 function closeContents() {
   $('contentsPanel').hidden = true;
   $('btnContents').setAttribute('aria-expanded', 'false');
+}
+
+// ── Deity plates: the image, without losing the place (BRIEF §7) ────
+// Dormant until the owner supplies the images: with an empty manifest
+// the renderer emits no plate and none of this is reachable. When it is
+// reachable, the reading position is untouchable — the viewer is an
+// overlay (the page beneath never scrolls), the auto-scroll is held
+// while it is up, and closing restores both it and the focus.
+const DEITY_META = [
+  ['day', 'deityDay'],
+  ['family', 'deityFamily'],
+  ['direction', 'deityDirection'],
+  ['color', 'deityColor'],
+  ['seed', 'deitySeed'],
+];
+// Name lines, in the app's usual order. Every value is manifest data.
+const DEITY_NAMES = [['bo', 'bo'], ['phon', 'phon'], ['sa', 'sa'], ['en', 'en']];
+
+let deityScrollHeld = false;
+let deityOpener = null;
+
+function deityMetaRow(parent, label, value) {
+  const row = document.createElement('div');
+  row.className = 'deity-meta-row';
+  const l = document.createElement('span');
+  l.className = 'deity-meta-label';
+  l.textContent = label;
+  const v = document.createElement('span');
+  v.className = 'deity-meta-value';
+  v.textContent = String(value);
+  row.append(l, v);
+  parent.appendChild(row);
+}
+
+function openDeity(id) {
+  const deity = deityEntry(id);
+  if (!deity || !deity.image) return;
+
+  const img = $('deityViewerImage');
+  img.src = deity.image;
+  img.alt = deity.en || deity.sa || deity.bo || '';
+
+  const name = $('deityViewerName');
+  name.textContent = '';
+  for (const [field, cls] of DEITY_NAMES) {
+    if (!deity[field]) continue;
+    const line = document.createElement('span');
+    line.className = `deity-name-line ${cls}`;
+    line.textContent = deity[field];
+    name.appendChild(line);
+  }
+
+  const meta = $('deityViewerMeta');
+  meta.textContent = '';
+  for (const [field, key] of DEITY_META) {
+    const value = deity[field];
+    if (value === null || value === undefined || value === '') continue;
+    deityMetaRow(meta, t(key), value);
+  }
+  const consort = deity.consort ? deityEntry(deity.consort) : null;
+  if (consort) {
+    deityMetaRow(meta, t('deityConsort'), consort.en || consort.bo || consort.id);
+  }
+
+  // Provenance travels with the picture, always (BRIEF §7).
+  const credit = [deity.attribution, deity.license].filter(Boolean).join(' · ');
+  $('deityViewerCredit').textContent = credit;
+  $('deityViewerCredit').hidden = !credit;
+
+  deityOpener = document.activeElement;
+  deityScrollHeld = scroll.isRunning();
+  if (deityScrollHeld) { scroll.stop(); applyPlayIcon(); }
+  $('deityViewer').hidden = false;
+  $('btnDeityClose').focus();
+}
+
+function closeDeity() {
+  if ($('deityViewer').hidden) return;
+  $('deityViewer').hidden = true;
+  if (deityScrollHeld) { scroll.start(); applyPlayIcon(); }
+  deityScrollHeld = false;
+  if (deityOpener && document.contains(deityOpener)) deityOpener.focus();
+  deityOpener = null;
 }
 
 // ── Fullscreen: the whole screen given to the text ──────────────────
@@ -460,8 +544,20 @@ async function boot() {
       setMenu(false);
     }
   }, { passive: true });
+  // The deity viewer: the close button, a tap outside the sheet, or
+  // Escape (handled with the other overlays below — it sits on top, so
+  // it closes first).
+  $('btnDeityClose').addEventListener('click', closeDeity);
+  $('deityViewer').addEventListener('click', (e) => {
+    if (!e.target.closest('.deity-sheet')) closeDeity();
+  });
+
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
+    if (!$('deityViewer').hidden) {
+      closeDeity();
+      return;
+    }
     if (!$('contentsPanel').hidden) {
       closeContents();
       $('btnContents').focus();
@@ -524,6 +620,11 @@ async function boot() {
       openText(link.dataset.prayerRef);
       return;
     }
+    const plate = e.target.closest('.deity-open');
+    if (plate && plate.dataset.deityRef) {
+      openDeity(plate.dataset.deityRef);
+      return;
+    }
     const btn = e.target.closest('.l0-marker');
     if (!btn) return;
     const wrap = btn.closest('.voice-collapsed');
@@ -544,6 +645,10 @@ async function boot() {
     note(reader, t('emptyCycle'));
     return;
   }
+  // Iconography, if any has been supplied: loaded before the first text
+  // renders, since a plate is decided at render time. Never fatal — an
+  // empty or missing manifest simply means no plates (BRIEF §7).
+  await loadDeities();
   // The shape of the cycle, legible at a glance: collapsible categories,
   // every text present — readable ones clickable, forthcoming ones locked.
   // Titles come from the manifest; the id is the honest fallback while a

@@ -98,24 +98,83 @@ function readJSON(path, file) {
   }
 }
 
-// ── Deity manifest (ids only; full field spec arrives in Phase 4) ───
-function loadDeityIds() {
+// ── Deity manifest (SCHEMA.md §9) ───────────────────────────────────
+// The iconography contract. The roster itself is the owner's to supply
+// — this validates whatever is there, checks that a declared image is
+// a real file carrying its provenance, and never invents an entry.
+const DEITY_FIELDS = [
+  'id', 'bo', 'phon', 'sa', 'en', 'class', 'day', 'family',
+  'consort', 'direction', 'color', 'seed', 'image', 'attribution', 'license',
+];
+const DEITY_STRINGS = DEITY_FIELDS.filter((f) => f !== 'id' && f !== 'class' && f !== 'day');
+const DEITY_CLASSES = ['peaceful', 'wrathful'];
+const DEITY_IMAGE_DIR = 'assets/deities/images/';
+const DEITY_IMAGE_EXTS = new Set(['.webp', '.png', '.jpg', '.jpeg']);
+// The full zhi-khro roster, for the progress line only — never a
+// failure condition. Images and records land over time.
+const ROSTER = { peaceful: 42, wrathful: 58 };
+
+function checkDeity(file, i, d, deities) {
+  const where = `deities[${i}]${d && d.id ? ` (${d.id})` : ''}`;
+  if (typeof d !== 'object' || d === null) { err(file, where, 'deity must be an object'); return; }
+
+  checkKeys(file, where, d, DEITY_FIELDS);
+
+  if (!nonEmpty(d.id)) { err(file, where, 'deity "id" must be a non-empty string'); return; }
+  if (!ID_PATTERN.test(d.id)) err(file, where, `deity id "${d.id}" is not kebab-case`);
+  if (deities.has(d.id)) err(file, where, `duplicate deity id "${d.id}"`);
+  else deities.set(d.id, d);
+
+  for (const f of DEITY_STRINGS) {
+    if (f in d && !isNullableString(d[f])) err(file, where, `"${f}" must be a string or null`);
+    else if (isString(d[f])) countTodos(file, `${where} :: ${f}`, d[f]);
+  }
+  if (!DEITY_CLASSES.includes(d.class)) {
+    err(file, where, `"class" must be ${DEITY_CLASSES.join(' or ')} (got ${JSON.stringify(d.class)})`);
+  }
+  if (d.day !== null && d.day !== undefined) {
+    if (!Number.isInteger(d.day) || d.day < 1 || d.day > 14) {
+      err(file, where, `"day" must be an integer 1–14 or null (got ${JSON.stringify(d.day)})`);
+    }
+  }
+
+  // An image is optional; a *declared* image must exist and must carry
+  // its provenance — the owner supplies both together (BRIEF §7).
+  if (nonEmpty(d.image)) {
+    if (!d.image.startsWith(DEITY_IMAGE_DIR)) {
+      err(file, where, `"image" must live under ${DEITY_IMAGE_DIR} (got "${d.image}")`);
+    } else if (!DEITY_IMAGE_EXTS.has(extname(d.image).toLowerCase())) {
+      err(file, where, `"image" must be one of ${[...DEITY_IMAGE_EXTS].join(', ')} (got "${d.image}")`);
+    } else if (!existsSync(join(ROOT, d.image))) {
+      err(file, where, `"image" file not found: ${d.image}`);
+    }
+    if (!nonEmpty(d.attribution)) err(file, where, 'an image needs its "attribution" — provenance ships with the asset');
+    if (!nonEmpty(d.license)) err(file, where, 'an image needs its "license"');
+  }
+}
+
+function loadDeities() {
   const file = 'assets/deities/MANIFEST.json';
+  const deities = new Map(); // id → record
   const m = readJSON(join(ROOT, file), file);
-  const ids = new Set();
-  if (!m) return ids;
+  if (!m) return deities;
   checkKeys(file, null, m, ['schemaVersion', 'deities']);
   if (m.schemaVersion !== 1) err(file, null, `unknown schemaVersion ${m.schemaVersion}`);
-  if (!Array.isArray(m.deities)) { err(file, null, '"deities" must be an array'); return ids; }
-  m.deities.forEach((d, i) => {
-    if (typeof d !== 'object' || d === null || !nonEmpty(d.id)) {
-      err(file, `deities[${i}]`, 'every deity needs a non-empty string "id"');
-      return;
+  if (!Array.isArray(m.deities)) { err(file, null, '"deities" must be an array'); return deities; }
+  m.deities.forEach((d, i) => checkDeity(file, i, d, deities));
+
+  // A consort is another deity in this same manifest.
+  for (const [id, d] of deities) {
+    if (nonEmpty(d.consort) && !deities.has(d.consort)) {
+      err(file, `deities (${id})`, `consort "${d.consort}" is not a deity id in this manifest`);
     }
-    if (ids.has(d.id)) err(file, `deities[${i}]`, `duplicate deity id "${d.id}"`);
-    ids.add(d.id);
-  });
-  return ids;
+  }
+  // The roster is finite and known; more than it can hold is a slip.
+  for (const cls of DEITY_CLASSES) {
+    const n = [...deities.values()].filter((d) => d.class === cls).length;
+    if (n > ROSTER[cls]) warn(file, null, `${n} ${cls} deities listed; the roster holds ${ROSTER[cls]}`);
+  }
+  return deities;
 }
 
 // ── Blocks ──────────────────────────────────────────────────────────
@@ -174,9 +233,25 @@ function checkBlock(file, sectionId, block, i, ctx) {
     }
   }
 
+  // One prayer, or several: a single rubric sentence can name four of
+  // them ("recite the Aspiration…; then the Root Verses…"), so a list
+  // is legal here (SCHEMA.md, Phase 4 amendment).
   if (block.prayerRef !== null && block.prayerRef !== undefined) {
-    if (!nonEmpty(block.prayerRef)) err(file, where, '"prayerRef" must be a non-empty string or null');
-    else prayerRefs.push({ file, where, ref: block.prayerRef });
+    const list = Array.isArray(block.prayerRef);
+    if (list && block.prayerRef.length === 0) {
+      err(file, where, '"prayerRef" must not be an empty array — write null instead');
+    }
+    const seenHere = new Set();
+    for (const ref of list ? block.prayerRef : [block.prayerRef]) {
+      if (!nonEmpty(ref)) {
+        err(file, where, '"prayerRef" must be a non-empty string, an array of them, or null');
+      } else if (seenHere.has(ref)) {
+        err(file, where, `"prayerRef" names "${ref}" twice`);
+      } else {
+        seenHere.add(ref);
+        prayerRefs.push({ file, where, ref });
+      }
+    }
   }
 
   if (block.day !== null && block.day !== undefined) {
@@ -383,7 +458,8 @@ function scanForbidden(dir = ROOT) {
 }
 
 // ── Run ─────────────────────────────────────────────────────────────
-const deityIds = loadDeityIds();
+const deities = loadDeities();
+const deityIds = new Set(deities.keys());
 const textIds = new Set();
 
 const textsDir = join(ROOT, 'content', 'texts');
@@ -399,7 +475,14 @@ scanForbidden();
 // ── Report ──────────────────────────────────────────────────────────
 const out = (s) => process.stdout.write(s + '\n');
 
-out(`Bardo OS validator — ${textFiles.length} text file(s), ${deityIds.size} deity id(s)`);
+out(`Bardo OS validator — ${textFiles.length} text file(s), ${deities.size} deity record(s)`);
+
+// Iconography progress: visible on every run, never a failure. The
+// instrument renders a plate only where an image exists, so this line
+// is also exactly what is visible to a reader.
+const withImage = [...deities.values()].filter((d) => nonEmpty(d.image)).length;
+out(`Iconography: ${withImage}/${deities.size} record(s) carry an image; ` +
+    `the roster when complete is ${ROSTER.peaceful} peaceful + ${ROSTER.wrathful} wrathful.`);
 
 if (warnings.length) {
   out(`\n${warnings.length} warning(s):`);

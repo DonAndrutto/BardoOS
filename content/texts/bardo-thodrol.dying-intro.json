@@ -205,6 +205,12 @@
           "meter": null,
           "deityRef": null,
           "day": null,
+          "prayerRef": [
+            "prayer.calling-buddhas-for-aid",
+            "prayer.protection-from-fear",
+            "prayer.deliverance-perilous-straits",
+            "prayer.root-verses-six-bardos"
+          ],
           "note": null
         },
         {
