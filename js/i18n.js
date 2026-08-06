@@ -44,6 +44,10 @@ const STRINGS = {
     noTextsYet: 'No texts are ready to read yet.',
     // Deity plates — labels for the manifest's own fields (BRIEF §7).
     close: 'Close',
+    peacefulDeities: 'Peaceful Deities',
+    peacefulDeitiesNote: 'The forty-two who dawn in the Bardo of Dharmatā.',
+    dayOfDharmata: 'Day',
+    noDeitiesYet: 'No images have been supplied yet.',
     deityDay: 'Day',
     deityFamily: 'Family',
     deityConsort: 'Consort',

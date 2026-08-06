@@ -27,6 +27,12 @@ const BO_TRAILING_IGNORE = /[\s\u200B\uFEFF]+$/u;
 
 const ID_PATTERN = /^[a-z0-9]+(?:[.-][a-z0-9]+)*$/;
 
+// Inline deity token: [[the owner's words|deity-id] ] (SCHEMA.md §4,
+// Phase 4 amendment). Words first, so the sentence still reads in the
+// file. The marker is added around text that is already there; the words
+// between the brackets are never edited.
+const DEITY_TOKEN = /\[\[([^[\]|]+)\|([^[\]|]+)\]\]/g;
+
 // ── The forbidden title (BRIEF §2) ──────────────────────────────────
 // The pattern is assembled from fragments so the string itself exists
 // nowhere in this repository, this file included. Case-insensitive,
@@ -283,6 +289,29 @@ function checkBlock(file, sectionId, block, i, ctx) {
 
   for (const f of ['bo', 'phon', 'en', 'note', 'pl']) {
     if (isString(block[f])) countTodos(file, `${where} :: ${f}`, block[f]);
+  }
+  for (const f of ['bo', 'phon', 'en', 'pl']) {
+    if (isString(block[f])) checkDeityTokens(file, `${where} :: ${f}`, block[f], ctx);
+  }
+}
+
+// Every inline deity token must be well formed and must name a deity the
+// manifest actually holds — a tap that goes nowhere is worse than no tap.
+function checkDeityTokens(file, where, value, ctx) {
+  let found = 0;
+  for (const [, words, ref] of value.matchAll(DEITY_TOKEN)) {
+    found++;
+    if (!words.trim()) err(file, where, 'deity token has no words to show');
+    if (!ctx.deityIds.has(ref)) {
+      err(file, where, `orphaned deity token "${ref}" — not in assets/deities/MANIFEST.json`);
+    }
+  }
+  // A stray bracket means a marker was mistyped; it would render as prose.
+  const opens = value.split('[[').length - 1;
+  const closes = value.split(']]').length - 1;
+  if (opens !== found || closes !== found) {
+    err(file, where, `malformed deity token(s): ${opens} "[[", ${closes} "]]", ` +
+      `${found} well-formed — the shape is [[words|deity-id]]`);
   }
 }
 

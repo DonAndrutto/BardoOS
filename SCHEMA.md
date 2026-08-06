@@ -4,7 +4,7 @@
 
 **Phase 3 amendments (owner-directed, 2026-07-18):** blocks gain two optional fields — `prayerRef` (cross-link to a prayer in the cycle; the validator rejects orphaned refs) and `pl` (Polish translation, entirely optional on every layer, default null); `kind` gains `"guide"` and `cycle` gains `"app"` for the app's own Guide texts (Introduction, How to Use This App). No existing field changed meaning.
 
-**Phase 4 amendments (owner-directed, 2026-08-06):** (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9. No existing field changed meaning.
+**Phase 4 amendments (owner-directed, 2026-08-06):** (0) a third inline token, `[[words|deity-id]]`, marks a deity's name where the text already names it, so tapping it shows the figure (BRIEF §7). Like `**…**` it is a paired marker placed around text that is already there — the words between the brackets are never edited. (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9. No existing field changed meaning.
 
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
@@ -126,11 +126,12 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 
 The ten core keys (`id`, `layer`, `form`, `bo`, `phon`, `en`, `meter`, `deityRef`, `day`, `note`) are written explicitly in every block, nullable ones as `null`; `refrain` and `boEndsOpen` may be omitted when false, and `prayerRef` and `pl` may be omitted when null (so their arrival does not churn every existing file). Verbose, but it makes bulk entry by a cheaper model mechanically checkable — a missing key is a contract violation, not a style choice.
 
-Inline tokens inside `bo`/`phon`/`en` strings — the only three the renderer recognizes; content is never parsed as HTML:
+Inline tokens inside `bo`/`phon`/`en`/`pl` strings — the only four the renderer recognizes; content is never parsed as HTML:
 
 - `\n` — verse line break;
 - `TODO_CONTENT` — a declared gap (rendered visibly, counted by the validator);
 - `**…**` — emphasis on a span within the text (rendered bold in a color leaning toward the accent). Markers come in pairs; the words between them are still the owner's words, never edited when adding emphasis.
+- `[[words|deity-id]]` — a deity's name where the text already names it (Phase 4 amendment). Words first, so the sentence still reads in the file. The reader renders the words exactly, as a tap that shows that deity's figure over the page; where the manifest holds no image for that id, the words render as the plain text they always were. The id must exist in `assets/deities/MANIFEST.json` — an unresolvable one is an error, as is a stray `[[` or `]]`. **Placing these marks is the owner's decision and they wrap text that is already present; nothing is ever added, reworded, or inferred by tooling.**
 
 ## 5. The layers, restated as data rules
 
@@ -210,6 +211,7 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 10. Duplicate text `id` across the corpus; duplicate section/block `id` within a text.
 11. Cycle-manifest integrity: every text on disk in exactly one group; no dangling text ids.
 12. Deity-manifest integrity (§9): unknown/missing field, non-kebab-case or duplicate id, unknown `class`, `day` outside 1–14, a `consort` that is not an id in the same manifest, and — for a declared `image` — a path outside `assets/deities/images/`, an unsupported extension, a file that is not on disk, or a missing `attribution`/`license`.
+13. An inline deity token naming an id the manifest does not hold, or a malformed one (a `[[` or `]]` that is not part of a well-formed `[[words|deity-id]]`).
 
 **Reported, non-fatal:**
 

@@ -694,39 +694,72 @@ body.nav-open .nav { display: block; }
   margin-bottom: var(--sp-2);
 }
 
-/* ── Iconography: the deity plate and its viewer (BRIEF §7) ──────────
-   Dormant until the owner supplies the images: with no image in the
-   manifest no plate is emitted, and nothing below is reachable. The
-   plate is capped so it never dominates a passage being read aloud;
-   nothing here animates. */
-.deity-plate {
-  margin: var(--sp-4) auto 0;
-  max-width: var(--measure);
-  text-align: center;
-}
-.deity-open {
-  display: block;
-  width: 100%;
+/* ── Iconography (BRIEF §7) ──────────────────────────────────────────
+   A name the owner marked in the passage. Quiet by design: it keeps the
+   text's own size and weight and stays in the reading colour, carrying a
+   dotted rule beneath — findable when looked for, never competing with
+   the words at 3 a.m. Never colour alone: the rule and the accent tint
+   both do the work. */
+.deity-name {
+  display: inline;
+  margin: 0;
   padding: 0;
+  font: inherit;
+  color: inherit;
   background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  border: none;
+  text-decoration: underline dotted
+    color-mix(in srgb, var(--accent) 55%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: from-font;
   cursor: pointer;
 }
-.deity-open:focus { outline: none; }
-.deity-open:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
-.deity-image {
+@media (hover: hover) {
+  .deity-name:hover { color: var(--accent); }
+}
+.deity-name:focus { outline: none; }
+.deity-name:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* The gallery, off the Iconography shelf. The figures are cut out, so
+   they stand on the page's own ground rather than in boxes. */
+.deity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: var(--sp-4);
+  max-width: var(--column);
+  margin: 0 auto;
+}
+.deity-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .deity-tile:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+}
+.deity-tile:focus { outline: none; }
+.deity-tile:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.deity-tile-image {
   display: block;
   width: 100%;
-  max-height: 42vh;
-  object-fit: contain;
+  max-width: 9rem;
+  height: auto;
 }
-.deity-caption {
-  margin-top: var(--sp-2);
+.deity-tile-name {
   font-family: var(--font-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  line-height: var(--lh-snug);
+  text-align: center;
   color: var(--text-muted);
 }
 
@@ -739,23 +772,24 @@ body.nav-open .nav { display: block; }
   align-items: center;
   justify-content: center;
   padding: var(--sp-4);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 93%, transparent);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 .deity-viewer[hidden] { display: none; }
+/* The figures are cut out, with no ground of their own — so no panel and
+   no frame: they stand on the page itself, which is also why nothing
+   white ever flares in a dark room. */
 .deity-sheet {
   position: relative;
   width: 100%;
   max-width: 34rem;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
-  padding: var(--sp-5);
+  padding: var(--sp-5) var(--sp-4);
   text-align: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  background: none;
+  border: none;
 }
 /* It sits over the picture, so it carries its own ground — a ✕ that
    vanishes into a bright thangka is a ✕ nobody finds at 3 a.m. */
@@ -778,12 +812,19 @@ body.nav-open .nav { display: block; }
 }
 .deity-close:focus { outline: none; }
 .deity-close:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px var(--accent); }
+/* Capped at the figures' own 540 px so they are never upscaled into
+   softness. The radial sits behind the cut-out's transparency and gives
+   it ground without drawing a box around it. */
 .deity-viewer-image {
   display: block;
   width: 100%;
-  max-height: 58vh;
+  max-width: 33.75rem;
+  max-height: 62vh;
+  margin: 0 auto;
   object-fit: contain;
-  border-radius: var(--radius-sm);
+  background: radial-gradient(ellipse at 50% 46%,
+    color-mix(in srgb, var(--accent) 9%, transparent) 0%,
+    transparent 68%);
 }
 .deity-viewer-name { margin-top: var(--sp-4); }
 .deity-name-line { display: block; color: var(--text); }

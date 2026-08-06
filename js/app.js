@@ -2,9 +2,9 @@
 // Voice mode is the one you use when someone is dying: spoken layers
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
-import { loadCycle, loadText, loadDeities, deityEntry, cycleEntry } from './data.js';
+import { loadCycle, loadText, loadDeities, deityEntry, deitiesOfClass, cycleEntry } from './data.js';
 import { remember, origin, forget } from './trail.js';
-import { renderHome, renderTexts } from './home.js';
+import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
 import { replayIntro } from './intro.js';
@@ -104,6 +104,8 @@ function rerender() {
     buildContents();
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
+  } else if (view === 'deities') {
+    renderDeities(reader, 'peaceful');
   } else if (view === 'home') {
     renderHome(reader);
   }
@@ -355,6 +357,17 @@ const DEITY_META = [
 // Name lines, in the app's usual order. Every value is manifest data.
 const DEITY_NAMES = [['bo', 'bo'], ['phon', 'phon'], ['sa', 'sa'], ['en', 'en']];
 
+// The owner's file labels are the gallery's (their direction), and many
+// are the same name spelled another way — "Vairocana" in the text,
+// "Vairochana" on the file. Stacking both in the viewer reads as an
+// error, so a one-word label is taken as a spelling of the name above it
+// and left out; a longer one ("Goddess of Beauty with Mirror") says
+// something the text does not, and stays.
+function labelAddsSomething(deity) {
+  return Boolean(deity.en) && deity.en !== TODO
+    && (!deity.sa || /\s/.test(deity.en.trim()));
+}
+
 let deityScrollHeld = false;
 let deityOpener = null;
 
@@ -382,7 +395,10 @@ function openDeity(id) {
   const name = $('deityViewerName');
   name.textContent = '';
   for (const [field, cls] of DEITY_NAMES) {
-    if (!deity[field]) continue;
+    // A name the owner has not supplied yet simply does not appear; the
+    // validator nags about it, the reader never sees the marker.
+    if (!deity[field] || deity[field] === TODO) continue;
+    if (field === 'en' && !labelAddsSomething(deity)) continue;
     const line = document.createElement('span');
     line.className = `deity-name-line ${cls}`;
     line.textContent = deity[field];
@@ -393,7 +409,7 @@ function openDeity(id) {
   meta.textContent = '';
   for (const [field, key] of DEITY_META) {
     const value = deity[field];
-    if (value === null || value === undefined || value === '') continue;
+    if (value === null || value === undefined || value === '' || value === TODO) continue;
     deityMetaRow(meta, t(key), value);
   }
   const consort = deity.consort ? deityEntry(deity.consort) : null;
@@ -401,8 +417,11 @@ function openDeity(id) {
     deityMetaRow(meta, t('deityConsort'), consort.en || consort.bo || consort.id);
   }
 
-  // Provenance travels with the picture, always (BRIEF §7).
-  const credit = [deity.attribution, deity.license].filter(Boolean).join(' · ');
+  // Provenance travels with the picture, always (BRIEF §7) — but while
+  // it is still a declared gap the line stays off rather than showing a
+  // TODO marker to someone sitting at a bedside.
+  const credit = [deity.attribution, deity.license]
+    .filter((v) => v && v !== TODO).join(' · ');
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
@@ -500,6 +519,17 @@ function showTexts() {
 // recorded where the reader stood. Every other way into a text is the
 // reader choosing a new course, so the way back goes. `restore` puts
 // them back on the passage they left.
+// The roster as figures, off the Iconography shelf. Its own view, so the
+// bottom bar's existing data-view rules stand the reading controls down.
+function showDeities() {
+  leaveText();
+  showView('deities');
+  renderDeities($('reader'), 'peaceful');
+  buildContents();
+  applyPhonRelevance();
+  window.scrollTo(0, 0);
+}
+
 async function openText(id, { keepOrigin = false, restore = null } = {}) {
   if (!keepOrigin && !restore) forget();
   scroll.stop();
@@ -696,9 +726,12 @@ async function boot() {
       openText(link.dataset.prayerRef, { keepOrigin: true });
       return;
     }
-    const plate = e.target.closest('.deity-open');
-    if (plate && plate.dataset.deityRef) {
-      openDeity(plate.dataset.deityRef);
+    // A deity's name in the passage, or a tile in the gallery. Named
+    // explicitly: a block may also carry data-deity-ref, and tapping its
+    // prose must never summon anything.
+    const figure = e.target.closest('.deity-name, .deity-tile');
+    if (figure && figure.dataset.deityRef) {
+      openDeity(figure.dataset.deityRef);
       return;
     }
     const btn = e.target.closest('.l0-marker');
@@ -778,8 +811,9 @@ async function boot() {
         cat.appendChild(d);
       }
     }
-    // Iconography holds a single affordance, not a text: tapping the
-    // Zhitro Mandala replays the opening arising (js/intro.js).
+    // Iconography holds affordances, not texts: the Zhitro Mandala
+    // replays the opening arising (js/intro.js), and the roster of the
+    // peaceful deities opens as a gallery of figures.
     if (group.id === 'iconography') {
       const b = document.createElement('button');
       b.type = 'button';
@@ -790,6 +824,16 @@ async function boot() {
         replayIntro();
       });
       cat.appendChild(b);
+
+      // Only offered when there is something to see.
+      if (deitiesOfClass('peaceful').some((d) => d.image)) {
+        const g = document.createElement('button');
+        g.type = 'button';
+        g.className = 'nav-text';
+        g.textContent = t('peacefulDeities');
+        g.addEventListener('click', showDeities);
+        cat.appendChild(g);
+      }
     }
     nav.appendChild(cat);
   }

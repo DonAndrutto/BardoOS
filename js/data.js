@@ -72,7 +72,31 @@ export function deityEntry(id) {
 }
 
 // Every deity that dawns on a given day of the bardo of reality, in
-// manifest order — the seam for the day-by-day lookup (BRIEF §7).
+// manifest order — the day-cluster lookup (BRIEF §7).
 export function deitiesForDay(day) {
   return [...deityIndex.values()].filter((d) => d.day === day);
+}
+
+// The whole roster of one class, in manifest order.
+export function deitiesOfClass(cls) {
+  return [...deityIndex.values()].filter((d) => d.class === cls);
+}
+
+// The days that class actually occupies, in order — so a gallery or a
+// cluster view never invents a day the roster does not hold.
+export function deityDays(cls) {
+  return [...new Set(deitiesOfClass(cls).map((d) => d.day).filter((d) => d != null))]
+    .sort((a, b) => a - b);
+}
+
+// One entry per *image*: the six couples in union share a file, and a
+// gallery should show that file once, under both their names.
+export function deityTiles(list) {
+  const byImage = new Map();
+  for (const d of list) {
+    if (!d.image) continue;
+    if (!byImage.has(d.image)) byImage.set(d.image, []);
+    byImage.get(d.image).push(d);
+  }
+  return [...byImage.values()];
 }

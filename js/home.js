@@ -7,7 +7,7 @@
 // here. The shape of the cycle stays legible (BRIEF §4) — the texts
 // page names the bardo each pointing-out belongs to.
 
-import { cycleEntry } from './data.js';
+import { cycleEntry, deitiesOfClass, deityDays, deitiesForDay, deityTiles } from './data.js';
 import { t } from './i18n.js';
 
 const TODO = 'TODO_CONTENT';
@@ -120,6 +120,47 @@ function textGroup(container, heading, items, withContext) {
     }
     el('span', 'text-entry-title', body).textContent = item.title;
     btn.insertAdjacentHTML('beforeend', ARROW_ICON);
+  }
+}
+
+// ── The deity gallery (BRIEF §7) ────────────────────────────────────
+// The roster as figures, grouped by the day each dawns — which is the
+// shape the day-cluster view will want too. Names here are the owner's
+// own file labels, at their direction; the passages keep their own
+// spellings. Couples in union share one image and one tile.
+function deityTile(list, parent) {
+  const first = list[0];
+  const btn = el('button', 'deity-tile', parent);
+  btn.type = 'button';
+  btn.dataset.deityRef = first.id;
+  const names = list.map((d) => d.en || d.sa || d.id);
+  const img = el('img', 'deity-tile-image', btn);
+  img.src = first.image;
+  img.alt = names.join(' · ');
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  const label = el('span', 'deity-tile-name', btn);
+  for (const n of names) el('span', 'line', label).textContent = n;
+  return btn;
+}
+
+export function renderDeities(container, cls) {
+  reset(container);
+  const title = el('header', 'text-title page-title', container);
+  el('div', 'en', title).textContent = t('peacefulDeities');
+
+  const roster = deitiesOfClass(cls).filter((d) => d.image);
+  if (!roster.length) {
+    el('p', 'block layer-L0', container).textContent = t('noDeitiesYet');
+    return;
+  }
+  for (const day of deityDays(cls)) {
+    const on = deitiesForDay(day).filter((d) => d.image && d.class === cls);
+    if (!on.length) continue;
+    const sec = el('section', 'section', container);
+    el('h2', 'section-heading', sec).textContent = `${t('dayOfDharmata')} ${day}`;
+    const grid = el('div', 'deity-grid', sec);
+    for (const tile of deityTiles(on)) deityTile(tile, grid);
   }
 }
 

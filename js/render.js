@@ -40,21 +40,48 @@ function el(tag, className, parent) {
   return node;
 }
 
+// Emphasis and declared gaps within a run of plain text.
+function fillPlain(dest, text) {
+  text.split('**').forEach((seg, k) => {
+    const target = k % 2 ? el('strong', 'em', dest) : dest;
+    seg.split(TODO).forEach((piece, j, pieces) => {
+      if (piece) target.appendChild(document.createTextNode(piece));
+      if (j < pieces.length - 1) el('span', 'todo', target).textContent = TODO;
+    });
+  });
+}
+
+// Splitting on a two-capture pattern yields [prose, words, id, prose, …] —
+// a stride of three, so a token is never mistaken for prose.
+const DEITY_TOKEN = /\[\[([^[\]|]+)\|([^[\]|]+)\]\]/g;
+
 // Text goes in as data, comes out as DOM text nodes — no HTML parsing of
 // content, ever. The only inline tokens are \n (verse lines), TODO_CONTENT
-// (declared gaps, marked visibly rather than hidden), and **…** (emphasis,
-// SCHEMA §4 — a paired marker, never interpreted as prose).
+// (declared gaps, marked visibly rather than hidden), **…** (emphasis) and
+// [[words|deity-id]] (a name the owner marked — SCHEMA §4). All are paired
+// markers around the owner's own words, never interpreted as prose.
 function fillInline(node, value) {
   const lines = String(value).split('\n');
   for (const line of lines) {
     const target = lines.length > 1 ? el('span', 'line', node) : node;
-    line.split('**').forEach((seg, k) => {
-      const dest = k % 2 ? el('strong', 'em', target) : target;
-      seg.split(TODO).forEach((piece, j, pieces) => {
-        if (piece) dest.appendChild(document.createTextNode(piece));
-        if (j < pieces.length - 1) el('span', 'todo', dest).textContent = TODO;
-      });
-    });
+    const parts = line.split(DEITY_TOKEN);
+    for (let i = 0; i < parts.length; i += 3) {
+      if (parts[i]) fillPlain(target, parts[i]);
+      const words = parts[i + 1];
+      if (words === undefined) continue;
+      const ref = parts[i + 2];
+      // A name only becomes a tap when there is actually a figure behind
+      // it; otherwise it reads as the plain words it always was.
+      const deity = deityEntry(ref);
+      if (deity && deity.image) {
+        const btn = el('button', 'deity-name', target);
+        btn.type = 'button';
+        btn.dataset.deityRef = ref;
+        fillPlain(btn, words);
+      } else {
+        fillPlain(target, words);
+      }
+    }
   }
 }
 
@@ -98,30 +125,6 @@ function prayerRefEl(block) {
   return wrap;
 }
 
-// Iconography (BRIEF §7). A block naming a deity carries the ref on the
-// element whether or not a picture exists — the hook is stable, the
-// image is optional. With none in the manifest nothing is emitted and
-// the reading surface is exactly as it was; when the owner supplies the
-// assets, the plate appears here and opens the viewer.
-function deityPlateEl(ref) {
-  const deity = deityEntry(ref);
-  if (!deity || !deity.image) return null;
-  const fig = el('figure', 'deity-plate');
-  const btn = el('button', 'deity-open', fig);
-  btn.type = 'button';
-  btn.dataset.deityRef = ref;
-  const img = el('img', 'deity-image', btn);
-  img.src = deity.image;
-  img.alt = deity.en || deity.sa || deity.bo || '';
-  img.loading = 'lazy';
-  img.decoding = 'async';
-  // Caption and alt text are manifest data — the owner's words, as with
-  // every other name in the app.
-  const caption = deity.en || deity.bo;
-  if (caption) el('figcaption', 'deity-caption', fig).textContent = caption;
-  return fig;
-}
-
 // A prayer's onward link to the next prayer in the cycle (manifest order).
 // Reuses the prayer-link component; the reader's delegated click handler
 // navigates on data-prayerRef, exactly as an authored cross-link would.
@@ -160,11 +163,10 @@ function blockEl(block, fields) {
   for (const f of fields) {
     fillInline(el('div', f === 'bo' ? 'bo' : f, div), block[f]);
   }
-  if (block.deityRef) {
-    div.dataset.deityRef = block.deityRef;
-    const plate = deityPlateEl(block.deityRef);
-    if (plate) div.appendChild(plate);
-  }
+  // A block-level deityRef is recorded on the element but draws nothing:
+  // the owner chose the figure summoned from the name in the passage
+  // (BRIEF §7) over a picture standing in the read-aloud flow.
+  if (block.deityRef) div.dataset.deityRef = block.deityRef;
   if (block.prayerRef) div.appendChild(prayerRefEl(block));
   return div;
 }
