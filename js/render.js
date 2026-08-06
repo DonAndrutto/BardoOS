@@ -11,7 +11,7 @@
 // auto-scroll geometry stays honest — inherited from the reference.
 
 import { state } from './store.js';
-import { cycleEntry, nextInGroup } from './data.js';
+import { cycleEntry, nextInGroup, deityEntry } from './data.js';
 import { t } from './i18n.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
@@ -66,24 +66,55 @@ function visibleFields(block) {
 // A block's prayerRef renders as a tappable link to that prayer —
 // title from the manifest (the owner's words), never authored here.
 // A ref to a still-forthcoming prayer shows locked, going nowhere.
-function prayerRefEl(block) {
-  const entry = cycleEntry(block.prayerRef);
-  const title = entry && entry.title !== TODO ? entry.title : block.prayerRef;
-  const wrap = el('div', 'prayer-ref');
+function prayerLinkEl(ref, parent) {
+  const entry = cycleEntry(ref);
+  const title = entry && entry.title !== TODO ? entry.title : ref;
   if (entry && entry.status === 'translated') {
-    const btn = el('button', 'prayer-link', wrap);
+    const btn = el('button', 'prayer-link', parent);
     btn.type = 'button';
-    btn.dataset.prayerRef = block.prayerRef;
+    btn.dataset.prayerRef = ref;
     btn.innerHTML = ARROW_ICON;
     el('span', 'prayer-link-title', btn).textContent = title;
   } else {
-    const span = el('span', 'prayer-link locked', wrap);
+    const span = el('span', 'prayer-link locked', parent);
     span.innerHTML = LOCK_ICON;
     const body = el('span', 'prayer-link-body', span);
     el('span', 'prayer-link-title', body).textContent = title;
     el('small', 'prayer-link-note', body).textContent = t('forthcoming');
   }
+}
+
+// One rubric sentence can name several prayers to recite in turn; each
+// gets its own link, in the order the block names them (SCHEMA.md §4).
+function prayerRefEl(block) {
+  const wrap = el('div', 'prayer-ref');
+  const refs = Array.isArray(block.prayerRef) ? block.prayerRef : [block.prayerRef];
+  for (const ref of refs) prayerLinkEl(ref, wrap);
   return wrap;
+}
+
+// Iconography (BRIEF §7). A block naming a deity carries the ref on the
+// element whether or not a picture exists — the hook is stable, the
+// image is optional. With none in the manifest nothing is emitted and
+// the reading surface is exactly as it was; when the owner supplies the
+// assets, the plate appears here and opens the viewer.
+function deityPlateEl(ref) {
+  const deity = deityEntry(ref);
+  if (!deity || !deity.image) return null;
+  const fig = el('figure', 'deity-plate');
+  const btn = el('button', 'deity-open', fig);
+  btn.type = 'button';
+  btn.dataset.deityRef = ref;
+  const img = el('img', 'deity-image', btn);
+  img.src = deity.image;
+  img.alt = deity.en || deity.sa || deity.bo || '';
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  // Caption and alt text are manifest data — the owner's words, as with
+  // every other name in the app.
+  const caption = deity.en || deity.bo;
+  if (caption) el('figcaption', 'deity-caption', fig).textContent = caption;
+  return fig;
 }
 
 // A prayer's onward link to the next prayer in the cycle (manifest order).
@@ -105,6 +136,11 @@ function blockEl(block, fields) {
   div.dataset.blockId = block.id;
   for (const f of fields) {
     fillInline(el('div', f === 'bo' ? 'bo' : f, div), block[f]);
+  }
+  if (block.deityRef) {
+    div.dataset.deityRef = block.deityRef;
+    const plate = deityPlateEl(block.deityRef);
+    if (plate) div.appendChild(plate);
   }
   if (block.prayerRef) div.appendChild(prayerRefEl(block));
   return div;

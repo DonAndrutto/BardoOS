@@ -4,6 +4,8 @@
 
 **Phase 3 amendments (owner-directed, 2026-07-18):** blocks gain two optional fields — `prayerRef` (cross-link to a prayer in the cycle; the validator rejects orphaned refs) and `pl` (Polish translation, entirely optional on every layer, default null); `kind` gains `"guide"` and `cycle` gains `"app"` for the app's own Guide texts (Introduction, How to Use This App). No existing field changed meaning.
 
+**Phase 4 amendments (owner-directed, 2026-08-06):** (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9. No existing field changed meaning.
+
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
 A deliberate rule about the examples in this document: **every piece of textual content is the literal placeholder `TODO_CONTENT`.** I do not author, paraphrase, or approximate any Tibetan or English text, including in documentation (BRIEF §0.2). The examples show shape, not words. `TODO_CONTENT` is also the sanctioned marker for real gaps during content entry: it means "a human must supply this" and the validator counts and reports every one.
@@ -118,7 +120,7 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 | `day` | integer \| null | yes (nullable) | Day 1–14 of the *bardo* of *dharmatā* sequence, where applicable. |
 | `refrain` | boolean | no (default `false`) | Marks a repeated formula. Consecutive `refrain` blocks group into one framed panel and receive the auto-scroll hold (a mechanism inherited from the Ngondro reference — audit §1). Orthogonal to `layer`. |
 | `boEndsOpen` | boolean | no (default `false`) | Declares that this block's Tibetan legitimately ends without a closing mark, exempting it from the shad-integrity check (§7.8). Only legal when `bo` is non-null. |
-| `prayerRef` | string \| null | no (default `null`) | Cross-link: the text id of a prayer in the cycle that this block mentions. The reader renders a tappable link that jumps to that prayer. The id must appear in `content/cycle.json` — a ref to an unlisted id is an error ("orphaned prayerRef"); a ref to a text outside the Prayers & Liturgies shelf is a warning. The owner decides which blocks carry refs; tooling never infers one. |
+| `prayerRef` | string \| string[] \| null | no (default `null`) | Cross-link: the text id of a prayer in the cycle that this block mentions — or, since the Phase 4 amendment, an array of ids where one passage names several ("recite the Aspiration…; then chant the Root Verses…"). The reader renders one tappable link per id, in the order given, each jumping to that prayer. Every id must appear in `content/cycle.json` — a ref to an unlisted id is an error ("orphaned prayerRef"); a ref to a text outside the Prayers & Liturgies shelf is a warning; an empty array or a repeated id is an error. The owner decides which blocks carry refs and in what order; tooling never infers one. |
 | `pl` | string \| null | no (default `null`) | Polish translation of the block, mirroring `en`'s line structure where both exist. **Entirely optional on every layer** — no layer requires it, and its absence is never an error or a warning. The renderer does not display it yet; the field exists so the corpus can carry Polish ahead of the interface (owner's Phase 3 direction). |
 | `note` | string \| null | yes (nullable) | Your note on the block. Apparatus in spirit: rendered quietly in Guide mode only, never in Voice mode, never spoken. |
 
@@ -202,19 +204,66 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 4. Missing or unknown `kind`, `cycle`, or `form`; `form` of `"title"` or `"colophon"` on any layer other than L4; `meter` present on a non-verse form; `day` outside 1–14; any type mismatch.
 5. Unknown/extra field anywhere (strict contract — catches typos in bulk entry).
 6. Empty or missing `en` on a spoken layer (L1/L2/L3), and empty or missing `phon` on L3. The string `"TODO_CONTENT"` is *not* an error — it is a declared gap, counted and reported (see below). An empty string is an undeclared gap and fails.
-7. Orphaned `deityRef` — id absent from `assets/deities/MANIFEST.json`. Orphaned `prayerRef` — id absent from `content/cycle.json` (a cross-link must point at a text the cycle actually lists, translated or forthcoming).
+7. Orphaned `deityRef` — id absent from `assets/deities/MANIFEST.json`. Orphaned `prayerRef` — id absent from `content/cycle.json` (a cross-link must point at a text the cycle actually lists, translated or forthcoming); also an empty `prayerRef` array, or the same id named twice in one.
 8. **Shad-integrity** (rule confirmed at Phase 0 sign-off): every non-null, non-`TODO_CONTENT` `bo` value must end with a Tibetan closing mark — `།` (U+0F0D), `༎` (U+0F0E), `༏` `༐` `༑` (U+0F0F–U+0F11), or `༔` (U+0F14) — unless the block carries `"boEndsOpen": true`. That flag is the deliberate escape for verses that legitimately end open: the validator never breaks on a declared case, and never guesses about an undeclared one. Blocks with no Tibetan are never flagged.
 9. **The forbidden title** (BRIEF §2): a repo-wide scan of every text file — content, code, comments, docs, meta tags. The pattern is assembled at runtime from character fragments so the string itself appears nowhere in the repository, including inside the validator. The one permitted historical note, if you ever write it, gets an explicit allowlist entry for that file.
 10. Duplicate text `id` across the corpus; duplicate section/block `id` within a text.
 11. Cycle-manifest integrity: every text on disk in exactly one group; no dangling text ids.
+12. Deity-manifest integrity (§9): unknown/missing field, non-kebab-case or duplicate id, unknown `class`, `day` outside 1–14, a `consort` that is not an id in the same manifest, and — for a declared `image` — a path outside `assets/deities/images/`, an unsupported extension, a file that is not on disk, or a missing `attribution`/`license`.
 
 **Reported, non-fatal:**
 
 - `TODO_CONTENT` census — count per file, per field, per layer, printed on every run so the state of the corpus is always visible. (CI stays green while content is incomplete; the gaps are declared, not hidden.)
+- Iconography progress — how many deity records exist and how many carry an image, against the roster of 42 peaceful + 58 wrathful, printed on every run. An incomplete roster is never a failure.
 - `phon` present on L0 (rubric is not recited).
 - Non-NFC Unicode normalization in `bo` (warning; Tibetan input methods vary).
 - `prayerRef` pointing at a text outside the Prayers & Liturgies shelf (legal, but usually a slip — the mechanism exists for prayers).
+- More deities of a class than the roster holds (more than 42 peaceful or 58 wrathful).
 
 ## 8. What the schema deliberately does not preclude (BRIEF §4)
 
 Parallel translations and commentary layers are out of scope for v1 and invisible in the UI. The door stays open structurally: a future `schemaVersion: 2` can add sibling fields to `en` (e.g. alternate translations keyed by translator) and a commentary block reference without touching `layer`, `id`, or document structure — nothing in v1 stores anything *as* the sole translation slot except the field name `en` itself. No v1 code path will assume `en` is the only possible rendering.
+
+## 9. The deity manifest — `assets/deities/MANIFEST.json`
+
+*(Specified at the owner's Phase 4 direction, 2026-08-06; deferred from Phase 0. The fields are BRIEF §7's list, plus `phon` — the app shows Tibetan, phonetics and English everywhere else, and a name that may be read aloud should not be the exception.)*
+
+The roster of the peaceful and wrathful deities of the *bardo* of reality — 42 peaceful and 58 wrathful when complete. The pictures are the owner's to supply (BRIEF §7: nothing is scraped, downloaded, or generated). Records may land before their images, and images may land one at a time; an incomplete roster is normal and never a validation failure. **The app renders a plate only where a record carries an `image`**, so an empty roster is invisible at the reading surface.
+
+```jsonc
+{
+  "schemaVersion": 1,
+  "deities": [
+    {
+      "id": "TODO-deity-id",
+      "bo": "TODO_CONTENT",
+      "phon": null,
+      "sa": "TODO_CONTENT",
+      "en": "TODO_CONTENT",
+      "class": "peaceful",
+      "day": 1,
+      "family": null,
+      "consort": null,
+      "direction": null,
+      "color": null,
+      "seed": null,
+      "image": null,
+      "attribution": null,
+      "license": null
+    }
+  ]
+}
+```
+
+| Field | Type | Required | Meaning |
+|---|---|---|---|
+| `id` | string | yes | Kebab-case (dots allowed), unique, **stable forever** — it is what a block's `deityRef` points at. |
+| `bo` / `phon` / `sa` / `en` | string \| null | yes (nullable) | The deity's name: Tibetan, phonetics, Sanskrit, English. Copied from the owner's source; `TODO_CONTENT` for a gap, never transliterated or translated by whoever is typing. |
+| `class` | enum | yes | `"peaceful"` \| `"wrathful"`. |
+| `day` | integer \| null | yes (nullable) | Day 1–14, or null for the deities belonging to no single day (the Gaurīs, the Piśācīs, the gatekeepers, the Īśvarīs). |
+| `family` / `direction` / `color` / `seed` | string \| null | yes (nullable) | Family, direction, colour, seed syllable — the owner's words. |
+| `consort` | string \| null | yes (nullable) | Another `id` in this same manifest; a ref that does not resolve is an error. |
+| `image` | string \| null | yes (nullable) | Repo-relative path under `assets/deities/images/` (`.webp`, `.png`, `.jpg`), or null. A declared image must exist on disk. |
+| `attribution` / `license` | string \| null | yes (nullable) | Provenance. **Both are required once `image` is set** — an image without its provenance does not ship. |
+
+No other fields are legal; every field is written, `null` where absent, exactly as in the text blocks. The drop-in procedure is `docs/deity-images.md`.

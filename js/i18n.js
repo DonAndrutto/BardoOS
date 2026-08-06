@@ -41,6 +41,14 @@ const STRINGS = {
     introductions: 'Introductions',
     prayers: 'Prayers',
     noTextsYet: 'No texts are ready to read yet.',
+    // Deity plates — labels for the manifest's own fields (BRIEF §7).
+    close: 'Close',
+    deityDay: 'Day',
+    deityFamily: 'Family',
+    deityConsort: 'Consort',
+    deityDirection: 'Direction',
+    deityColor: 'Colour',
+    deitySeed: 'Seed syllable',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

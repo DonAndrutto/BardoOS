@@ -543,6 +543,7 @@
           "meter": null,
           "deityRef": null,
           "day": null,
+          "prayerRef": "prayer.calling-buddhas-for-aid",
           "note": null
         },
         {
