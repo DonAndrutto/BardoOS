@@ -12,6 +12,7 @@
 
 import { state } from './store.js';
 import { cycleEntry, nextInGroup, deityEntry } from './data.js';
+import { origin } from './trail.js';
 import { t } from './i18n.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
@@ -22,6 +23,10 @@ const ARROW_ICON =
   '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const BACK_ICON =
+  '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
 const LOCK_ICON =
   '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -131,6 +136,24 @@ function nextPrayerEl(entry) {
   return wrap;
 }
 
+// The way back at the foot of a text a cross-link led to: when the
+// prayer is finished, the passage it was recited for is the next thing
+// the reader wants, and it is right here rather than a scroll away.
+// The bar above the controls carries the same journey at any moment;
+// this is the one that meets them where they stop reading.
+function returnEl(from) {
+  const entry = cycleEntry(from.textId);
+  const title = entry && entry.title !== TODO ? entry.title : from.textId;
+  const wrap = el('div', 'prayer-ref prayer-back');
+  const btn = el('button', 'prayer-link', wrap);
+  btn.type = 'button';
+  btn.dataset.return = '1'; // the reader's delegated handler acts on this
+  btn.innerHTML = BACK_ICON;
+  el('span', 'prayer-link-label', btn).textContent = t('backTo');
+  el('span', 'prayer-link-title', btn).textContent = title;
+  return wrap;
+}
+
 function blockEl(block, fields) {
   const div = el('div', `block layer-${block.layer} form-${block.form}`);
   div.dataset.blockId = block.id;
@@ -235,8 +258,12 @@ export function renderText(text, container) {
     if (state.mode === 'voice' && sec.children.length === 1) sec.remove();
   }
 
-  // Prayers carry a link onward to the next prayer in the cycle; the last
-  // one in its group has none. Instrument navigation, not authored content.
+  // Instrument navigation at the foot, not authored content: the way
+  // back to the passage that sent the reader here, then — for a prayer —
+  // the link onward to the next prayer in the cycle (the last one in its
+  // group has none).
+  const from = origin();
+  if (from && from.textId !== text.id) container.appendChild(returnEl(from));
   if (text.kind === 'prayer') {
     const next = nextInGroup(text.id);
     if (next) container.appendChild(nextPrayerEl(next));

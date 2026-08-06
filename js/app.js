@@ -2,7 +2,8 @@
 // Voice mode is the one you use when someone is dying: spoken layers
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
-import { loadCycle, loadText, loadDeities, deityEntry } from './data.js';
+import { loadCycle, loadText, loadDeities, deityEntry, cycleEntry } from './data.js';
+import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
@@ -59,6 +60,41 @@ function anchorKept(change) {
       return;
     }
   }
+}
+
+// Put a block back where it stood: the same technique as anchorKept,
+// across a whole navigation rather than a re-render. Scroll to a known
+// base first, then move the block to the offset it had. The block id is
+// the anchor, not a pixel count, so it survives a font-size change or a
+// mode switch in between. Falls back to the top if the block is gone
+// (Voice mode drops L4 entirely). This is also the piece a future exact
+// resume across app death would reuse (BRIEF §9).
+function restoreBlock(blockId, offset) {
+  window.scrollTo(0, 0);
+  const node = document.querySelector(
+    `#reader [data-block-id="${CSS.escape(blockId)}"]`);
+  if (!node) return;
+  window.scrollBy(0, node.getBoundingClientRect().top - offset);
+}
+
+// ── The way back ────────────────────────────────────────────────────
+// Shown while the reader is somewhere a cross-link sent them. The title
+// is the manifest's (the owner's words); the id is the honest fallback,
+// as everywhere else. The body class lets the reading surface make room
+// so the bar never covers the last line.
+function applyReturn() {
+  const from = origin();
+  const showable = Boolean(from) && view === 'text'
+    && !(currentText && currentText.id === from.textId);
+  document.body.classList.toggle('has-return', showable);
+  $('returnBar').hidden = !showable;
+  if (!showable) return;
+  const entry = cycleEntry(from.textId);
+  const title = entry && entry.title !== TODO ? entry.title : from.textId;
+  $('returnLabel').textContent = t('backTo');
+  $('returnTitle').textContent = title;
+  $('btnReturn').title = title;
+  $('btnReturn').setAttribute('aria-label', `${t('backTo')} ${title}`);
 }
 
 function rerender() {
@@ -425,6 +461,7 @@ function showView(next) {
   view = next;
   document.body.dataset.view = next;
   applyMode();
+  applyReturn();
 }
 
 // Leaving a text for one of the doorway pages: stop the scroll, drop
@@ -433,6 +470,7 @@ function showView(next) {
 function leaveText() {
   scroll.stop();
   closeContents();
+  forget(); // the doorway is a new course; the way back goes with it
   currentText = null;
   if (!desktopNav.matches) setMenu(false);
   document.querySelectorAll('.nav .nav-text[data-text-id]')
@@ -458,7 +496,12 @@ function showTexts() {
   window.scrollTo(0, 0);
 }
 
-async function openText(id) {
+// `keepOrigin` is for following a cross-link — the caller has just
+// recorded where the reader stood. Every other way into a text is the
+// reader choosing a new course, so the way back goes. `restore` puts
+// them back on the passage they left.
+async function openText(id, { keepOrigin = false, restore = null } = {}) {
+  if (!keepOrigin && !restore) forget();
   scroll.stop();
   // The docked sidebar stays; the overlay gets out of the way.
   if (!desktopNav.matches) setMenu(false);
@@ -477,13 +520,29 @@ async function openText(id) {
     currentText = await loadText(id);
     renderText(currentText, reader);
     buildContents();
-    window.scrollTo(0, 0);
+    if (restore) restoreBlock(restore.blockId, restore.offset);
+    else window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
     buildContents();
     note(reader, `${t('couldNotLoadText')} (${err.message}).`);
   }
   applyPhonRelevance();
+  applyReturn();
+}
+
+// Back to the passage the reader left. If that text is somehow already
+// on screen there is nothing to load — just put them back on the block.
+function goBack() {
+  const from = origin();
+  if (!from) return;
+  forget();
+  if (currentText && currentText.id === from.textId) {
+    restoreBlock(from.blockId, from.offset);
+    applyReturn();
+    return;
+  }
+  openText(from.textId, { restore: from });
 }
 
 async function boot() {
@@ -601,6 +660,11 @@ async function boot() {
   // Home: the app's name in the header is the way back to the doorway.
   $('btnHome').addEventListener('click', showHome);
 
+  // The way back to the passage a cross-link led away from. The bar
+  // lives outside the reader, so it needs its own listener; the chip in
+  // the text's footer is handled by the delegated one below.
+  $('btnReturn').addEventListener('click', goBack);
+
   // Rubric peeking in Voice mode, the doorway pages' own links, and
   // prayer cross-links — all delegated: the reader's contents
   // re-render often.
@@ -615,9 +679,21 @@ async function boot() {
       openText(entry.dataset.openText);
       return;
     }
+    if (e.target.closest('[data-return]')) {
+      goBack();
+      return;
+    }
     const link = e.target.closest('.prayer-link');
     if (link && link.dataset.prayerRef) {
-      openText(link.dataset.prayerRef);
+      // Where the reader stood, before the link moves them. A link with
+      // no block around it is the foot-of-the-prayer "Next prayer" —
+      // the chain case, which trail.js keeps the deeper origin for.
+      const block = link.closest('[data-block-id]');
+      if (block && currentText) {
+        remember(currentText.id, currentText.kind, block.dataset.blockId,
+          block.getBoundingClientRect().top);
+      }
+      openText(link.dataset.prayerRef, { keepOrigin: true });
       return;
     }
     const plate = e.target.closest('.deity-open');

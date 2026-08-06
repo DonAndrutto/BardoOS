@@ -31,6 +31,7 @@ const STRINGS = {
     couldNotLoadCycle: 'Could not load the cycle manifest',
     emptyCycle: 'No texts in the cycle yet.',
     nextPrayer: 'Next prayer',
+    backTo: 'Back to',
     contents: 'Contents',
     contentsEmpty: 'No sections in this text.',
     home: 'Home',

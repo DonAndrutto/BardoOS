@@ -650,6 +650,30 @@ body.nav-open .nav { display: block; }
   margin-top: 2px;
 }
 
+/* The way back at the foot: where the reader stops reading, the passage
+   that sent them here is one tap away. It owns the separator; a
+   next-prayer link following it does not repeat the rule. */
+.prayer-back {
+  justify-content: center;
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+}
+.prayer-back + .prayer-next {
+  margin-top: var(--sp-4);
+  padding-top: 0;
+  border-top: none;
+}
+.prayer-link-label {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+
 /* Onward link at the foot of a prayer — the next prayer in the cycle.
    Its label stands above the link, so it keeps the block flow. */
 .prayer-next {
@@ -849,6 +873,10 @@ body.nav-open .nav { display: block; }
   padding: var(--sp-3) var(--sp-4);
   padding-bottom: max(var(--sp-3), env(safe-area-inset-bottom));
   pointer-events: none;
+  /* Stays a block container on purpose: the return bar stacks above the
+     controls as an ordinary block, both centred by their own auto
+     margins. As a flex column the auto margins would stop .bar-inner
+     stretching and crush the control row to its content width. */
 }
 .bar-inner {
   max-width: 40rem;
@@ -914,12 +942,74 @@ body.nav-open .nav { display: block; }
   .bar-btn-text { padding: 0; }
 }
 
+/* ── The way back, while a link has led the reader away ──────────────
+   Above the controls, in the bottom third, reachable one-handed at any
+   scroll position — and it says where it goes, so nobody has to guess.
+   Never colour alone: the arrow, the border and the caps label carry it
+   as much as the accent does. */
+.return-bar {
+  max-width: 40rem;
+  margin: 0 auto var(--sp-2);
+  pointer-events: auto;
+}
+/* display:flex below would otherwise defeat the hidden attribute —
+   the same trap .bar-group documents. */
+.return-bar[hidden] { display: none; }
+.return-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .return-link:hover { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); }
+}
+.return-link:focus { outline: none; }
+.return-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.return-link-icon { width: 16px; height: 16px; flex: none; }
+.return-link-label {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+/* The owner's titles run long; one honest line, the whole of it in the
+   tooltip and the aria-label. */
+.return-link-title {
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Room for it: the reading surface and the contents sheet both clear
+   the controls by a fixed amount, and the bar adds a row above them. */
+body.has-return .shell { padding-bottom: 11rem; }
+body.has-return .contents-sheet { margin-bottom: 9rem; }
+
 /* Off a text there is nothing to recite, no layers to toggle and
    nothing worth scrolling by itself: those controls stand down. Day or
    night and fullscreen remain — they belong to the room, not the text.
    The doorway keeps nothing but those. */
 body:not([data-view="text"]) #scrollGroup,
 body:not([data-view="text"]) .lang-group,
+body:not([data-view="text"]) .return-bar,
 body:not([data-view="text"]) #btnVoice { display: none; }
 body[data-view="home"] #sizeGroup { display: none; }
 body:not([data-view="text"]) .bar-inner { justify-content: center; }
