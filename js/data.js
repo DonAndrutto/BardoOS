@@ -47,56 +47,73 @@ export function loadText(id) {
 }
 
 // ── Iconography (BRIEF §7) ──────────────────────────────────────────
-// The deity manifest, indexed by id. This is optional data: the roster
-// is the owner's to supply, and until it exists — or if the file is
-// ever missing — the app must read exactly as it does now. So a failure
-// here is not an error; it simply means no plate is ever rendered.
-const deityIndex = new Map();
+// A *deity* is an identity; a *depiction* is a picture. They are not the
+// same thing: six of the 36 pictures show a couple in union, so 42
+// deities are carried by 36 depictions, and tapping either deity of a
+// pair opens the one they share.
+//
+// This is optional data. Until a collection exists — or if the file is
+// ever missing — the app must read exactly as it does without it, so a
+// failure here is not an error: it simply means no name is a tap.
+const deityIndex = new Map();      // deity id → record
+const depictionIndex = new Map();  // deity id → the depiction showing it
+const collections = [];            // in manifest order, each with its own list
 
 export async function loadDeities() {
   deityIndex.clear();
+  depictionIndex.clear();
+  collections.length = 0;
   try {
     const manifest = await getJSON('assets/deities/MANIFEST.json');
-    for (const deity of manifest.deities || []) {
-      if (deity && deity.id) deityIndex.set(deity.id, deity);
+    for (const c of manifest.collections || []) {
+      for (const d of c.deities || []) {
+        if (d && d.id) deityIndex.set(d.id, { ...d, collection: c.id });
+      }
+      const shown = [];
+      for (const x of c.depictions || []) {
+        if (!x || !x.image || !Array.isArray(x.deityIds)) continue;
+        const depiction = { ...x, collection: c.id };
+        shown.push(depiction);
+        for (const id of x.deityIds) depictionIndex.set(id, depiction);
+      }
+      collections.push({
+        id: c.id,
+        label: c.label,
+        attribution: c.attribution || null,
+        license: c.license || null,
+        depictions: shown,
+      });
     }
   } catch {
     // No manifest, no iconography. The texts read the same.
   }
-  return deityIndex.size;
+  return depictionIndex.size;
 }
 
-// The manifest record for a deity id, or null.
+// The record for a deity id, or null.
 export function deityEntry(id) {
   return deityIndex.get(id) || null;
 }
 
-// Every deity that dawns on a given day of the bardo of reality, in
-// manifest order — the day-cluster lookup (BRIEF §7).
-export function deitiesForDay(day) {
-  return [...deityIndex.values()].filter((d) => d.day === day);
+// The picture that shows a given deity, or null when none does — which
+// is what decides whether that name is a tap at all.
+export function depictionFor(deityId) {
+  return depictionIndex.get(deityId) || null;
 }
 
-// The whole roster of one class, in manifest order.
-export function deitiesOfClass(cls) {
-  return [...deityIndex.values()].filter((d) => d.class === cls);
+// The deities a depiction shows, in the order it lists them: one name
+// for a single figure, both for a couple in union.
+export function depictionDeities(depiction) {
+  return (depiction.deityIds || []).map((id) => deityIndex.get(id)).filter(Boolean);
 }
 
-// The days that class actually occupies, in order — so a gallery or a
-// cluster view never invents a day the roster does not hold.
-export function deityDays(cls) {
-  return [...new Set(deitiesOfClass(cls).map((d) => d.day).filter((d) => d != null))]
-    .sort((a, b) => a - b);
+// Every collection that has something to show, in manifest order — and
+// each one's depictions in the owner's numbering, which is the order the
+// gallery presents them in.
+export function deityCollections() {
+  return collections.filter((c) => c.depictions.length);
 }
 
-// One entry per *image*: the six couples in union share a file, and a
-// gallery should show that file once, under both their names.
-export function deityTiles(list) {
-  const byImage = new Map();
-  for (const d of list) {
-    if (!d.image) continue;
-    if (!byImage.has(d.image)) byImage.set(d.image, []);
-    byImage.get(d.image).push(d);
-  }
-  return [...byImage.values()];
+export function collectionById(id) {
+  return collections.find((c) => c.id === id) || null;
 }

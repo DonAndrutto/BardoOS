@@ -105,82 +105,157 @@ function readJSON(path, file) {
 }
 
 // ── Deity manifest (SCHEMA.md §9) ───────────────────────────────────
-// The iconography contract. The roster itself is the owner's to supply
-// — this validates whatever is there, checks that a declared image is
-// a real file carrying its provenance, and never invents an entry.
-const DEITY_FIELDS = [
-  'id', 'bo', 'phon', 'sa', 'en', 'class', 'day', 'family',
-  'consort', 'direction', 'color', 'seed', 'image', 'attribution', 'license',
+// The iconography contract, in the owner's own terms: a *deity* is an
+// identity, a *depiction* is a picture, and the two are not the same
+// thing — six of these pictures show a couple in union, so 36 depictions
+// carry 42 deities. Tapping either deity of a pair opens the shared
+// depiction, which falls straight out of the model.
+//
+// Only what the feature needs is required: number, id, label, and the
+// deity→depiction association. Everything else a record may one day
+// carry (bo, family, direction, colour, seed, day…) is genuinely
+// optional — absent is normal, never a warning, and never filled with a
+// placeholder. Day assignments in particular are not part of this model:
+// the day-by-day clusters are a separate future presentation with its
+// own composite images (owner's direction, 2026-08-06).
+const COLLECTION_FIELDS = ['id', 'label', 'attribution', 'license', 'deities', 'depictions'];
+const DEITY_REQUIRED = ['number', 'id', 'label'];
+// Reserved for future metadata. Legal, never required, never reported.
+const DEITY_OPTIONAL = [
+  'textAliases', 'bo', 'phon', 'sa', 'family', 'direction', 'color', 'seed', 'day',
 ];
-const DEITY_STRINGS = DEITY_FIELDS.filter((f) => f !== 'id' && f !== 'class' && f !== 'day');
-const DEITY_CLASSES = ['peaceful', 'wrathful'];
+const DEPICTION_FIELDS = ['id', 'sourceFile', 'image', 'deityIds'];
 const DEITY_IMAGE_DIR = 'assets/deities/images/';
 const DEITY_IMAGE_EXTS = new Set(['.webp', '.png', '.jpg', '.jpeg']);
-// The full zhi-khro roster, for the progress line only — never a
-// failure condition. Images and records land over time.
-const ROSTER = { peaceful: 42, wrathful: 58 };
 
-function checkDeity(file, i, d, deities) {
-  const where = `deities[${i}]${d && d.id ? ` (${d.id})` : ''}`;
+function checkDeity(file, where, d, ctx) {
   if (typeof d !== 'object' || d === null) { err(file, where, 'deity must be an object'); return; }
+  checkKeys(file, where, d, DEITY_REQUIRED, DEITY_OPTIONAL);
 
-  checkKeys(file, where, d, DEITY_FIELDS);
+  if (!Number.isInteger(d.number) || d.number < 1) {
+    err(file, where, `"number" must be a positive integer (got ${JSON.stringify(d.number)})`);
+  } else if (ctx.numbers.has(d.number)) {
+    err(file, where, `duplicate deity number ${d.number} in this collection`);
+  } else ctx.numbers.add(d.number);
+
+  if (!nonEmpty(d.label)) err(file, where, '"label" must be a non-empty string');
+  else countTodos(file, `${where} :: label`, d.label);
+
+  if ('textAliases' in d) {
+    // Documentation of an established name relationship — never matching
+    // input. A name becomes a tap only where the owner marked it.
+    if (!Array.isArray(d.textAliases) || d.textAliases.length === 0) {
+      err(file, where, '"textAliases" must be a non-empty array of strings, or omitted');
+    } else if (d.textAliases.some((a) => !nonEmpty(a))) {
+      err(file, where, '"textAliases" entries must be non-empty strings');
+    }
+  }
 
   if (!nonEmpty(d.id)) { err(file, where, 'deity "id" must be a non-empty string'); return; }
   if (!ID_PATTERN.test(d.id)) err(file, where, `deity id "${d.id}" is not kebab-case`);
-  if (deities.has(d.id)) err(file, where, `duplicate deity id "${d.id}"`);
-  else deities.set(d.id, d);
+  if (ctx.deityIds.has(d.id)) err(file, where, `duplicate deity id "${d.id}"`);
+  else ctx.deityIds.add(d.id);
+}
 
-  for (const f of DEITY_STRINGS) {
-    if (f in d && !isNullableString(d[f])) err(file, where, `"${f}" must be a string or null`);
-    else if (isString(d[f])) countTodos(file, `${where} :: ${f}`, d[f]);
+function checkDepiction(file, where, x, ctx) {
+  if (typeof x !== 'object' || x === null) { err(file, where, 'depiction must be an object'); return; }
+  checkKeys(file, where, x, DEPICTION_FIELDS);
+
+  if (!nonEmpty(x.id)) err(file, where, 'depiction "id" must be a non-empty string');
+  else if (!ID_PATTERN.test(x.id)) err(file, where, `depiction id "${x.id}" is not kebab-case`);
+  else if (ctx.depictionIds.has(x.id)) err(file, where, `duplicate depiction id "${x.id}"`);
+  else ctx.depictionIds.add(x.id);
+
+  if (!nonEmpty(x.sourceFile)) err(file, where, '"sourceFile" must name the master it came from');
+
+  // The picture itself: a real file in the repo, in a format the app can
+  // show. Provenance is collection-level, so nothing is asked of it here.
+  if (!nonEmpty(x.image)) {
+    err(file, where, '"image" must be a path under ' + DEITY_IMAGE_DIR);
+  } else if (!x.image.startsWith(DEITY_IMAGE_DIR)) {
+    err(file, where, `"image" must live under ${DEITY_IMAGE_DIR} (got "${x.image}")`);
+  } else if (!DEITY_IMAGE_EXTS.has(extname(x.image).toLowerCase())) {
+    err(file, where, `"image" must be one of ${[...DEITY_IMAGE_EXTS].join(', ')} (got "${x.image}")`);
+  } else if (!existsSync(join(ROOT, x.image))) {
+    err(file, where, `"image" file not found: ${x.image}`);
   }
-  if (!DEITY_CLASSES.includes(d.class)) {
-    err(file, where, `"class" must be ${DEITY_CLASSES.join(' or ')} (got ${JSON.stringify(d.class)})`);
+
+  if (!Array.isArray(x.deityIds) || x.deityIds.length === 0) {
+    err(file, where, '"deityIds" must be a non-empty array — a depiction shows at least one deity');
+    return;
   }
-  if (d.day !== null && d.day !== undefined) {
-    if (!Number.isInteger(d.day) || d.day < 1 || d.day > 14) {
-      err(file, where, `"day" must be an integer 1–14 or null (got ${JSON.stringify(d.day)})`);
+  const here = new Set();
+  for (const ref of x.deityIds) {
+    if (!nonEmpty(ref)) { err(file, where, '"deityIds" entries must be non-empty strings'); continue; }
+    if (here.has(ref)) { err(file, where, `"deityIds" names "${ref}" twice`); continue; }
+    here.add(ref);
+    // Resolved after the whole collection is read: order must not matter.
+    ctx.claims.push({ where, ref });
+  }
+}
+
+function checkCollection(file, i, c, ctx) {
+  const where = `collections[${i}]${c && c.id ? ` (${c.id})` : ''}`;
+  if (typeof c !== 'object' || c === null) { err(file, where, 'collection must be an object'); return; }
+  checkKeys(file, where, c, COLLECTION_FIELDS);
+
+  if (!nonEmpty(c.id)) err(file, where, 'collection "id" must be a non-empty string');
+  else if (!ID_PATTERN.test(c.id)) err(file, where, `collection id "${c.id}" is not kebab-case`);
+  else if (ctx.collectionIds.has(c.id)) err(file, where, `duplicate collection id "${c.id}"`);
+  else ctx.collectionIds.add(c.id);
+  if (!nonEmpty(c.label)) err(file, where, 'collection "label" must be a non-empty string');
+
+  // Attribution and licence cover the whole collection, because all its
+  // pictures share one provenance. Both may be null while the owner
+  // settles the wording — that is a declared gap, not a failure.
+  for (const f of ['attribution', 'license']) {
+    if (!isNullableString(c[f])) err(file, where, `"${f}" must be a string or null`);
+    else if (isString(c[f])) countTodos(file, `${where} :: ${f}`, c[f]);
+  }
+
+  const local = { numbers: new Set(), depictionIds: new Set(), deityIds: ctx.deityIds, claims: [] };
+  if (!Array.isArray(c.deities)) err(file, where, '"deities" must be an array');
+  else c.deities.forEach((d, n) => {
+    const w = `${where} :: deities[${n}]${d && d.id ? ` (${d.id})` : ''}`;
+    checkDeity(file, w, d, local);
+    if (d && d.id) ctx.deities.set(d.id, d);
+  });
+
+  if (!Array.isArray(c.depictions)) err(file, where, '"depictions" must be an array');
+  else c.depictions.forEach((x, n) => {
+    checkDepiction(file, `${where} :: depictions[${n}]${x && x.id ? ` (${x.id})` : ''}`, x, local);
+  });
+
+  // A depiction may show several deities; a deity is shown by at most
+  // one depiction, or a tap would have two answers.
+  const shownBy = new Map();
+  for (const { where: w, ref } of local.claims) {
+    if (!local.deityIds.has(ref)) {
+      err(file, w, `"deityIds" names "${ref}", which is not a deity in this manifest`);
+    } else if (shownBy.has(ref)) {
+      err(file, w, `"${ref}" is already shown by ${shownBy.get(ref)}`);
+    } else {
+      shownBy.set(ref, w);
+      ctx.depicted.add(ref);
     }
   }
-
-  // An image is optional; a *declared* image must exist and must carry
-  // its provenance — the owner supplies both together (BRIEF §7).
-  if (nonEmpty(d.image)) {
-    if (!d.image.startsWith(DEITY_IMAGE_DIR)) {
-      err(file, where, `"image" must live under ${DEITY_IMAGE_DIR} (got "${d.image}")`);
-    } else if (!DEITY_IMAGE_EXTS.has(extname(d.image).toLowerCase())) {
-      err(file, where, `"image" must be one of ${[...DEITY_IMAGE_EXTS].join(', ')} (got "${d.image}")`);
-    } else if (!existsSync(join(ROOT, d.image))) {
-      err(file, where, `"image" file not found: ${d.image}`);
-    }
-    if (!nonEmpty(d.attribution)) err(file, where, 'an image needs its "attribution" — provenance ships with the asset');
-    if (!nonEmpty(d.license)) err(file, where, 'an image needs its "license"');
-  }
+  ctx.summary.push(`${c.id}: ${Array.isArray(c.deities) ? c.deities.length : 0} deities, ` +
+    `${Array.isArray(c.depictions) ? c.depictions.length : 0} depictions`);
 }
 
 function loadDeities() {
   const file = 'assets/deities/MANIFEST.json';
-  const deities = new Map(); // id → record
+  const ctx = {
+    deities: new Map(), deityIds: new Set(), depicted: new Set(),
+    collectionIds: new Set(), summary: [],
+  };
   const m = readJSON(join(ROOT, file), file);
-  if (!m) return deities;
-  checkKeys(file, null, m, ['schemaVersion', 'deities']);
+  if (!m) return ctx;
+  checkKeys(file, null, m, ['schemaVersion', 'collections']);
   if (m.schemaVersion !== 1) err(file, null, `unknown schemaVersion ${m.schemaVersion}`);
-  if (!Array.isArray(m.deities)) { err(file, null, '"deities" must be an array'); return deities; }
-  m.deities.forEach((d, i) => checkDeity(file, i, d, deities));
-
-  // A consort is another deity in this same manifest.
-  for (const [id, d] of deities) {
-    if (nonEmpty(d.consort) && !deities.has(d.consort)) {
-      err(file, `deities (${id})`, `consort "${d.consort}" is not a deity id in this manifest`);
-    }
-  }
-  // The roster is finite and known; more than it can hold is a slip.
-  for (const cls of DEITY_CLASSES) {
-    const n = [...deities.values()].filter((d) => d.class === cls).length;
-    if (n > ROSTER[cls]) warn(file, null, `${n} ${cls} deities listed; the roster holds ${ROSTER[cls]}`);
-  }
-  return deities;
+  if (!Array.isArray(m.collections)) { err(file, null, '"collections" must be an array'); return ctx; }
+  m.collections.forEach((c, i) => checkCollection(file, i, c, ctx));
+  return ctx;
 }
 
 // ── Blocks ──────────────────────────────────────────────────────────
@@ -487,8 +562,10 @@ function scanForbidden(dir = ROOT) {
 }
 
 // ── Run ─────────────────────────────────────────────────────────────
-const deities = loadDeities();
-const deityIds = new Set(deities.keys());
+const iconography = loadDeities();
+// Only a deity that actually has a picture can be tapped, so that is the
+// set an inline token must resolve against.
+const deityIds = iconography.depicted;
 const textIds = new Set();
 
 const textsDir = join(ROOT, 'content', 'texts');
@@ -504,14 +581,12 @@ scanForbidden();
 // ── Report ──────────────────────────────────────────────────────────
 const out = (s) => process.stdout.write(s + '\n');
 
-out(`Bardo OS validator — ${textFiles.length} text file(s), ${deities.size} deity record(s)`);
+out(`Bardo OS validator — ${textFiles.length} text file(s), ` +
+    `${iconography.deities.size} deity record(s)`);
 
-// Iconography progress: visible on every run, never a failure. The
-// instrument renders a plate only where an image exists, so this line
-// is also exactly what is visible to a reader.
-const withImage = [...deities.values()].filter((d) => nonEmpty(d.image)).length;
-out(`Iconography: ${withImage}/${deities.size} record(s) carry an image; ` +
-    `the roster when complete is ${ROSTER.peaceful} peaceful + ${ROSTER.wrathful} wrathful.`);
+// Iconography, visible on every run and never a failure: what is here is
+// what a reader can tap. An incomplete roster is normal.
+for (const line of iconography.summary) out(`  · ${line}`);
 
 if (warnings.length) {
   out(`\n${warnings.length} warning(s):`);

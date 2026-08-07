@@ -1,26 +1,45 @@
 # The deity images
 
-The 42 peaceful deities are in. This page records what landed, how the
-mapping was made, and the procedure for the wrathful 58 when they follow.
-Nothing here requires a build step.
+The 42 peaceful deities are in, against the owner's authoritative
+`zhiwa-42` image map. This page records the model, what landed, and the
+procedure for the wrathful 58 when they follow. Nothing here requires a
+build step.
 
-The roster, when complete, is **42 peaceful and 58 wrathful deities** of
-the *bardo* of reality (owner's direction, 2026-08-06). The validator
-prints the count on every run and never fails for an incomplete roster.
+## The model
+
+**A deity is an identity; a depiction is a picture.** Keeping them apart
+is the whole design:
+
+- **42** independently addressable deity identities.
+- **36** depictions — six show a couple in union, thirty show one figure.
+- Tapping *either* deity of a pair opens the depiction they share. That
+  is not a special case; it is what the model says.
+- The gallery shows **36 tiles in the owner's numbering**, pair tiles
+  carrying both names.
+
+**Days play no part here.** The day-by-day clusters are a separate future
+presentation with their own composite images; this feature presents
+specific deities and pairs, independently of the day of samādhi. No day
+assignment is stored, read, or grouped by.
+
+The only required information per deity is its **number**, its stable
+**id**, its **label**, and its **depiction association** (plus the
+depiction's image path). `bo`, `family`, `direction`, `color`, `seed`
+and `day` are accepted as genuinely optional future metadata — absent is
+normal, never a warning, never filled with a placeholder, never shown.
 
 ## What is built
 
 | Piece | Where | State |
 |---|---|---|
-| Record contract | `SCHEMA.md` §9, enforced by `scripts/validate.mjs` | done |
-| Roster | `assets/deities/MANIFEST.json` | **42 peaceful**, each with an image |
-| Images | `assets/deities/images/zhiwa/` | **36 WebP**, 3.7 MB |
-| Name in the text → figure | `[[words\|deity-id]]` (`SCHEMA.md` §4) | done — all 42 named in `bardo-thodrol.dharmata-intro` |
+| Contract | `SCHEMA.md` §9, enforced by `scripts/validate.mjs` | done |
+| Manifest | `assets/deities/MANIFEST.json` | 42 deities, 36 depictions, one collection |
+| Images | `assets/deities/images/zhiwa/` | 36 WebP, 3.7 MB |
+| Name in the text → figure | `[[words\|deity-id]]` (`SCHEMA.md` §4) | all 42 marked in `bardo-thodrol.dharmata-intro` |
 | Viewer | `index.html` + `js/app.js` (`openDeity`) | done |
-| Gallery | Iconography → Peaceful Deities (`renderDeities` in `js/home.js`) | done |
-| Offline | `sw.js` precaches every image the manifest names | done |
-| Day cluster | `deitiesForDay(day)` in `js/data.js` | seam only — the gallery groups by day; no cluster screen yet |
-| Wrathful 58 | — | awaiting the images |
+| Gallery | Iconography → 42 Peaceful Deities (`renderDeities` in `js/home.js`) | done |
+| Offline | `sw.js` precaches every depiction image | done |
+| Wrathful 58 | — | awaiting the images; `collections[]` already holds a second set |
 
 ## The images
 
@@ -28,88 +47,87 @@ The owner supplied 36 PNGs at 540×675 RGBA, cut out with no background,
 24.2 MB in total. They ship as WebP at **quality 95** — **3.7 MB**, with
 the **alpha channel bit-identical** to the source on every one of the 36
 (verified per file at conversion; the owner's condition was that the
-transparency survive exactly). The PNG masters stay with the owner; only
-the WebP is committed. Conversion was a one-time local step with Pillow,
-never a dependency of the app.
-
-Six files show a couple in union, so **36 images carry 42 deities** — the
-two records share one `image` path and point at each other through
-`consort`. The gallery draws one tile for such a pair, under both names.
+transparency survive exactly). The PNG masters stay with the owner; each
+depiction records its `sourceFile`. Conversion was a one-time local step
+with Pillow, never a dependency of the app.
 
 **The transparency is doing real work.** A cut-out composites onto the
 app's own ground, so at 3 a.m. in night mode nothing flares white; the
 viewer needs no panel and no frame; and figures can be composed side by
-side without seams, which is what will make the day-cluster view possible.
+side without seams, which is what will make the cluster presentation
+possible when it comes.
 
-## The mapping — please check this
+## Attribution and licence
 
-Two of the owner's own sources are involved, and they are not always the
-same: the **translation** (which spells the names, and states the day) and
-the **file labels** (which the gallery shows). Both are recorded as they
-stand; nothing was reconciled by tooling.
+Collection-level, because all 36 pictures share one provenance:
+`collections[0].attribution` and `.license`. Both are `null` until the
+owner supplies the wording; while they are null the viewer and the
+gallery simply show no credit line.
 
-Two places where they genuinely differ, for the owner to settle:
+## Names
 
-- **28** — the file says *Goddess of Food and Taste* (Naivedyā); the
-  translation says **Nartī**. Different names for the eighth offering
-  goddess.
-- **31** — the file says *Shakyamuni*; the translation says
-  **Śākyasiṃha, sage of humans**. Matched by its position in the owner's
-  own list of six sages.
+The reading text keeps its own words — those are the tap targets. The
+manifest's `label` is the canonical name shown in the viewer and the
+gallery. Where the two differ, `textAliases` records the relationship as
+**documentation only**: the renderer never infers a deity reference from
+prose, and a name becomes a tap solely where the owner marked it.
 
-Also worth an eye: **19** is *Sarvanivaranavishkambhin* on the file and
-**Nivāraṇaviṣkambhin** in the text; **15** (the bodhisattva) and **01**
-(the primordial buddha) are both *Samantabhadra* and are deliberately two
-records, marked in two different passages.
+- **#28 is Naivedyā — Goddess of Food and Taste** (the carrier of
+  foodstuffs; her colour and position in the maṇḍala confirm it). The
+  passage still reads `Nartī`, and that word is an explicit reference to
+  `zhiwa.28-naivedya`. Aliases recorded: Nartī, Narti, Nīrti, Nirti.
+- **#19** — `Sarvanivaranavishkambhin` on the file,
+  `Nivāraṇaviṣkambhin` in the text: one record.
+- **#31** — `Shakyamuni` on the file, `Śākyasiṃha, sage of humans` in
+  the text: one record, the human-realm figure.
+- **#01 and #15** are separate records — the primordial Buddha
+  Samantabhadra and Samantabhadra Bodhisattva — marked in two different
+  passages.
 
-Still owed by the owner, and reported by the validator on every run:
-`attribution` and `license` (one line covers all 36), plus `bo`, `family`,
-`direction`, `color` and `seed` on each record.
-
-| # | Image file | Named in the text as | Where | Gallery label | Day |
+| # | Deity id | Label | Marked in the text as | Where | Depiction |
 |---|---|---|---|---|---|
-| 01 | `01-02-samantabhadra-and-samantabhadri.webp` | Samantabhadra | `s8-b004` | Samantabhadra | 6 |
-| 02 | `01-02-samantabhadra-and-samantabhadri.webp` | Samantabhadrī | `s8-b004` | Samantabhadri | 6 |
-| 03 | `03-04-vairochana-and-dhatvishvari.webp` | Vairocana | `s3-b001` | Vairochana | 1 |
-| 04 | `03-04-vairochana-and-dhatvishvari.webp` | Ākāśadhātvīśvarī | `s3-b001` | Dhatvishvari | 1 |
-| 05 | `05-06-akshobhya-and-buddhalochana.webp` | Vajrasattva-Akṣobhya | `s4-b001` | Akshobhya | 2 |
-| 06 | `05-06-akshobhya-and-buddhalochana.webp` | Buddhalocanā | `s4-b001` | Buddhalochana | 2 |
-| 07 | `07-08-ratnasambhava-and-mamaki.webp` | Ratnasambhava | `s5-b001` | Ratnasambhava | 3 |
-| 08 | `07-08-ratnasambhava-and-mamaki.webp` | Māmakī | `s5-b001` | Mamaki | 3 |
-| 09 | `09-10-amitabha-and-pandaravasini.webp` | Amitābha | `s6-b001` | Amitabha | 4 |
-| 10 | `09-10-amitabha-and-pandaravasini.webp` | Pāṇḍaravāsinī | `s6-b001` | Pandaravasini | 4 |
-| 11 | `11-12-amoghasiddhi-and-samayatara.webp` | Amoghasiddhi | `s7-b002` | Amoghasiddhi | 5 |
-| 12 | `11-12-amoghasiddhi-and-samayatara.webp` | Samayatārā | `s7-b002` | Samayatara | 5 |
-| 13 | `13-kshitigarbha.webp` | Kṣitigarbha | `s4-b001` | Kshitigarbha | 2 |
-| 14 | `14-maitreya.webp` | Maitreya | `s4-b001` | Maitreya | 2 |
-| 15 | `15-samantabhadra-bodhisattva.webp` | Samantabhadra | `s5-b001` | Samantabhadra Bodhisattva | 3 |
-| 16 | `16-akashagarbha.webp` | Ākāśagarbha | `s5-b001` | Akashagarbha | 3 |
-| 17 | `17-avalokiteshvara.webp` | Avalokiteśvara | `s6-b001` | Avalokiteshvara | 4 |
-| 18 | `18-manjushri.webp` | Mañjuśrī | `s6-b001` | Manjushri | 4 |
-| 19 | `19-sarvanivaranavishkambhin.webp` | Nivāraṇaviṣkambhin | `s7-b002` | Sarvanivaranavishkambhin | 5 |
-| 20 | `20-vajrapani.webp` | Vajrapāṇi | `s7-b002` | Vajrapani | 5 |
-| 21 | `21-goddess-of-beauty-with-mirror.webp` | Lāsyā | `s4-b001` | Goddess of Beauty with Mirror | 2 |
-| 22 | `22-goddess-of-flowers.webp` | Puṣpā | `s4-b001` | Goddess of Flowers | 2 |
-| 23 | `23-goddess-of-garlands.webp` | Mālyā | `s5-b001` | Goddess of Garlands | 3 |
-| 24 | `24-goddess-of-incense.webp` | Dhūpā | `s5-b001` | Goddess of Incense | 3 |
-| 25 | `25-goddess-of-song.webp` | Gītā | `s6-b001` | Goddess of Song | 4 |
-| 26 | `26-goddess-of-light.webp` | Ālokā | `s6-b001` | Goddess of Light | 4 |
-| 27 | `27-goddess-of-perfume.webp` | Gandhā | `s7-b002` | Goddess of Perfume | 5 |
-| 28 | `28-goddess-of-food-and-taste.webp` | Nartī | `s7-b002` | Goddess of Food and Taste | 5 |
-| 29 | `29-indra-kaushika-buddha-of-the-god-realm.webp` | Indra of a Hundred Sacrifices | `s8-b004` | Indra Kaushika, Buddha of the God Realm | 6 |
-| 30 | `30-vemachitra-buddha-of-the-demi-god-realm.webp` | Vemacitra | `s8-b004` | Vemachitra, Buddha of the Demi God Realm | 6 |
-| 31 | `31-shakyamuni-buddha-of-the-human-realm.webp` | Śākyasiṃha | `s8-b004` | Shakyamuni, Buddha of the Human Realm | 6 |
-| 32 | `32-sthirasimha-buddha-of-the-animal-realm.webp` | Sthirasiṃha | `s8-b004` | Sthirasimha, Buddha of the Animal Realm | 6 |
-| 33 | `33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp` | Jvālamukha | `s8-b004` | Jvalamukha, Buddha of the Hungry Ghost Realm | 6 |
-| 34 | `34-dharmaraja-buddha-of-the-hell-realm.webp` | Dharmarāja | `s8-b004` | Dharmaraja, Buddha of the Hell Realm | 6 |
-| 35 | `35-vijaya-gatekeeper.webp` | Vijaya the Victorious | `s8-b004` | Vijaya, Gatekeeper | 6 |
-| 36 | `36-yamantaka-gatekeeper.webp` | Yamāntaka Slayer of the Lord of Death | `s8-b004` | Yamantaka, Gatekeeper | 6 |
-| 37 | `37-hayagriva-gatekeeper.webp` | Hayagrīva the Horse-Necked King | `s8-b004` | Hayagriva, Gatekeeper | 6 |
-| 38 | `38-amritakundali-gatekeeper.webp` | Amṛtakuṇḍalin Coil of Nectar | `s8-b004` | Amritakundali, Gatekeeper | 6 |
-| 39 | `39-ankusha-female-gatekeeper.webp` | She of the Hook | `s8-b004` | Ankusha, Female Gatekeeper | 6 |
-| 40 | `40-pasha-female-gatekeeper.webp` | She of the Noose | `s8-b004` | Pasha, Female Gatekeeper | 6 |
-| 41 | `41-shrinkhala-female-gatekeeper.webp` | She of the Chain | `s8-b004` | Shrinkhala, Female Gatekeeper | 6 |
-| 42 | `42-ghanta-female-gatekeeper.webp` | She of the Bell | `s8-b004` | Ghanta, Female Gatekeeper | 6 |
+| 01 | `zhiwa.01-samantabhadra` | Samantabhadra | Samantabhadra | `s8-b004` | `01-02` *(pair)* |
+| 02 | `zhiwa.02-samantabhadri` | Samantabhadri | Samantabhadrī | `s8-b004` | `01-02` *(pair)* |
+| 03 | `zhiwa.03-vairochana` | Vairochana | Vairocana | `s3-b001` | `03-04` *(pair)* |
+| 04 | `zhiwa.04-dhatvishvari` | Dhatvishvari | Ākāśadhātvīśvarī | `s3-b001` | `03-04` *(pair)* |
+| 05 | `zhiwa.05-akshobhya` | Akshobhya | Vajrasattva-Akṣobhya | `s4-b001` | `05-06` *(pair)* |
+| 06 | `zhiwa.06-buddhalochana` | Buddhalochana | Buddhalocanā | `s4-b001` | `05-06` *(pair)* |
+| 07 | `zhiwa.07-ratnasambhava` | Ratnasambhava | Ratnasambhava | `s5-b001` | `07-08` *(pair)* |
+| 08 | `zhiwa.08-mamaki` | Mamaki | Māmakī | `s5-b001` | `07-08` *(pair)* |
+| 09 | `zhiwa.09-amitabha` | Amitabha | Amitābha | `s6-b001` | `09-10` *(pair)* |
+| 10 | `zhiwa.10-pandaravasini` | Pandaravasini | Pāṇḍaravāsinī | `s6-b001` | `09-10` *(pair)* |
+| 11 | `zhiwa.11-amoghasiddhi` | Amoghasiddhi | Amoghasiddhi | `s7-b002` | `11-12` *(pair)* |
+| 12 | `zhiwa.12-samayatara` | Samayatara | Samayatārā | `s7-b002` | `11-12` *(pair)* |
+| 13 | `zhiwa.13-kshitigarbha` | Kshitigarbha | Kṣitigarbha | `s4-b001` | `13` |
+| 14 | `zhiwa.14-maitreya` | Maitreya | Maitreya | `s4-b001` | `14` |
+| 15 | `zhiwa.15-samantabhadra-bodhisattva` | Samantabhadra Bodhisattva | Samantabhadra | `s5-b001` | `15` |
+| 16 | `zhiwa.16-akashagarbha` | Akashagarbha | Ākāśagarbha | `s5-b001` | `16` |
+| 17 | `zhiwa.17-avalokiteshvara` | Avalokiteshvara | Avalokiteśvara | `s6-b001` | `17` |
+| 18 | `zhiwa.18-manjushri` | Manjushri | Mañjuśrī | `s6-b001` | `18` |
+| 19 | `zhiwa.19-sarvanivaranavishkambhin` | Sarvanivaranavishkambhin | Nivāraṇaviṣkambhin | `s7-b002` | `19` |
+| 20 | `zhiwa.20-vajrapani` | Vajrapani | Vajrapāṇi | `s7-b002` | `20` |
+| 21 | `zhiwa.21-goddess-of-beauty-with-mirror` | Goddess of Beauty with Mirror | Lāsyā | `s4-b001` | `21` |
+| 22 | `zhiwa.22-goddess-of-flowers` | Goddess of Flowers | Puṣpā | `s4-b001` | `22` |
+| 23 | `zhiwa.23-goddess-of-garlands` | Goddess of Garlands | Mālyā | `s5-b001` | `23` |
+| 24 | `zhiwa.24-goddess-of-incense` | Goddess of Incense | Dhūpā | `s5-b001` | `24` |
+| 25 | `zhiwa.25-goddess-of-song` | Goddess of Song | Gītā | `s6-b001` | `25` |
+| 26 | `zhiwa.26-goddess-of-light` | Goddess of Light | Ālokā | `s6-b001` | `26` |
+| 27 | `zhiwa.27-goddess-of-perfume` | Goddess of Perfume | Gandhā | `s7-b002` | `27` |
+| 28 | `zhiwa.28-naivedya` | Naivedyā — Goddess of Food and Taste | Nartī | `s7-b002` | `28` |
+| 29 | `zhiwa.29-indra-kaushika` | Indra Kaushika — Buddha of the God Realm | Indra of a Hundred Sacrifices | `s8-b004` | `29` |
+| 30 | `zhiwa.30-vemachitra` | Vemachitra — Buddha of the Demi-God Realm | Vemacitra | `s8-b004` | `30` |
+| 31 | `zhiwa.31-shakyamuni` | Shakyamuni — Buddha of the Human Realm | Śākyasiṃha | `s8-b004` | `31` |
+| 32 | `zhiwa.32-sthirasimha` | Sthirasimha — Buddha of the Animal Realm | Sthirasiṃha | `s8-b004` | `32` |
+| 33 | `zhiwa.33-jvalamukha` | Jvalamukha — Buddha of the Hungry Ghost Realm | Jvālamukha | `s8-b004` | `33` |
+| 34 | `zhiwa.34-dharmaraja` | Dharmaraja — Buddha of the Hell Realm | Dharmarāja | `s8-b004` | `34` |
+| 35 | `zhiwa.35-vijaya` | Vijaya — Gatekeeper | Vijaya the Victorious | `s8-b004` | `35` |
+| 36 | `zhiwa.36-yamantaka` | Yamantaka — Gatekeeper | Yamāntaka Slayer of the Lord of Death | `s8-b004` | `36` |
+| 37 | `zhiwa.37-hayagriva` | Hayagriva — Gatekeeper | Hayagrīva the Horse-Necked King | `s8-b004` | `37` |
+| 38 | `zhiwa.38-amritakundali` | Amritakundali — Gatekeeper | Amṛtakuṇḍalin Coil of Nectar | `s8-b004` | `38` |
+| 39 | `zhiwa.39-ankusha` | Ankusha — Female Gatekeeper | She of the Hook | `s8-b004` | `39` |
+| 40 | `zhiwa.40-pasha` | Pasha — Female Gatekeeper | She of the Noose | `s8-b004` | `40` |
+| 41 | `zhiwa.41-shrinkhala` | Shrinkhala — Female Gatekeeper | She of the Chain | `s8-b004` | `41` |
+| 42 | `zhiwa.42-ghanta` | Ghanta — Female Gatekeeper | She of the Bell | `s8-b004` | `42` |
 
 ## Marking a name in the text
 
@@ -141,48 +159,40 @@ bit-identical** per file before committing. Every image ships in the
 offline cache, so weight is a real cost on a hospice's wifi: 36 files
 went from 24.2 MB to 3.7 MB with no visible change.
 
-### 2. Add each record to `MANIFEST.json`
+### 2. Add the collection to `MANIFEST.json`
 
-Every field is written, `null` where a value is absent — the same
-discipline as the text blocks, and the validator rejects both unknown
-and missing keys:
+A second entry in `collections[]`, beside `zhiwa-42`:
 
 ```json
 {
-  "id": "trowa.01-TODO",
-  "bo": "TODO_CONTENT",
-  "phon": null,
-  "sa": "TODO_CONTENT",
-  "en": "TODO_CONTENT",
-  "class": "wrathful",
-  "day": 8,
-  "family": "TODO_CONTENT",
-  "consort": null,
-  "direction": "TODO_CONTENT",
-  "color": "TODO_CONTENT",
-  "seed": "TODO_CONTENT",
-  "image": "assets/deities/images/trowa/TODO.webp",
-  "attribution": "TODO_CONTENT",
-  "license": "TODO_CONTENT"
+  "id": "trowa-58",
+  "label": "58 Wrathful Deities",
+  "attribution": null,
+  "license": null,
+  "deities": [
+    { "number": 1, "id": "trowa.01-TODO", "label": "TODO" }
+  ],
+  "depictions": [
+    {
+      "id": "trowa.depiction.01",
+      "sourceFile": "01_TODO.png",
+      "image": "assets/deities/images/trowa/01-todo.webp",
+      "deityIds": ["trowa.01-TODO"]
+    }
+  ]
 }
 ```
 
-- `id` — kebab-case, dots allowed, **stable forever**: it is what an
-  inline token points at. The peaceful set uses `zhiwa.NN-name`, the
-  owner's own numbering.
-- `class` — `peaceful` or `wrathful`. Required.
-- `day` — 1–14, or `null` for a deity the text ties to no single day.
-- `consort` — another `id` in this same manifest; the validator checks
-  it resolves. Two records may share one `image` when the picture shows
-  them in union.
-- `image` — omit it (`null`) and the record is still legal: the deity is
-  catalogued, nothing renders, and its name in the text stays plain
-  words. **A declared image must exist on disk and must carry both
-  `attribution` and `license`** — provenance ships with the asset, and
-  the validator will not let an image through without it.
-- Names are copied from the owner's sources, never transliterated or
-  translated by whoever is typing (`docs/content-entry.md`, rule 1).
-  `TODO_CONTENT` for a gap; the validator counts them.
+- `number`, `id`, `label` on a deity; `id`, `sourceFile`, `image`,
+  `deityIds` on a depiction. Nothing else is required, and no optional
+  field should be filled with a placeholder.
+- Ids are **stable forever**: an id is what an inline token points at.
+- A picture showing two figures lists both in `deityIds`, and both
+  names appear on its tile and in its viewer.
+- No deity may be shown by two depictions — a tap would have two
+  answers, and the validator says so.
+- A deity with no depiction is legal: catalogued, and its name in the
+  text stays plain words.
 
 ### 3. Mark the names in the text
 
@@ -204,9 +214,9 @@ A name the owner marked carries a dotted rule beneath it in the reading
 text — the same size, weight and colour as the words around it, so it is
 findable when looked for and never competes with the passage. Tapping it
 brings the figure over the page: large, on the page's own ground with no
-frame, the names beneath it, and whatever the manifest holds (day,
-family, direction, colour, seed syllable, consort) as labelled rows. The
-✕, a tap anywhere outside, or Escape dismisses it.
+frame, and beneath it the name of every deity that picture shows — one
+for a single figure, both for a couple in union. The ✕, a tap anywhere
+outside, or Escape dismisses it.
 
 The reading position is untouchable, by construction (BRIEF §7): the
 viewer is an overlay, so the page beneath never scrolls; the auto-scroll
@@ -215,17 +225,16 @@ that opened it. This holds in Voice mode too, where the figure is
 arguably most wanted — the passage is describing the deity who is
 appearing.
 
-Under Iconography, **Peaceful Deities** shows the whole roster as
-figures, grouped by the day each dawns, named by the owner's file
-labels. Tapping a tile opens the same viewer.
+Under Iconography, each collection opens as a gallery of its depictions
+in the owner's numbering, pair tiles carrying both names. Tapping a tile
+opens the same viewer.
 
 ## Still to decide (not built)
 
-- **The day cluster.** `deitiesForDay(day)` returns a day's roster and
-  the gallery already groups by it; what a cluster *screen* should be —
-  the six of a day composed together, off the Contents control or off
-  the day's heading — is the owner's call. The cut-outs compose without
-  seams, which is what makes it possible.
+- **The cluster presentation.** A separate future feature with its own
+  composite images, showing the group that dawns on a given day. It is
+  deliberately absent from this data model — no day is stored or read
+  here — and designing it is the owner's call when the images exist.
 - **A name marked more than once.** Today each deity is marked in the
   one passage that introduces it. If a later mention should also be
   tappable, that is one more marker, placed by the owner.

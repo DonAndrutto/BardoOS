@@ -2,7 +2,10 @@
 // Voice mode is the one you use when someone is dying: spoken layers
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
-import { loadCycle, loadText, loadDeities, deityEntry, deitiesOfClass, cycleEntry } from './data.js';
+import {
+  loadCycle, loadText, loadDeities, cycleEntry,
+  depictionFor, depictionDeities, deityCollections, collectionById,
+} from './data.js';
 import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
@@ -105,7 +108,7 @@ function rerender() {
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
   } else if (view === 'deities') {
-    renderDeities(reader, 'peaceful');
+    renderDeities(reader);
   } else if (view === 'home') {
     renderHome(reader);
   }
@@ -341,87 +344,40 @@ function closeContents() {
   $('btnContents').setAttribute('aria-expanded', 'false');
 }
 
-// ── Deity plates: the image, without losing the place (BRIEF §7) ────
-// Dormant until the owner supplies the images: with an empty manifest
-// the renderer emits no plate and none of this is reachable. When it is
-// reachable, the reading position is untouchable — the viewer is an
-// overlay (the page beneath never scrolls), the auto-scroll is held
-// while it is up, and closing restores both it and the focus.
-const DEITY_META = [
-  ['day', 'deityDay'],
-  ['family', 'deityFamily'],
-  ['direction', 'deityDirection'],
-  ['color', 'deityColor'],
-  ['seed', 'deitySeed'],
-];
-// Name lines, in the app's usual order. Every value is manifest data.
-const DEITY_NAMES = [['bo', 'bo'], ['phon', 'phon'], ['sa', 'sa'], ['en', 'en']];
-
-// The owner's file labels are the gallery's (their direction), and many
-// are the same name spelled another way — "Vairocana" in the text,
-// "Vairochana" on the file. Stacking both in the viewer reads as an
-// error, so a one-word label is taken as a spelling of the name above it
-// and left out; a longer one ("Goddess of Beauty with Mirror") says
-// something the text does not, and stays.
-function labelAddsSomething(deity) {
-  return Boolean(deity.en) && deity.en !== TODO
-    && (!deity.sa || /\s/.test(deity.en.trim()));
-}
-
+// ── The figures: shown without losing the place (BRIEF §7) ──────────
+// A name the owner marked opens the depiction that shows that deity —
+// the same picture for either half of a couple in union. The reading
+// position is untouchable: the viewer is an overlay (the page beneath
+// never scrolls), the auto-scroll is held while it is up, and closing
+// restores both it and the focus.
 let deityScrollHeld = false;
 let deityOpener = null;
 
-function deityMetaRow(parent, label, value) {
-  const row = document.createElement('div');
-  row.className = 'deity-meta-row';
-  const l = document.createElement('span');
-  l.className = 'deity-meta-label';
-  l.textContent = label;
-  const v = document.createElement('span');
-  v.className = 'deity-meta-value';
-  v.textContent = String(value);
-  row.append(l, v);
-  parent.appendChild(row);
-}
-
-function openDeity(id) {
-  const deity = deityEntry(id);
-  if (!deity || !deity.image) return;
+function openDeity(deityId) {
+  const depiction = depictionFor(deityId);
+  if (!depiction) return;
 
   const img = $('deityViewerImage');
-  img.src = deity.image;
-  img.alt = deity.en || deity.sa || deity.bo || '';
+  const shown = depictionDeities(depiction);
+  const labels = shown.map((d) => d.label).filter(Boolean);
+  img.src = depiction.image;
+  img.alt = labels.join(' · ');
 
+  // Every deity the picture shows, named as the owner names them — one
+  // line for a single figure, both for a couple.
   const name = $('deityViewerName');
   name.textContent = '';
-  for (const [field, cls] of DEITY_NAMES) {
-    // A name the owner has not supplied yet simply does not appear; the
-    // validator nags about it, the reader never sees the marker.
-    if (!deity[field] || deity[field] === TODO) continue;
-    if (field === 'en' && !labelAddsSomething(deity)) continue;
+  for (const label of labels) {
     const line = document.createElement('span');
-    line.className = `deity-name-line ${cls}`;
-    line.textContent = deity[field];
+    line.className = 'deity-name-line';
+    line.textContent = label;
     name.appendChild(line);
   }
 
-  const meta = $('deityViewerMeta');
-  meta.textContent = '';
-  for (const [field, key] of DEITY_META) {
-    const value = deity[field];
-    if (value === null || value === undefined || value === '' || value === TODO) continue;
-    deityMetaRow(meta, t(key), value);
-  }
-  const consort = deity.consort ? deityEntry(deity.consort) : null;
-  if (consort) {
-    deityMetaRow(meta, t('deityConsort'), consort.en || consort.bo || consort.id);
-  }
-
-  // Provenance travels with the picture, always (BRIEF §7) — but while
-  // it is still a declared gap the line stays off rather than showing a
-  // TODO marker to someone sitting at a bedside.
-  const credit = [deity.attribution, deity.license]
-    .filter((v) => v && v !== TODO).join(' · ');
+  // Provenance is the collection's, because all its pictures share one.
+  const collection = collectionById(depiction.collection);
+  const credit = collection
+    ? [collection.attribution, collection.license].filter(Boolean).join(' · ') : '';
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
@@ -519,12 +475,12 @@ function showTexts() {
 // recorded where the reader stood. Every other way into a text is the
 // reader choosing a new course, so the way back goes. `restore` puts
 // them back on the passage they left.
-// The roster as figures, off the Iconography shelf. Its own view, so the
-// bottom bar's existing data-view rules stand the reading controls down.
+// The figures, off the Iconography shelf. Its own view, so the bottom
+// bar's existing data-view rules stand the reading controls down.
 function showDeities() {
   leaveText();
   showView('deities');
-  renderDeities($('reader'), 'peaceful');
+  renderDeities($('reader'));
   buildContents();
   applyPhonRelevance();
   window.scrollTo(0, 0);
@@ -825,12 +781,13 @@ async function boot() {
       });
       cat.appendChild(b);
 
-      // Only offered when there is something to see.
-      if (deitiesOfClass('peaceful').some((d) => d.image)) {
+      // One entry per collection that has something to show, named as
+      // the manifest names it.
+      for (const collection of deityCollections()) {
         const g = document.createElement('button');
         g.type = 'button';
         g.className = 'nav-text';
-        g.textContent = t('peacefulDeities');
+        g.textContent = collection.label;
         g.addEventListener('click', showDeities);
         cat.appendChild(g);
       }

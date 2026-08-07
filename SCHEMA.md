@@ -4,7 +4,7 @@
 
 **Phase 3 amendments (owner-directed, 2026-07-18):** blocks gain two optional fields — `prayerRef` (cross-link to a prayer in the cycle; the validator rejects orphaned refs) and `pl` (Polish translation, entirely optional on every layer, default null); `kind` gains `"guide"` and `cycle` gains `"app"` for the app's own Guide texts (Introduction, How to Use This App). No existing field changed meaning.
 
-**Phase 4 amendments (owner-directed, 2026-08-06):** (0) a third inline token, `[[words|deity-id]]`, marks a deity's name where the text already names it, so tapping it shows the figure (BRIEF §7). Like `**…**` it is a paired marker placed around text that is already there — the words between the brackets are never edited. (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9. No existing field changed meaning.
+**Phase 4 amendments (owner-directed, 2026-08-06):** (0) a third inline token, `[[words|deity-id]]`, marks a deity's name where the text already names it, so tapping it shows the figure (BRIEF §7). Like `**…**` it is a paired marker placed around text that is already there — the words between the brackets are never edited. (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9 — restated the same day against the owner's authoritative `zhiwa-42` image map, which separates a deity (an identity) from a depiction (a picture) and makes only number, id, label and the deity→depiction association required. No existing *text* field changed meaning.
 
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
@@ -116,7 +116,7 @@ Every block carries exactly one `layer`. This is the spine (BRIEF §5).
 | `phon` | string \| null | yes (nullable); **non-empty on L3** | Phonetics. Line structure mirrors `bo` where both exist. Approved scope: phonetics belong to the liturgical layer — missing or empty `phon` on L3 is a validation error (a declared gap is `"TODO_CONTENT"`); on every other layer `phon` may be null. |
 | `en` | string \| null | yes; **non-empty on L1/L2/L3** | English. The read-aloud layers must never render empty — an empty spoken block is a validation error; a known gap is `"TODO_CONTENT"`. |
 | `meter` | integer \| null | yes (nullable) | Syllables per line, for metered verse (e.g. `7`, `9`). Only legal when `form` is `"verse"`. Null when unknown — never guessed. |
-| `deityRef` | string \| null | yes (nullable) | Id of a deity in `assets/deities/MANIFEST.json`. A ref to a manifest id that doesn't exist is an error ("orphaned deityRef"). |
+| `deityRef` | string \| null | yes (nullable) | Id of a deity in `assets/deities/MANIFEST.json`, recorded on the block. Retained for future block-level use and currently unused: a figure is summoned from the deity's **name in the passage** (the `[[words\|deity-id]]` token below), not from the block. |
 | `day` | integer \| null | yes (nullable) | Day 1–14 of the *bardo* of *dharmatā* sequence, where applicable. |
 | `refrain` | boolean | no (default `false`) | Marks a repeated formula. Consecutive `refrain` blocks group into one framed panel and receive the auto-scroll hold (a mechanism inherited from the Ngondro reference — audit §1). Orthogonal to `layer`. |
 | `boEndsOpen` | boolean | no (default `false`) | Declares that this block's Tibetan legitimately ends without a closing mark, exempting it from the shad-integrity check (§7.8). Only legal when `bo` is non-null. |
@@ -210,17 +210,16 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 9. **The forbidden title** (BRIEF §2): a repo-wide scan of every text file — content, code, comments, docs, meta tags. The pattern is assembled at runtime from character fragments so the string itself appears nowhere in the repository, including inside the validator. The one permitted historical note, if you ever write it, gets an explicit allowlist entry for that file.
 10. Duplicate text `id` across the corpus; duplicate section/block `id` within a text.
 11. Cycle-manifest integrity: every text on disk in exactly one group; no dangling text ids.
-12. Deity-manifest integrity (§9): unknown/missing field, non-kebab-case or duplicate id, unknown `class`, `day` outside 1–14, a `consort` that is not an id in the same manifest, and — for a declared `image` — a path outside `assets/deities/images/`, an unsupported extension, a file that is not on disk, or a missing `attribution`/`license`.
+12. Deity-manifest integrity (§9): unknown/missing field on a collection, deity or depiction; a non-kebab-case or duplicate id; a duplicate deity `number`; an empty `textAliases`; a depiction whose `image` sits outside `assets/deities/images/`, has an unsupported extension, or is not on disk; a `deityIds` entry naming a deity the manifest does not hold, repeated within one depiction, or already shown by another depiction.
 13. An inline deity token naming an id the manifest does not hold, or a malformed one (a `[[` or `]]` that is not part of a well-formed `[[words|deity-id]]`).
 
 **Reported, non-fatal:**
 
 - `TODO_CONTENT` census — count per file, per field, per layer, printed on every run so the state of the corpus is always visible. (CI stays green while content is incomplete; the gaps are declared, not hidden.)
-- Iconography progress — how many deity records exist and how many carry an image, against the roster of 42 peaceful + 58 wrathful, printed on every run. An incomplete roster is never a failure.
+- Iconography — one line per collection giving its deity and depiction counts, printed on every run. An incomplete roster is never a failure, and an absent optional field is never reported at all.
 - `phon` present on L0 (rubric is not recited).
 - Non-NFC Unicode normalization in `bo` (warning; Tibetan input methods vary).
 - `prayerRef` pointing at a text outside the Prayers & Liturgies shelf (legal, but usually a slip — the mechanism exists for prayers).
-- More deities of a class than the roster holds (more than 42 peaceful or 58 wrathful).
 
 ## 8. What the schema deliberately does not preclude (BRIEF §4)
 
@@ -228,44 +227,68 @@ Parallel translations and commentary layers are out of scope for v1 and invisibl
 
 ## 9. The deity manifest — `assets/deities/MANIFEST.json`
 
-*(Specified at the owner's Phase 4 direction, 2026-08-06; deferred from Phase 0. The fields are BRIEF §7's list, plus `phon` — the app shows Tibetan, phonetics and English everywhere else, and a name that may be read aloud should not be the exception.)*
+*(Specified at the owner's Phase 4 direction, 2026-08-06; superseded the same day by the owner's authoritative `zhiwa-42` image map, which is the source of the ids, labels and associations below.)*
 
-The roster of the peaceful and wrathful deities of the *bardo* of reality — 42 peaceful and 58 wrathful when complete. The pictures are the owner's to supply (BRIEF §7: nothing is scraped, downloaded, or generated). Records may land before their images, and images may land one at a time; an incomplete roster is normal and never a validation failure. **The app renders a plate only where a record carries an `image`**, so an empty roster is invisible at the reading surface.
+**A deity is an identity; a depiction is a picture.** They are not the same thing, and the manifest keeps them apart: six of the 36 pictures show a couple in union, so 36 depictions carry 42 deities. Tapping either deity of a pair opens the depiction they share — which falls out of the model rather than being special-cased.
 
 ```jsonc
 {
   "schemaVersion": 1,
-  "deities": [
+  "collections": [
     {
-      "id": "TODO-deity-id",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "TODO_CONTENT",
-      "en": "TODO_CONTENT",
-      "class": "peaceful",
-      "day": 1,
-      "family": null,
-      "consort": null,
-      "direction": null,
-      "color": null,
-      "seed": null,
-      "image": null,
+      "id": "zhiwa-42",
+      "label": "42 Peaceful Deities",
       "attribution": null,
-      "license": null
+      "license": null,
+      "deities": [
+        { "number": 1, "id": "zhiwa.01-samantabhadra", "label": "Samantabhadra" },
+        { "number": 28, "id": "zhiwa.28-naivedya",
+          "label": "Naivedyā — Goddess of Food and Taste",
+          "textAliases": ["Nartī", "Narti", "Nīrti", "Nirti"] }
+      ],
+      "depictions": [
+        { "id": "zhiwa.depiction.01-02",
+          "sourceFile": "01-02_Samantabhadra_and_Samantabhadri.png",
+          "image": "assets/deities/images/zhiwa/01-02-samantabhadra-and-samantabhadri.webp",
+          "deityIds": ["zhiwa.01-samantabhadra", "zhiwa.02-samantabhadri"] }
+      ]
     }
   ]
 }
 ```
 
+### The collection
+
 | Field | Type | Required | Meaning |
 |---|---|---|---|
-| `id` | string | yes | Kebab-case (dots allowed), unique, **stable forever** — it is what a block's `deityRef` points at. |
-| `bo` / `phon` / `sa` / `en` | string \| null | yes (nullable) | The deity's name: Tibetan, phonetics, Sanskrit, English. Copied from the owner's source; `TODO_CONTENT` for a gap, never transliterated or translated by whoever is typing. |
-| `class` | enum | yes | `"peaceful"` \| `"wrathful"`. |
-| `day` | integer \| null | yes (nullable) | Day 1–14, or null for the deities belonging to no single day (the Gaurīs, the Piśācīs, the gatekeepers, the Īśvarīs). |
-| `family` / `direction` / `color` / `seed` | string \| null | yes (nullable) | Family, direction, colour, seed syllable — the owner's words. |
-| `consort` | string \| null | yes (nullable) | Another `id` in this same manifest; a ref that does not resolve is an error. |
-| `image` | string \| null | yes (nullable) | Repo-relative path under `assets/deities/images/` (`.webp`, `.png`, `.jpg`), or null. A declared image must exist on disk. |
-| `attribution` / `license` | string \| null | yes (nullable) | Provenance. **Both are required once `image` is set** — an image without its provenance does not ship. |
+| `id` | string | yes | Kebab-case, unique. |
+| `label` | string | yes | What the gallery and the sidebar call this set — the owner's words. |
+| `attribution` / `license` | string \| null | yes (nullable) | Provenance for **the whole collection**, because all its pictures share one. Null while the owner settles the wording. |
+| `deities` | array | yes | The identities. |
+| `depictions` | array | yes | The pictures. |
 
-No other fields are legal; every field is written, `null` where absent, exactly as in the text blocks. The drop-in procedure is `docs/deity-images.md`.
+`collections` is an array so the wrathful set drops in beside the peaceful one without another migration.
+
+### A deity
+
+| Field | Type | Required | Meaning |
+|---|---|---|---|
+| `number` | integer | yes | The owner's own numbering, unique within the collection; the order the gallery presents. |
+| `id` | string | yes | Kebab-case, unique across the manifest, **stable forever** — it is what an inline `[[words\|deity-id]]` token points at. |
+| `label` | string | yes | How the figure is named in the viewer and the gallery — canonical, the owner's words. |
+| `textAliases` | string[] | no | Other spellings the reading text uses for this figure, recorded to document an established mapping (`Nartī` → Naivedyā; `Nivāraṇaviṣkambhin` → #19; `Śākyasiṃha` → #31). **Documentation only — never matching input.** A name becomes a tap solely where the owner marked it; the renderer never infers a deity from prose. |
+
+Nothing else is required. `bo`, `phon`, `sa`, `family`, `direction`, `color`, `seed` and `day` are accepted as future metadata: absent is normal, never a warning, and never filled with a placeholder. **`day` in particular carries no meaning for this feature** — the day-by-day clusters are a separate future presentation with their own composite images, and this model deliberately says nothing about them.
+
+### A depiction
+
+| Field | Type | Required | Meaning |
+|---|---|---|---|
+| `id` | string | yes | Kebab-case, unique. |
+| `sourceFile` | string | yes | The master the shipped image was made from — provenance for the conversion. |
+| `image` | string | yes | Repo-relative path under `assets/deities/images/` (`.webp`, `.png`, `.jpg`). Must exist on disk. |
+| `deityIds` | string[] | yes | The deities this picture shows, in the order it shows them: one for a single figure, two for a couple in union. Each must be a deity in the same collection, and **no deity may be shown by two depictions** — a tap would have two answers. |
+
+A deity that no depiction shows is legal: it is catalogued, and its name in the text renders as the plain words it always was.
+
+No other fields are legal anywhere. The drop-in procedure is `docs/deity-images.md`.

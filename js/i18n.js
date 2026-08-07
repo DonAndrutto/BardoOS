@@ -42,11 +42,10 @@ const STRINGS = {
     introductions: 'Introductions',
     prayers: 'Prayers',
     noTextsYet: 'No texts are ready to read yet.',
-    // Deity plates — labels for the manifest's own fields (BRIEF §7).
+    // The figures (BRIEF §7). Collection names come from the manifest —
+    // the owner's words — so nothing here names a deity or a set.
     close: 'Close',
-    peacefulDeities: 'Peaceful Deities',
-    peacefulDeitiesNote: 'The forty-two who dawn in the Bardo of Dharmatā.',
-    dayOfDharmata: 'Day',
+    figures: 'Figures',
     noDeitiesYet: 'No images have been supplied yet.',
     deityDay: 'Day',
     deityFamily: 'Family',

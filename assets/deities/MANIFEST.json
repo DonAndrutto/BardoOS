@@ -1,719 +1,531 @@
 {
   "schemaVersion": 1,
-  "deities": [
+  "collections": [
     {
-      "id": "zhiwa.01-samantabhadra",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Samantabhadra",
-      "en": "Samantabhadra",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.02-samantabhadri",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/01-02-samantabhadra-and-samantabhadri.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.02-samantabhadri",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Samantabhadrī",
-      "en": "Samantabhadri",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.01-samantabhadra",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/01-02-samantabhadra-and-samantabhadri.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.03-vairochana",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Vairocana",
-      "en": "Vairochana",
-      "class": "peaceful",
-      "day": 1,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.04-dhatvishvari",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/03-04-vairochana-and-dhatvishvari.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.04-dhatvishvari",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Ākāśadhātvīśvarī",
-      "en": "Dhatvishvari",
-      "class": "peaceful",
-      "day": 1,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.03-vairochana",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/03-04-vairochana-and-dhatvishvari.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.05-akshobhya",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Vajrasattva-Akṣobhya",
-      "en": "Akshobhya",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.06-buddhalochana",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/05-06-akshobhya-and-buddhalochana.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.06-buddhalochana",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Buddhalocanā",
-      "en": "Buddhalochana",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.05-akshobhya",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/05-06-akshobhya-and-buddhalochana.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.07-ratnasambhava",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Ratnasambhava",
-      "en": "Ratnasambhava",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.08-mamaki",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/07-08-ratnasambhava-and-mamaki.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.08-mamaki",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Māmakī",
-      "en": "Mamaki",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.07-ratnasambhava",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/07-08-ratnasambhava-and-mamaki.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.09-amitabha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Amitābha",
-      "en": "Amitabha",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.10-pandaravasini",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/09-10-amitabha-and-pandaravasini.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.10-pandaravasini",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Pāṇḍaravāsinī",
-      "en": "Pandaravasini",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.09-amitabha",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/09-10-amitabha-and-pandaravasini.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.11-amoghasiddhi",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Amoghasiddhi",
-      "en": "Amoghasiddhi",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.12-samayatara",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/11-12-amoghasiddhi-and-samayatara.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.12-samayatara",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Samayatārā",
-      "en": "Samayatara",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": "zhiwa.11-amoghasiddhi",
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/11-12-amoghasiddhi-and-samayatara.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.13-kshitigarbha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Kṣitigarbha",
-      "en": "Kshitigarbha",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/13-kshitigarbha.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.14-maitreya",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Maitreya",
-      "en": "Maitreya",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/14-maitreya.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.15-samantabhadra-bodhisattva",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Samantabhadra",
-      "en": "Samantabhadra Bodhisattva",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/15-samantabhadra-bodhisattva.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.16-akashagarbha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Ākāśagarbha",
-      "en": "Akashagarbha",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/16-akashagarbha.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.17-avalokiteshvara",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Avalokiteśvara",
-      "en": "Avalokiteshvara",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/17-avalokiteshvara.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.18-manjushri",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Mañjuśrī",
-      "en": "Manjushri",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/18-manjushri.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.19-sarvanivaranavishkambhin",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Nivāraṇaviṣkambhin",
-      "en": "Sarvanivaranavishkambhin",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/19-sarvanivaranavishkambhin.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.20-vajrapani",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Vajrapāṇi",
-      "en": "Vajrapani",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/20-vajrapani.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.21-goddess-of-beauty",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Lāsyā",
-      "en": "Goddess of Beauty with Mirror",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/21-goddess-of-beauty-with-mirror.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.22-goddess-of-flowers",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Puṣpā",
-      "en": "Goddess of Flowers",
-      "class": "peaceful",
-      "day": 2,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/22-goddess-of-flowers.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.23-goddess-of-garlands",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Mālyā",
-      "en": "Goddess of Garlands",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/23-goddess-of-garlands.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.24-goddess-of-incense",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Dhūpā",
-      "en": "Goddess of Incense",
-      "class": "peaceful",
-      "day": 3,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/24-goddess-of-incense.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.25-goddess-of-song",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Gītā",
-      "en": "Goddess of Song",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/25-goddess-of-song.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.26-goddess-of-light",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Ālokā",
-      "en": "Goddess of Light",
-      "class": "peaceful",
-      "day": 4,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/26-goddess-of-light.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.27-goddess-of-perfume",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Gandhā",
-      "en": "Goddess of Perfume",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/27-goddess-of-perfume.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.28-goddess-of-food-and-taste",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Nartī",
-      "en": "Goddess of Food and Taste",
-      "class": "peaceful",
-      "day": 5,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/28-goddess-of-food-and-taste.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.29-indra",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Indra",
-      "en": "Indra Kaushika, Buddha of the God Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.30-vemachitra",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Vemacitra",
-      "en": "Vemachitra, Buddha of the Demi God Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.31-shakyamuni",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Śākyasiṃha",
-      "en": "Shakyamuni, Buddha of the Human Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.32-sthirasimha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Sthirasiṃha",
-      "en": "Sthirasimha, Buddha of the Animal Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.33-jvalamukha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Jvālamukha",
-      "en": "Jvalamukha, Buddha of the Hungry Ghost Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.34-dharmaraja",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Dharmarāja",
-      "en": "Dharmaraja, Buddha of the Hell Realm",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.35-vijaya",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Vijaya",
-      "en": "Vijaya, Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/35-vijaya-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.36-yamantaka",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Yamāntaka",
-      "en": "Yamantaka, Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/36-yamantaka-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.37-hayagriva",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Hayagrīva",
-      "en": "Hayagriva, Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/37-hayagriva-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.38-amritakundali",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": "Amṛtakuṇḍalin",
-      "en": "Amritakundali, Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/38-amritakundali-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.39-ankusha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": null,
-      "en": "Ankusha, Female Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/39-ankusha-female-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.40-pasha",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": null,
-      "en": "Pasha, Female Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/40-pasha-female-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.41-shrinkhala",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": null,
-      "en": "Shrinkhala, Female Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/41-shrinkhala-female-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
-    },
-    {
-      "id": "zhiwa.42-ghanta",
-      "bo": "TODO_CONTENT",
-      "phon": null,
-      "sa": null,
-      "en": "Ghanta, Female Gatekeeper",
-      "class": "peaceful",
-      "day": 6,
-      "family": "TODO_CONTENT",
-      "consort": null,
-      "direction": "TODO_CONTENT",
-      "color": "TODO_CONTENT",
-      "seed": "TODO_CONTENT",
-      "image": "assets/deities/images/zhiwa/42-ghanta-female-gatekeeper.webp",
-      "attribution": "TODO_CONTENT",
-      "license": "TODO_CONTENT"
+      "id": "zhiwa-42",
+      "label": "42 Peaceful Deities",
+      "attribution": null,
+      "license": null,
+      "deities": [
+        {
+          "number": 1,
+          "id": "zhiwa.01-samantabhadra",
+          "label": "Samantabhadra"
+        },
+        {
+          "number": 2,
+          "id": "zhiwa.02-samantabhadri",
+          "label": "Samantabhadri"
+        },
+        {
+          "number": 3,
+          "id": "zhiwa.03-vairochana",
+          "label": "Vairochana"
+        },
+        {
+          "number": 4,
+          "id": "zhiwa.04-dhatvishvari",
+          "label": "Dhatvishvari"
+        },
+        {
+          "number": 5,
+          "id": "zhiwa.05-akshobhya",
+          "label": "Akshobhya"
+        },
+        {
+          "number": 6,
+          "id": "zhiwa.06-buddhalochana",
+          "label": "Buddhalochana"
+        },
+        {
+          "number": 7,
+          "id": "zhiwa.07-ratnasambhava",
+          "label": "Ratnasambhava"
+        },
+        {
+          "number": 8,
+          "id": "zhiwa.08-mamaki",
+          "label": "Mamaki"
+        },
+        {
+          "number": 9,
+          "id": "zhiwa.09-amitabha",
+          "label": "Amitabha"
+        },
+        {
+          "number": 10,
+          "id": "zhiwa.10-pandaravasini",
+          "label": "Pandaravasini"
+        },
+        {
+          "number": 11,
+          "id": "zhiwa.11-amoghasiddhi",
+          "label": "Amoghasiddhi"
+        },
+        {
+          "number": 12,
+          "id": "zhiwa.12-samayatara",
+          "label": "Samayatara"
+        },
+        {
+          "number": 13,
+          "id": "zhiwa.13-kshitigarbha",
+          "label": "Kshitigarbha"
+        },
+        {
+          "number": 14,
+          "id": "zhiwa.14-maitreya",
+          "label": "Maitreya"
+        },
+        {
+          "number": 15,
+          "id": "zhiwa.15-samantabhadra-bodhisattva",
+          "label": "Samantabhadra Bodhisattva"
+        },
+        {
+          "number": 16,
+          "id": "zhiwa.16-akashagarbha",
+          "label": "Akashagarbha"
+        },
+        {
+          "number": 17,
+          "id": "zhiwa.17-avalokiteshvara",
+          "label": "Avalokiteshvara"
+        },
+        {
+          "number": 18,
+          "id": "zhiwa.18-manjushri",
+          "label": "Manjushri"
+        },
+        {
+          "number": 19,
+          "id": "zhiwa.19-sarvanivaranavishkambhin",
+          "label": "Sarvanivaranavishkambhin",
+          "textAliases": [
+            "Nivāraṇaviṣkambhin"
+          ]
+        },
+        {
+          "number": 20,
+          "id": "zhiwa.20-vajrapani",
+          "label": "Vajrapani"
+        },
+        {
+          "number": 21,
+          "id": "zhiwa.21-goddess-of-beauty-with-mirror",
+          "label": "Goddess of Beauty with Mirror"
+        },
+        {
+          "number": 22,
+          "id": "zhiwa.22-goddess-of-flowers",
+          "label": "Goddess of Flowers"
+        },
+        {
+          "number": 23,
+          "id": "zhiwa.23-goddess-of-garlands",
+          "label": "Goddess of Garlands"
+        },
+        {
+          "number": 24,
+          "id": "zhiwa.24-goddess-of-incense",
+          "label": "Goddess of Incense"
+        },
+        {
+          "number": 25,
+          "id": "zhiwa.25-goddess-of-song",
+          "label": "Goddess of Song"
+        },
+        {
+          "number": 26,
+          "id": "zhiwa.26-goddess-of-light",
+          "label": "Goddess of Light"
+        },
+        {
+          "number": 27,
+          "id": "zhiwa.27-goddess-of-perfume",
+          "label": "Goddess of Perfume"
+        },
+        {
+          "number": 28,
+          "id": "zhiwa.28-naivedya",
+          "label": "Naivedyā — Goddess of Food and Taste",
+          "textAliases": [
+            "Nartī",
+            "Narti",
+            "Nīrti",
+            "Nirti"
+          ]
+        },
+        {
+          "number": 29,
+          "id": "zhiwa.29-indra-kaushika",
+          "label": "Indra Kaushika — Buddha of the God Realm"
+        },
+        {
+          "number": 30,
+          "id": "zhiwa.30-vemachitra",
+          "label": "Vemachitra — Buddha of the Demi-God Realm"
+        },
+        {
+          "number": 31,
+          "id": "zhiwa.31-shakyamuni",
+          "label": "Shakyamuni — Buddha of the Human Realm",
+          "textAliases": [
+            "Śākyasiṃha"
+          ]
+        },
+        {
+          "number": 32,
+          "id": "zhiwa.32-sthirasimha",
+          "label": "Sthirasimha — Buddha of the Animal Realm"
+        },
+        {
+          "number": 33,
+          "id": "zhiwa.33-jvalamukha",
+          "label": "Jvalamukha — Buddha of the Hungry Ghost Realm"
+        },
+        {
+          "number": 34,
+          "id": "zhiwa.34-dharmaraja",
+          "label": "Dharmaraja — Buddha of the Hell Realm"
+        },
+        {
+          "number": 35,
+          "id": "zhiwa.35-vijaya",
+          "label": "Vijaya — Gatekeeper"
+        },
+        {
+          "number": 36,
+          "id": "zhiwa.36-yamantaka",
+          "label": "Yamantaka — Gatekeeper"
+        },
+        {
+          "number": 37,
+          "id": "zhiwa.37-hayagriva",
+          "label": "Hayagriva — Gatekeeper"
+        },
+        {
+          "number": 38,
+          "id": "zhiwa.38-amritakundali",
+          "label": "Amritakundali — Gatekeeper"
+        },
+        {
+          "number": 39,
+          "id": "zhiwa.39-ankusha",
+          "label": "Ankusha — Female Gatekeeper"
+        },
+        {
+          "number": 40,
+          "id": "zhiwa.40-pasha",
+          "label": "Pasha — Female Gatekeeper"
+        },
+        {
+          "number": 41,
+          "id": "zhiwa.41-shrinkhala",
+          "label": "Shrinkhala — Female Gatekeeper"
+        },
+        {
+          "number": 42,
+          "id": "zhiwa.42-ghanta",
+          "label": "Ghanta — Female Gatekeeper"
+        }
+      ],
+      "depictions": [
+        {
+          "id": "zhiwa.depiction.01-02",
+          "sourceFile": "01-02_Samantabhadra_and_Samantabhadri.png",
+          "image": "assets/deities/images/zhiwa/01-02-samantabhadra-and-samantabhadri.webp",
+          "deityIds": [
+            "zhiwa.01-samantabhadra",
+            "zhiwa.02-samantabhadri"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.03-04",
+          "sourceFile": "03-04_Vairochana_and_Dhatvishvari.png",
+          "image": "assets/deities/images/zhiwa/03-04-vairochana-and-dhatvishvari.webp",
+          "deityIds": [
+            "zhiwa.03-vairochana",
+            "zhiwa.04-dhatvishvari"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.05-06",
+          "sourceFile": "05-06_Akshobhya_and_Buddhalochana.png",
+          "image": "assets/deities/images/zhiwa/05-06-akshobhya-and-buddhalochana.webp",
+          "deityIds": [
+            "zhiwa.05-akshobhya",
+            "zhiwa.06-buddhalochana"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.07-08",
+          "sourceFile": "07-08_Ratnasambhava_and_Mamaki.png",
+          "image": "assets/deities/images/zhiwa/07-08-ratnasambhava-and-mamaki.webp",
+          "deityIds": [
+            "zhiwa.07-ratnasambhava",
+            "zhiwa.08-mamaki"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.09-10",
+          "sourceFile": "09-10_Amitabha_and_Pandaravasini.png",
+          "image": "assets/deities/images/zhiwa/09-10-amitabha-and-pandaravasini.webp",
+          "deityIds": [
+            "zhiwa.09-amitabha",
+            "zhiwa.10-pandaravasini"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.11-12",
+          "sourceFile": "11-12_Amoghasiddhi_and_Samayatara.png",
+          "image": "assets/deities/images/zhiwa/11-12-amoghasiddhi-and-samayatara.webp",
+          "deityIds": [
+            "zhiwa.11-amoghasiddhi",
+            "zhiwa.12-samayatara"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.13",
+          "sourceFile": "13_Kshitigarbha.png",
+          "image": "assets/deities/images/zhiwa/13-kshitigarbha.webp",
+          "deityIds": [
+            "zhiwa.13-kshitigarbha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.14",
+          "sourceFile": "14_Maitreya.png",
+          "image": "assets/deities/images/zhiwa/14-maitreya.webp",
+          "deityIds": [
+            "zhiwa.14-maitreya"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.15",
+          "sourceFile": "15_Samantabhadra_Bodhisattva.png",
+          "image": "assets/deities/images/zhiwa/15-samantabhadra-bodhisattva.webp",
+          "deityIds": [
+            "zhiwa.15-samantabhadra-bodhisattva"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.16",
+          "sourceFile": "16_Akashagarbha.png",
+          "image": "assets/deities/images/zhiwa/16-akashagarbha.webp",
+          "deityIds": [
+            "zhiwa.16-akashagarbha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.17",
+          "sourceFile": "17_Avalokiteshvara.png",
+          "image": "assets/deities/images/zhiwa/17-avalokiteshvara.webp",
+          "deityIds": [
+            "zhiwa.17-avalokiteshvara"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.18",
+          "sourceFile": "18_Manjushri.png",
+          "image": "assets/deities/images/zhiwa/18-manjushri.webp",
+          "deityIds": [
+            "zhiwa.18-manjushri"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.19",
+          "sourceFile": "19_Sarvanivaranavishkambhin.png",
+          "image": "assets/deities/images/zhiwa/19-sarvanivaranavishkambhin.webp",
+          "deityIds": [
+            "zhiwa.19-sarvanivaranavishkambhin"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.20",
+          "sourceFile": "20_Vajrapani.png",
+          "image": "assets/deities/images/zhiwa/20-vajrapani.webp",
+          "deityIds": [
+            "zhiwa.20-vajrapani"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.21",
+          "sourceFile": "21_Goddess_of_Beauty_with_Mirror.png",
+          "image": "assets/deities/images/zhiwa/21-goddess-of-beauty-with-mirror.webp",
+          "deityIds": [
+            "zhiwa.21-goddess-of-beauty-with-mirror"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.22",
+          "sourceFile": "22_Goddess_of_Flowers.png",
+          "image": "assets/deities/images/zhiwa/22-goddess-of-flowers.webp",
+          "deityIds": [
+            "zhiwa.22-goddess-of-flowers"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.23",
+          "sourceFile": "23_Goddess_of_Garlands.png",
+          "image": "assets/deities/images/zhiwa/23-goddess-of-garlands.webp",
+          "deityIds": [
+            "zhiwa.23-goddess-of-garlands"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.24",
+          "sourceFile": "24_Goddess_of_Incense.png",
+          "image": "assets/deities/images/zhiwa/24-goddess-of-incense.webp",
+          "deityIds": [
+            "zhiwa.24-goddess-of-incense"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.25",
+          "sourceFile": "25_Goddess_of_Song.png",
+          "image": "assets/deities/images/zhiwa/25-goddess-of-song.webp",
+          "deityIds": [
+            "zhiwa.25-goddess-of-song"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.26",
+          "sourceFile": "26_Goddess_of_Light.png",
+          "image": "assets/deities/images/zhiwa/26-goddess-of-light.webp",
+          "deityIds": [
+            "zhiwa.26-goddess-of-light"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.27",
+          "sourceFile": "27_Goddess_of_Perfume.png",
+          "image": "assets/deities/images/zhiwa/27-goddess-of-perfume.webp",
+          "deityIds": [
+            "zhiwa.27-goddess-of-perfume"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.28",
+          "sourceFile": "28_Goddess_of_Food_and_Taste.png",
+          "image": "assets/deities/images/zhiwa/28-goddess-of-food-and-taste.webp",
+          "deityIds": [
+            "zhiwa.28-naivedya"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.29",
+          "sourceFile": "29_Indra_Kaushika_Buddha_of_the_God_Realm.png",
+          "image": "assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
+          "deityIds": [
+            "zhiwa.29-indra-kaushika"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.30",
+          "sourceFile": "30_Vemachitra_Buddha_of_the_Demi_God_Realm.png",
+          "image": "assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
+          "deityIds": [
+            "zhiwa.30-vemachitra"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.31",
+          "sourceFile": "31_Shakyamuni_Buddha_of_the_Human_Realm.png",
+          "image": "assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
+          "deityIds": [
+            "zhiwa.31-shakyamuni"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.32",
+          "sourceFile": "32_Sthirasimha_Buddha_of_the_Animal_Realm.png",
+          "image": "assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
+          "deityIds": [
+            "zhiwa.32-sthirasimha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.33",
+          "sourceFile": "33_Jvalamukha_Buddha_of_the_Hungry_Ghost_Realm.png",
+          "image": "assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
+          "deityIds": [
+            "zhiwa.33-jvalamukha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.34",
+          "sourceFile": "34_Dharmaraja_Buddha_of_the_Hell_Realm.png",
+          "image": "assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
+          "deityIds": [
+            "zhiwa.34-dharmaraja"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.35",
+          "sourceFile": "35_Vijaya_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/35-vijaya-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.35-vijaya"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.36",
+          "sourceFile": "36_Yamantaka_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/36-yamantaka-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.36-yamantaka"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.37",
+          "sourceFile": "37_Hayagriva_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/37-hayagriva-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.37-hayagriva"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.38",
+          "sourceFile": "38_Amritakundali_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/38-amritakundali-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.38-amritakundali"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.39",
+          "sourceFile": "39_Ankusha_Female_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/39-ankusha-female-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.39-ankusha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.40",
+          "sourceFile": "40_Pasha_Female_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/40-pasha-female-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.40-pasha"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.41",
+          "sourceFile": "41_Shrinkhala_Female_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/41-shrinkhala-female-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.41-shrinkhala"
+          ]
+        },
+        {
+          "id": "zhiwa.depiction.42",
+          "sourceFile": "42_Ghanta_Female_Gatekeeper.png",
+          "image": "assets/deities/images/zhiwa/42-ghanta-female-gatekeeper.webp",
+          "deityIds": [
+            "zhiwa.42-ghanta"
+          ]
+        }
+      ]
     }
   ]
 }

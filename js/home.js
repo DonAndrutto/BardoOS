@@ -7,7 +7,7 @@
 // here. The shape of the cycle stays legible (BRIEF §4) — the texts
 // page names the bardo each pointing-out belongs to.
 
-import { cycleEntry, deitiesOfClass, deityDays, deitiesForDay, deityTiles } from './data.js';
+import { cycleEntry, deityCollections, depictionDeities } from './data.js';
 import { t } from './i18n.js';
 
 const TODO = 'TODO_CONTENT';
@@ -123,19 +123,19 @@ function textGroup(container, heading, items, withContext) {
   }
 }
 
-// ── The deity gallery (BRIEF §7) ────────────────────────────────────
-// The roster as figures, grouped by the day each dawns — which is the
-// shape the day-cluster view will want too. Names here are the owner's
-// own file labels, at their direction; the passages keep their own
-// spellings. Couples in union share one image and one tile.
-function deityTile(list, parent) {
-  const first = list[0];
+// ── The figures (BRIEF §7) ──────────────────────────────────────────
+// One tile per depiction, in the owner's numbering — 36 tiles for 42
+// deities, because six pictures show a couple in union and carry both
+// their names. Tapping a tile opens the same viewer a name in the text
+// does. No day grouping here: the day-by-day clusters are a separate
+// presentation with their own composite images.
+function deityTile(depiction, parent) {
+  const names = depictionDeities(depiction).map((d) => d.label).filter(Boolean);
   const btn = el('button', 'deity-tile', parent);
   btn.type = 'button';
-  btn.dataset.deityRef = first.id;
-  const names = list.map((d) => d.en || d.sa || d.id);
+  btn.dataset.deityRef = depiction.deityIds[0];
   const img = el('img', 'deity-tile-image', btn);
-  img.src = first.image;
+  img.src = depiction.image;
   img.alt = names.join(' · ');
   img.loading = 'lazy';
   img.decoding = 'async';
@@ -144,23 +144,24 @@ function deityTile(list, parent) {
   return btn;
 }
 
-export function renderDeities(container, cls) {
+export function renderDeities(container) {
   reset(container);
-  const title = el('header', 'text-title page-title', container);
-  el('div', 'en', title).textContent = t('peacefulDeities');
-
-  const roster = deitiesOfClass(cls).filter((d) => d.image);
-  if (!roster.length) {
+  const collections = deityCollections();
+  if (!collections.length) {
+    const title = el('header', 'text-title page-title', container);
+    el('div', 'en', title).textContent = t('figures');
     el('p', 'block layer-L0', container).textContent = t('noDeitiesYet');
     return;
   }
-  for (const day of deityDays(cls)) {
-    const on = deitiesForDay(day).filter((d) => d.image && d.class === cls);
-    if (!on.length) continue;
+  for (const collection of collections) {
+    const title = el('header', 'text-title page-title', container);
+    el('div', 'en', title).textContent = collection.label;
     const sec = el('section', 'section', container);
-    el('h2', 'section-heading', sec).textContent = `${t('dayOfDharmata')} ${day}`;
     const grid = el('div', 'deity-grid', sec);
-    for (const tile of deityTiles(on)) deityTile(tile, grid);
+    for (const depiction of collection.depictions) deityTile(depiction, grid);
+    // Provenance belongs to the collection, not to each picture.
+    const credit = [collection.attribution, collection.license].filter(Boolean).join(' · ');
+    if (credit) el('p', 'deity-collection-credit', sec).textContent = credit;
   }
 }
 

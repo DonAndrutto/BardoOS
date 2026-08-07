@@ -11,7 +11,7 @@
 // auto-scroll geometry stays honest — inherited from the reference.
 
 import { state } from './store.js';
-import { cycleEntry, nextInGroup, deityEntry } from './data.js';
+import { cycleEntry, nextInGroup, depictionFor } from './data.js';
 import { origin } from './trail.js';
 import { t } from './i18n.js';
 
@@ -70,10 +70,9 @@ function fillInline(node, value) {
       const words = parts[i + 1];
       if (words === undefined) continue;
       const ref = parts[i + 2];
-      // A name only becomes a tap when there is actually a figure behind
-      // it; otherwise it reads as the plain words it always was.
-      const deity = deityEntry(ref);
-      if (deity && deity.image) {
+      // A name only becomes a tap when a depiction actually shows that
+      // deity; otherwise it reads as the plain words it always was.
+      if (depictionFor(ref)) {
         const btn = el('button', 'deity-name', target);
         btn.type = 'button';
         btn.dataset.deityRef = ref;

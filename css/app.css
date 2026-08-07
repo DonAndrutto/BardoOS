@@ -755,6 +755,15 @@ body.nav-open .nav { display: block; }
   max-width: 9rem;
   height: auto;
 }
+.deity-collection-credit {
+  max-width: var(--column);
+  margin: var(--sp-6) auto 0;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  line-height: var(--lh-snug);
+  text-align: center;
+  color: var(--text-muted);
+}
 .deity-tile-name {
   font-family: var(--font-ui);
   font-size: 0.68rem;
@@ -826,54 +835,17 @@ body.nav-open .nav { display: block; }
     color-mix(in srgb, var(--accent) 9%, transparent) 0%,
     transparent 68%);
 }
+/* Every deity the picture shows, named as the manifest names them —
+   one line for a single figure, both for a couple in union. */
 .deity-viewer-name { margin-top: var(--sp-4); }
-.deity-name-line { display: block; color: var(--text); }
-.deity-name-line.bo {
-  font-family: var(--font-tibetan);
-  font-size: calc(var(--size-base) * 1.1);
-  line-height: var(--lh-tibetan);
-}
-.deity-name-line.phon {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: calc(var(--size-base) * 0.8);
-  color: var(--phonetics);
-}
-.deity-name-line.sa {
-  font-family: var(--font-body);
-  font-size: calc(var(--size-base) * 0.9);
-  color: var(--text-muted);
-}
-.deity-name-line.en {
+.deity-name-line {
+  display: block;
   font-family: var(--font-body);
   font-size: calc(var(--size-base) * 0.95);
+  line-height: var(--lh-snug);
+  color: var(--text);
+  text-wrap: balance;
 }
-.deity-viewer-meta {
-  margin-top: var(--sp-4);
-  display: grid;
-  gap: var(--sp-1);
-  text-align: left;
-}
-.deity-viewer-meta:empty { display: none; }
-.deity-meta-row {
-  display: flex;
-  gap: var(--sp-3);
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  padding-top: var(--sp-1);
-  border-top: 1px solid var(--border);
-}
-.deity-meta-label {
-  flex: none;
-  width: 8rem;
-  text-transform: uppercase;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: var(--ls-caps-sm);
-  color: var(--label);
-  padding-top: 2px;
-}
-.deity-meta-value { color: var(--text); }
 .deity-viewer-credit {
   margin-top: var(--sp-4);
   font-family: var(--font-ui);
