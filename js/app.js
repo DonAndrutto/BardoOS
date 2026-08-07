@@ -2,8 +2,12 @@
 // Voice mode is the one you use when someone is dying: spoken layers
 // only, large type, rubric collapsed to markers, one tap away (BRIEF §5).
 
-import { loadCycle, loadText, loadDeities, deityEntry } from './data.js';
-import { renderHome, renderTexts } from './home.js';
+import {
+  loadCycle, loadText, loadDeities, cycleEntry,
+  depictionFor, depictionDeities, deityCollections, collectionById,
+} from './data.js';
+import { remember, origin, forget } from './trail.js';
+import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
 import { replayIntro } from './intro.js';
@@ -61,6 +65,41 @@ function anchorKept(change) {
   }
 }
 
+// Put a block back where it stood: the same technique as anchorKept,
+// across a whole navigation rather than a re-render. Scroll to a known
+// base first, then move the block to the offset it had. The block id is
+// the anchor, not a pixel count, so it survives a font-size change or a
+// mode switch in between. Falls back to the top if the block is gone
+// (Voice mode drops L4 entirely). This is also the piece a future exact
+// resume across app death would reuse (BRIEF §9).
+function restoreBlock(blockId, offset) {
+  window.scrollTo(0, 0);
+  const node = document.querySelector(
+    `#reader [data-block-id="${CSS.escape(blockId)}"]`);
+  if (!node) return;
+  window.scrollBy(0, node.getBoundingClientRect().top - offset);
+}
+
+// ── The way back ────────────────────────────────────────────────────
+// Shown while the reader is somewhere a cross-link sent them. The title
+// is the manifest's (the owner's words); the id is the honest fallback,
+// as everywhere else. The body class lets the reading surface make room
+// so the bar never covers the last line.
+function applyReturn() {
+  const from = origin();
+  const showable = Boolean(from) && view === 'text'
+    && !(currentText && currentText.id === from.textId);
+  document.body.classList.toggle('has-return', showable);
+  $('returnBar').hidden = !showable;
+  if (!showable) return;
+  const entry = cycleEntry(from.textId);
+  const title = entry && entry.title !== TODO ? entry.title : from.textId;
+  $('returnLabel').textContent = t('backTo');
+  $('returnTitle').textContent = title;
+  $('btnReturn').title = title;
+  $('btnReturn').setAttribute('aria-label', `${t('backTo')} ${title}`);
+}
+
 function rerender() {
   const reader = $('reader');
   if (view === 'text' && currentText) {
@@ -68,6 +107,8 @@ function rerender() {
     buildContents();
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
+  } else if (view === 'deities') {
+    renderDeities(reader);
   } else if (view === 'home') {
     renderHome(reader);
   }
@@ -303,70 +344,40 @@ function closeContents() {
   $('btnContents').setAttribute('aria-expanded', 'false');
 }
 
-// ── Deity plates: the image, without losing the place (BRIEF §7) ────
-// Dormant until the owner supplies the images: with an empty manifest
-// the renderer emits no plate and none of this is reachable. When it is
-// reachable, the reading position is untouchable — the viewer is an
-// overlay (the page beneath never scrolls), the auto-scroll is held
-// while it is up, and closing restores both it and the focus.
-const DEITY_META = [
-  ['day', 'deityDay'],
-  ['family', 'deityFamily'],
-  ['direction', 'deityDirection'],
-  ['color', 'deityColor'],
-  ['seed', 'deitySeed'],
-];
-// Name lines, in the app's usual order. Every value is manifest data.
-const DEITY_NAMES = [['bo', 'bo'], ['phon', 'phon'], ['sa', 'sa'], ['en', 'en']];
-
+// ── The figures: shown without losing the place (BRIEF §7) ──────────
+// A name the owner marked opens the depiction that shows that deity —
+// the same picture for either half of a couple in union. The reading
+// position is untouchable: the viewer is an overlay (the page beneath
+// never scrolls), the auto-scroll is held while it is up, and closing
+// restores both it and the focus.
 let deityScrollHeld = false;
 let deityOpener = null;
 
-function deityMetaRow(parent, label, value) {
-  const row = document.createElement('div');
-  row.className = 'deity-meta-row';
-  const l = document.createElement('span');
-  l.className = 'deity-meta-label';
-  l.textContent = label;
-  const v = document.createElement('span');
-  v.className = 'deity-meta-value';
-  v.textContent = String(value);
-  row.append(l, v);
-  parent.appendChild(row);
-}
-
-function openDeity(id) {
-  const deity = deityEntry(id);
-  if (!deity || !deity.image) return;
+function openDeity(deityId) {
+  const depiction = depictionFor(deityId);
+  if (!depiction) return;
 
   const img = $('deityViewerImage');
-  img.src = deity.image;
-  img.alt = deity.en || deity.sa || deity.bo || '';
+  const shown = depictionDeities(depiction);
+  const labels = shown.map((d) => d.label).filter(Boolean);
+  img.src = depiction.image;
+  img.alt = labels.join(' · ');
 
+  // Every deity the picture shows, named as the owner names them — one
+  // line for a single figure, both for a couple.
   const name = $('deityViewerName');
   name.textContent = '';
-  for (const [field, cls] of DEITY_NAMES) {
-    if (!deity[field]) continue;
+  for (const label of labels) {
     const line = document.createElement('span');
-    line.className = `deity-name-line ${cls}`;
-    line.textContent = deity[field];
+    line.className = 'deity-name-line';
+    line.textContent = label;
     name.appendChild(line);
   }
 
-  const meta = $('deityViewerMeta');
-  meta.textContent = '';
-  for (const [field, key] of DEITY_META) {
-    const value = deity[field];
-    if (value === null || value === undefined || value === '') continue;
-    deityMetaRow(meta, t(key), value);
-  }
-  const consort = deity.consort ? deityEntry(deity.consort) : null;
-  if (consort) {
-    deityMetaRow(meta, t('deityConsort'), consort.en || consort.bo || consort.id);
-  }
-
-  // Provenance travels with the picture, always (BRIEF §7).
-  const credit = [deity.attribution, deity.license].filter(Boolean).join(' · ');
+  // Provenance is the collection's, because all its pictures share one.
+  const collection = collectionById(depiction.collection);
+  const credit = collection
+    ? [collection.attribution, collection.license].filter(Boolean).join(' · ') : '';
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
@@ -425,6 +436,7 @@ function showView(next) {
   view = next;
   document.body.dataset.view = next;
   applyMode();
+  applyReturn();
 }
 
 // Leaving a text for one of the doorway pages: stop the scroll, drop
@@ -433,6 +445,7 @@ function showView(next) {
 function leaveText() {
   scroll.stop();
   closeContents();
+  forget(); // the doorway is a new course; the way back goes with it
   currentText = null;
   if (!desktopNav.matches) setMenu(false);
   document.querySelectorAll('.nav .nav-text[data-text-id]')
@@ -458,7 +471,23 @@ function showTexts() {
   window.scrollTo(0, 0);
 }
 
-async function openText(id) {
+// `keepOrigin` is for following a cross-link — the caller has just
+// recorded where the reader stood. Every other way into a text is the
+// reader choosing a new course, so the way back goes. `restore` puts
+// them back on the passage they left.
+// The figures, off the Iconography shelf. Its own view, so the bottom
+// bar's existing data-view rules stand the reading controls down.
+function showDeities() {
+  leaveText();
+  showView('deities');
+  renderDeities($('reader'));
+  buildContents();
+  applyPhonRelevance();
+  window.scrollTo(0, 0);
+}
+
+async function openText(id, { keepOrigin = false, restore = null } = {}) {
+  if (!keepOrigin && !restore) forget();
   scroll.stop();
   // The docked sidebar stays; the overlay gets out of the way.
   if (!desktopNav.matches) setMenu(false);
@@ -477,13 +506,29 @@ async function openText(id) {
     currentText = await loadText(id);
     renderText(currentText, reader);
     buildContents();
-    window.scrollTo(0, 0);
+    if (restore) restoreBlock(restore.blockId, restore.offset);
+    else window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
     buildContents();
     note(reader, `${t('couldNotLoadText')} (${err.message}).`);
   }
   applyPhonRelevance();
+  applyReturn();
+}
+
+// Back to the passage the reader left. If that text is somehow already
+// on screen there is nothing to load — just put them back on the block.
+function goBack() {
+  const from = origin();
+  if (!from) return;
+  forget();
+  if (currentText && currentText.id === from.textId) {
+    restoreBlock(from.blockId, from.offset);
+    applyReturn();
+    return;
+  }
+  openText(from.textId, { restore: from });
 }
 
 async function boot() {
@@ -601,6 +646,11 @@ async function boot() {
   // Home: the app's name in the header is the way back to the doorway.
   $('btnHome').addEventListener('click', showHome);
 
+  // The way back to the passage a cross-link led away from. The bar
+  // lives outside the reader, so it needs its own listener; the chip in
+  // the text's footer is handled by the delegated one below.
+  $('btnReturn').addEventListener('click', goBack);
+
   // Rubric peeking in Voice mode, the doorway pages' own links, and
   // prayer cross-links — all delegated: the reader's contents
   // re-render often.
@@ -615,14 +665,29 @@ async function boot() {
       openText(entry.dataset.openText);
       return;
     }
-    const link = e.target.closest('.prayer-link');
-    if (link && link.dataset.prayerRef) {
-      openText(link.dataset.prayerRef);
+    if (e.target.closest('[data-return]')) {
+      goBack();
       return;
     }
-    const plate = e.target.closest('.deity-open');
-    if (plate && plate.dataset.deityRef) {
-      openDeity(plate.dataset.deityRef);
+    const link = e.target.closest('.prayer-link');
+    if (link && link.dataset.prayerRef) {
+      // Where the reader stood, before the link moves them. A link with
+      // no block around it is the foot-of-the-prayer "Next prayer" —
+      // the chain case, which trail.js keeps the deeper origin for.
+      const block = link.closest('[data-block-id]');
+      if (block && currentText) {
+        remember(currentText.id, currentText.kind, block.dataset.blockId,
+          block.getBoundingClientRect().top);
+      }
+      openText(link.dataset.prayerRef, { keepOrigin: true });
+      return;
+    }
+    // A deity's name in the passage, or a tile in the gallery. Named
+    // explicitly: a block may also carry data-deity-ref, and tapping its
+    // prose must never summon anything.
+    const figure = e.target.closest('.deity-name, .deity-tile');
+    if (figure && figure.dataset.deityRef) {
+      openDeity(figure.dataset.deityRef);
       return;
     }
     const btn = e.target.closest('.l0-marker');
@@ -702,8 +767,9 @@ async function boot() {
         cat.appendChild(d);
       }
     }
-    // Iconography holds a single affordance, not a text: tapping the
-    // Zhitro Mandala replays the opening arising (js/intro.js).
+    // Iconography holds affordances, not texts: the Zhitro Mandala
+    // replays the opening arising (js/intro.js), and the roster of the
+    // peaceful deities opens as a gallery of figures.
     if (group.id === 'iconography') {
       const b = document.createElement('button');
       b.type = 'button';
@@ -714,6 +780,17 @@ async function boot() {
         replayIntro();
       });
       cat.appendChild(b);
+
+      // One entry per collection that has something to show, named as
+      // the manifest names it.
+      for (const collection of deityCollections()) {
+        const g = document.createElement('button');
+        g.type = 'button';
+        g.className = 'nav-text';
+        g.textContent = collection.label;
+        g.addEventListener('click', showDeities);
+        cat.appendChild(g);
+      }
     }
     nav.appendChild(cat);
   }

@@ -7,7 +7,7 @@
 // here. The shape of the cycle stays legible (BRIEF §4) — the texts
 // page names the bardo each pointing-out belongs to.
 
-import { cycleEntry } from './data.js';
+import { cycleEntry, deityCollections, depictionDeities } from './data.js';
 import { t } from './i18n.js';
 
 const TODO = 'TODO_CONTENT';
@@ -120,6 +120,48 @@ function textGroup(container, heading, items, withContext) {
     }
     el('span', 'text-entry-title', body).textContent = item.title;
     btn.insertAdjacentHTML('beforeend', ARROW_ICON);
+  }
+}
+
+// ── The figures (BRIEF §7) ──────────────────────────────────────────
+// One tile per depiction, in the owner's numbering — 36 tiles for 42
+// deities, because six pictures show a couple in union and carry both
+// their names. Tapping a tile opens the same viewer a name in the text
+// does. No day grouping here: the day-by-day clusters are a separate
+// presentation with their own composite images.
+function deityTile(depiction, parent) {
+  const names = depictionDeities(depiction).map((d) => d.label).filter(Boolean);
+  const btn = el('button', 'deity-tile', parent);
+  btn.type = 'button';
+  btn.dataset.deityRef = depiction.deityIds[0];
+  const img = el('img', 'deity-tile-image', btn);
+  img.src = depiction.image;
+  img.alt = names.join(' · ');
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  const label = el('span', 'deity-tile-name', btn);
+  for (const n of names) el('span', 'line', label).textContent = n;
+  return btn;
+}
+
+export function renderDeities(container) {
+  reset(container);
+  const collections = deityCollections();
+  if (!collections.length) {
+    const title = el('header', 'text-title page-title', container);
+    el('div', 'en', title).textContent = t('figures');
+    el('p', 'block layer-L0', container).textContent = t('noDeitiesYet');
+    return;
+  }
+  for (const collection of collections) {
+    const title = el('header', 'text-title page-title', container);
+    el('div', 'en', title).textContent = collection.label;
+    const sec = el('section', 'section', container);
+    const grid = el('div', 'deity-grid', sec);
+    for (const depiction of collection.depictions) deityTile(depiction, grid);
+    // Provenance belongs to the collection, not to each picture.
+    const credit = [collection.attribution, collection.license].filter(Boolean).join(' · ');
+    if (credit) el('p', 'deity-collection-credit', sec).textContent = credit;
   }
 }
 

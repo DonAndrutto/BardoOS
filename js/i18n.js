@@ -31,6 +31,7 @@ const STRINGS = {
     couldNotLoadCycle: 'Could not load the cycle manifest',
     emptyCycle: 'No texts in the cycle yet.',
     nextPrayer: 'Next prayer',
+    backTo: 'Back to',
     contents: 'Contents',
     contentsEmpty: 'No sections in this text.',
     home: 'Home',
@@ -41,8 +42,11 @@ const STRINGS = {
     introductions: 'Introductions',
     prayers: 'Prayers',
     noTextsYet: 'No texts are ready to read yet.',
-    // Deity plates — labels for the manifest's own fields (BRIEF §7).
+    // The figures (BRIEF §7). Collection names come from the manifest —
+    // the owner's words — so nothing here names a deity or a set.
     close: 'Close',
+    figures: 'Figures',
+    noDeitiesYet: 'No images have been supplied yet.',
     deityDay: 'Day',
     deityFamily: 'Family',
     deityConsort: 'Consort',

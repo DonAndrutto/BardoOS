@@ -11,7 +11,8 @@
 // auto-scroll geometry stays honest — inherited from the reference.
 
 import { state } from './store.js';
-import { cycleEntry, nextInGroup, deityEntry } from './data.js';
+import { cycleEntry, nextInGroup, depictionFor } from './data.js';
+import { origin } from './trail.js';
 import { t } from './i18n.js';
 
 const RUN_LABELS = { L1: 'READ ALOUD', L2: 'BARDO RECITATION', L3: 'LITURGY' };
@@ -22,6 +23,10 @@ const ARROW_ICON =
   '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const BACK_ICON =
+  '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
 const LOCK_ICON =
   '<svg class="prayer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -35,21 +40,47 @@ function el(tag, className, parent) {
   return node;
 }
 
+// Emphasis and declared gaps within a run of plain text.
+function fillPlain(dest, text) {
+  text.split('**').forEach((seg, k) => {
+    const target = k % 2 ? el('strong', 'em', dest) : dest;
+    seg.split(TODO).forEach((piece, j, pieces) => {
+      if (piece) target.appendChild(document.createTextNode(piece));
+      if (j < pieces.length - 1) el('span', 'todo', target).textContent = TODO;
+    });
+  });
+}
+
+// Splitting on a two-capture pattern yields [prose, words, id, prose, …] —
+// a stride of three, so a token is never mistaken for prose.
+const DEITY_TOKEN = /\[\[([^[\]|]+)\|([^[\]|]+)\]\]/g;
+
 // Text goes in as data, comes out as DOM text nodes — no HTML parsing of
 // content, ever. The only inline tokens are \n (verse lines), TODO_CONTENT
-// (declared gaps, marked visibly rather than hidden), and **…** (emphasis,
-// SCHEMA §4 — a paired marker, never interpreted as prose).
+// (declared gaps, marked visibly rather than hidden), **…** (emphasis) and
+// [[words|deity-id]] (a name the owner marked — SCHEMA §4). All are paired
+// markers around the owner's own words, never interpreted as prose.
 function fillInline(node, value) {
   const lines = String(value).split('\n');
   for (const line of lines) {
     const target = lines.length > 1 ? el('span', 'line', node) : node;
-    line.split('**').forEach((seg, k) => {
-      const dest = k % 2 ? el('strong', 'em', target) : target;
-      seg.split(TODO).forEach((piece, j, pieces) => {
-        if (piece) dest.appendChild(document.createTextNode(piece));
-        if (j < pieces.length - 1) el('span', 'todo', dest).textContent = TODO;
-      });
-    });
+    const parts = line.split(DEITY_TOKEN);
+    for (let i = 0; i < parts.length; i += 3) {
+      if (parts[i]) fillPlain(target, parts[i]);
+      const words = parts[i + 1];
+      if (words === undefined) continue;
+      const ref = parts[i + 2];
+      // A name only becomes a tap when a depiction actually shows that
+      // deity; otherwise it reads as the plain words it always was.
+      if (depictionFor(ref)) {
+        const btn = el('button', 'deity-name', target);
+        btn.type = 'button';
+        btn.dataset.deityRef = ref;
+        fillPlain(btn, words);
+      } else {
+        fillPlain(target, words);
+      }
+    }
   }
 }
 
@@ -93,30 +124,6 @@ function prayerRefEl(block) {
   return wrap;
 }
 
-// Iconography (BRIEF §7). A block naming a deity carries the ref on the
-// element whether or not a picture exists — the hook is stable, the
-// image is optional. With none in the manifest nothing is emitted and
-// the reading surface is exactly as it was; when the owner supplies the
-// assets, the plate appears here and opens the viewer.
-function deityPlateEl(ref) {
-  const deity = deityEntry(ref);
-  if (!deity || !deity.image) return null;
-  const fig = el('figure', 'deity-plate');
-  const btn = el('button', 'deity-open', fig);
-  btn.type = 'button';
-  btn.dataset.deityRef = ref;
-  const img = el('img', 'deity-image', btn);
-  img.src = deity.image;
-  img.alt = deity.en || deity.sa || deity.bo || '';
-  img.loading = 'lazy';
-  img.decoding = 'async';
-  // Caption and alt text are manifest data — the owner's words, as with
-  // every other name in the app.
-  const caption = deity.en || deity.bo;
-  if (caption) el('figcaption', 'deity-caption', fig).textContent = caption;
-  return fig;
-}
-
 // A prayer's onward link to the next prayer in the cycle (manifest order).
 // Reuses the prayer-link component; the reader's delegated click handler
 // navigates on data-prayerRef, exactly as an authored cross-link would.
@@ -131,17 +138,34 @@ function nextPrayerEl(entry) {
   return wrap;
 }
 
+// The way back at the foot of a text a cross-link led to: when the
+// prayer is finished, the passage it was recited for is the next thing
+// the reader wants, and it is right here rather than a scroll away.
+// The bar above the controls carries the same journey at any moment;
+// this is the one that meets them where they stop reading.
+function returnEl(from) {
+  const entry = cycleEntry(from.textId);
+  const title = entry && entry.title !== TODO ? entry.title : from.textId;
+  const wrap = el('div', 'prayer-ref prayer-back');
+  const btn = el('button', 'prayer-link', wrap);
+  btn.type = 'button';
+  btn.dataset.return = '1'; // the reader's delegated handler acts on this
+  btn.innerHTML = BACK_ICON;
+  el('span', 'prayer-link-label', btn).textContent = t('backTo');
+  el('span', 'prayer-link-title', btn).textContent = title;
+  return wrap;
+}
+
 function blockEl(block, fields) {
   const div = el('div', `block layer-${block.layer} form-${block.form}`);
   div.dataset.blockId = block.id;
   for (const f of fields) {
     fillInline(el('div', f === 'bo' ? 'bo' : f, div), block[f]);
   }
-  if (block.deityRef) {
-    div.dataset.deityRef = block.deityRef;
-    const plate = deityPlateEl(block.deityRef);
-    if (plate) div.appendChild(plate);
-  }
+  // A block-level deityRef is recorded on the element but draws nothing:
+  // the owner chose the figure summoned from the name in the passage
+  // (BRIEF §7) over a picture standing in the read-aloud flow.
+  if (block.deityRef) div.dataset.deityRef = block.deityRef;
   if (block.prayerRef) div.appendChild(prayerRefEl(block));
   return div;
 }
@@ -235,8 +259,12 @@ export function renderText(text, container) {
     if (state.mode === 'voice' && sec.children.length === 1) sec.remove();
   }
 
-  // Prayers carry a link onward to the next prayer in the cycle; the last
-  // one in its group has none. Instrument navigation, not authored content.
+  // Instrument navigation at the foot, not authored content: the way
+  // back to the passage that sent the reader here, then — for a prayer —
+  // the link onward to the next prayer in the cycle (the last one in its
+  // group has none).
+  const from = origin();
+  if (from && from.textId !== text.id) container.appendChild(returnEl(from));
   if (text.kind === 'prayer') {
     const next = nextInGroup(text.id);
     if (next) container.appendChild(nextPrayerEl(next));

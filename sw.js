@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v19';
+const VERSION = 'bardo-os-v22';
 
 const PRECACHE = [
   './',
@@ -20,6 +20,7 @@ const PRECACHE = [
   'js/render.js',
   'js/scroll.js',
   'js/store.js',
+  'js/trail.js',
   'assets/icons/favicon-32.png',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
@@ -56,7 +57,10 @@ async function precacheDeityImages(cache) {
     const res = await fetch('assets/deities/MANIFEST.json', { cache: 'no-store' });
     if (!res.ok) return;
     const manifest = await res.json();
-    const images = [...new Set((manifest.deities || []).map((d) => d && d.image).filter(Boolean))];
+    const images = [...new Set((manifest.collections || [])
+      .flatMap((c) => c.depictions || [])
+      .map((d) => d && d.image)
+      .filter(Boolean))];
     await Promise.allSettled(images.map((url) => cache.add(url)));
   } catch {
     // No manifest, or no images yet. The texts work offline regardless.

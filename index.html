@@ -54,6 +54,19 @@
   </div>
 
   <div class="bottom-bar">
+
+    <!-- The way back, while the reader is somewhere a link sent them.
+         It sits above the controls, within thumb's reach at any scroll
+         position, and says where it goes — returning lands on the exact
+         passage they left, not the top of the text. -->
+    <div class="return-bar" id="returnBar" hidden>
+      <button class="return-link" id="btnReturn" type="button">
+        <svg class="return-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span class="return-link-label" id="returnLabel">Back to</span>
+        <span class="return-link-title" id="returnTitle"></span>
+      </button>
+    </div>
+
     <div class="bar-inner">
 
       <div class="bar-group" id="scrollGroup" role="group" aria-label="Auto-scroll">
@@ -129,7 +142,6 @@
       </button>
       <img class="deity-viewer-image" id="deityViewerImage" alt="" />
       <h2 class="deity-viewer-name" id="deityViewerName"></h2>
-      <div class="deity-viewer-meta" id="deityViewerMeta"></div>
       <p class="deity-viewer-credit" id="deityViewerCredit" hidden></p>
     </div>
   </div>

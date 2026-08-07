@@ -650,6 +650,30 @@ body.nav-open .nav { display: block; }
   margin-top: 2px;
 }
 
+/* The way back at the foot: where the reader stops reading, the passage
+   that sent them here is one tap away. It owns the separator; a
+   next-prayer link following it does not repeat the rule. */
+.prayer-back {
+  justify-content: center;
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+}
+.prayer-back + .prayer-next {
+  margin-top: var(--sp-4);
+  padding-top: 0;
+  border-top: none;
+}
+.prayer-link-label {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+
 /* Onward link at the foot of a prayer — the next prayer in the cycle.
    Its label stands above the link, so it keeps the block flow. */
 .prayer-next {
@@ -670,39 +694,81 @@ body.nav-open .nav { display: block; }
   margin-bottom: var(--sp-2);
 }
 
-/* ── Iconography: the deity plate and its viewer (BRIEF §7) ──────────
-   Dormant until the owner supplies the images: with no image in the
-   manifest no plate is emitted, and nothing below is reachable. The
-   plate is capped so it never dominates a passage being read aloud;
-   nothing here animates. */
-.deity-plate {
-  margin: var(--sp-4) auto 0;
-  max-width: var(--measure);
-  text-align: center;
-}
-.deity-open {
-  display: block;
-  width: 100%;
+/* ── Iconography (BRIEF §7) ──────────────────────────────────────────
+   A name the owner marked in the passage. Quiet by design: it keeps the
+   text's own size and weight and stays in the reading colour, carrying a
+   dotted rule beneath — findable when looked for, never competing with
+   the words at 3 a.m. Never colour alone: the rule and the accent tint
+   both do the work. */
+.deity-name {
+  display: inline;
+  margin: 0;
   padding: 0;
+  font: inherit;
+  color: inherit;
   background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  border: none;
+  text-decoration: underline dotted
+    color-mix(in srgb, var(--accent) 55%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: from-font;
   cursor: pointer;
 }
-.deity-open:focus { outline: none; }
-.deity-open:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
-.deity-image {
+@media (hover: hover) {
+  .deity-name:hover { color: var(--accent); }
+}
+.deity-name:focus { outline: none; }
+.deity-name:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* The gallery, off the Iconography shelf. The figures are cut out, so
+   they stand on the page's own ground rather than in boxes. */
+.deity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: var(--sp-4);
+  max-width: var(--column);
+  margin: 0 auto;
+}
+.deity-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .deity-tile:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+}
+.deity-tile:focus { outline: none; }
+.deity-tile:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.deity-tile-image {
   display: block;
   width: 100%;
-  max-height: 42vh;
-  object-fit: contain;
+  max-width: 9rem;
+  height: auto;
 }
-.deity-caption {
-  margin-top: var(--sp-2);
+.deity-collection-credit {
+  max-width: var(--column);
+  margin: var(--sp-6) auto 0;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
+  font-size: 0.62rem;
+  line-height: var(--lh-snug);
+  text-align: center;
+  color: var(--text-muted);
+}
+.deity-tile-name {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  line-height: var(--lh-snug);
+  text-align: center;
   color: var(--text-muted);
 }
 
@@ -715,23 +781,24 @@ body.nav-open .nav { display: block; }
   align-items: center;
   justify-content: center;
   padding: var(--sp-4);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 93%, transparent);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 .deity-viewer[hidden] { display: none; }
+/* The figures are cut out, with no ground of their own — so no panel and
+   no frame: they stand on the page itself, which is also why nothing
+   white ever flares in a dark room. */
 .deity-sheet {
   position: relative;
   width: 100%;
   max-width: 34rem;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
-  padding: var(--sp-5);
+  padding: var(--sp-5) var(--sp-4);
   text-align: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  background: none;
+  border: none;
 }
 /* It sits over the picture, so it carries its own ground — a ✕ that
    vanishes into a bright thangka is a ✕ nobody finds at 3 a.m. */
@@ -754,61 +821,31 @@ body.nav-open .nav { display: block; }
 }
 .deity-close:focus { outline: none; }
 .deity-close:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px var(--accent); }
+/* Capped at the figures' own 540 px so they are never upscaled into
+   softness. The radial sits behind the cut-out's transparency and gives
+   it ground without drawing a box around it. */
 .deity-viewer-image {
   display: block;
   width: 100%;
-  max-height: 58vh;
+  max-width: 33.75rem;
+  max-height: 62vh;
+  margin: 0 auto;
   object-fit: contain;
-  border-radius: var(--radius-sm);
+  background: radial-gradient(ellipse at 50% 46%,
+    color-mix(in srgb, var(--accent) 9%, transparent) 0%,
+    transparent 68%);
 }
+/* Every deity the picture shows, named as the manifest names them —
+   one line for a single figure, both for a couple in union. */
 .deity-viewer-name { margin-top: var(--sp-4); }
-.deity-name-line { display: block; color: var(--text); }
-.deity-name-line.bo {
-  font-family: var(--font-tibetan);
-  font-size: calc(var(--size-base) * 1.1);
-  line-height: var(--lh-tibetan);
-}
-.deity-name-line.phon {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: calc(var(--size-base) * 0.8);
-  color: var(--phonetics);
-}
-.deity-name-line.sa {
-  font-family: var(--font-body);
-  font-size: calc(var(--size-base) * 0.9);
-  color: var(--text-muted);
-}
-.deity-name-line.en {
+.deity-name-line {
+  display: block;
   font-family: var(--font-body);
   font-size: calc(var(--size-base) * 0.95);
+  line-height: var(--lh-snug);
+  color: var(--text);
+  text-wrap: balance;
 }
-.deity-viewer-meta {
-  margin-top: var(--sp-4);
-  display: grid;
-  gap: var(--sp-1);
-  text-align: left;
-}
-.deity-viewer-meta:empty { display: none; }
-.deity-meta-row {
-  display: flex;
-  gap: var(--sp-3);
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  padding-top: var(--sp-1);
-  border-top: 1px solid var(--border);
-}
-.deity-meta-label {
-  flex: none;
-  width: 8rem;
-  text-transform: uppercase;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: var(--ls-caps-sm);
-  color: var(--label);
-  padding-top: 2px;
-}
-.deity-meta-value { color: var(--text); }
 .deity-viewer-credit {
   margin-top: var(--sp-4);
   font-family: var(--font-ui);
@@ -849,6 +886,10 @@ body.nav-open .nav { display: block; }
   padding: var(--sp-3) var(--sp-4);
   padding-bottom: max(var(--sp-3), env(safe-area-inset-bottom));
   pointer-events: none;
+  /* Stays a block container on purpose: the return bar stacks above the
+     controls as an ordinary block, both centred by their own auto
+     margins. As a flex column the auto margins would stop .bar-inner
+     stretching and crush the control row to its content width. */
 }
 .bar-inner {
   max-width: 40rem;
@@ -914,12 +955,74 @@ body.nav-open .nav { display: block; }
   .bar-btn-text { padding: 0; }
 }
 
+/* ── The way back, while a link has led the reader away ──────────────
+   Above the controls, in the bottom third, reachable one-handed at any
+   scroll position — and it says where it goes, so nobody has to guess.
+   Never colour alone: the arrow, the border and the caps label carry it
+   as much as the accent does. */
+.return-bar {
+  max-width: 40rem;
+  margin: 0 auto var(--sp-2);
+  pointer-events: auto;
+}
+/* display:flex below would otherwise defeat the hidden attribute —
+   the same trap .bar-group documents. */
+.return-bar[hidden] { display: none; }
+.return-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .return-link:hover { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); }
+}
+.return-link:focus { outline: none; }
+.return-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.return-link-icon { width: 16px; height: 16px; flex: none; }
+.return-link-label {
+  flex: none;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+/* The owner's titles run long; one honest line, the whole of it in the
+   tooltip and the aria-label. */
+.return-link-title {
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Room for it: the reading surface and the contents sheet both clear
+   the controls by a fixed amount, and the bar adds a row above them. */
+body.has-return .shell { padding-bottom: 11rem; }
+body.has-return .contents-sheet { margin-bottom: 9rem; }
+
 /* Off a text there is nothing to recite, no layers to toggle and
    nothing worth scrolling by itself: those controls stand down. Day or
    night and fullscreen remain — they belong to the room, not the text.
    The doorway keeps nothing but those. */
 body:not([data-view="text"]) #scrollGroup,
 body:not([data-view="text"]) .lang-group,
+body:not([data-view="text"]) .return-bar,
 body:not([data-view="text"]) #btnVoice { display: none; }
 body[data-view="home"] #sizeGroup { display: none; }
 body:not([data-view="text"]) .bar-inner { justify-content: center; }
