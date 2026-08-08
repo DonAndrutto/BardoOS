@@ -53,6 +53,13 @@ const STRINGS = {
     deityDirection: 'Direction',
     deityColor: 'Colour',
     deitySeed: 'Seed syllable',
+    // The home-screen invitation (js/install.js). Asked once, plainly,
+    // and dismissible in one tap — BRIEF §2 governs the manner of it.
+    installTitle: 'Keep this on the phone',
+    installNote: 'Add Bardo OS to the home screen. It opens without a browser, and works with no signal.',
+    installStepsIOS: 'Tap Share, then Add to Home Screen. It opens without a browser, and works with no signal.',
+    installAction: 'Add',
+    installDismiss: 'Not now',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

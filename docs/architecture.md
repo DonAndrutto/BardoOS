@@ -24,10 +24,12 @@ Plus the context-of-use requirements (BRIEF §9) that any option must carry: wak
 /css/tokens.css          the palette & type tokens (from the audit + palette doc)
 /css/app.css
 /js/                     small vanilla ES modules: store, render, scroll, wake, nav
+/js/install.js           the home-screen invitation — asked once (§5)
 /content/cycle.json      the shape of the cycle: ordered text ids, groupings
 /content/texts/*.json    one file per text (the schema)
 /assets/fonts/           Jomolhari, EB Garamond, Inter — vendored, OFL
 /assets/deities/         MANIFEST.json + images you supply (Phase 4)
+/assets/icons/           the app icon at every size + README on how it was cut
 /sw.js                   service worker: precache everything, cache-first
 /manifest.webmanifest    installable PWA
 /scripts/validate.mjs    the validator — plain Node, zero npm packages
@@ -83,6 +85,8 @@ Preact/React + Vite + TypeScript, components, a bundler. Included because it's t
 C is rejected outright. The existing React prototype stays as design reference only.
 
 **One decision folded in:** the PWA install prompt will not be pushed at the reader (no banners — §2's no-dark-patterns covers this); offline capability works from the first visit whether or not they "install."
+
+**Reversed at the owner's direction (2026-08-08):** the app does now offer itself to the home screen, because a reader who needs it at 3 a.m. should not have to find a browser tab first. §2 still governs the manner, and `js/install.js` holds to it: the offer is made once and the answer — whichever it is — is remembered for good; it appears on the doorway only, never over an open text and never once the app is installed; and the way to say no is a 44 px target, the same size as the way to say yes. Android and desktop Chromium hand over `beforeinstallprompt`, which is held back and replayed on the reader's tap; iOS has no such event, so the invitation carries the two share-sheet steps instead.
 
 ---
 

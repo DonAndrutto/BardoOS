@@ -23,6 +23,7 @@ function defaults() {
     scrollSpeed: 2,
     mode: 'guide',        // 'guide' | 'voice'
     uiLang: 'en',         // interface language: 'bo' | 'en' | 'pl' (master selector)
+    installAsked: false,  // the home-screen invitation is offered once, ever (js/install.js)
   };
 }
 
@@ -41,7 +42,7 @@ function load() {
     if (!['guide', 'voice'].includes(merged.mode)) merged.mode = 'guide';
     if (![null, 'light', 'dark'].includes(merged.theme)) merged.theme = null;
     if (!['bo', 'en', 'pl'].includes(merged.uiLang)) merged.uiLang = 'en';
-    for (const k of ['showBo', 'showPhon', 'showEn']) merged[k] = Boolean(merged[k]);
+    for (const k of ['showBo', 'showPhon', 'showEn', 'installAsked']) merged[k] = Boolean(merged[k]);
     return merged;
   } catch {
     return d;
