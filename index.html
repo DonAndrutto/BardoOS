@@ -9,7 +9,14 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <!-- iOS reads none of the manifest before 16.4 and still takes its
+       home-screen label from here: without these an installed Bardo OS
+       lands as a Safari bookmark called by the page title. -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Bardo OS" />
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/app.css" />
   <link rel="stylesheet" href="css/intro.css" />
@@ -54,6 +61,22 @@
   </div>
 
   <div class="bottom-bar">
+
+    <!-- The invitation to keep the app on the phone. Asked once, on the
+         doorway only — never over an open text, and never over a
+         deathbed. Whatever the reader answers is remembered for good:
+         js/install.js reveals this and never brings it back. -->
+    <div class="install-invite" id="installInvite" hidden>
+      <svg class="install-invite-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><circle cx="12" cy="12" r="5.6"/><circle cx="12" cy="12" r="2"/></svg>
+      <div class="install-invite-body">
+        <p class="install-invite-title" id="installTitle"></p>
+        <p class="install-invite-note" id="installNote"></p>
+      </div>
+      <button class="install-invite-action" id="btnInstall" type="button" hidden></button>
+      <button class="install-invite-close" id="btnInstallClose" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+    </div>
 
     <!-- The way back, while the reader is somewhere a link sent them.
          It sits above the controls, within thumb's reach at any scroll
@@ -148,5 +171,6 @@
 
   <script type="module" src="js/intro.js"></script>
   <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/install.js"></script>
 </body>
 </html>

@@ -1016,6 +1016,98 @@ body.nav-open .nav { display: block; }
 body.has-return .shell { padding-bottom: 11rem; }
 body.has-return .contents-sheet { margin-bottom: 9rem; }
 
+/* ── The home-screen invitation ──────────────────────────────────────
+   Sits above the controls in the same glass as everything else in the
+   bottom third. Asked once and dismissible in one tap: the × is a real
+   44px target, the same size as the way to say yes (BRIEF §2). */
+.install-invite {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: 40rem;
+  margin: 0 auto var(--sp-2);
+  padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: var(--radius-md);
+}
+.install-invite[hidden] { display: none; }
+.install-invite-mark {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--accent);
+}
+.install-invite-body { min-width: 0; flex: 1 1 auto; }
+.install-invite-title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+.install-invite-note {
+  margin: 2px 0 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+.install-invite-action {
+  flex: none;
+  min-height: 40px;
+  padding: 0 var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.install-invite-action[hidden] { display: none; }
+.install-invite-close {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .install-invite-action:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  .install-invite-close:hover { background: color-mix(in srgb, var(--text) 8%, transparent); color: var(--text); }
+}
+.install-invite-action:focus,
+.install-invite-close:focus { outline: none; }
+.install-invite-action:focus-visible,
+.install-invite-close:focus-visible { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
+/* Never over an open text. Someone reading aloud at a bedside is not to
+   be asked for anything — the doorway is where the offer belongs. */
+body[data-view="text"] .install-invite { display: none; }
+body.has-install:not([data-view="text"]) .shell { padding-bottom: 12rem; }
+body.has-install.has-return:not([data-view="text"]) .shell { padding-bottom: 16rem; }
+
+@media (max-width: 40rem) {
+  .install-invite { gap: var(--sp-2); padding-left: var(--sp-2); }
+  .install-invite-mark { display: none; }
+  .install-invite-action { padding: 0 var(--sp-3); }
+}
+
 /* Off a text there is nothing to recite, no layers to toggle and
    nothing worth scrolling by itself: those controls stand down. Day or
    night and fullscreen remain — they belong to the room, not the text.

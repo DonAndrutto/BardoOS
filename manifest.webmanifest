@@ -1,12 +1,15 @@
 {
+  "id": "./",
   "name": "Bardo OS",
   "short_name": "Bardo OS",
   "description": "An offline reading instrument for the Bardo Thödröl — The Great Liberation Upon Hearing in the Intermediate State.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#FDFBF7",
-  "theme_color": "#FDFBF7",
+  "background_color": "#171412",
+  "theme_color": "#171412",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
@@ -19,6 +22,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "assets/icons/icon-maskable-512.png",
