@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v23';
+const VERSION = 'bardo-os-v24';
 
 const PRECACHE = [
   './',
@@ -21,6 +21,7 @@ const PRECACHE = [
   'js/render.js',
   'js/scroll.js',
   'js/store.js',
+  'js/support.js',
   'js/trail.js',
   'assets/icons/favicon-32.png',
   'assets/icons/icon-192.png',

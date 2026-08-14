@@ -47,6 +47,7 @@ const STRINGS = {
     close: 'Close',
     figures: 'Figures',
     noDeitiesYet: 'No images have been supplied yet.',
+    seeFigure: 'See this figure',
     deityDay: 'Day',
     deityFamily: 'Family',
     deityConsort: 'Consort',
@@ -60,6 +61,12 @@ const STRINGS = {
     installStepsIOS: 'Tap Share, then Add to Home Screen. It opens without a browser, and works with no signal.',
     installAction: 'Add',
     installDismiss: 'Not now',
+    // The invitation to support the work (js/support.js). Made once,
+    // after the app has been of use, and as easy to decline as to take.
+    supportTitle: 'Support this work',
+    supportBody: 'Bardo OS is free, and stays free. If it has been of use to you, and you would like to help with its development and with further translation projects, you can support the translator directly.',
+    supportAction: 'Support the work',
+    supportDismiss: 'Not now',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

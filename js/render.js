@@ -32,6 +32,15 @@ const LOCK_ICON =
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
   '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+// The mark on a name the owner marked: an eye, because what the tap
+// gives is the sight of the figure — liberation upon seeing. It is the
+// cue that says a picture stands behind the word; the words alone never
+// said it, and readers were not finding them (owner, 2026-08-14).
+const FIGURE_ICON =
+  '<svg class="deity-name-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<path d="M2 12s3.6-6.4 10-6.4S22 12 22 12s-3.6 6.4-10 6.4S2 12 2 12z"/>' +
+  '<circle cx="12" cy="12" r="2.7"/></svg>';
 
 function el(tag, className, parent) {
   const node = document.createElement(tag);
@@ -76,7 +85,13 @@ function fillInline(node, value) {
         const btn = el('button', 'deity-name', target);
         btn.type = 'button';
         btn.dataset.deityRef = ref;
+        btn.title = t('seeFigure');
         fillPlain(btn, words);
+        // A word joiner, so the mark can never be left stranded at the
+        // start of a line while the name it belongs to sits on the one
+        // above. Then the mark itself — static markup, never content.
+        btn.appendChild(document.createTextNode('\u2060'));
+        btn.insertAdjacentHTML('beforeend', FIGURE_ICON);
       } else {
         fillPlain(target, words);
       }
