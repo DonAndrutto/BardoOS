@@ -25,6 +25,7 @@ Plus the context-of-use requirements (BRIEF §9) that any option must carry: wak
 /css/app.css
 /js/                     small vanilla ES modules: store, render, scroll, wake, nav
 /js/install.js           the home-screen invitation — asked once (§5)
+/js/support.js           the support note — asked once, after ~20 min of use (§5)
 /content/cycle.json      the shape of the cycle: ordered text ids, groupings
 /content/texts/*.json    one file per text (the schema)
 /assets/fonts/           Jomolhari, EB Garamond, Inter — vendored, OFL
@@ -87,6 +88,8 @@ C is rejected outright. The existing React prototype stays as design reference o
 **One decision folded in:** the PWA install prompt will not be pushed at the reader (no banners — §2's no-dark-patterns covers this); offline capability works from the first visit whether or not they "install."
 
 **Reversed at the owner's direction (2026-08-08):** the app does now offer itself to the home screen, because a reader who needs it at 3 a.m. should not have to find a browser tab first. §2 still governs the manner, and `js/install.js` holds to it: the offer is made once and the answer — whichever it is — is remembered for good; it appears on the doorway only, never over an open text and never once the app is installed; and the way to say no is a 44 px target, the same size as the way to say yes. Android and desktop Chromium hand over `beforeinstallprompt`, which is held back and replayed on the reader's tap; iOS has no such event, so the invitation carries the two share-sheet steps instead.
+
+**A second invitation, at the owner's direction (2026-08-14):** after about twenty minutes of use, once, a plain note that the reader may support the translator and the maker of the app, pointing at the PayPal link the header already carries. It is the same component as the home-screen offer (`.invite` in `css/app.css`) and holds to the same §2 discipline — one ask, the answer remembered for good, and a 44 px way to say no. `js/support.js` keeps the clock: it counts only seconds the app is actually on screen, so twenty minutes means twenty minutes of *use*, carried across visits rather than restarted each time. When the count matures the note still waits for a quiet moment — never while the auto-scroll is carrying a recitation, never on top of the home-screen offer, and never in Voice mode (that last is CSS, where a timer cannot get it wrong).
 
 ---
 

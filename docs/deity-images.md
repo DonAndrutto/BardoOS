@@ -210,9 +210,11 @@ copy without the new figures.
 
 ## What the reader gets
 
-A name the owner marked carries a dotted rule beneath it in the reading
-text — the same size, weight and colour as the words around it, so it is
-findable when looked for and never competes with the passage. Tapping it
+A name the owner marked stands in the accent colour with a dotted rule
+beneath it — the same size and weight as the words around it, because a
+name is still part of the sentence, but visibly a way in, so the reader
+can see at a glance which names open a figure. (It read in the text's own
+colour until the owner asked for it to be plainer, 2026-08-14.) Tapping it
 brings the figure over the page: large, on the page's own ground with no
 frame, and beneath it the name of every deity that picture shows — one
 for a single figure, both for a couple in union. The ✕, a tap anywhere

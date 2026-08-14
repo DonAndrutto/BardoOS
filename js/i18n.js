@@ -60,6 +60,12 @@ const STRINGS = {
     installStepsIOS: 'Tap Share, then Add to Home Screen. It opens without a browser, and works with no signal.',
     installAction: 'Add',
     installDismiss: 'Not now',
+    // The support note (js/support.js). Offered once, after about twenty
+    // minutes of use, and dismissible in one tap — BRIEF §2 again.
+    supportTitle: 'Support this work',
+    supportNote: 'If this has been of use, you might consider supporting the translator and the maker of this app.',
+    supportAction: 'Donate',
+    supportDismiss: 'Dismiss',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},
