@@ -695,27 +695,44 @@ body.nav-open .nav { display: block; }
 }
 
 /* ── Iconography (BRIEF §7) ──────────────────────────────────────────
-   A name the owner marked in the passage. Quiet by design: it keeps the
-   text's own size and weight and stays in the reading colour, carrying a
-   dotted rule beneath — findable when looked for, never competing with
-   the words at 3 a.m. Never colour alone: the rule and the accent tint
-   both do the work. */
+   A name the owner marked in the passage. It was quiet by design — the
+   reading colour under a dotted rule, findable when looked for. Too
+   quiet: readers did not know there was anything to tap, and the figures
+   went unseen (owner's direction, 2026-08-14). It now reads as the thing
+   it is — a name you can open — while staying inside the line: the same
+   size and weight as the words around it, so the passage is still prose
+   and not a row of buttons.
+
+   Never colour alone (layer-palette §2, and a wash is nearly gone at 20%
+   brightness anyway): the accent hue, a solid rule, and the eye mark each
+   carry it, and the mark alone survives every condition the other two
+   don't. A tinted chip was tried and rejected — on the fifth day twenty
+   names stand in one paragraph, and its padding both boxed the passage in
+   and re-broke every line. This keeps the prose a prose. */
 .deity-name {
   display: inline;
   margin: 0;
   padding: 0;
   font: inherit;
-  color: inherit;
+  color: var(--accent);
   background: none;
   border: none;
-  text-decoration: underline dotted
-    color-mix(in srgb, var(--accent) 55%, transparent);
-  text-underline-offset: 0.18em;
-  text-decoration-thickness: from-font;
+  text-decoration: underline solid
+    color-mix(in srgb, var(--accent) 60%, transparent);
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1.5px;
   cursor: pointer;
 }
+/* Sized in em, so it holds its proportion at 16px and at Voice mode's
+   48px alike. It sits on the text's own baseline, not below it. */
+.deity-name-mark {
+  width: 0.74em;
+  height: 0.74em;
+  margin-left: 0.22em;
+  vertical-align: -0.09em;
+}
 @media (hover: hover) {
-  .deity-name:hover { color: var(--accent); }
+  .deity-name:hover { text-decoration-color: var(--accent); }
 }
 .deity-name:focus { outline: none; }
 .deity-name:focus-visible {
@@ -1106,6 +1123,122 @@ body.has-install.has-return:not([data-view="text"]) .shell { padding-bottom: 16r
   .install-invite { gap: var(--sp-2); padding-left: var(--sp-2); }
   .install-invite-mark { display: none; }
   .install-invite-action { padding: 0 var(--sp-3); }
+}
+
+/* ── The invitation to support the work ──────────────────────────────
+   A screen rather than a bar, because it is asked once in the life of
+   the app and then never again (js/support.js). It stands above the
+   figure viewer, which is the only thing it could ever have to cover —
+   and it never does, since it waits for an empty screen. Nothing
+   animates it in or out: it is simply there, and then it is not. */
+.support-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.support-veil[hidden] { display: none; }
+.support-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 25rem;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: var(--sp-7) var(--sp-5) var(--sp-5);
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.support-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.support-mark {
+  width: 30px;
+  height: 30px;
+  color: var(--accent);
+}
+.support-title {
+  margin: var(--sp-3) 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--label);
+}
+.support-body {
+  margin: var(--sp-3) 0 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: var(--lh-body);
+  color: var(--text);
+  text-wrap: pretty;
+}
+.support-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: var(--sp-5);
+  padding: 0 var(--sp-5);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+/* The way to say no, spelled out under the way to say yes and at the
+   same 44 px — the ✕ and the whole screen around the sheet say it too. */
+.support-dismiss {
+  display: block;
+  min-height: 44px;
+  margin: var(--sp-2) auto 0;
+  padding: 0 var(--sp-4);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .support-action:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  .support-close:hover,
+  .support-dismiss:hover { color: var(--text); }
+}
+.support-action:focus,
+.support-close:focus,
+.support-dismiss:focus { outline: none; }
+.support-action:focus-visible,
+.support-close:focus-visible,
+.support-dismiss:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px var(--accent);
 }
 
 /* Off a text there is nothing to recite, no layers to toggle and

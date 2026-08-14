@@ -210,13 +210,21 @@ copy without the new figures.
 
 ## What the reader gets
 
-A name the owner marked carries a dotted rule beneath it in the reading
-text — the same size, weight and colour as the words around it, so it is
-findable when looked for and never competes with the passage. Tapping it
-brings the figure over the page: large, on the page's own ground with no
-frame, and beneath it the name of every deity that picture shows — one
-for a single figure, both for a couple in union. The ✕, a tap anywhere
-outside, or Escape dismisses it.
+A name the owner marked stands in the accent colour under a solid rule,
+with a small eye after it. Tapping it brings the figure over the page:
+large, on the page's own ground with no frame, and beneath it the name of
+every deity that picture shows — one for a single figure, both for a
+couple in union. The ✕, a tap anywhere outside, or Escape dismisses it.
+
+The first treatment was quieter — the reading colour under a dotted rule,
+findable when looked for. Too quiet: readers did not know there was
+anything to tap, and the figures went unseen (owner's direction,
+2026-08-14). The mark is what carries the meaning now, and it is what
+survives every condition colour alone does not: a dim screen at 20%
+brightness, a colourblind reader, a name that happens to fall on the
+gold rule of an L1 run. A tinted chip was tried and rejected — on the
+fifth day twenty names stand in one paragraph, and its padding boxed the
+passage in and re-broke every line of it.
 
 The reading position is untouchable, by construction (BRIEF §7): the
 viewer is an overlay, so the page beneath never scrolls; the auto-scroll
