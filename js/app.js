@@ -10,6 +10,7 @@ import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
+import { layout as layoutHelp } from './help.js';
 import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
@@ -244,6 +245,10 @@ function applyUiLang() {
   $('btnHome').setAttribute('aria-label', t('home'));
   $('btnHome').title = t('home');
   $('btnDeityClose').setAttribute('aria-label', t('close'));
+  $('btnHelp').setAttribute('aria-label', t('helpOpen'));
+  $('btnHelp').title = t('helpOpen');
+  $('helpOverlay').setAttribute('aria-label', t('helpOpen'));
+  $('btnHelpClose').setAttribute('aria-label', t('helpDismiss'));
   buildUiLangMenu();
   // Re-apply every string the app writes itself. With English the only
   // populated table this changes nothing visible — it is the mechanism
@@ -397,6 +402,46 @@ function closeDeity() {
   deityOpener = null;
 }
 
+// ── What the controls do (owner's direction, 2026-08-14) ────────────
+// Nearly every control in this app is an icon. The header's question
+// mark names them all where they stand, over a page that steps back.
+// It borrows the figures' discipline wholesale, and for the same reason
+// (BRIEF §9): the auto-scroll is held while it is up, the page beneath
+// never moves, and the focus goes back where it came from. It changes
+// no setting and reads none — js/help.js does the measuring.
+let helpScrollHeld = false;
+let helpOpener = null;
+
+function openHelp() {
+  if (!$('helpOverlay').hidden) return;
+  // One picture at a time: the contents sheet and the language menu are
+  // put away first, so what is left on the screen is what gets named.
+  closeContents();
+  closeUiLangMenu();
+  helpOpener = document.activeElement;
+  helpScrollHeld = scroll.isRunning();
+  if (helpScrollHeld) { scroll.stop(); applyPlayIcon(); }
+  document.body.classList.add('help');
+  // Shown before it is filled: every position in there comes from a real
+  // measurement, and a hidden element measures nothing.
+  $('helpOverlay').hidden = false;
+  $('btnHelp').setAttribute('aria-expanded', 'true');
+  layoutHelp($('helpMarks'));
+  $('btnHelpClose').focus();
+}
+
+function closeHelp() {
+  if ($('helpOverlay').hidden) return;
+  $('helpOverlay').hidden = true;
+  $('btnHelp').setAttribute('aria-expanded', 'false');
+  $('helpMarks').textContent = '';
+  document.body.classList.remove('help');
+  if (helpScrollHeld) { scroll.start(); applyPlayIcon(); }
+  helpScrollHeld = false;
+  if (helpOpener && document.contains(helpOpener)) helpOpener.focus();
+  helpOpener = null;
+}
+
 // ── Fullscreen: the whole screen given to the text ──────────────────
 function fsElement() {
   return document.fullscreenElement || document.webkitFullscreenElement || null;
@@ -445,6 +490,9 @@ function showView(next) {
 function leaveText() {
   scroll.stop();
   closeContents();
+  // A tap anywhere already closes it, so this is for the ways in that a
+  // tap is not — a keyboard, or a link followed while it is up.
+  closeHelp();
   forget(); // the doorway is a new course; the way back goes with it
   currentText = null;
   if (!desktopNav.matches) setMenu(false);
@@ -597,8 +645,24 @@ async function boot() {
     if (!e.target.closest('.deity-sheet')) closeDeity();
   });
 
+  // What the controls do: the question mark opens it, anything closes
+  // it. A turn of the phone re-measures rather than leaving the labels
+  // pointing at where the controls used to be.
+  $('btnHelp').addEventListener('click', openHelp);
+  $('btnHelpClose').addEventListener('click', closeHelp);
+  for (const ev of ['resize', 'orientationchange']) {
+    window.addEventListener(ev, () => {
+      if (!$('helpOverlay').hidden) layoutHelp($('helpMarks'));
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
+    // Topmost first, so Escape closes what the reader is looking at.
+    if (!$('helpOverlay').hidden) {
+      closeHelp();
+      return;
+    }
     if (!$('deityViewer').hidden) {
       closeDeity();
       return;

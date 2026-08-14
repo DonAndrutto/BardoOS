@@ -51,6 +51,11 @@
         </button>
         <ul class="lang-menu" id="uiLangMenu" role="menu" hidden></ul>
       </div>
+      <!-- Nearly every control in this app is an icon. This says what
+           they all are, on demand and never on its own. -->
+      <button class="help-toggle" id="btnHelp" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="helpOverlay">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9.3a3 3 0 0 1 5.8 1c0 2-2.9 3-2.9 3"/><line x1="12" y1="17.4" x2="12.01" y2="17.4"/></svg>
+      </button>
     </div>
   </header>
 
@@ -184,6 +189,16 @@
       <h2 class="deity-viewer-name" id="deityViewerName"></h2>
       <p class="deity-viewer-credit" id="deityViewerCredit" hidden></p>
     </div>
+  </div>
+
+  <!-- What the controls do: the page steps back and every persistent
+       control on the screen is named where it stands. Informational
+       only — js/app.js opens it, js/help.js measures and fills it, and
+       anything at all puts it away. Nothing here changes a setting or
+       moves the reading position. -->
+  <div class="help-overlay" id="helpOverlay" role="dialog" aria-modal="true" hidden>
+    <button class="help-catch" id="btnHelpClose" type="button"></button>
+    <div class="help-marks" id="helpMarks"></div>
   </div>
 
   <script type="module" src="js/intro.js"></script>
