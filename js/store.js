@@ -24,6 +24,8 @@ function defaults() {
     mode: 'guide',        // 'guide' | 'voice'
     uiLang: 'en',         // interface language: 'bo' | 'en' | 'pl' (master selector)
     installAsked: false,  // the home-screen invitation is offered once, ever (js/install.js)
+    supportAsked: false,  // …and so is the invitation to support the work (js/support.js)
+    usedMs: 0,            // time with the app actually on screen, which is what "once" waits on
   };
 }
 
@@ -42,7 +44,10 @@ function load() {
     if (!['guide', 'voice'].includes(merged.mode)) merged.mode = 'guide';
     if (![null, 'light', 'dark'].includes(merged.theme)) merged.theme = null;
     if (!['bo', 'en', 'pl'].includes(merged.uiLang)) merged.uiLang = 'en';
-    for (const k of ['showBo', 'showPhon', 'showEn', 'installAsked']) merged[k] = Boolean(merged[k]);
+    merged.usedMs = Math.max(0, Number(merged.usedMs) || 0);
+    for (const k of ['showBo', 'showPhon', 'showEn', 'installAsked', 'supportAsked']) {
+      merged[k] = Boolean(merged[k]);
+    }
     return merged;
   } catch {
     return d;
