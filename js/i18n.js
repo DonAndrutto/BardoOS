@@ -66,6 +66,26 @@ const STRINGS = {
     supportNote: 'If this has been of use, you might consider supporting the translator and the maker of this app.',
     supportAction: 'Donate',
     supportDismiss: 'Dismiss',
+    // What the controls do (js/help.js). Nearly every control is an
+    // icon; these are the words for them — one or two, never a sentence,
+    // and never a duplicate of a name the app already has (Contents and
+    // the interface language reuse theirs above).
+    helpOpen: 'What the controls do',
+    helpDismiss: 'Tap anywhere to close',
+    helpTexts: 'Choose a text',
+    helpHome: 'Home',
+    helpDonate: 'Support the work',
+    helpSlower: 'Slower',
+    helpAutoScroll: 'Auto-scroll',
+    helpFaster: 'Faster',
+    helpVoice: 'Voice mode',
+    helpFullScreen: 'Full screen',
+    helpTheme: 'Day or night',
+    helpTibetan: 'Tibetan',
+    helpPhonetics: 'Phonetics',
+    helpEnglish: 'English',
+    helpSmaller: 'Smaller',
+    helpLarger: 'Larger',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

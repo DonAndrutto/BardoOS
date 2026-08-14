@@ -102,6 +102,13 @@ body.nav-open .menu-caret { transform: rotate(180deg); }
 }
 /* The title yields before the controls do on a narrow screen. */
 .app-header h1 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* …but it should not have to yield twice. The corner gained a question
+   mark; the padding and gaps give the width back so the app's own name
+   survives on a small phone. */
+@media (max-width: 26rem) {
+  .app-header { padding: 0 var(--sp-2); gap: var(--sp-2); }
+  .header-actions { gap: var(--sp-1); }
+}
 
 /* Donate: replicated from the Ngondro reference header — small,
    bordered, discreet; a link out, never a pattern. */
@@ -128,6 +135,30 @@ body.nav-open .menu-caret { transform: rotate(180deg); }
 }
 .donate-link:focus { outline: none; }
 .donate-link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
+/* The question mark: a sibling of the language selector in every way but
+   its shape, so the corner stays one family of controls. */
+.help-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  min-height: 30px;
+  flex: none;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--dur-2), border-color var(--dur-2);
+}
+.help-toggle:hover { color: var(--text); }
+.help-toggle:focus { outline: none; }
+.help-toggle:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+body.help .help-toggle {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
 
 /* Interface-language selector (Yontendzo pattern, this app's tokens):
    a small button in the corner, a plain dropdown beneath it. */
@@ -1209,6 +1240,71 @@ body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 .contents-link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* ── What the controls do ────────────────────────────────────────────
+   The page steps back and the instrument stays sharp: the header and the
+   bottom bar are siblings of the shell, not children, so blurring the
+   shell alone leaves every control crisp and apparently afloat — which
+   is the whole point of the thing. No scrim, so nothing has to be
+   threaded between the header (60), the sidebar (55) and the bar (50).
+   Nothing animates; it is either there or not (BRIEF §9). */
+body.help .shell,
+body.help .nav {
+  filter: blur(3px);
+  opacity: 0.5;
+}
+.help-overlay { position: fixed; inset: 0; z-index: 90; }
+.help-overlay[hidden] { display: none; }
+/* Anything at all puts it away. A real button, so a keyboard has a way
+   out and a screen reader is told what it is; it lies over the controls
+   on purpose, so a tap on one that has just been named dismisses the
+   naming rather than firing the control. */
+.help-catch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.help-catch:focus { outline: none; }
+.help-marks { position: absolute; inset: 0; pointer-events: none; }
+.help-lines, .help-chips { position: absolute; inset: 0; }
+/* Drawn before the labels, so a line reaching past an intervening row
+   passes behind that label instead of through its words. */
+.help-line {
+  position: absolute;
+  width: 1px;
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.help-chip {
+  position: absolute;
+  white-space: nowrap;
+  padding: 3px 7px;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--accent);
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: var(--radius-sm);
+}
+.help-hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--text-muted);
 }
 
 /* ── Voice mode: the mode you use when someone is dying ─── */
