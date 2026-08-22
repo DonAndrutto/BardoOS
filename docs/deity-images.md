@@ -17,10 +17,12 @@ is the whole design:
 - The gallery shows **36 tiles in the owner's numbering**, pair tiles
   carrying both names.
 
-**Days play no part here.** The day-by-day clusters are a separate future
-presentation with their own composite images; this feature presents
+**Days play no part here.** The day-by-day clusters are a separate
+presentation with their own composite images — built since, as *plates*
+(`docs/day-plates.md`), and still separate: this feature presents
 specific deities and pairs, independently of the day of samādhi. No day
-assignment is stored, read, or grouped by.
+assignment is stored, read, or grouped by, and no plate is assembled out
+of these figures.
 
 The only required information per deity is its **number**, its stable
 **id**, its **label**, and its **depiction association** (plus the
@@ -38,6 +40,7 @@ normal, never a warning, never filled with a placeholder, never shown.
 | Name in the text → figure | `[[words\|deity-id]]` (`SCHEMA.md` §4) | all 42 marked in `bardo-thodrol.dharmata-intro` |
 | Viewer | `index.html` + `js/app.js` (`openDeity`) | done |
 | Gallery | Iconography → 42 Peaceful Deities (`renderDeities` in `js/home.js`) | done |
+| Days of *dharmatā* | `plateSets` — a separate shape, `docs/day-plates.md` | days 1–7 |
 | Offline | `sw.js` precaches every depiction image | done |
 | Wrathful 58 | — | awaiting the images; `collections[]` already holds a second set |
 
@@ -233,10 +236,11 @@ opens the same viewer.
 
 ## Still to decide (not built)
 
-- **The cluster presentation.** A separate future feature with its own
-  composite images, showing the group that dawns on a given day. It is
-  deliberately absent from this data model — no day is stored or read
-  here — and designing it is the owner's call when the images exist.
+- ~~**The cluster presentation.**~~ Built 2026-08-22 as the day plates,
+  in its own shape and its own document: `docs/day-plates.md`. It stayed
+  out of this data model, as intended — no day is stored or read here,
+  and a plate is one supplied picture rather than a group assembled from
+  these figures.
 - **A name marked more than once.** Today each deity is marked in the
   one passage that introduces it. If a later mention should also be
   tappable, that is one more marker, placed by the owner.

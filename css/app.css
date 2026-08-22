@@ -762,6 +762,49 @@ body.nav-open .nav { display: block; }
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
+/* A day's heading that carries a plate. The heading keeps its own size,
+   weight and colour — it is still the heading of that day — and the
+   glyph after the words is what says it opens. The dotted rule under
+   the words is the figures' own treatment, so both ways in read alike;
+   never colour alone, since the headings are all accent already. */
+.section-plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.section-plate-words {
+  text-decoration: underline dotted
+    color-mix(in srgb, var(--accent) 70%, transparent);
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 0.06em;
+}
+.section-plate-icon {
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  opacity: 0.75;
+}
+@media (hover: hover) {
+  .section-plate:hover .section-plate-words { text-decoration-style: solid; }
+  .section-plate:hover .section-plate-icon { opacity: 1; }
+}
+.section-plate:focus { outline: none; }
+.section-plate:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
 /* The gallery, off the Iconography shelf. The figures are cut out, so
    they stand on the page's own ground rather than in boxes. */
 .deity-grid {
@@ -771,6 +814,9 @@ body.nav-open .nav { display: block; }
   max-width: var(--column);
   margin: 0 auto;
 }
+/* A plate is a whole assembly, not one figure: two to a row at most, or
+   the faces in it are too small to be worth showing. */
+.plate-grid { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
 .deity-tile {
   display: flex;
   flex-direction: column;
@@ -792,6 +838,12 @@ body.nav-open .nav { display: block; }
   width: 100%;
   max-width: 9rem;
   height: auto;
+}
+/* A plate carries its own ground where a cut-out does not, so the tile
+   gives it a corner rather than letting it end in a hard rectangle. */
+.plate-tile .deity-tile-image {
+  max-width: 100%;
+  border-radius: var(--radius-md);
 }
 .deity-collection-credit {
   max-width: var(--column);
@@ -872,6 +924,14 @@ body.nav-open .nav { display: block; }
   background: radial-gradient(ellipse at 50% 46%,
     color-mix(in srgb, var(--accent) 9%, transparent) 0%,
     transparent 68%);
+}
+/* A plate is a whole arising and brings its own ground — no radial
+   behind it, and a corner so a painted rectangle does not cut the page.
+   It gets the height a composite needs: the figures in it are small. */
+.deity-viewer-image.is-plate {
+  max-height: 74vh;
+  border-radius: var(--radius-md);
+  background: none;
 }
 /* Every deity the picture shows, named as the manifest names them —
    one line for a single figure, both for a couple in union. */

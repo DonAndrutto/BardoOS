@@ -54,6 +54,7 @@ A block is one sense unit — one paragraph of prose, or one stanza of verse. In
 - Verse: put each line in the same string, separated by `\n`. Set `"form": "verse"`. If the author states a syllable count, record it in `meter`; otherwise leave `meter: null` — never count syllables yourself.
 - Prose: `"form": "prose"`, no `\n` needed.
 - Section headings in the source become new `sections` entries, not blocks. Sub-headings *inside* a section become L4 blocks with `"form": "title"`.
+- A section may also carry `"plateRef"` — the picture of the whole arising its heading names (`docs/day-plates.md`). **The author decides where these go; never add one yourself**, and omit the key otherwise.
 
 ## 3. Tag the layer
 
@@ -109,6 +110,7 @@ No installation, no packages — just Node 18 or newer. `OK — the contract hol
 | `empty "phon" on L3` | Liturgy without phonetics | `TODO_CONTENT` until the author supplies them |
 | `Tibetan does not end with a closing mark` | `bo` ends mid-stream | Check you copied the full passage; if the source truly ends open, `"boEndsOpen": true` |
 | `orphaned deityRef` | A deity id not in `assets/deities/MANIFEST.json` | Leave `deityRef: null` unless the id exists (see `docs/deity-images.md`) |
+| `orphaned plateRef` | A section names a plate the manifest does not hold | `plateRef` is the author's to place; omit it (see `docs/day-plates.md`) |
 | `orphaned prayerRef` | A cross-link to a text id not in `content/cycle.json` | Refs are the author's to place; ask before touching one |
 | `dangling text id` / `not in the cycle manifest` | File and `cycle.json` disagree | Step 5 |
 | `duplicate block id` | Two blocks share an id | Ids are `s<n>-b<3 digits>`, unique per text |

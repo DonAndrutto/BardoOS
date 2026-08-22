@@ -6,6 +6,8 @@
 
 **Phase 4 amendments (owner-directed, 2026-08-06):** (0) a third inline token, `[[words|deity-id]]`, marks a deity's name where the text already names it, so tapping it shows the figure (BRIEF §7). Like `**…**` it is a paired marker placed around text that is already there — the words between the brackets are never edited. (1) `prayerRef` may now be an **array** of text ids as well as a single id — the pointing-out instructions contain sentences that name four prayers to recite in turn, and one link per prayer is the point of the mechanism. A plain string remains legal and means exactly what it did; nothing on disk changed shape. (2) The deity manifest, deferred at Phase 0 ("full field spec arrives in Phase 4"), is now specified in §9 — restated the same day against the owner's authoritative `zhiwa-42` image map, which separates a deity (an identity) from a depiction (a picture) and makes only number, id, label and the deity→depiction association required. No existing *text* field changed meaning.
 
+**Phase 4 amendment (owner-directed, 2026-08-22):** a section may carry an optional `plateRef` (§3), naming the **plate** — a picture of a whole arising — that its heading heads. The manifest gains an optional `plateSets` array to hold them (§9). This is the day-by-day presentation BRIEF §7 asks for ("tap a day, see who appears"), and it is a second shape beside the deity model rather than a change to it: a plate's identity and its picture are one thing, so nothing is associated and no union is reconciled. No existing field changed meaning; a text without `plateRef` and a manifest without `plateSets` are both whole.
+
 Content lives in structured data; the renderer reads data and never interprets prose. One JSON file per text in `content/texts/<text-id>.json`, plus one cycle manifest at `content/cycle.json`. Everything is UTF-8.
 
 A deliberate rule about the examples in this document: **every piece of textual content is the literal placeholder `TODO_CONTENT`.** I do not author, paraphrase, or approximate any Tibetan or English text, including in documentation (BRIEF §0.2). The examples show shape, not words. `TODO_CONTENT` is also the sanctioned marker for real gaps during content entry: it means "a human must supply this" and the validator counts and reports every one.
@@ -77,6 +79,7 @@ The home screen makes the shape of the cycle legible (BRIEF §4). That shape liv
 {
   "id": "s1",
   "heading": { "bo": "TODO_CONTENT", "en": "TODO_CONTENT" },
+  "plateRef": null,
   "blocks": [ /* §4 */ ]
 }
 ```
@@ -85,6 +88,7 @@ The home screen makes the shape of the cycle legible (BRIEF §4). That shape liv
 |---|---|---|---|
 | `id` | string | yes | Unique within the text, stable. Convention: `s1`, `s2`, … |
 | `heading` | object | yes | `bo` string-or-null, `en` required non-empty. |
+| `plateRef` | string | no (omit when absent) | Id of a plate in `assets/deities/MANIFEST.json` (§9): the picture of the whole arising this section heads. The reader renders the heading as a tap that shows it, over the page, without moving the reading position; where the manifest holds no plate for that id the heading renders exactly as it always did. An id the manifest does not hold is an error. **Placing one is the owner's decision** — a heading becomes a way in only where they marked it, and the heading's words are never changed by the marking. |
 | `blocks` | array | yes, ≥1 | The content itself. |
 
 ## 4. Blocks
@@ -225,9 +229,11 @@ Plain Node ≥18, **zero npm packages**, run as `node scripts/validate.mjs`. Wir
 
 Parallel translations and commentary layers are out of scope for v1 and invisible in the UI. The door stays open structurally: a future `schemaVersion: 2` can add sibling fields to `en` (e.g. alternate translations keyed by translator) and a commentary block reference without touching `layer`, `id`, or document structure — nothing in v1 stores anything *as* the sole translation slot except the field name `en` itself. No v1 code path will assume `en` is the only possible rendering.
 
-## 9. The deity manifest — `assets/deities/MANIFEST.json`
+## 9. The iconography manifest — `assets/deities/MANIFEST.json`
 
-*(Specified at the owner's Phase 4 direction, 2026-08-06; superseded the same day by the owner's authoritative `zhiwa-42` image map, which is the source of the ids, labels and associations below.)*
+*(Specified at the owner's Phase 4 direction, 2026-08-06; superseded the same day by the owner's authoritative `zhiwa-42` image map, which is the source of the ids, labels and associations below. Extended 2026-08-22 with `plateSets`, at the end of this section.)*
+
+The file holds two kinds of picture, in two top-level arrays: `collections` — deities and the depictions that show them — and the optional `plateSets`, the pictures of whole arisings. Both are optional in the sense that matters: what is not there simply does not appear, and the texts read the same.
 
 **A deity is an identity; a depiction is a picture.** They are not the same thing, and the manifest keeps them apart: six of the 36 pictures show a couple in union, so 36 depictions carry 42 deities. Tapping either deity of a pair opens the depiction they share — which falls out of the model rather than being special-cased.
 
@@ -291,4 +297,42 @@ Nothing else is required. `bo`, `phon`, `sa`, `family`, `direction`, `color`, `s
 
 A deity that no depiction shows is legal: it is catalogued, and its name in the text renders as the plain words it always was.
 
-No other fields are legal anywhere. The drop-in procedure is `docs/deity-images.md`.
+No other fields are legal anywhere in a collection. The drop-in procedure is `docs/deity-images.md`.
+
+### Plate sets
+
+*(Added at the owner's direction, 2026-08-22.)*
+
+**A plate is a picture of a whole arising** — the day-by-day clusters of the *bardo* of *dharmatā*, one composite each. It is where the deity model does not reach, and the reason it is a second shape rather than a third field on a depiction: a plate has no roster to associate, because its identity and its picture are one thing. It is summoned from the **section heading that names that day** (`plateRef`, §3), never from a word in the running text.
+
+```jsonc
+{
+  "plateSets": [
+    {
+      "id": "days-1-7",
+      "label": "Days 1–7",
+      "attribution": null,
+      "license": null,
+      "plates": [
+        { "number": 1,
+          "id": "day.01-TODO",
+          "label": "TODO_CONTENT",
+          "sourceFile": "TODO_MASTER.png",
+          "image": "assets/deities/images/days/01-todo.webp" }
+      ]
+    }
+  ]
+}
+```
+
+The set carries `id`, `label`, `attribution`, `license` and `plates`, and means by them exactly what a collection does.
+
+| Field | Type | Required | Meaning |
+|---|---|---|---|
+| `number` | integer | yes | The owner's numbering, unique within the set; the order the gallery presents. |
+| `id` | string | yes | Kebab-case, unique across the manifest — deity ids included, since both are ids in one file — and **stable forever**: it is what a section's `plateRef` points at. |
+| `label` | string | yes | How the plate is named in the viewer and the gallery — the owner's words, ordinarily the day's own heading. |
+| `sourceFile` | string | yes | The master the shipped image was made from. |
+| `image` | string | yes | Repo-relative path under `assets/deities/images/`, same formats as a depiction's. Must exist on disk. |
+
+No other fields are legal. A plate no section points at is legal: it stands in its gallery, and nothing in the text opens it. The drop-in procedure is `docs/day-plates.md`.

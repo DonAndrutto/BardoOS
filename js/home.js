@@ -7,7 +7,7 @@
 // here. The shape of the cycle stays legible (BRIEF §4) — the texts
 // page names the bardo each pointing-out belongs to.
 
-import { cycleEntry, deityCollections, depictionDeities } from './data.js';
+import { cycleEntry, deityCollections, depictionDeities, plateSets } from './data.js';
 import { t } from './i18n.js';
 
 const TODO = 'TODO_CONTENT';
@@ -127,8 +127,9 @@ function textGroup(container, heading, items, withContext) {
 // One tile per depiction, in the owner's numbering — 36 tiles for 42
 // deities, because six pictures show a couple in union and carry both
 // their names. Tapping a tile opens the same viewer a name in the text
-// does. No day grouping here: the day-by-day clusters are a separate
-// presentation with their own composite images.
+// does. The days of dharmatā are their own shelf, below: a plate shows
+// a whole arising, so it is not grouped from these figures but supplied
+// as one picture.
 function deityTile(depiction, parent) {
   const names = depictionDeities(depiction).map((d) => d.label).filter(Boolean);
   const btn = el('button', 'deity-tile', parent);
@@ -144,25 +145,59 @@ function deityTile(depiction, parent) {
   return btn;
 }
 
-export function renderDeities(container) {
+// One tile per plate, in the owner's numbering, each named as the day
+// its heading names it — wider than a figure's tile, because a plate is
+// a whole assembly and its faces have to stay legible.
+function plateTile(plate, parent) {
+  const btn = el('button', 'deity-tile plate-tile', parent);
+  btn.type = 'button';
+  btn.dataset.plateRef = plate.id;
+  const img = el('img', 'deity-tile-image', btn);
+  img.src = plate.image;
+  img.alt = plate.label;
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  el('span', 'deity-tile-name', btn).textContent = plate.label;
+  return btn;
+}
+
+// The gallery of a shelf, headed by the manifest's own name for it, with
+// its provenance beneath. Provenance belongs to the shelf, not to each
+// picture, because they all share one.
+function gallery(container, shelf, tiles, kind) {
+  const title = el('header', 'text-title page-title', container);
+  el('div', 'en', title).textContent = shelf.label;
+  const sec = el('section', 'section', container);
+  const grid = el('div', `deity-grid ${kind}`, sec);
+  for (const tile of tiles) tile(grid);
+  const credit = [shelf.attribution, shelf.license].filter(Boolean).join(' · ');
+  if (credit) el('p', 'deity-collection-credit', sec).textContent = credit;
+}
+
+// `shelfId` is the entry the reader chose off the Iconography shelf; with
+// none named, everything that has something to show, in manifest order.
+export function renderDeities(container, shelfId = null) {
   reset(container);
-  const collections = deityCollections();
-  if (!collections.length) {
+  const shown = [
+    ...deityCollections().map((c) => ({
+      shelf: c,
+      kind: 'figure-grid',
+      tiles: c.depictions.map((d) => (grid) => deityTile(d, grid)),
+    })),
+    ...plateSets().map((s) => ({
+      shelf: s,
+      kind: 'plate-grid',
+      tiles: s.plates.map((p) => (grid) => plateTile(p, grid)),
+    })),
+  ].filter((s) => !shelfId || s.shelf.id === shelfId);
+
+  if (!shown.length) {
     const title = el('header', 'text-title page-title', container);
     el('div', 'en', title).textContent = t('figures');
     el('p', 'block layer-L0', container).textContent = t('noDeitiesYet');
     return;
   }
-  for (const collection of collections) {
-    const title = el('header', 'text-title page-title', container);
-    el('div', 'en', title).textContent = collection.label;
-    const sec = el('section', 'section', container);
-    const grid = el('div', 'deity-grid', sec);
-    for (const depiction of collection.depictions) deityTile(depiction, grid);
-    // Provenance belongs to the collection, not to each picture.
-    const credit = [collection.attribution, collection.license].filter(Boolean).join(' · ');
-    if (credit) el('p', 'deity-collection-credit', sec).textContent = credit;
-  }
+  for (const { shelf, tiles, kind } of shown) gallery(container, shelf, tiles, kind);
 }
 
 // ── The list of available texts ─────────────────────────────────────
