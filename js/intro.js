@@ -173,7 +173,7 @@ async function start() {
   done = false;
   dissolveFrom = null;
   proceedFn = end;
-  intro.classList.remove('intro-out');
+  intro.classList.remove('intro-out', 'intro-live');
   try {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       end();
@@ -196,8 +196,9 @@ async function start() {
 
     // JS now owns the veil's lifetime — the CSS failsafe (there for the
     // case where this module never runs) must not lift it from under us
-    // while the mandala waits for the reader.
-    intro.style.animation = 'none';
+    // while the mandala waits for the reader. A class, not an inline
+    // style: css/intro.css keeps saying what the veil does.
+    intro.classList.add('intro-live');
 
     const els = build();
     const t0 = performance.now();
@@ -244,6 +245,8 @@ export function replayIntro() {
   if (!document.getElementById('intro')) {
     const veil = document.createElement('div');
     veil.id = 'intro';
+    // Summoned by JS, so the first-paint failsafe has no business arming.
+    veil.className = 'intro-replay';
     veil.setAttribute('aria-hidden', 'true');
     veil.innerHTML = INTRO_HTML;
     document.body.appendChild(veil);

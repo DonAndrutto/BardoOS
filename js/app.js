@@ -11,9 +11,11 @@ import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
 import { renderText } from './render.js';
-import { layout as layoutHelp } from './help.js';
+import { layout as layoutHelp, warm as warmHelp } from './help.js';
 import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
+import * as anchor from './anchor.js';
+import { schedule as scheduleEstimates } from './estimate.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
 
 const TODO = 'TODO_CONTENT';
@@ -27,61 +29,41 @@ let shelf = null;       // which Iconography shelf the gallery is showing
 // ── Theme: a manual choice wins; otherwise follow the system ────────
 // Night is the default (owner's direction, 2026-07-19): the app is for
 // bedsides and small hours, so day is the explicit choice, not dark.
+// The sun and the moon used to be swapped from here with two inline
+// style writes. They follow `data-theme` in css/app.css now: the icon is
+// a consequence of the palette rather than a second copy of it.
 function applyTheme() {
   const dark = state.theme ? state.theme === 'dark' : true;
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   document.querySelector('meta[name="theme-color"]')
     .setAttribute('content', dark ? '#171412' : '#FDFBF7');
-  $('iconSun').style.display = dark ? 'none' : 'block';
-  $('iconMoon').style.display = dark ? 'block' : 'none';
 }
 
 // ── Type size: one custom property drives every layer's scale ───────
+// It goes on `body`, not on the document element. `body` is the smallest
+// container that actually holds every consumer of the reader's size: the
+// reading surface, and the two overlays that deliberately follow it (the
+// contents sheet and the figure's name). Writing it one level lower than
+// the root keeps `<html>` and the whole `:root` token layer — every
+// colour, every rem, every spacing step — out of the invalidation that a
+// tap on the size control causes.
+//
+// Size is a custom property and nothing else: no element is measured
+// here, no width is set, no inline `font-size` is written over the CSS's
+// relative units. The stylesheet already expresses every layer's scale
+// as a multiple of this one number, so a tap changes one value and the
+// cascade does the rest.
 function applyFontSize() {
-  document.documentElement.style.setProperty('--size-base', effectiveFontSize() + 'px');
+  document.body.style.setProperty('--size-base', effectiveFontSize() + 'px');
 }
 
 // ── Keep the reading position across any re-render or reflow ────────
-// The reference app solved this for fullscreen only (audit §3); here it
-// wraps every content-changing control. Anchor = the topmost visible
-// block; after the change, the first anchor candidate still present is
-// scrolled back to its old viewport offset.
-function anchorKept(change) {
-  const blocks = Array.from(document.querySelectorAll('#reader [data-block-id]'));
-  const anchors = [];
-  for (const b of blocks) {
-    const top = b.getBoundingClientRect().top;
-    if (b.getBoundingClientRect().bottom > 0 && anchors.length === 0) {
-      anchors.push({ id: b.dataset.blockId, top });
-    } else if (anchors.length) {
-      anchors.push({ id: b.dataset.blockId, top });
-      if (anchors.length >= 12) break; // nearby fallbacks are enough
-    }
-  }
-  change();
-  for (const a of anchors) {
-    const again = document.querySelector(`#reader [data-block-id="${a.id}"]`);
-    if (again) {
-      window.scrollBy(0, again.getBoundingClientRect().top - a.top);
-      return;
-    }
-  }
-}
-
-// Put a block back where it stood: the same technique as anchorKept,
-// across a whole navigation rather than a re-render. Scroll to a known
-// base first, then move the block to the offset it had. The block id is
-// the anchor, not a pixel count, so it survives a font-size change or a
-// mode switch in between. Falls back to the top if the block is gone
-// (Voice mode drops L4 entirely). This is also the piece a future exact
-// resume across app death would reuse (BRIEF §9).
-function restoreBlock(blockId, offset) {
-  window.scrollTo(0, 0);
-  const node = document.querySelector(
-    `#reader [data-block-id="${CSS.escape(blockId)}"]`);
-  if (!node) return;
-  window.scrollBy(0, node.getBoundingClientRect().top - offset);
-}
+// The anchoring itself is js/anchor.js: it holds the line the reader is
+// actually on, not merely the scroll offset, and it converges over the
+// following frames without forcing a layout inside one. Everything that
+// changes what the text looks like goes through `anchorKept`.
+const anchorKept = anchor.keep;
+const restoreBlock = anchor.restore;
 
 // ── The way back ────────────────────────────────────────────────────
 // Shown while the reader is somewhere a cross-link sent them. The title
@@ -108,6 +90,8 @@ function rerender() {
   if (view === 'text' && currentText) {
     renderText(currentText, reader);
     buildContents();
+    scheduleEstimates(reader);
+    scroll.resync();
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
   } else if (view === 'deities') {
@@ -127,6 +111,9 @@ function applyMode() {
   applyFontSize();
 }
 
+// Voice mode is the one control here that really is a change of
+// content: the rubric collapses to a marker and the apparatus goes
+// entirely, so different things are on the page and the page is rebuilt.
 function toggleMode() {
   anchorKept(() => {
     set('mode', state.mode === 'voice' ? 'guide' : 'voice');
@@ -142,21 +129,40 @@ const LANGS = [
   ['btnEn', 'showEn'],
 ];
 
+// Three classes on the reading surface, and css/app.css does the rest.
+// The renderer emits every field a block carries whatever these say, so
+// switching a layer costs a class change and a style pass — no DOM is
+// built, no JSON is walked, no node is replaced, and the reader's own
+// place in the text is a live element rather than an id to look up.
 function applyLangs() {
+  const reader = $('reader');
   for (const [btn, key] of LANGS) {
     $(btn).classList.toggle('active', state[key]);
     $(btn).setAttribute('aria-pressed', String(state[key]));
   }
+  reader.classList.toggle('show-bo', state.showBo);
+  reader.classList.toggle('show-phon', state.showPhon);
+  reader.classList.toggle('show-en', state.showEn);
+}
+
+// PHO is hidden off a text that is never recited (applyPhonRelevance),
+// but its setting stays on underneath. Counting it there let a reader
+// turn TIB and ENG both off on an instruction, leaving only a layer that
+// text does not have — a blank page at a bedside. Only a toggle the
+// reader can actually see counts towards the last one standing.
+function offered(key) {
+  return key !== 'showPhon' || document.body.classList.contains('recited');
 }
 
 function toggleLang(key) {
-  const on = LANGS.filter(([, k]) => state[k]).length;
+  const on = LANGS.filter(([, k]) => state[k] && offered(k)).length;
   if (state[key] && on === 1) return; // the page never goes blank
   anchorKept(() => {
     set(key, !state[key]);
     applyLangs();
-    rerender();
   });
+  // A layer coming or going changes how tall the unseen portions are.
+  scheduleEstimates($('reader'));
 }
 
 // Phonetics belong to the liturgical layer (SCHEMA.md §5): the PHO
@@ -164,15 +170,14 @@ function toggleLang(key) {
 // guides it would be a dead control, so it goes away entirely.
 function applyPhonRelevance() {
   const kind = currentText ? currentText.kind : null;
-  const relevant = kind === 'liturgy' || kind === 'prayer';
-  $('btnPhon').style.display = relevant ? '' : 'none';
+  document.body.classList.toggle('recited', kind === 'liturgy' || kind === 'prayer');
 }
 
 // ── Auto-scroll controls ────────────────────────────────────────────
+// `aria-pressed` is what assistive technology reads and what CSS now
+// swaps the icon on — one piece of state, not two that can disagree.
 function applyPlayIcon() {
   const running = scroll.isRunning();
-  $('iconPlay').style.display = running ? 'none' : 'block';
-  $('iconPause').style.display = running ? 'block' : 'none';
   $('btnPlay').classList.toggle('active', running);
   $('btnPlay').setAttribute('aria-pressed', String(running));
 }
@@ -187,11 +192,17 @@ function changeSpeed(delta) {
 }
 
 // ── Text size ───────────────────────────────────────────────────────
+// One property write, and the reader's line held across the reflow it
+// causes. Nothing is re-rendered: the DOM after a size change is the
+// same DOM, node for node.
 function changeFontSize(delta) {
   anchorKept(() => {
     set('fontSize', clampFont(state.fontSize + delta * FONT_STEP));
     applyFontSize();
   });
+  // The portions the browser is skipping remember a height measured at
+  // the old size; pretext re-measures them at the new one, when idle.
+  scheduleEstimates($('reader'));
 }
 
 // ── Interface language: the master selector (Yontendzo pattern) ─────
@@ -303,6 +314,13 @@ function buildContents() {
   const sections = Array.from(
     document.querySelectorAll('#reader section[data-section-id]')
   ).filter((sec) => {
+    // A portion the language toggles have emptied is still in the DOM —
+    // that is the point of hiding it in CSS rather than tearing it out —
+    // so the list has to ask whether it is on the screen, not whether it
+    // exists. `offsetParent` is null for anything display:none, and is
+    // unaffected by a portion the browser is merely skipping the layout
+    // of (content-visibility), which is exactly the distinction wanted.
+    if (sec.offsetParent === null) return false;
     const h = sec.querySelector('.section-heading');
     const label = h ? h.textContent.trim() : '';
     return label && label !== TODO;
@@ -326,6 +344,14 @@ function buildContents() {
   group.hidden = false;
 }
 
+// The jump is instant and then converges, rather than gliding. Gliding
+// was tried against the containment: a portion thirty thousand pixels
+// down is reached by travelling over a dozen portions whose heights are
+// estimates until the browser lays each one out, and every correction it
+// makes on the way moves the destination — the glide measurably
+// overshot by more than two screens. Landing and then settling is both
+// correct and what BRIEF §9 asks for anyway: nothing in this app
+// animates except the auto-scroll.
 function jumpToSection(id) {
   const sec = document.querySelector(`#reader section[data-section-id="${CSS.escape(id)}"]`);
   if (!sec) return;
@@ -333,8 +359,7 @@ function jumpToSection(id) {
   // Header is sticky in Guide mode, hidden in Voice mode (offsetParent null).
   const offset = header && header.offsetParent !== null
     ? header.getBoundingClientRect().height + 8 : 8;
-  const y = window.scrollY + sec.getBoundingClientRect().top - offset;
-  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  anchor.settle(sec, offset);
 }
 
 function openContents() {
@@ -478,8 +503,6 @@ function applyFs() {
   document.body.classList.toggle('fs', fs);
   $('btnFs').classList.toggle('active', fs);
   $('btnFs').setAttribute('aria-pressed', String(fs));
-  $('iconExpand').style.display = fs ? 'none' : 'block';
-  $('iconCompress').style.display = fs ? 'block' : 'none';
 }
 
 function toggleFullscreen() {
@@ -515,6 +538,7 @@ function showView(next) {
 // catalogue while none is open).
 function leaveText() {
   scroll.stop();
+  anchor.abort(); // nothing left to hold the reader's line on
   closeContents();
   // A tap anywhere already closes it, so this is for the ways in that a
   // tap is not — a keyboard, or a link followed while it is up.
@@ -583,6 +607,8 @@ async function openText(id, { keepOrigin = false, restore = null } = {}) {
     currentText = await loadText(id);
     renderText(currentText, reader);
     buildContents();
+    scheduleEstimates(reader);
+    scroll.resync();
     if (restore) restoreBlock(restore.blockId, restore.offset);
     else window.scrollTo(0, 0);
   } catch (err) {
@@ -611,6 +637,10 @@ function goBack() {
 async function boot() {
   applyTheme();
   showView('home'); // the doorway is where the app stands until told otherwise
+  // Correcting the reading position while the auto-scroll is
+  // deliberately carrying it would cancel the recitation out from under
+  // the reader; the anchor stands down while the engine is running.
+  anchor.setGuard(() => !scroll.isRunning());
   applyLangs();
   applySpeed();
   applyFontSize();
@@ -682,6 +712,9 @@ async function boot() {
   for (const ev of ['resize', 'orientationchange']) {
     window.addEventListener(ev, () => {
       if (!$('helpOverlay').hidden) layoutHelp($('helpMarks'));
+      // A narrower column wraps every paragraph differently, so every
+      // estimate for a portion nobody has looked at is now wrong.
+      scheduleEstimates($('reader'));
     });
   }
 
@@ -733,7 +766,7 @@ async function boot() {
       document.addEventListener(ev, () => anchorKept(applyFs));
     }
   } else {
-    $('btnFs').style.display = 'none';
+    document.body.classList.add('no-fullscreen');
   }
 
   // Home: the app's name in the header is the way back to the doorway.
@@ -901,6 +934,11 @@ async function boot() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
+
+  // The labels for every control, measured while nothing is happening,
+  // so the question mark opens instantly the first time it is asked.
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
+  idle(() => warmHelp($('helpMarks')), { timeout: 4000 });
 }
 
 boot();

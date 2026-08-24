@@ -593,6 +593,72 @@ body.nav-open .nav { display: block; }
   color: var(--text);
 }
 
+/* ── Which layers show: a class, not a re-render ─────────────
+   The renderer emits every field a block carries, always. Which of
+   them the reader is looking at is three classes on the reading
+   surface, so TIB / PHO / ENG cost one class change and the browser's
+   own style pass — the DOM is untouched, the nodes are identical, and
+   the reading position never had to be rebuilt from an id.
+
+   `display: none` is the right tool here, not `visibility` or opacity:
+   a hidden field contributes nothing to layout, so the auto-scroll
+   geometry and every measurement stay honest.
+
+   Scoped to a rendered text (`[data-text-id]`, which only a text sets)
+   because the doorway and the catalogue put their own English titles on
+   this same surface, and those are the instrument's words rather than a
+   layer of the scripture. */
+#reader[data-text-id]:not(.show-bo)   .bo,
+#reader[data-text-id]:not(.show-phon) .phon,
+#reader[data-text-id]:not(.show-en)   .en { display: none; }
+
+/* A block, a run, a panel or a title left with nothing to show takes no
+   room either — otherwise its padding, its rule and its label would
+   stand around an absence. There is no way to ask CSS "are all my
+   children hidden?", so this asks the equivalent question the other way
+   round: which layers are off, and does this thing contain nothing but
+   those? Six pairs cover it; all three off is not reachable, because
+   the last lit toggle refuses to go out (js/app.js). */
+#reader[data-text-id]:not(.show-bo)   :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.phon)):not(:has(.en)),
+#reader[data-text-id]:not(.show-phon) :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.bo)):not(:has(.en)),
+#reader[data-text-id]:not(.show-en)   :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.bo)):not(:has(.phon)),
+#reader[data-text-id]:not(.show-bo):not(.show-phon) :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.en)),
+#reader[data-text-id]:not(.show-bo):not(.show-en)   :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.phon)),
+#reader[data-text-id]:not(.show-phon):not(.show-en) :is(.block, .run-L1, .run-L2, .run-L3, .refrain-group, .text-title):not(:has(.bo)) {
+  display: none;
+}
+
+/* In Voice mode a section with nothing spoken left in it goes entirely,
+   heading and all — the same rule the renderer applies to a section
+   that holds only apparatus. In Guide mode the heading stays, because
+   the shape of the text is worth keeping legible (BRIEF §4). */
+body.voice #reader[data-text-id]:not(.show-bo):not(.show-phon) .section:not(:has(.en)),
+body.voice #reader[data-text-id]:not(.show-bo):not(.show-en)   .section:not(:has(.phon)),
+body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has(.bo)) {
+  display: none;
+}
+
+/* ── Long texts: laid out when they are looked at ────────────
+   A pointing-out runs to ninety blocks and eighty thousand characters.
+   `content-visibility: auto` lets the browser skip layout and paint for
+   the portions that are off screen, and — unlike virtualisation — keeps
+   every one of them a real element: find-in-page still finds them,
+   a selection still drags through them, an anchor still lands in them,
+   and querySelector still returns them, which is what the auto-scroll,
+   the contents sheet and the reading anchor all depend on.
+
+   `--cis` is a real measurement, not a guess: js/estimate.js measures
+   each portion with pretext (no DOM, no reflow) and writes it here, so
+   the scrollbar is honest before the reader has ever been down there,
+   and stays honest when they change the type size. The `auto` keyword
+   means a portion that *has* been on screen keeps its true size
+   instead. The fallback is only for the frames before the first
+   measurement lands. */
+#reader[data-text-id] .section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--cis, 75vh);
+}
+
 /* ── Per-text overrides (scoped by the data-text-id on #reader) ──────
    The three Bardo instruction intros set their Tibetan *smaller* than the
    English (owner's direction). Custom properties inherit, so overriding
@@ -1337,10 +1403,15 @@ body.help .nav {
 .help-line {
   position: absolute;
   width: 1px;
+  left: var(--x);
+  top: var(--y);
+  height: var(--h);
   background: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 .help-chip {
   position: absolute;
+  left: var(--x);
+  top: var(--y);
   white-space: nowrap;
   padding: 3px 7px;
   font-family: var(--font-ui);
@@ -1366,6 +1437,32 @@ body.help .nav {
   letter-spacing: var(--ls-caps-sm);
   color: var(--text-muted);
 }
+
+/* ── Icons that swap: driven by state the app already sets ───
+   Every one of these used to be a pair of inline `style.display`
+   writes from JS on a control that CSS was perfectly able to style
+   itself. The attribute or class each rule reads is one the app sets
+   for other reasons anyway — `data-theme` for the palette,
+   `aria-pressed` for assistive technology, `body.fs` for the layout —
+   so the icon is now a consequence of the state rather than a second
+   copy of it that can drift out of step. */
+[data-theme="dark"] #iconSun,
+:root:not([data-theme="dark"]) #iconMoon { display: none; }
+
+#btnPlay[aria-pressed="true"] #iconPlay,
+#btnPlay:not([aria-pressed="true"]) #iconPause { display: none; }
+
+#btnFs[aria-pressed="true"] #iconExpand,
+#btnFs:not([aria-pressed="true"]) #iconCompress { display: none; }
+
+/* Phonetics belong to the liturgical layer (SCHEMA.md §5): off a text
+   that is recited, the PHO toggle would be a dead control, so it goes.
+   `body.recited` is set when a liturgy or a prayer is open. */
+body:not(.recited) #btnPhon { display: none; }
+
+/* Where the platform cannot go fullscreen at all (iPhone), the control
+   is not offered. */
+body.no-fullscreen #btnFs { display: none; }
 
 /* ── Voice mode: the mode you use when someone is dying ─── */
 body.voice .app-header,

@@ -23,9 +23,16 @@
   touch-action: none;
   overscroll-behavior: none;
   cursor: pointer;
-  /* failsafe: should intro.js never run at all, the veil lifts itself */
+  /* failsafe: should intro.js never run at all, the veil lifts itself.
+     This is the app's only entrance animation and it belongs to the
+     first paint. The moment js/intro.js takes the veil over it adds
+     .intro-live and the failsafe stands down; a veil summoned again
+     later (the Iconography entry replays the arising) is born with
+     .intro-replay, so the timer never arms for a second time. */
   animation: intro-failsafe 600ms ease 12s forwards;
 }
+#intro.intro-live,
+#intro.intro-replay { animation: none; }
 
 #intro.intro-out {
   opacity: 0;
