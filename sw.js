@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v25';
+const VERSION = 'bardo-os-v26';
 
 const PRECACHE = [
   './',
@@ -14,16 +14,30 @@ const PRECACHE = [
   'css/intro.css',
   'js/app.js',
   'js/intro.js',
+  'js/anchor.js',
   'js/data.js',
+  'js/estimate.js',
   'js/help.js',
   'js/home.js',
   'js/i18n.js',
   'js/install.js',
+  'js/measure.js',
   'js/render.js',
   'js/scroll.js',
   'js/store.js',
   'js/support.js',
   'js/trail.js',
+  // @chenglou/pretext, vendored whole — js/vendor/pretext/README.md.
+  // Precached with everything else: the measurement has to work in
+  // airplane mode on the fifth year, like the rest of the instrument.
+  'js/vendor/pretext/layout.js',
+  'js/vendor/pretext/analysis.js',
+  'js/vendor/pretext/bidi.js',
+  'js/vendor/pretext/line-break.js',
+  'js/vendor/pretext/line-text.js',
+  'js/vendor/pretext/measurement.js',
+  'js/vendor/pretext/rich-inline.js',
+  'js/vendor/pretext/generated/bidi-data.js',
   'assets/icons/favicon-32.png',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',

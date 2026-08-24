@@ -7,8 +7,15 @@
 //   L3 living liturgy — centered, LITURGY label per run
 //   L4 apparatus — titles / colophons, silent; absent in Voice mode
 //
-// Hidden content is not emitted (not merely display:none) so the
-// auto-scroll geometry stays honest — inherited from the reference.
+// Which *languages* show is not this module's business. Every field a
+// block actually carries is emitted, always, and css/app.css hides the
+// ones the reader has toggled off. `display: none` contributes nothing
+// to layout, so the auto-scroll geometry stays exactly as honest as it
+// was when the toggles were emitted-or-not — and the reader gets the
+// switch for the price of a class instead of a re-render (the whole
+// text kept its DOM nodes; nothing was rebuilt, nothing was re-parsed).
+// A re-render is for a change of *content*: another text, or Voice mode,
+// which genuinely renders different things.
 
 import { state } from './store.js';
 import { cycleEntry, nextInGroup, depictionFor } from './data.js';
@@ -84,13 +91,16 @@ function fillInline(node, value) {
   }
 }
 
-// Which of a block's fields the current toggles let through.
-function visibleFields(block) {
+// Which fields a block actually carries. Not which are *shown* — that
+// is a class on the reading surface, applied after this ran. The one
+// exclusion here is a rule of the content, not of the interface: the
+// rubric is never recited, so L0 carries no phonetics whatever the data
+// says and whatever the reader has toggled.
+function fieldsOf(block) {
   const fields = [];
-  if (state.showBo && block.bo != null) fields.push('bo');
-  // Rubric is never recited: no phonetics on L0 regardless of data.
-  if (state.showPhon && block.phon != null && block.layer !== 'L0') fields.push('phon');
-  if (state.showEn && block.en != null) fields.push('en');
+  if (block.bo != null) fields.push('bo');
+  if (block.phon != null && block.layer !== 'L0') fields.push('phon');
+  if (block.en != null) fields.push('en');
   return fields;
 }
 
@@ -199,7 +209,7 @@ function renderBlocks(blocks, parent, sectionId) {
   let i = 0;
   while (i < blocks.length) {
     const block = blocks[i];
-    const fields = visibleFields(block);
+    const fields = fieldsOf(block);
 
     if (voice && block.layer === 'L4') { i++; continue; }
     if (fields.length === 0) { i++; continue; }
@@ -219,12 +229,12 @@ function renderBlocks(blocks, parent, sectionId) {
           const group = el('div', 'refrain-group', run);
           group.dataset.refrainId = `${sectionId}-r${refrainN++}`;
           while (i < blocks.length && blocks[i].layer === layer && blocks[i].refrain) {
-            const f = visibleFields(blocks[i]);
+            const f = fieldsOf(blocks[i]);
             if (f.length) group.appendChild(blockEl(blocks[i], f));
             i++;
           }
         } else {
-          const f = visibleFields(blocks[i]);
+          const f = fieldsOf(blocks[i]);
           if (f.length) run.appendChild(blockEl(blocks[i], f));
           i++;
         }
@@ -246,16 +256,19 @@ export function renderText(text, container) {
   container.dataset.cycle = text.cycle;
 
   const title = el('header', 'text-title', container);
-  if (state.showBo && text.title.bo != null) fillInline(el('div', 'bo', title), text.title.bo);
-  if (state.showEn && text.title.en != null) fillInline(el('div', 'en', title), text.title.en);
+  if (text.title.bo != null) fillInline(el('div', 'bo', title), text.title.bo);
+  if (text.title.en != null) fillInline(el('div', 'en', title), text.title.en);
 
   for (const section of text.sections) {
     const sec = el('section', 'section', container);
     sec.dataset.sectionId = section.id;
     fillInline(el('h2', 'section-heading', sec), section.heading.en);
     renderBlocks(section.blocks, sec, section.id);
-    // A section whose blocks are all hidden shows only its heading — in
-    // Voice mode even that goes when nothing in it is spoken.
+    // A section with nothing in it but apparatus shows only its heading;
+    // in Voice mode, where apparatus is dropped outright, even that goes.
+    // This is about what the section *contains*, not what is toggled on —
+    // a section emptied by the language toggles is hidden in CSS, with
+    // its nodes intact, so turning the layer back on costs nothing.
     if (state.mode === 'voice' && sec.children.length === 1) sec.remove();
   }
 
