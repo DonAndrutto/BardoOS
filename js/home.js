@@ -155,6 +155,7 @@ export function renderDeities(container) {
   }
   for (const collection of collections) {
     const title = el('header', 'text-title page-title', container);
+    title.id = `deities-${collection.id}`;
     el('div', 'en', title).textContent = collection.label;
     const sec = el('section', 'section', container);
     const grid = el('div', 'deity-grid', sec);

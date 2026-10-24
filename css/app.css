@@ -828,6 +828,10 @@ body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
+/* Each collection's heading is where its Iconography entry lands; the
+   margin keeps it clear of the top bar. */
+[id^="deities-"] { scroll-margin-top: calc(var(--sp-6) * 2.5); }
+
 /* The gallery, off the Iconography shelf. The figures are cut out, so
    they stand on the page's own ground rather than in boxes. */
 .deity-grid {

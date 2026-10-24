@@ -549,13 +549,17 @@ function showTexts() {
 // them back on the passage they left.
 // The figures, off the Iconography shelf. Its own view, so the bottom
 // bar's existing data-view rules stand the reading controls down.
-function showDeities() {
+// Every collection shares one gallery page; the entry the reader chose
+// decides where on it they land.
+function showDeities(collectionId) {
   leaveText();
   showView('deities');
   renderDeities($('reader'));
   buildContents();
   applyPhonRelevance();
-  window.scrollTo(0, 0);
+  const target = collectionId && document.getElementById(`deities-${collectionId}`);
+  if (target) target.scrollIntoView();
+  else window.scrollTo(0, 0);
 }
 
 async function openText(id, { keepOrigin = false, restore = null } = {}) {
@@ -865,8 +869,8 @@ async function boot() {
       }
     }
     // Iconography holds affordances, not texts: the Zhitro Mandala
-    // replays the opening arising (js/intro.js), and the roster of the
-    // peaceful deities opens as a gallery of figures.
+    // replays the opening arising (js/intro.js), and each roster — the
+    // peaceful deities, the wrathful — opens as a gallery of figures.
     if (group.id === 'iconography') {
       const b = document.createElement('button');
       b.type = 'button';
@@ -885,7 +889,7 @@ async function boot() {
         g.type = 'button';
         g.className = 'nav-text';
         g.textContent = collection.label;
-        g.addEventListener('click', showDeities);
+        g.addEventListener('click', () => showDeities(collection.id));
         cat.appendChild(g);
       }
     }
