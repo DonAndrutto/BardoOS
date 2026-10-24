@@ -526,6 +526,735 @@
           ]
         }
       ]
+    },
+    {
+      "id": "trowa-58",
+      "label": "58 Wrathful Deities",
+      "attribution": null,
+      "license": null,
+      "deities": [
+        {
+          "number": 1,
+          "id": "trowa.01-buddha-heruka",
+          "label": "Buddha Heruka"
+        },
+        {
+          "number": 2,
+          "id": "trowa.02-buddha-krodhishvari",
+          "label": "Buddha Krodhishvari"
+        },
+        {
+          "number": 3,
+          "id": "trowa.03-vajra-heruka",
+          "label": "Vajra Heruka"
+        },
+        {
+          "number": 4,
+          "id": "trowa.04-vajra-krodhishvari",
+          "label": "Vajra Krodhishvari"
+        },
+        {
+          "number": 5,
+          "id": "trowa.05-ratna-heruka",
+          "label": "Ratna Heruka"
+        },
+        {
+          "number": 6,
+          "id": "trowa.06-ratna-krodhishvari",
+          "label": "Ratna Krodhishvari"
+        },
+        {
+          "number": 7,
+          "id": "trowa.07-padma-heruka",
+          "label": "Padma Heruka"
+        },
+        {
+          "number": 8,
+          "id": "trowa.08-padma-krodhishvari",
+          "label": "Padma Krodhishvari"
+        },
+        {
+          "number": 9,
+          "id": "trowa.09-karma-heruka",
+          "label": "Karma Heruka"
+        },
+        {
+          "number": 10,
+          "id": "trowa.10-karma-krodhishvari",
+          "label": "Karma Krodhishvari"
+        },
+        {
+          "number": 11,
+          "id": "trowa.11-gauri",
+          "label": "Gauri — White, of the East"
+        },
+        {
+          "number": 12,
+          "id": "trowa.12-chauri",
+          "label": "Chauri — Yellow, of the South"
+        },
+        {
+          "number": 13,
+          "id": "trowa.13-pramoha",
+          "label": "Pramoha — Red, of the West"
+        },
+        {
+          "number": 14,
+          "id": "trowa.14-vetali",
+          "label": "Vetali — Black, of the North"
+        },
+        {
+          "number": 15,
+          "id": "trowa.15-pukkasi",
+          "label": "Pukkasi — Red-Yellow, of the South-East"
+        },
+        {
+          "number": 16,
+          "id": "trowa.16-ghasmari",
+          "label": "Ghasmari — Dark Green, of the South-West"
+        },
+        {
+          "number": 17,
+          "id": "trowa.17-chandali",
+          "label": "Chandali — Pale Yellow, of the North-West"
+        },
+        {
+          "number": 18,
+          "id": "trowa.18-shmashani",
+          "label": "Shmashani — Dark Blue, of the North-East"
+        },
+        {
+          "number": 19,
+          "id": "trowa.19-simhamukhi",
+          "label": "Simhamukhi — Lion-headed Pishachi"
+        },
+        {
+          "number": 20,
+          "id": "trowa.20-vyaghrimukhi",
+          "label": "Vyaghrimukhi — Tiger-headed Pishachi"
+        },
+        {
+          "number": 21,
+          "id": "trowa.21-shrgalamukhi",
+          "label": "Shrgalamukhi — Fox-headed Pishachi"
+        },
+        {
+          "number": 22,
+          "id": "trowa.22-shvanamukhi",
+          "label": "Shvanamukhi — Wolf-headed Pishachi"
+        },
+        {
+          "number": 23,
+          "id": "trowa.23-grdhramukhi",
+          "label": "Grdhramukhi — Vulture-headed Pishachi"
+        },
+        {
+          "number": 24,
+          "id": "trowa.24-kankamukhi",
+          "label": "Kankamukhi — Kite-headed Pishachi"
+        },
+        {
+          "number": 25,
+          "id": "trowa.25-kakamukhi",
+          "label": "Kakamukhi — Crow-headed Pishachi"
+        },
+        {
+          "number": 26,
+          "id": "trowa.26-ulukamukhi",
+          "label": "Ulukamukhi — Owl-headed Pishachi"
+        },
+        {
+          "number": 27,
+          "id": "trowa.27-ankusha",
+          "label": "Ankusha — Tiger-headed Female Gatekeeper"
+        },
+        {
+          "number": 28,
+          "id": "trowa.28-pasha",
+          "label": "Pasha — Sow-headed Female Gatekeeper"
+        },
+        {
+          "number": 29,
+          "id": "trowa.29-sphota",
+          "label": "Sphota — Lion-headed Female Gatekeeper"
+        },
+        {
+          "number": 30,
+          "id": "trowa.30-ghanta",
+          "label": "Ghanta — Snake-headed Female Gatekeeper"
+        },
+        {
+          "number": 31,
+          "id": "trowa.31-rakshasi-east",
+          "label": "Rakshasi — Yak-headed Ishvari of the East"
+        },
+        {
+          "number": 32,
+          "id": "trowa.32-brahmani",
+          "label": "Brahmani — Snake-headed Ishvari of the East"
+        },
+        {
+          "number": 33,
+          "id": "trowa.33-mahadevi",
+          "label": "Mahadevi — Leopard-headed Ishvari of the East"
+        },
+        {
+          "number": 34,
+          "id": "trowa.34-vaishnavi",
+          "label": "Vaishnavi — Weasel-headed Ishvari of the East"
+        },
+        {
+          "number": 35,
+          "id": "trowa.35-kaumari",
+          "label": "Kaumari — Brown-Bear-headed Ishvari of the East"
+        },
+        {
+          "number": 36,
+          "id": "trowa.36-indrani",
+          "label": "Indrani — Black-Bear-headed Ishvari of the East"
+        },
+        {
+          "number": 37,
+          "id": "trowa.37-rati-south",
+          "label": "Rati — Bat-headed Ishvari of the South"
+        },
+        {
+          "number": 38,
+          "id": "trowa.38-shanti",
+          "label": "Shanti — Crocodile-headed Ishvari of the South"
+        },
+        {
+          "number": 39,
+          "id": "trowa.39-amrita",
+          "label": "Amrita — Scorpion-headed Ishvari of the South"
+        },
+        {
+          "number": 40,
+          "id": "trowa.40-saumi",
+          "label": "Saumi — Hawk-headed Ishvari of the South"
+        },
+        {
+          "number": 41,
+          "id": "trowa.41-dandi",
+          "label": "Dandi — Fox-headed Ishvari of the South"
+        },
+        {
+          "number": 42,
+          "id": "trowa.42-rakshasi-south",
+          "label": "Rakshasi — Tiger-headed Ishvari of the South"
+        },
+        {
+          "number": 43,
+          "id": "trowa.43-bhakshasi",
+          "label": "Bhakshasi — Vulture-headed Ishvari of the West"
+        },
+        {
+          "number": 44,
+          "id": "trowa.44-rati-west",
+          "label": "Rati — Horse-headed Ishvari of the West"
+        },
+        {
+          "number": 45,
+          "id": "trowa.45-mahabala",
+          "label": "Mahabala — Garuda-headed Ishvari of the West"
+        },
+        {
+          "number": 46,
+          "id": "trowa.46-rakshasi-west",
+          "label": "Rakshasi — Dog-headed Ishvari of the West"
+        },
+        {
+          "number": 47,
+          "id": "trowa.47-kama",
+          "label": "Kama — Hoopoe-headed Ishvari of the West"
+        },
+        {
+          "number": 48,
+          "id": "trowa.48-vasurakshita",
+          "label": "Vasurakshita — Deer-headed Ishvari of the West"
+        },
+        {
+          "number": 49,
+          "id": "trowa.49-vayudevi",
+          "label": "Vayudevi — Ishvari of the North, with banner"
+        },
+        {
+          "number": 50,
+          "id": "trowa.50-nari",
+          "label": "Nari — Ishvari of the North, with torch"
+        },
+        {
+          "number": 51,
+          "id": "trowa.51-varahi",
+          "label": "Varahi — Sow-headed Ishvari of the North"
+        },
+        {
+          "number": 52,
+          "id": "trowa.52-chamundi",
+          "label": "Vajra Chamundi — Crow-headed Ishvari of the North"
+        },
+        {
+          "number": 53,
+          "id": "trowa.53-mahanasa",
+          "label": "Mahanasa — Elephant-headed Ishvari of the North"
+        },
+        {
+          "number": 54,
+          "id": "trowa.54-varuni",
+          "label": "Varuni — Snake-headed Ishvari of the North"
+        },
+        {
+          "number": 55,
+          "id": "trowa.55-mahakali",
+          "label": "Vajra Mahakali — Cuckoo-headed Gatekeeper Ishvari"
+        },
+        {
+          "number": 56,
+          "id": "trowa.56-mahachagala",
+          "label": "Vajra Mahachagala — Goat-headed Gatekeeper Ishvari"
+        },
+        {
+          "number": 57,
+          "id": "trowa.57-mahakumbhakarni",
+          "label": "Vajra Mahakumbhakarni — Lion-headed Gatekeeper Ishvari"
+        },
+        {
+          "number": 58,
+          "id": "trowa.58-lambodara",
+          "label": "Vajra Lambodara — Snake-headed Gatekeeper Ishvari"
+        }
+      ],
+      "depictions": [
+        {
+          "id": "trowa.depiction.01-02",
+          "sourceFile": "Bardo_Zhitro_100.pdf (crop 1060,1420–1480,1850)",
+          "image": "assets/deities/images/trowa/01-02-buddha-heruka-and-buddha-krodhishvari.webp",
+          "deityIds": [
+            "trowa.01-buddha-heruka",
+            "trowa.02-buddha-krodhishvari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.03-04",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 35, crop 660,1340–1080,1800)",
+          "image": "assets/deities/images/trowa/03-04-vajra-heruka-and-vajra-krodhishvari.webp",
+          "deityIds": [
+            "trowa.03-vajra-heruka",
+            "trowa.04-vajra-krodhishvari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.05-06",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 36, crop 250,1360–640,1790)",
+          "image": "assets/deities/images/trowa/05-06-ratna-heruka-and-ratna-krodhishvari.webp",
+          "deityIds": [
+            "trowa.05-ratna-heruka",
+            "trowa.06-ratna-krodhishvari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.07-08",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 37, crop 1830,1360–2240,1790)",
+          "image": "assets/deities/images/trowa/07-08-padma-heruka-and-padma-krodhishvari.webp",
+          "deityIds": [
+            "trowa.07-padma-heruka",
+            "trowa.08-padma-krodhishvari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.09-10",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 38, crop 1440,1340–1870,1800)",
+          "image": "assets/deities/images/trowa/09-10-karma-heruka-and-karma-krodhishvari.webp",
+          "deityIds": [
+            "trowa.09-karma-heruka",
+            "trowa.10-karma-krodhishvari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.11",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 39, crop 840,2120–1010,2340)",
+          "image": "assets/deities/images/trowa/11-gauri.webp",
+          "deityIds": [
+            "trowa.11-gauri"
+          ]
+        },
+        {
+          "id": "trowa.depiction.12",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 40, crop 690,1960–850,2150)",
+          "image": "assets/deities/images/trowa/12-chauri.webp",
+          "deityIds": [
+            "trowa.12-chauri"
+          ]
+        },
+        {
+          "id": "trowa.depiction.13",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 41, crop 870,1825–1010,2050)",
+          "image": "assets/deities/images/trowa/13-pramoha.webp",
+          "deityIds": [
+            "trowa.13-pramoha"
+          ]
+        },
+        {
+          "id": "trowa.depiction.14",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 42, crop 1060,1950–1210,2160)",
+          "image": "assets/deities/images/trowa/14-vetali.webp",
+          "deityIds": [
+            "trowa.14-vetali"
+          ]
+        },
+        {
+          "id": "trowa.depiction.15",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 43, crop 760,2060–900,2280)",
+          "image": "assets/deities/images/trowa/15-pukkasi.webp",
+          "deityIds": [
+            "trowa.15-pukkasi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.16",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 44, crop 770,1860–900,2040)",
+          "image": "assets/deities/images/trowa/16-ghasmari.webp",
+          "deityIds": [
+            "trowa.16-ghasmari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.17",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 45, crop 950,1870–1100,2060)",
+          "image": "assets/deities/images/trowa/17-chandali.webp",
+          "deityIds": [
+            "trowa.17-chandali"
+          ]
+        },
+        {
+          "id": "trowa.depiction.18",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 46, crop 970,2060–1110,2260)",
+          "image": "assets/deities/images/trowa/18-shmashani.webp",
+          "deityIds": [
+            "trowa.18-shmashani"
+          ]
+        },
+        {
+          "id": "trowa.depiction.19",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 47, crop 1490,2140–1610,2350)",
+          "image": "assets/deities/images/trowa/19-simhamukhi.webp",
+          "deityIds": [
+            "trowa.19-simhamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.20",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 48, crop 1290,1990–1420,2140)",
+          "image": "assets/deities/images/trowa/20-vyaghrimukhi.webp",
+          "deityIds": [
+            "trowa.20-vyaghrimukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.21",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 49, crop 1490,1840–1620,2020)",
+          "image": "assets/deities/images/trowa/21-shrgalamukhi.webp",
+          "deityIds": [
+            "trowa.21-shrgalamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.22",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 50, crop 1680,1990–1810,2160)",
+          "image": "assets/deities/images/trowa/22-shvanamukhi.webp",
+          "deityIds": [
+            "trowa.22-shvanamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.23",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 51, crop 1370,2110–1520,2310)",
+          "image": "assets/deities/images/trowa/23-grdhramukhi.webp",
+          "deityIds": [
+            "trowa.23-grdhramukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.24",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 52, crop 1340,1880–1480,2060)",
+          "image": "assets/deities/images/trowa/24-kankamukhi.webp",
+          "deityIds": [
+            "trowa.24-kankamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.25",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 53, crop 1600,1890–1760,2080)",
+          "image": "assets/deities/images/trowa/25-kakamukhi.webp",
+          "deityIds": [
+            "trowa.25-kakamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.26",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 54, crop 1600,2100–1740,2300)",
+          "image": "assets/deities/images/trowa/26-ulukamukhi.webp",
+          "deityIds": [
+            "trowa.26-ulukamukhi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.27",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 55, crop 60,2370–260,2640)",
+          "image": "assets/deities/images/trowa/27-ankusha.webp",
+          "deityIds": [
+            "trowa.27-ankusha"
+          ]
+        },
+        {
+          "id": "trowa.depiction.28",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 56, crop 40,1590–260,1810)",
+          "image": "assets/deities/images/trowa/28-pasha.webp",
+          "deityIds": [
+            "trowa.28-pasha"
+          ]
+        },
+        {
+          "id": "trowa.depiction.29",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 57, crop 2225,1580–2445,1840)",
+          "image": "assets/deities/images/trowa/29-sphota.webp",
+          "deityIds": [
+            "trowa.29-sphota"
+          ]
+        },
+        {
+          "id": "trowa.depiction.30",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 58, crop 2200,2380–2440,2640)",
+          "image": "assets/deities/images/trowa/30-ghanta.webp",
+          "deityIds": [
+            "trowa.30-ghanta"
+          ]
+        },
+        {
+          "id": "trowa.depiction.31",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 59, crop 400,2480–540,2690)",
+          "image": "assets/deities/images/trowa/31-rakshasi-east.webp",
+          "deityIds": [
+            "trowa.31-rakshasi-east"
+          ]
+        },
+        {
+          "id": "trowa.depiction.32",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 60, crop 550,2440–700,2640)",
+          "image": "assets/deities/images/trowa/32-brahmani.webp",
+          "deityIds": [
+            "trowa.32-brahmani"
+          ]
+        },
+        {
+          "id": "trowa.depiction.33",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 61, crop 690,2460–860,2680)",
+          "image": "assets/deities/images/trowa/33-mahadevi.webp",
+          "deityIds": [
+            "trowa.33-mahadevi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.34",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 62, crop 720,2690–880,2880)",
+          "image": "assets/deities/images/trowa/34-vaishnavi.webp",
+          "deityIds": [
+            "trowa.34-vaishnavi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.35",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 63, crop 560,2670–720,2880)",
+          "image": "assets/deities/images/trowa/35-kaumari.webp",
+          "deityIds": [
+            "trowa.35-kaumari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.36",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 64, crop 380,2660–560,2900)",
+          "image": "assets/deities/images/trowa/36-indrani.webp",
+          "deityIds": [
+            "trowa.36-indrani"
+          ]
+        },
+        {
+          "id": "trowa.depiction.37",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 65, crop 250,1860–380,2060)",
+          "image": "assets/deities/images/trowa/37-rati-south.webp",
+          "deityIds": [
+            "trowa.37-rati-south"
+          ]
+        },
+        {
+          "id": "trowa.depiction.38",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 66, crop 120,1890–270,2080)",
+          "image": "assets/deities/images/trowa/38-shanti.webp",
+          "deityIds": [
+            "trowa.38-shanti"
+          ]
+        },
+        {
+          "id": "trowa.depiction.39",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 67, crop 380,1880–560,2080)",
+          "image": "assets/deities/images/trowa/39-amrita.webp",
+          "deityIds": [
+            "trowa.39-amrita"
+          ]
+        },
+        {
+          "id": "trowa.depiction.40",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 68, crop 110,2080–260,2300)",
+          "image": "assets/deities/images/trowa/40-saumi.webp",
+          "deityIds": [
+            "trowa.40-saumi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.41",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 69, crop 260,2100–400,2330)",
+          "image": "assets/deities/images/trowa/41-dandi.webp",
+          "deityIds": [
+            "trowa.41-dandi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.42",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 70, crop 400,2090–570,2290)",
+          "image": "assets/deities/images/trowa/42-rakshasi-south.webp",
+          "deityIds": [
+            "trowa.42-rakshasi-south"
+          ]
+        },
+        {
+          "id": "trowa.depiction.43",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 71, crop 1925,1890–2070,2090)",
+          "image": "assets/deities/images/trowa/43-bhakshasi.webp",
+          "deityIds": [
+            "trowa.43-bhakshasi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.44",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 72, crop 2060,1840–2210,2050)",
+          "image": "assets/deities/images/trowa/44-rati-west.webp",
+          "deityIds": [
+            "trowa.44-rati-west"
+          ]
+        },
+        {
+          "id": "trowa.depiction.45",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 73, crop 2170,1910–2350,2100)",
+          "image": "assets/deities/images/trowa/45-mahabala.webp",
+          "deityIds": [
+            "trowa.45-mahabala"
+          ]
+        },
+        {
+          "id": "trowa.depiction.46",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 74, crop 1880,2110–2050,2310)",
+          "image": "assets/deities/images/trowa/46-rakshasi-west.webp",
+          "deityIds": [
+            "trowa.46-rakshasi-west"
+          ]
+        },
+        {
+          "id": "trowa.depiction.47",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 75, crop 2170,2110–2350,2310)",
+          "image": "assets/deities/images/trowa/47-kama.webp",
+          "deityIds": [
+            "trowa.47-kama"
+          ]
+        },
+        {
+          "id": "trowa.depiction.48",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 76, crop 2040,2130–2190,2330)",
+          "image": "assets/deities/images/trowa/48-vasurakshita.webp",
+          "deityIds": [
+            "trowa.48-vasurakshita"
+          ]
+        },
+        {
+          "id": "trowa.depiction.49",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 77, crop 1740,2410–1880,2620)",
+          "image": "assets/deities/images/trowa/49-vayudevi.webp",
+          "deityIds": [
+            "trowa.49-vayudevi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.50",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 78, crop 1615,2450–1760,2650)",
+          "image": "assets/deities/images/trowa/50-nari.webp",
+          "deityIds": [
+            "trowa.50-nari"
+          ]
+        },
+        {
+          "id": "trowa.depiction.51",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 79, crop 1880,2450–2050,2650)",
+          "image": "assets/deities/images/trowa/51-varahi.webp",
+          "deityIds": [
+            "trowa.51-varahi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.52",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 80, crop 1580,2640–1760,2830)",
+          "image": "assets/deities/images/trowa/52-chamundi.webp",
+          "deityIds": [
+            "trowa.52-chamundi"
+          ]
+        },
+        {
+          "id": "trowa.depiction.53",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 81, crop 1760,2690–1920,2880)",
+          "image": "assets/deities/images/trowa/53-mahanasa.webp",
+          "deityIds": [
+            "trowa.53-mahanasa"
+          ]
+        },
+        {
+          "id": "trowa.depiction.54",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 82, crop 1910,2660–2080,2860)",
+          "image": "assets/deities/images/trowa/54-varuni.webp",
+          "deityIds": [
+            "trowa.54-varuni"
+          ]
+        },
+        {
+          "id": "trowa.depiction.55",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 83, crop 40,2950–270,3230)",
+          "image": "assets/deities/images/trowa/55-mahakali.webp",
+          "deityIds": [
+            "trowa.55-mahakali"
+          ]
+        },
+        {
+          "id": "trowa.depiction.56",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 84, crop 80,2660–310,2920)",
+          "image": "assets/deities/images/trowa/56-mahachagala.webp",
+          "deityIds": [
+            "trowa.56-mahachagala"
+          ]
+        },
+        {
+          "id": "trowa.depiction.57",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 85, crop 2200,2680–2440,2920)",
+          "image": "assets/deities/images/trowa/57-mahakumbhakarni.webp",
+          "deityIds": [
+            "trowa.57-mahakumbhakarni"
+          ]
+        },
+        {
+          "id": "trowa.depiction.58",
+          "sourceFile": "Bardo_Zhitro_100.pdf (thangka no. 86, crop 2200,2950–2440,3230)",
+          "image": "assets/deities/images/trowa/58-lambodara.webp",
+          "deityIds": [
+            "trowa.58-lambodara"
+          ]
+        }
+      ]
     }
   ]
 }

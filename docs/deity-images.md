@@ -1,9 +1,10 @@
 # The deity images
 
 The 42 peaceful deities are in, against the owner's authoritative
-`zhiwa-42` image map. This page records the model, what landed, and the
-procedure for the wrathful 58 when they follow. Nothing here requires a
-build step.
+`zhiwa-42` image map, and the 58 wrathful deities follow as `trowa-58`,
+cut from the owner's Zhitro thangka (see "The wrathful 58" below). This
+page records the model, what landed, and the procedure for adding or
+replacing figures. Nothing here requires a build step.
 
 ## The model
 
@@ -39,7 +40,7 @@ normal, never a warning, never filled with a placeholder, never shown.
 | Viewer | `index.html` + `js/app.js` (`openDeity`) | done |
 | Gallery | Iconography → 42 Peaceful Deities (`renderDeities` in `js/home.js`) | done |
 | Offline | `sw.js` precaches every depiction image | done |
-| Wrathful 58 | — | awaiting the images; `collections[]` already holds a second set |
+| Wrathful 58 | `collections[1]` (`trowa-58`), `assets/deities/images/trowa/` | 58 deities, 53 depictions, 3.9 MB; all 58 marked in `bardo-thodrol.wrathful-elucidation` |
 
 ## The images
 
@@ -129,6 +130,117 @@ prose, and a name becomes a tap solely where the owner marked it.
 | 41 | `zhiwa.41-shrinkhala` | Shrinkhala — Female Gatekeeper | She of the Chain | `s8-b004` | `41` |
 | 42 | `zhiwa.42-ghanta` | Ghanta — Female Gatekeeper | She of the Bell | `s8-b004` | `42` |
 
+## The wrathful 58
+
+**Source.** The owner's Zhitro refuge-tree thangka, `Bardo_Zhitro_100.pdf`
+(one embedded image, 2500×3405), read against the owner's labelled copy
+of the same painting, which numbers every figure 1–101. The wrathful 58
+are thangka nos. 34–38 (the five heruka couples), 39–46 (Gaurīs), 47–54
+(Piśācīs), 55–58 (female gatekeepers) and 59–86 (the 28 Īśvarīs: four
+circles of six, and the four gatekeeper yoginīs at the lower corners).
+Each depiction's `sourceFile` records the thangka number and the exact
+crop box in the 2500×3405 original, so every cut can be re-made.
+
+**How they were cut.** Unlike the peaceful set, these are not hand-traced
+cut-outs: the figures stand in dense flame-fields and overlap one
+another, which no automatic mask follows faithfully. Each figure is
+instead cropped from the original at 4:5 around its own body and given a
+**feathered oval alpha** — opaque over the figure, falling smoothly to
+nothing at the edge — so it still composites onto the app's own ground
+and nothing flares white at night. They ship at the peaceful set's
+540×675, WebP quality 90. If the owner later supplies traced masters,
+they replace these files one for one; ids and text marks do not change.
+
+**Numbering.** The app's own 1–58, in the order the text introduces
+them (the thangka's numbers are kept in the table for cross-reference):
+1–10 the heruka couples (Buddha, Vajra, Ratna, Padma, Karma — the text's
+days 8–12), 11–18 Gaurīs, 19–26 Piśācīs, 27–30 female gatekeepers,
+31–54 the Īśvarīs of east, south, west and north (six each), 55–58 the
+gatekeeper Īśvarīs. Five pictures show a couple, so 53 depictions carry
+58 deities.
+
+**Identities follow the text; the painting confirms them.** Where the
+thangka's label and the reading text differ, the text's identity and
+order decide the record, and the label is chosen not to contradict
+either:
+
+- **#49 Vāyudevī** — text: blue *snake*-headed, brandishing a banner;
+  thangka no. 77: cyan, *wolf*-headed, with the banner. Matched on the
+  banner and position; labelled "Ishvari of the North, with banner".
+- **#50 Nārī** — text: red *ibex*-headed, with a torch; thangka no. 78:
+  red, *lizard*-headed, with a stake. Matched on name and position;
+  labelled "Ishvari of the North, with torch".
+- **#34 Vaiṣṇavī** — text: weasel-headed; thangka no. 62 names her
+  *Lobha*, mongoose-headed. Same figure.
+- **#40 Saumī** — the thangka's *Chandra* (no. 68); both mean Moon.
+- **#52 Vajra Cāmuṇḍī** — the thangka's crow-headed no. 80.
+- **Three Rākṣasīs and two Ratis** are distinct records, told apart by
+  direction in their ids and by head in their labels.
+- **Chemchok Heruka** (Mahottara, thangka centre, with consort) is not
+  one of the 58 the text names and is not included. The text's
+  "Great Glorious Buddha Heruka" is #01, the centre of the heruka row.
+
+| # | Deity id | Label | Marked in the text as | Where | Thangka no. |
+|---|---|---|---|---|---|
+| 01 | `trowa.01-buddha-heruka` | Buddha Heruka | Buddha Heruka | `s4-b002` | — |
+| 02 | `trowa.02-buddha-krodhishvari` | Buddha Krodhishvari | Buddha-Krodhīśvarī | `s4-b003` | — |
+| 03 | `trowa.03-vajra-heruka` | Vajra Heruka | Vajra Heruka | `s5-b002` | 35 |
+| 04 | `trowa.04-vajra-krodhishvari` | Vajra Krodhishvari | Vajra-Krodhīśvarī | `s5-b002` | 35 |
+| 05 | `trowa.05-ratna-heruka` | Ratna Heruka | Ratna Heruka | `s6-b001` | 36 |
+| 06 | `trowa.06-ratna-krodhishvari` | Ratna Krodhishvari | Ratna-Krodhīśvarī | `s6-b002` | 36 |
+| 07 | `trowa.07-padma-heruka` | Padma Heruka | Padma Heruka | `s7-b001` | 37 |
+| 08 | `trowa.08-padma-krodhishvari` | Padma Krodhishvari | Padma-Krodhīśvarī | `s7-b001` | 37 |
+| 09 | `trowa.09-karma-heruka` | Karma Heruka | Karma Heruka | `s8-b001` | 38 |
+| 10 | `trowa.10-karma-krodhishvari` | Karma Krodhishvari | Karma-Krodhīśvarī | `s8-b001` | 38 |
+| 11 | `trowa.11-gauri` | Gauri — White, of the East | Gaurī | `s9-b002` | 39 |
+| 12 | `trowa.12-chauri` | Chauri — Yellow, of the South | Caurī | `s9-b002` | 40 |
+| 13 | `trowa.13-pramoha` | Pramoha — Red, of the West | Pramohā | `s9-b002` | 41 |
+| 14 | `trowa.14-vetali` | Vetali — Black, of the North | Vetālī | `s9-b002` | 42 |
+| 15 | `trowa.15-pukkasi` | Pukkasi — Red-Yellow, of the South-East | Pukkasī | `s9-b003` | 43 |
+| 16 | `trowa.16-ghasmari` | Ghasmari — Dark Green, of the South-West | Ghasmarī | `s9-b003` | 44 |
+| 17 | `trowa.17-chandali` | Chandali — Pale Yellow, of the North-West | Caṇḍālī | `s9-b003` | 45 |
+| 18 | `trowa.18-shmashani` | Shmashani — Dark Blue, of the North-East | Śmaśānī | `s9-b003` | 46 |
+| 19 | `trowa.19-simhamukhi` | Simhamukhi — Lion-headed Pishachi | Siṃhamukhī | `s10-b001` | 47 |
+| 20 | `trowa.20-vyaghrimukhi` | Vyaghrimukhi — Tiger-headed Pishachi | Vyāghrīmukhī | `s10-b001` | 48 |
+| 21 | `trowa.21-shrgalamukhi` | Shrgalamukhi — Fox-headed Pishachi | Śṛgālamukhī | `s10-b001` | 49 |
+| 22 | `trowa.22-shvanamukhi` | Shvanamukhi — Wolf-headed Pishachi | Śvānamukhī | `s10-b001` | 50 |
+| 23 | `trowa.23-grdhramukhi` | Grdhramukhi — Vulture-headed Pishachi | Gṛdhramukhī | `s10-b002` | 51 |
+| 24 | `trowa.24-kankamukhi` | Kankamukhi — Kite-headed Pishachi | Kaṅkamukhī | `s10-b002` | 52 |
+| 25 | `trowa.25-kakamukhi` | Kakamukhi — Crow-headed Pishachi | Kākamukhī | `s10-b002` | 53 |
+| 26 | `trowa.26-ulukamukhi` | Ulukamukhi — Owl-headed Pishachi | Ulūkamukhī | `s10-b002` | 54 |
+| 27 | `trowa.27-ankusha` | Ankusha — Tiger-headed Female Gatekeeper | Aṅkuśā | `s11-b001` | 55 |
+| 28 | `trowa.28-pasha` | Pasha — Sow-headed Female Gatekeeper | Pāśā | `s11-b001` | 56 |
+| 29 | `trowa.29-sphota` | Sphota — Lion-headed Female Gatekeeper | Sphoṭā | `s11-b001` | 57 |
+| 30 | `trowa.30-ghanta` | Ghanta — Snake-headed Female Gatekeeper | Ghaṇṭā | `s11-b001` | 58 |
+| 31 | `trowa.31-rakshasi-east` | Rakshasi — Yak-headed Ishvari of the East | Rākṣasī | `s12-b002` | 59 |
+| 32 | `trowa.32-brahmani` | Brahmani — Snake-headed Ishvari of the East | Brahmāṇī | `s12-b002` | 60 |
+| 33 | `trowa.33-mahadevi` | Mahadevi — Leopard-headed Ishvari of the East | Mahādevī | `s12-b002` | 61 |
+| 34 | `trowa.34-vaishnavi` | Vaishnavi — Weasel-headed Ishvari of the East | Vaiṣṇavī | `s12-b002` | 62 |
+| 35 | `trowa.35-kaumari` | Kaumari — Brown-Bear-headed Ishvari of the East | Kaumārī | `s12-b002` | 63 |
+| 36 | `trowa.36-indrani` | Indrani — Black-Bear-headed Ishvari of the East | Indrāṇī | `s12-b002` | 64 |
+| 37 | `trowa.37-rati-south` | Rati — Bat-headed Ishvari of the South | Delight (Rati) | `s12-b003` | 65 |
+| 38 | `trowa.38-shanti` | Shanti — Crocodile-headed Ishvari of the South | Peace (Śānti) | `s12-b003` | 66 |
+| 39 | `trowa.39-amrita` | Amrita — Scorpion-headed Ishvari of the South | Nectar (Amṛtā) | `s12-b003` | 67 |
+| 40 | `trowa.40-saumi` | Saumi — Hawk-headed Ishvari of the South | Moon (Saumī) | `s12-b003` | 68 |
+| 41 | `trowa.41-dandi` | Dandi — Fox-headed Ishvari of the South | Club-Bearer (Daṇḍī) | `s12-b003` | 69 |
+| 42 | `trowa.42-rakshasi-south` | Rakshasi — Tiger-headed Ishvari of the South | Rākṣasī | `s12-b003` | 70 |
+| 43 | `trowa.43-bhakshasi` | Bhakshasi — Vulture-headed Ishvari of the West | Devourer (Bhakṣasī) | `s12-b004` | 71 |
+| 44 | `trowa.44-rati-west` | Rati — Horse-headed Ishvari of the West | Delight (Ratī) | `s12-b004` | 72 |
+| 45 | `trowa.45-mahabala` | Mahabala — Garuda-headed Ishvari of the West | Mighty One (Mahābalā) | `s12-b004` | 73 |
+| 46 | `trowa.46-rakshasi-west` | Rakshasi — Dog-headed Ishvari of the West | Rākṣasī | `s12-b004` | 74 |
+| 47 | `trowa.47-kama` | Kama — Hoopoe-headed Ishvari of the West | Desire (Kāmā) | `s12-b004` | 75 |
+| 48 | `trowa.48-vasurakshita` | Vasurakshita — Deer-headed Ishvari of the West | Wealth-Guardian (Vasurakṣitā) | `s12-b004` | 76 |
+| 49 | `trowa.49-vayudevi` | Vayudevi — Ishvari of the North, with banner | Wind Goddess (Vāyudevī) | `s12-b005` | 77 |
+| 50 | `trowa.50-nari` | Nari — Ishvari of the North, with torch | Woman (Nārī) | `s12-b005` | 78 |
+| 51 | `trowa.51-varahi` | Varahi — Sow-headed Ishvari of the North | Vārāhī | `s12-b005` | 79 |
+| 52 | `trowa.52-chamundi` | Vajra Chamundi — Crow-headed Ishvari of the North | Vajra Cāmuṇḍī | `s12-b005` | 80 |
+| 53 | `trowa.53-mahanasa` | Mahanasa — Elephant-headed Ishvari of the North | Great-Nosed One (Mahānāsā) | `s12-b005` | 81 |
+| 54 | `trowa.54-varuni` | Varuni — Snake-headed Ishvari of the North | Water Goddess (Vāruṇī) | `s12-b005` | 82 |
+| 55 | `trowa.55-mahakali` | Vajra Mahakali — Cuckoo-headed Gatekeeper Ishvari | Vajra Mahākālī | `s12-b006` | 83 |
+| 56 | `trowa.56-mahachagala` | Vajra Mahachagala — Goat-headed Gatekeeper Ishvari | Vajra Mahācchāgalā | `s12-b006` | 84 |
+| 57 | `trowa.57-mahakumbhakarni` | Vajra Mahakumbhakarni — Lion-headed Gatekeeper Ishvari | Vajra Mahākumbhakarṇī | `s12-b006` | 85 |
+| 58 | `trowa.58-lambodara` | Vajra Lambodara — Snake-headed Gatekeeper Ishvari | Vajra Lambodarā | `s12-b006` | 86 |
+
 ## Marking a name in the text
 
 A deity's name becomes tappable by wrapping the words **already in the
@@ -148,7 +260,7 @@ the Blessed [[Vairocana|zhiwa.03-vairochana]] will dawn before you
 - The id must be in the manifest, or the validator fails. Where the
   manifest holds no image for it, the words simply render as plain text.
 
-## The procedure, for the wrathful 58
+## The procedure, for adding or replacing a set
 
 ### 1. Convert and place the images
 
