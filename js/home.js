@@ -1,26 +1,34 @@
 // The doorway, and the list of what can be read.
 //
-// Opening the app lands on the home screen: two ways in and nothing
-// else to decide at 3 a.m. — the available texts, or the Introduction.
-// Both pages are instrument chrome, not content: every text title on
-// them is read from the manifest (the owner's words), never authored
-// here. The shape of the cycle stays legible (BRIEF §4) — the texts
-// page names the bardo each pointing-out belongs to.
+// Opening the app lands on the home screen: a landing page that says
+// what this is in the owner's own words, offers the two ways in that
+// matter at 3 a.m. — the Introduction and How to Use — and lays the
+// whole cycle out beneath them, bardo by bardo, so its shape is legible
+// at a glance (BRIEF §4). Every title on it is read from the manifest
+// and every sentence of welcome from the Introduction itself; nothing
+// here is content authored in code. Nothing on it moves (BRIEF §9).
 
-import { cycleEntry, deityCollections, depictionDeities, plateSets } from './data.js';
+import {
+  cycleEntry, deityCollections, depictionDeities, plateSets, loadText,
+} from './data.js';
 import { t } from './i18n.js';
 
 const TODO = 'TODO_CONTENT';
 const INTRO_ID = 'guide.introduction';
+const HOW_TO_ID = 'guide.how-to-use';
 
 // Prayers stand as a collection of their own in the manifest; every
-// other group of readable texts is a pointing-out on one of the bardos,
-// so the two groups on the page are "Introductions" and "Prayers".
-// The Guide (this Introduction, How to Use) is the instrument's own
-// material, not a text of the cycle: it has its own door on the home
-// screen and is not listed here.
+// other group of readable texts is a pointing-out on one of the bardos.
+// The Guide (the Introduction, How to Use) is the instrument's own
+// material: it has its own doors on the home screen. Iconography holds
+// pictures rather than texts, and has its own shelf on the page.
 const PRAYER_GROUPS = new Set(['prayers-liturgies']);
-const SKIP_GROUPS = new Set(['guide']);
+const SKIP_GROUPS = new Set(['guide', 'iconography']);
+
+// The same address the header's Donate link goes to: change one, change
+// the other (index.html says the same of the support note).
+const DONATE_URL = 'https://www.paypal.com/donate/?business=JZS5LVZKPPY5J&no_recurring=0' +
+  '&item_name=Help+fund+Dharma+translation+projects.&currency_code=USD';
 
 // Static icon markup only — never content (the discipline of the nav
 // and the renderer).
@@ -28,6 +36,11 @@ const ARROW_ICON =
   '<svg class="text-entry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const LOCK_ICON =
+  '<svg class="text-entry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
+  '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
 
 function el(tag, className, parent) {
   const node = document.createElement(tag);
@@ -51,76 +64,180 @@ function reset(container) {
   delete container.dataset.cycle;
 }
 
-// What can actually be read right now, in manifest order, in the two
-// groups the page shows. Forthcoming texts are the sidebar's business —
-// this page lists only what opens.
-export function availableTexts(cycle) {
-  const introductions = [];
-  const prayers = [];
+// The cycle in manifest order, as the doorway pages show it: each bardo
+// with what can be read in it now and what is still being translated,
+// and the prayers as a collection of their own.
+export function cycleShape(cycle) {
+  const bardos = [];
+  let prayers = null;
   for (const group of cycle.groups) {
     if (SKIP_GROUPS.has(group.id)) continue;
+    const shaped = {
+      id: group.id,
+      heading: group.heading.en,
+      readable: [],
+      forthcoming: [],
+    };
     for (const entry of group.texts) {
-      if (entry.status !== 'translated') continue;
-      const into = PRAYER_GROUPS.has(group.id) ? prayers : introductions;
-      into.push({ id: entry.id, title: titleOf(entry), context: group.heading.en });
+      const into = entry.status === 'translated' ? shaped.readable : shaped.forthcoming;
+      into.push({ id: entry.id, title: titleOf(entry) });
     }
+    if (!shaped.readable.length && !shaped.forthcoming.length) continue;
+    if (PRAYER_GROUPS.has(group.id)) prayers = shaped;
+    else bardos.push(shaped);
   }
-  return { introductions, prayers };
+  return { bardos, prayers };
 }
 
-function option(list, { label, note, attr, value }) {
-  const li = el('li', null, list);
-  const btn = el('button', 'home-option', li);
+// One way into a text: its title, and the arrow that says it opens.
+function textButton(parent, item, className = 'text-entry') {
+  const btn = el('button', className, parent);
   btn.type = 'button';
-  btn.dataset[attr] = value;
-  const body = el('span', 'home-option-body', btn);
-  el('span', 'home-option-title', body).textContent = label;
-  el('span', 'home-option-note', body).textContent = note;
+  btn.dataset.openText = item.id;
+  const body = el('span', 'text-entry-body', btn);
+  el('span', 'text-entry-title', body).textContent = item.title;
   btn.insertAdjacentHTML('beforeend', ARROW_ICON);
   return btn;
 }
 
-// ── The home screen: two doors ──────────────────────────────────────
-export function renderHome(container) {
-  reset(container);
-  const home = el('div', 'home', container);
-  const list = el('ul', 'home-options', home);
-
-  option(list, {
-    label: t('availableTexts'),
-    note: t('availableTextsNote'),
-    attr: 'go',
-    value: 'texts',
-  });
-
-  // The Introduction's own name comes from the manifest, like every
-  // other text's; the label here falls back to it only if it is gone.
-  const intro = cycleEntry(INTRO_ID);
-  option(list, {
-    label: intro ? titleOf(intro) : t('introduction'),
-    note: t('introductionNote'),
-    attr: 'openText',
-    value: INTRO_ID,
-  });
+function count(key, n) {
+  return t(key).replace('{n}', n);
 }
 
-function textGroup(container, heading, items, withContext) {
-  if (!items.length) return;
-  const sec = el('section', 'section', container);
-  el('h2', 'section-heading', sec).textContent = heading;
-  const list = el('ul', 'text-list', sec);
-  for (const item of items) {
-    const li = el('li', null, list);
-    const btn = el('button', 'text-entry', li);
-    btn.type = 'button';
-    btn.dataset.openText = item.id;
-    const body = el('span', 'text-entry-body', btn);
-    if (withContext && item.context) {
-      el('span', 'text-entry-context', body).textContent = item.context;
-    }
-    el('span', 'text-entry-title', body).textContent = item.title;
-    btn.insertAdjacentHTML('beforeend', ARROW_ICON);
+// ── The home screen ─────────────────────────────────────────────────
+function hero(home) {
+  const sec = el('section', 'landing-hero', home);
+  // The mandala the app opens with, standing still now (BRIEF §9).
+  const art = el('div', 'landing-mandala', sec);
+  const img = el('img', null, art);
+  img.src = 'assets/intro/mandala.webp';
+  img.alt = '';
+  img.decoding = 'async';
+
+  const body = el('div', 'landing-hero-body', sec);
+  el('p', 'landing-bo', body).textContent = t('landingBo');
+  el('h2', 'landing-title', body).textContent = t('landingTitle');
+
+  // The welcome is the Introduction's own first paragraph, read from the
+  // text rather than copied here, so the two can never disagree.
+  const lede = el('p', 'landing-lede', body);
+  loadText(INTRO_ID).then((text) => {
+    const first = text.sections?.[0]?.blocks?.find((b) => b.en && b.en !== TODO);
+    if (first && lede.isConnected) lede.textContent = first.en;
+  }).catch(() => {});
+
+  const actions = el('div', 'landing-actions', body);
+  const intro = cycleEntry(INTRO_ID);
+  const howTo = cycleEntry(HOW_TO_ID);
+  const primary = textButton(actions, {
+    id: INTRO_ID, title: intro ? titleOf(intro) : t('introduction'),
+  }, 'landing-action primary');
+  primary.querySelector('.text-entry-title').className = 'landing-action-label';
+  if (howTo) {
+    const second = textButton(actions, { id: HOW_TO_ID, title: titleOf(howTo) }, 'landing-action');
+    second.querySelector('.text-entry-title').className = 'landing-action-label';
   }
+}
+
+function sectionHead(parent, heading, note) {
+  const head = el('header', 'landing-head', parent);
+  el('h2', 'landing-heading', head).textContent = heading;
+  if (note) el('p', 'landing-note', head).textContent = note;
+}
+
+// Every bardo, in the order of the cycle: those with something to read
+// now as cards, and those still wholly in translation named beneath
+// them — counted rather than hidden, so the whole shape stays in view.
+function bardoCards(home, bardos) {
+  const sec = el('section', 'landing-section', home);
+  sectionHead(sec, t('bardoInstructions'), t('bardoInstructionsNote'));
+  const grid = el('div', 'landing-grid', sec);
+  const waiting = [];
+  for (const bardo of bardos) {
+    if (!bardo.readable.length) { waiting.push(bardo); continue; }
+    const card = el('article', 'landing-card', grid);
+    el('h3', 'landing-card-heading', card).textContent = bardo.heading;
+    const list = el('ul', 'text-list', card);
+    for (const item of bardo.readable) textButton(el('li', null, list), item);
+    if (bardo.forthcoming.length) {
+      el('p', 'landing-card-note', card).textContent = count('moreForthcoming', bardo.forthcoming.length);
+    }
+  }
+  if (waiting.length) {
+    const rest = el('div', 'landing-waiting', sec);
+    el('span', 'landing-waiting-label', rest).textContent = t('stillInTranslation');
+    const list = el('ul', 'landing-waiting-list', rest);
+    for (const bardo of waiting) {
+      const li = el('li', null, list);
+      el('span', null, li).textContent = bardo.heading;
+      el('span', 'landing-waiting-count', li).textContent = String(bardo.forthcoming.length);
+    }
+  }
+  const all = el('button', 'landing-more', sec);
+  all.type = 'button';
+  all.dataset.go = 'texts';
+  el('span', null, all).textContent = t('allTexts');
+  all.insertAdjacentHTML('beforeend', ARROW_ICON);
+}
+
+function prayerCards(home, prayers) {
+  if (!prayers || !prayers.readable.length) return;
+  const sec = el('section', 'landing-section', home);
+  sectionHead(sec, prayers.heading, t('prayersNote'));
+  const list = el('ul', 'landing-grid landing-prayers', sec);
+  for (const item of prayers.readable) textButton(el('li', null, list), item, 'text-entry landing-card');
+}
+
+// The pictures: the mandala the app opens with, and each shelf of the
+// Iconography, shown by its own first picture.
+function iconography(home) {
+  const shelves = [
+    ...deityCollections().map((c) => ({
+      id: c.id, label: c.label, image: c.depictions[0]?.image, n: c.depictions.length,
+    })),
+    ...plateSets().map((s) => ({
+      id: s.id, label: s.label, image: s.plates[0]?.image, n: s.plates.length,
+    })),
+  ].filter((s) => s.image);
+  const sec = el('section', 'landing-section', home);
+  sectionHead(sec, t('iconography'), t('iconographyNote'));
+  const grid = el('div', 'landing-shelves', sec);
+  const tile = (attrs, image, label, note) => {
+    const btn = el('button', 'landing-shelf', grid);
+    btn.type = 'button';
+    Object.assign(btn.dataset, attrs);
+    const img = el('img', null, el('span', 'landing-shelf-image', btn));
+    img.src = image;
+    img.alt = '';
+    img.decoding = 'async';
+    el('span', 'landing-shelf-label', btn).textContent = label;
+    if (note) el('span', 'landing-shelf-note', btn).textContent = note;
+  };
+  tile({ go: 'mandala' }, 'assets/intro/mandala.webp', t('mandala'), t('mandalaNote'));
+  for (const s of shelves) tile({ shelf: s.id }, s.image, s.label, count('nPictures', s.n));
+}
+
+function closing(home) {
+  const foot = el('footer', 'landing-foot', home);
+  el('p', null, foot).textContent = t('offeredFreely');
+  const a = el('a', 'landing-donate', foot);
+  a.href = DONATE_URL;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.textContent = t('helpDonate');
+}
+
+export function renderHome(container, cycle) {
+  reset(container);
+  const home = el('div', 'landing', container);
+  hero(home);
+  if (cycle) {
+    const { bardos, prayers } = cycleShape(cycle);
+    bardoCards(home, bardos);
+    prayerCards(home, prayers);
+  }
+  iconography(home);
+  closing(home);
 }
 
 // ── The figures (BRIEF §7) ──────────────────────────────────────────
@@ -200,19 +317,39 @@ export function renderDeities(container, shelfId = null) {
   for (const { shelf, tiles, kind } of shown) gallery(container, shelf, tiles, kind);
 }
 
-// ── The list of available texts ─────────────────────────────────────
+// ── The texts of the cycle ──────────────────────────────────────────
+// The whole catalogue on the reading surface, bardo by bardo in the
+// order of the cycle: what opens now, and beneath it, quietly, what is
+// still being translated — the shape of the cycle, not only its
+// readable half.
+function textGroup(container, group) {
+  const sec = el('section', 'section texts-group', container);
+  el('h2', 'section-heading', sec).textContent = group.heading;
+  const list = el('ul', 'text-list', sec);
+  for (const item of group.readable) textButton(el('li', null, list), item);
+  for (const item of group.forthcoming) {
+    const row = el('div', 'text-entry locked', el('li', null, list));
+    const body = el('span', 'text-entry-body', row);
+    el('span', 'text-entry-title', body).textContent = item.title;
+    el('span', 'text-entry-context', body).textContent = t('forthcomingShort');
+    row.insertAdjacentHTML('beforeend', LOCK_ICON);
+  }
+}
+
 export function renderTexts(container, cycle) {
   reset(container);
   const title = el('header', 'text-title page-title', container);
   el('div', 'en', title).textContent = t('availableTexts');
 
-  const { introductions, prayers } = availableTexts(cycle);
-  if (!introductions.length && !prayers.length) {
+  const { bardos, prayers } = cycleShape(cycle);
+  const groups = prayers ? [...bardos, prayers] : bardos;
+  const readable = groups.reduce((n, g) => n + g.readable.length, 0);
+  if (!readable) {
     el('p', 'block layer-L0', container).textContent = t('noTextsYet');
     return;
   }
-  // The bardo each pointing-out belongs to is worth naming; under
-  // "Prayers" the group would only repeat the heading.
-  textGroup(container, t('introductions'), introductions, true);
-  textGroup(container, t('prayers'), prayers, false);
+  const forthcoming = groups.reduce((n, g) => n + g.forthcoming.length, 0);
+  el('p', 'texts-summary', title).textContent =
+    count('textsSummary', readable).replace('{m}', forthcoming);
+  for (const group of groups) textGroup(container, group);
 }

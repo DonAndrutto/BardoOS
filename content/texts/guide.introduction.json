@@ -17,7 +17,7 @@
       "id": "s1",
       "heading": {
         "bo": null,
-        "en": "A Note on the Text"
+        "en": "Welcome"
       },
       "blocks": [
         {
@@ -26,7 +26,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The text the West came to know as The Tibetan Book of the Dead arrived here wrapped in many layers of interpretation—some helpful, some a long way from its original purpose. But the text itself speaks with a simpler, more direct voice. It does not present itself as a philosophy to be studied, a psychology to be analysed, or a curiosity to be compared with other traditions. It comes as a living instruction, whispered into the ear of the dying, chanted beside the dead, and held in the heart by those preparing for their own crossing.",
+          "en": "Welcome to BardoOS, a living sanctuary of instructions, prayers, and practical resources for those preparing for their own crossing and for those who accompany the dying. What you will find here are the direct tools the Tibetan tradition has long placed in the hands of practitioners and their companions—offered openly, trusting that the sound and presence of these words carry their own liberating power.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -38,7 +38,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "The Bardo Thödrol Chenmo — the “Great Liberation upon Hearing in the Between” — describes itself in terms of extraordinary intimacy and confidence. It says that this teaching, encountered in the intermediate state, is like a connecting tube inserted into a broken water channel, restoring the flow. It says the reminder is like a catapult that can hurl a heavy tree-trunk in an instant, or the turning of a horse by its bridle. It promises that merely hearing these words, even for those weighed down by great negativity, can transform perception and open the way to liberation. It asks that the words be read aloud, that they be learnt by heart, that they not be forgotten even if one were chased by seven ferocious dogs. And it insists, with startling tenderness, that no prior meditation practice is required — this is a teaching that liberates by being seen, by being heard, and by being read aloud.",
+          "en": "Come in and explore the Bardo Instructions. Let the prayers settle into your memory, and use these materials as they were always meant to be used. Read them aloud for someone whose breath is growing thin. Read them for yourself to prepare for when the signs of death draw near. Let them become a familiar voice in the ear of the heart, and a steady hand on the bridle when the path ahead seems unknowable.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -50,7 +50,7 @@
       "id": "s2",
       "heading": {
         "bo": null,
-        "en": "This Website"
+        "en": "A Note on the Text"
       },
       "blocks": [
         {
@@ -59,7 +59,7 @@
           "form": "prose",
           "bo": null,
           "phon": null,
-          "en": "This website is not an exercise in scholarly knowledge, theory, or research. It is a gathering of instructions, prayers, and materials offered directly to practitioners preparing to die, and to those who assist the dying. Nothing here has been softened for academic comfort or dressed up as metaphor. What you will find are the very resources the tradition has placed in the hands of the dying and their companions, trusting that the sound of these words carries its own power. So come in. Explore the Bardo Instructions, let the prayers settle into your memory, and use the materials as they were always meant to be used. Read them for someone whose breath is growing thin. Read them for yourself as the signs of death draw near. Let them be a familiar voice in the ear of the heart, a steady hand on the bridle when the path ahead seems unknowable. The text’s promise is bold: “Even if all the buddhas of the past, present and future were to search, they would not find a sacred teaching superior to this.” Take that invitation seriously, and let these pages become part of your preparation, your service, and your crossing.",
+          "en": "At the heart of this collection is the Bardo Thödrol Chenmo—the “Great Liberation upon Hearing in the Between,” which the West came to know as The Tibetan Book of the Dead. Beyond the layers of modern philosophy, psychological analysis, and academic curiosity that have accumulated around it over the years, the original text speaks with a remarkably simple, direct voice. It comes as a living transmission, whispered into the ear of the dying, chanted beside the dead, and held closely by the living.",
           "meter": null,
           "deityRef": null,
           "day": null,
@@ -67,6 +67,30 @@
         },
         {
           "id": "s2-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "The text describes its own purpose with extraordinary intimacy and confidence. It says that encountering this teaching in the intermediate state is like inserting a connecting tube into a broken water channel, instantly restoring the flow. It compares these reminders to a catapult capable of hurling a heavy tree-trunk in a single moment, or the turning of a horse by its bridle. It promises that merely hearing these words—even for those weighed down by great negativity—can transform perception and open the way to liberation. It asks that the words be read aloud, learnt by heart, and never forgotten, even if one were chased by seven ferocious dogs. And it insists, with startling tenderness, that even without prior mastery in meditation, this is a teaching that liberates simply by being seen, heard, and spoken.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Nothing here has been softened for academic comfort or dressed up as mere metaphor. The text’s ancient promise is bold: “Even if all the buddhas of the past, present and future were to search, they would not find a sacred teaching superior to this.” Take that invitation to heart, and let these pages become part of your preparation, your service, and your crossing.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s2-b004",
           "layer": "L0",
           "form": "prose",
           "bo": null,

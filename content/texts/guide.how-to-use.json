@@ -321,6 +321,60 @@
       ]
     },
     {
+      "id": "s13",
+      "heading": { "bo": null, "en": "Page Mode" },
+      "blocks": [
+        {
+          "id": "s13-b001",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Tap the **page icon**, just after the **+** of the scroll speed, to turn the text like the pages of a book instead of scrolling it. Nothing moves on its own and nothing animates: every page holds whole lines, and the text stays still until you turn it.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s13-b002",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "To turn a page, tap the arrows above the controls, tap the left or right edge of the page, or swipe left for the next page and right for the previous one. On a keyboard, use the arrow keys, Page Up/Down, or Space (Shift+Space to go back). The counter between the arrows shows where you are within the current part of the text, and Contents takes you to the first page of any part.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s13-b003",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Pinch to make the text one step smaller, or spread two fingers to make it one step larger. The size buttons, the TIB, PHO and ENG toggles, Voice Mode, fullscreen, and turning the phone all keep you on the words you were reading — the pages simply reflow around them.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        },
+        {
+          "id": "s13-b004",
+          "layer": "L0",
+          "form": "prose",
+          "bo": null,
+          "phon": null,
+          "en": "Auto‑scroll rests while pages are on. Tap the page icon again to return to scrolling; you will land on the line you were reading. The app remembers which way of reading you prefer.",
+          "meter": null,
+          "deityRef": null,
+          "day": null,
+          "note": null
+        }
+      ]
+    },
+    {
       "id": "s7",
       "heading": { "bo": null, "en": "Day and Night Mode" },
       "blocks": [

@@ -36,11 +36,7 @@ const STRINGS = {
     contentsEmpty: 'No sections in this text.',
     home: 'Home',
     availableTexts: 'Available Texts',
-    availableTextsNote: 'Introductions and prayers.',
     introduction: 'Introduction',
-    introductionNote: 'What this is, and who it is for.',
-    introductions: 'Introductions',
-    prayers: 'Prayers',
     noTextsYet: 'No texts are ready to read yet.',
     // The figures (BRIEF §7). Collection names come from the manifest —
     // the owner's words — so nothing here names a deity or a set.
@@ -90,6 +86,24 @@ const STRINGS = {
     helpSmaller: 'Smaller',
     helpLarger: 'Larger',
     helpPages: 'Pages',
+    // The landing page (js/home.js). The welcome itself is never here:
+    // it is the Introduction's own first paragraph, read from the text.
+    landingBo: 'བར་དོ་ཐོས་གྲོལ་ཆེན་མོ',
+    landingTitle: 'The Great Liberation upon Hearing in the Between',
+    bardoInstructions: 'The Bardo Instructions',
+    bardoInstructionsNote: 'The texts of the cycle, bardo by bardo, in the order the tradition gives them.',
+    moreForthcoming: '{n} more in translation',
+    stillInTranslation: 'Still in translation',
+    allTexts: 'Every text of the cycle',
+    prayersNote: 'Aspirations to recite for the dying and the dead, and to carry in memory for oneself.',
+    iconography: 'Iconography',
+    iconographyNote: 'Liberation upon seeing: the mandala, the peaceful and wrathful deities, and the days of their arising.',
+    mandala: 'Zhitro Mandala',
+    mandalaNote: 'Liberation upon Seeing',
+    nPictures: '{n} pictures',
+    offeredFreely: 'The translations and this app are offered freely.',
+    textsSummary: '{n} to read now · {m} in translation',
+    forthcomingShort: 'In translation',
     // Page mode (js/pages.js).
     pageMode: 'Page turning mode',
     pagePrevious: 'Previous page',
