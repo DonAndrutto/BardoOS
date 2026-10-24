@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v27';
+const VERSION = 'bardo-os-v28';
 
 const PRECACHE = [
   './',
@@ -66,19 +66,20 @@ const PRECACHE = [
   'content/texts/prayer.root-verses-six-bardos.json',
 ];
 
-// Deity images are not listed above: the manifest already names them,
-// and a second list would be one more thing to forget. Whatever it
-// names is precached alongside the shell, one by one — a missing or
-// unreadable image must never fail the whole install (BRIEF §7).
+// Iconography images are not listed above: the manifest already names
+// them — the figures and the day plates alike — and a second list would
+// be one more thing to forget. Whatever it names is precached alongside
+// the shell, one by one — a missing or unreadable image must never fail
+// the whole install (BRIEF §7).
 async function precacheDeityImages(cache) {
   try {
     const res = await fetch('assets/deities/MANIFEST.json', { cache: 'no-store' });
     if (!res.ok) return;
     const manifest = await res.json();
-    const images = [...new Set((manifest.collections || [])
-      .flatMap((c) => c.depictions || [])
-      .map((d) => d && d.image)
-      .filter(Boolean))];
+    const images = [...new Set([
+      ...(manifest.collections || []).flatMap((c) => c.depictions || []),
+      ...(manifest.plateSets || []).flatMap((s) => s.plates || []),
+    ].map((x) => x && x.image).filter(Boolean))];
     await Promise.allSettled(images.map((url) => cache.add(url)));
   } catch {
     // No manifest, or no images yet. The texts work offline regardless.

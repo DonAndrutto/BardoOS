@@ -4,7 +4,8 @@
 
 import {
   loadCycle, loadText, loadDeities, cycleEntry,
-  depictionFor, depictionDeities, deityCollections, collectionById,
+  depictionFor, depictionDeities, collectionById,
+  plateFor, plateSetById, iconographyShelves,
 } from './data.js';
 import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
@@ -23,6 +24,7 @@ const $ = (id) => document.getElementById(id);
 let currentText = null; // the loaded text JSON currently on screen
 let cycle = null;       // the manifest, once loaded
 let view = 'home';      // 'home' | 'texts' | 'text' — what is on the surface
+let shelf = null;       // which Iconography shelf the gallery is showing
 
 // ── Theme: a manual choice wins; otherwise follow the system ────────
 // Night is the default (owner's direction, 2026-07-19): the app is for
@@ -93,7 +95,7 @@ function rerender() {
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
   } else if (view === 'deities') {
-    renderDeities(reader);
+    renderDeities(reader, shelf);
   } else if (view === 'home') {
     renderHome(reader);
   }
@@ -383,18 +385,17 @@ function closeContents() {
 let deityScrollHeld = false;
 let deityOpener = null;
 
-function openDeity(deityId) {
-  const depiction = depictionFor(deityId);
-  if (!depiction) return;
-
+// One viewer for both kinds of picture: a cut-out figure, or a plate of
+// a whole day's arising. `plate` says which, and the only difference it
+// makes is the ground — a plate carries its own.
+function showFigure({ image, labels, credit, plate = false }) {
   const img = $('deityViewerImage');
-  const shown = depictionDeities(depiction);
-  const labels = shown.map((d) => d.label).filter(Boolean);
-  img.src = depiction.image;
+  img.src = image;
   img.alt = labels.join(' · ');
+  img.classList.toggle('is-plate', plate);
 
-  // Every deity the picture shows, named as the owner names them — one
-  // line for a single figure, both for a couple.
+  // Named as the owner names them — one line for a single figure, both
+  // for a couple in union, one for a plate.
   const name = $('deityViewerName');
   name.textContent = '';
   for (const label of labels) {
@@ -404,10 +405,6 @@ function openDeity(deityId) {
     name.appendChild(line);
   }
 
-  // Provenance is the collection's, because all its pictures share one.
-  const collection = collectionById(depiction.collection);
-  const credit = collection
-    ? [collection.attribution, collection.license].filter(Boolean).join(' · ') : '';
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
@@ -416,6 +413,35 @@ function openDeity(deityId) {
   if (deityScrollHeld) { scroll.stop(); applyPlayIcon(); }
   $('deityViewer').hidden = false;
   $('btnDeityClose').focus();
+}
+
+// Provenance belongs to the collection or the set, because all its
+// pictures share one.
+function creditOf(holder) {
+  return holder ? [holder.attribution, holder.license].filter(Boolean).join(' · ') : '';
+}
+
+function openDeity(deityId) {
+  const depiction = depictionFor(deityId);
+  if (!depiction) return;
+  showFigure({
+    image: depiction.image,
+    labels: depictionDeities(depiction).map((d) => d.label).filter(Boolean),
+    credit: creditOf(collectionById(depiction.collection)),
+  });
+}
+
+// A day's heading, or a tile in its gallery: the plate of that whole
+// arising, in the same viewer and under the same discipline.
+function openPlate(plateId) {
+  const plate = plateFor(plateId);
+  if (!plate) return;
+  showFigure({
+    image: plate.image,
+    labels: [plate.label].filter(Boolean),
+    credit: creditOf(plateSetById(plate.set)),
+    plate: true,
+  });
 }
 
 function closeDeity() {
@@ -548,18 +574,17 @@ function showTexts() {
 // reader choosing a new course, so the way back goes. `restore` puts
 // them back on the passage they left.
 // The figures, off the Iconography shelf. Its own view, so the bottom
-// bar's existing data-view rules stand the reading controls down.
-// Every collection shares one gallery page; the entry the reader chose
-// decides where on it they land.
-function showDeities(collectionId) {
+// bar's existing data-view rules stand the reading controls down. Each
+// shelf entry opens its own set — the one the reader asked for, not
+// every picture in the manifest at once.
+function showDeities(shelfId = null) {
   leaveText();
+  shelf = shelfId;
   showView('deities');
-  renderDeities($('reader'));
+  renderDeities($('reader'), shelf);
   buildContents();
   applyPhonRelevance();
-  const target = collectionId && document.getElementById(`deities-${collectionId}`);
-  if (target) target.scrollIntoView();
-  else window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
 async function openText(id, { keepOrigin = false, restore = null } = {}) {
@@ -791,6 +816,12 @@ async function boot() {
       openDeity(figure.dataset.deityRef);
       return;
     }
+    // A day's heading in the text, or its tile in the gallery.
+    const day = e.target.closest('.section-plate, .plate-tile');
+    if (day && day.dataset.plateRef) {
+      openPlate(day.dataset.plateRef);
+      return;
+    }
     const btn = e.target.closest('.l0-marker');
     if (!btn) return;
     const wrap = btn.closest('.voice-collapsed');
@@ -869,8 +900,9 @@ async function boot() {
       }
     }
     // Iconography holds affordances, not texts: the Zhitro Mandala
-    // replays the opening arising (js/intro.js), and each roster — the
-    // peaceful deities, the wrathful — opens as a gallery of figures.
+    // replays the opening arising (js/intro.js), and each shelf of
+    // pictures — the peaceful deities, the wrathful, the days of
+    // dharmatā — opens as a gallery of its own.
     if (group.id === 'iconography') {
       const b = document.createElement('button');
       b.type = 'button';
@@ -882,14 +914,14 @@ async function boot() {
       });
       cat.appendChild(b);
 
-      // One entry per collection that has something to show, named as
-      // the manifest names it.
-      for (const collection of deityCollections()) {
+      // One entry per shelf that has something to show, named as the
+      // manifest names it.
+      for (const entry of iconographyShelves()) {
         const g = document.createElement('button');
         g.type = 'button';
         g.className = 'nav-text';
-        g.textContent = collection.label;
-        g.addEventListener('click', () => showDeities(collection.id));
+        g.textContent = entry.label;
+        g.addEventListener('click', () => showDeities(entry.id));
         cat.appendChild(g);
       }
     }

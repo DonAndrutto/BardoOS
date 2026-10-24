@@ -242,6 +242,7 @@
         "bo": null,
         "en": "The First Day — Vairocana"
       },
+      "plateRef": "day.01-vairocana",
       "blocks": [
         {
           "id": "s3-b001",
@@ -359,6 +360,7 @@
         "bo": null,
         "en": "The Second Day — Vajrasattva-Akṣobhya"
       },
+      "plateRef": "day.02-vajrasattva-akshobhya",
       "blocks": [
         {
           "id": "s4-b001",
@@ -464,6 +466,7 @@
         "bo": null,
         "en": "The Third Day — Ratnasambhava"
       },
+      "plateRef": "day.03-ratnasambhava",
       "blocks": [
         {
           "id": "s5-b001",
@@ -581,6 +584,7 @@
         "bo": null,
         "en": "The Fourth Day — Amitābha"
       },
+      "plateRef": "day.04-amitabha",
       "blocks": [
         {
           "id": "s6-b001",
@@ -686,6 +690,7 @@
         "bo": null,
         "en": "The Fifth Day — Amoghasiddhi"
       },
+      "plateRef": "day.05-amoghasiddhi",
       "blocks": [
         {
           "id": "s7-b001",
@@ -803,6 +808,7 @@
         "bo": null,
         "en": "The Sixth Day — The Five Families Together"
       },
+      "plateRef": "day.06-five-families-together",
       "blocks": [
         {
           "id": "s8-b001",
@@ -1004,6 +1010,7 @@
         "bo": null,
         "en": "The Seventh Day — The Awareness Holders"
       },
+      "plateRef": "day.07-awareness-holders",
       "blocks": [
         {
           "id": "s9-b001",

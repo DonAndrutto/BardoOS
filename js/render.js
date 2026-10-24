@@ -18,7 +18,7 @@
 // which genuinely renders different things.
 
 import { state } from './store.js';
-import { cycleEntry, nextInGroup, depictionFor } from './data.js';
+import { cycleEntry, nextInGroup, depictionFor, plateFor } from './data.js';
 import { origin } from './trail.js';
 import { t } from './i18n.js';
 
@@ -39,6 +39,13 @@ const LOCK_ICON =
   'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
   '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>' +
   '<path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+// A day's heading that carries a plate: the words stay the heading, and
+// this stands after them so the way in is not colour alone.
+const PLATE_ICON =
+  '<svg class="section-plate-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' +
+  '<circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
 
 function el(tag, className, parent) {
   const node = document.createElement(tag);
@@ -247,6 +254,27 @@ function renderBlocks(blocks, parent, sectionId) {
   }
 }
 
+// A section heading, and — where the owner marked one — the plate that
+// shows the whole arising it heads (SCHEMA §3). The heading keeps its own
+// words and its own place; the tap is the heading itself, so nothing is
+// added to the page but the small glyph that says so. Where the manifest
+// holds no plate for that id the heading renders exactly as it always
+// did, which is what makes the mark safe to place ahead of the picture.
+function sectionHeading(section, sec) {
+  const heading = el('h2', 'section-heading', sec);
+  const plate = section.plateRef ? plateFor(section.plateRef) : null;
+  if (!plate) {
+    fillInline(heading, section.heading.en);
+    return;
+  }
+  const btn = el('button', 'section-plate', heading);
+  btn.type = 'button';
+  btn.dataset.plateRef = section.plateRef;
+  btn.setAttribute('aria-label', `${section.heading.en} — ${t('showPlate')}`);
+  fillInline(el('span', 'section-plate-words', btn), section.heading.en);
+  btn.insertAdjacentHTML('beforeend', PLATE_ICON); // static icon markup only
+}
+
 export function renderText(text, container) {
   container.textContent = '';
   // Per-text hooks for CSS scoping (e.g. the intro texts render Tibetan
@@ -262,7 +290,7 @@ export function renderText(text, container) {
   for (const section of text.sections) {
     const sec = el('section', 'section', container);
     sec.dataset.sectionId = section.id;
-    fillInline(el('h2', 'section-heading', sec), section.heading.en);
+    sectionHeading(section, sec);
     renderBlocks(section.blocks, sec, section.id);
     // A section with nothing in it but apparatus shows only its heading;
     // in Voice mode, where apparatus is dropped outright, even that goes.

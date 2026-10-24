@@ -157,6 +157,21 @@ function checkDeity(file, where, d, ctx) {
   else ctx.deityIds.add(d.id);
 }
 
+// The picture itself: a real file in the repo, in a format the app can
+// show. Provenance is collection-level, so nothing is asked of it here.
+// Depictions and plates are both pictures, and answer to the same rule.
+function checkImagePath(file, where, image) {
+  if (!nonEmpty(image)) {
+    err(file, where, '"image" must be a path under ' + DEITY_IMAGE_DIR);
+  } else if (!image.startsWith(DEITY_IMAGE_DIR)) {
+    err(file, where, `"image" must live under ${DEITY_IMAGE_DIR} (got "${image}")`);
+  } else if (!DEITY_IMAGE_EXTS.has(extname(image).toLowerCase())) {
+    err(file, where, `"image" must be one of ${[...DEITY_IMAGE_EXTS].join(', ')} (got "${image}")`);
+  } else if (!existsSync(join(ROOT, image))) {
+    err(file, where, `"image" file not found: ${image}`);
+  }
+}
+
 function checkDepiction(file, where, x, ctx) {
   if (typeof x !== 'object' || x === null) { err(file, where, 'depiction must be an object'); return; }
   checkKeys(file, where, x, DEPICTION_FIELDS);
@@ -167,18 +182,7 @@ function checkDepiction(file, where, x, ctx) {
   else ctx.depictionIds.add(x.id);
 
   if (!nonEmpty(x.sourceFile)) err(file, where, '"sourceFile" must name the master it came from');
-
-  // The picture itself: a real file in the repo, in a format the app can
-  // show. Provenance is collection-level, so nothing is asked of it here.
-  if (!nonEmpty(x.image)) {
-    err(file, where, '"image" must be a path under ' + DEITY_IMAGE_DIR);
-  } else if (!x.image.startsWith(DEITY_IMAGE_DIR)) {
-    err(file, where, `"image" must live under ${DEITY_IMAGE_DIR} (got "${x.image}")`);
-  } else if (!DEITY_IMAGE_EXTS.has(extname(x.image).toLowerCase())) {
-    err(file, where, `"image" must be one of ${[...DEITY_IMAGE_EXTS].join(', ')} (got "${x.image}")`);
-  } else if (!existsSync(join(ROOT, x.image))) {
-    err(file, where, `"image" file not found: ${x.image}`);
-  }
+  checkImagePath(file, where, x.image);
 
   if (!Array.isArray(x.deityIds) || x.deityIds.length === 0) {
     err(file, where, '"deityIds" must be a non-empty array — a depiction shows at least one deity');
@@ -243,18 +247,84 @@ function checkCollection(file, i, c, ctx) {
     `${Array.isArray(c.depictions) ? c.depictions.length : 0} depictions`);
 }
 
+// ── Plate sets (SCHEMA.md §9) ───────────────────────────────────────
+// A *plate* is a picture of a whole arising — the day-by-day clusters of
+// the bardo of dharmatā, one composite each. It is where the deity model
+// does not reach: a plate's identity and its picture are one thing, so
+// there is nothing to associate and no union to reconcile. A plate is
+// referenced from the section whose heading names that day, never from a
+// word in the running text.
+const PLATE_SET_FIELDS = ['id', 'label', 'attribution', 'license', 'plates'];
+const PLATE_REQUIRED = ['number', 'id', 'label', 'sourceFile', 'image'];
+
+function checkPlate(file, where, p, ctx) {
+  if (typeof p !== 'object' || p === null) { err(file, where, 'plate must be an object'); return; }
+  checkKeys(file, where, p, PLATE_REQUIRED);
+
+  if (!Number.isInteger(p.number) || p.number < 1) {
+    err(file, where, `"number" must be a positive integer (got ${JSON.stringify(p.number)})`);
+  } else if (ctx.numbers.has(p.number)) {
+    err(file, where, `duplicate plate number ${p.number} in this set`);
+  } else ctx.numbers.add(p.number);
+
+  if (!nonEmpty(p.label)) err(file, where, '"label" must be a non-empty string');
+  else countTodos(file, `${where} :: label`, p.label);
+
+  if (!nonEmpty(p.sourceFile)) err(file, where, '"sourceFile" must name the master it came from');
+  checkImagePath(file, where, p.image);
+
+  if (!nonEmpty(p.id)) { err(file, where, 'plate "id" must be a non-empty string'); return; }
+  if (!ID_PATTERN.test(p.id)) err(file, where, `plate id "${p.id}" is not kebab-case`);
+  if (ctx.plateIds.has(p.id)) err(file, where, `duplicate plate id "${p.id}"`);
+  else if (ctx.deityIds.has(p.id)) err(file, where, `plate id "${p.id}" already names a deity`);
+  else ctx.plateIds.add(p.id);
+}
+
+function checkPlateSet(file, i, s, ctx) {
+  const where = `plateSets[${i}]${s && s.id ? ` (${s.id})` : ''}`;
+  if (typeof s !== 'object' || s === null) { err(file, where, 'plate set must be an object'); return; }
+  checkKeys(file, where, s, PLATE_SET_FIELDS);
+
+  if (!nonEmpty(s.id)) err(file, where, 'plate set "id" must be a non-empty string');
+  else if (!ID_PATTERN.test(s.id)) err(file, where, `plate set id "${s.id}" is not kebab-case`);
+  else if (ctx.collectionIds.has(s.id)) err(file, where, `duplicate set id "${s.id}"`);
+  else ctx.collectionIds.add(s.id);
+  if (!nonEmpty(s.label)) err(file, where, 'plate set "label" must be a non-empty string');
+
+  // Provenance covers the whole set, as it does a collection.
+  for (const f of ['attribution', 'license']) {
+    if (!isNullableString(s[f])) err(file, where, `"${f}" must be a string or null`);
+    else if (isString(s[f])) countTodos(file, `${where} :: ${f}`, s[f]);
+  }
+
+  const local = { numbers: new Set(), plateIds: ctx.plateIds, deityIds: ctx.deityIds };
+  if (!Array.isArray(s.plates) || s.plates.length === 0) {
+    err(file, where, '"plates" must be a non-empty array');
+    return;
+  }
+  s.plates.forEach((p, n) => {
+    checkPlate(file, `${where} :: plates[${n}]${p && p.id ? ` (${p.id})` : ''}`, p, local);
+  });
+  ctx.summary.push(`${s.id}: ${s.plates.length} plates`);
+}
+
 function loadDeities() {
   const file = 'assets/deities/MANIFEST.json';
   const ctx = {
     deities: new Map(), deityIds: new Set(), depicted: new Set(),
-    collectionIds: new Set(), summary: [],
+    collectionIds: new Set(), plateIds: new Set(), summary: [],
   };
   const m = readJSON(join(ROOT, file), file);
   if (!m) return ctx;
-  checkKeys(file, null, m, ['schemaVersion', 'collections']);
+  // `plateSets` is optional: a manifest that holds only deities is whole.
+  checkKeys(file, null, m, ['schemaVersion', 'collections'], ['plateSets']);
   if (m.schemaVersion !== 1) err(file, null, `unknown schemaVersion ${m.schemaVersion}`);
   if (!Array.isArray(m.collections)) { err(file, null, '"collections" must be an array'); return ctx; }
   m.collections.forEach((c, i) => checkCollection(file, i, c, ctx));
+  if ('plateSets' in m) {
+    if (!Array.isArray(m.plateSets)) err(file, null, '"plateSets" must be an array');
+    else m.plateSets.forEach((s, i) => checkPlateSet(file, i, s, ctx));
+  }
   return ctx;
 }
 
@@ -391,7 +461,7 @@ function checkDeityTokens(file, where, value, ctx) {
 }
 
 // ── Text files ──────────────────────────────────────────────────────
-function checkText(path, file, deityIds, textIds) {
+function checkText(path, file, deityIds, plateIds, textIds) {
   const t = readJSON(path, file);
   if (!t) return;
 
@@ -438,7 +508,7 @@ function checkText(path, file, deityIds, textIds) {
   t.sections.forEach((s, si) => {
     const where = `section[${si}]${s && s.id ? ` (${s.id})` : ''}`;
     if (typeof s !== 'object' || s === null) { err(file, where, 'section must be an object'); return; }
-    checkKeys(file, where, s, ['id', 'heading', 'blocks']);
+    checkKeys(file, where, s, ['id', 'heading', 'blocks'], ['plateRef']);
     if (!nonEmpty(s.id)) err(file, where, 'section id must be a non-empty string');
     else if (!ID_PATTERN.test(s.id)) err(file, where, `section id "${s.id}" is not kebab-case`);
     else if (sectionIds.has(s.id)) err(file, where, `duplicate section id "${s.id}"`);
@@ -451,6 +521,16 @@ function checkText(path, file, deityIds, textIds) {
       else countTodos(file, `${where} :: heading.en`, s.heading.en);
       if (!isNullableString(s.heading.bo)) err(file, where, 'heading "bo" must be a string or null');
       else if (isString(s.heading.bo)) countTodos(file, `${where} :: heading.bo`, s.heading.bo);
+    }
+
+    // A section may name the plate that shows the whole arising it
+    // heads — the owner's mark, and the only thing that makes a heading
+    // a way in (SCHEMA.md §3).
+    if ('plateRef' in s) {
+      if (!nonEmpty(s.plateRef)) err(file, where, '"plateRef" must be a non-empty string, or omitted');
+      else if (!plateIds.has(s.plateRef)) {
+        err(file, where, `orphaned plateRef "${s.plateRef}" — not in assets/deities/MANIFEST.json`);
+      }
     }
 
     if (!Array.isArray(s.blocks) || s.blocks.length === 0) {
@@ -573,7 +653,7 @@ const textFiles = existsSync(textsDir)
   ? readdirSync(textsDir).filter((f) => f.endsWith('.json')).sort()
   : [];
 for (const f of textFiles) {
-  checkText(join(textsDir, f), `content/texts/${f}`, deityIds, textIds);
+  checkText(join(textsDir, f), `content/texts/${f}`, deityIds, iconography.plateIds, textIds);
 }
 checkPrayerRefs(checkCycle(textIds));
 scanForbidden();

@@ -47,6 +47,9 @@ const STRINGS = {
     close: 'Close',
     figures: 'Figures',
     noDeitiesYet: 'No images have been supplied yet.',
+    // A day's heading that carries a plate: what the tap does, for a
+    // reader who hears the heading rather than sees it.
+    showPlate: 'Show this day',
     deityDay: 'Day',
     deityFamily: 'Family',
     deityConsort: 'Consort',
