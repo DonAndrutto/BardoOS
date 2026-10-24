@@ -89,6 +89,13 @@ const STRINGS = {
     helpEnglish: 'English',
     helpSmaller: 'Smaller',
     helpLarger: 'Larger',
+    helpPages: 'Pages',
+    // Page mode (js/pages.js).
+    pageMode: 'Page turning mode',
+    pagePrevious: 'Previous page',
+    pageNext: 'Next page',
+    pageNavigation: 'Page navigation',
+    pagePosition: 'Page {page} of {count}, part {section} of {sections}',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

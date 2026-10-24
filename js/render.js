@@ -304,10 +304,14 @@ export function renderText(text, container) {
   // back to the passage that sent the reader here, then — for a prayer —
   // the link onward to the next prayer in the cycle (the last one in its
   // group has none).
+  // One wrapper, so page mode (js/pages.js) can give the foot a page of
+  // its own; the two links stay siblings inside it.
+  const foot = el('div', 'text-foot');
   const from = origin();
-  if (from && from.textId !== text.id) container.appendChild(returnEl(from));
+  if (from && from.textId !== text.id) foot.appendChild(returnEl(from));
   if (text.kind === 'prayer') {
     const next = nextInGroup(text.id);
-    if (next) container.appendChild(nextPrayerEl(next));
+    if (next) foot.appendChild(nextPrayerEl(next));
   }
+  if (foot.children.length) container.appendChild(foot);
 }

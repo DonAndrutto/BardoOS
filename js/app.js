@@ -15,6 +15,7 @@ import { layout as layoutHelp, warm as warmHelp } from './help.js';
 import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
 import * as anchor from './anchor.js';
+import * as pages from './pages.js';
 import { schedule as scheduleEstimates } from './estimate.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
 
@@ -62,8 +63,12 @@ function applyFontSize() {
 // actually on, not merely the scroll offset, and it converges over the
 // following frames without forcing a layout inside one. Everything that
 // changes what the text looks like goes through `anchorKept`.
-const anchorKept = anchor.keep;
-const restoreBlock = anchor.restore;
+// In page mode the same promise is kept by text rather than by line:
+// the page shown afterwards is the one holding the character the reader
+// was on (js/pages.js).
+const anchorKept = (change) => (pages.active() ? pages.keep(change) : anchor.keep(change));
+const restoreBlock = (blockId, offset) =>
+  (pages.active() ? pages.toBlock(blockId) : anchor.restore(blockId, offset));
 
 // ── The way back ────────────────────────────────────────────────────
 // Shown while the reader is somewhere a cross-link sent them. The title
@@ -76,6 +81,7 @@ function applyReturn() {
     && !(currentText && currentText.id === from.textId);
   document.body.classList.toggle('has-return', showable);
   $('returnBar').hidden = !showable;
+  pages.queueLayout(); // the bar's height decides the page's
   if (!showable) return;
   const entry = cycleEntry(from.textId);
   const title = entry && entry.title !== TODO ? entry.title : from.textId;
@@ -99,6 +105,7 @@ function rerender() {
   } else if (view === 'home') {
     renderHome(reader);
   }
+  pages.queueLayout(); // new nodes; the page is found again by its text
 }
 
 // ── Mode ────────────────────────────────────────────────────────────
@@ -195,14 +202,49 @@ function changeSpeed(delta) {
 // One property write, and the reader's line held across the reflow it
 // causes. Nothing is re-rendered: the DOM after a size change is the
 // same DOM, node for node.
-function changeFontSize(delta) {
+// A pinch in page mode steps by a single pixel, as in the Ngöndro reader.
+function changeFontSize(delta, step = FONT_STEP) {
   anchorKept(() => {
-    set('fontSize', clampFont(state.fontSize + delta * FONT_STEP));
+    set('fontSize', clampFont(state.fontSize + delta * step));
     applyFontSize();
   });
   // The portions the browser is skipping remember a height measured at
   // the old size; pretext re-measures them at the new one, when idle.
   scheduleEstimates($('reader'));
+}
+
+// ── Reading mode: scrolled, or turned like a book's pages ───────────
+// The switch keeps the reader on the same words both ways: into pages,
+// the page that holds the line they were reading; back to scrolling,
+// that page's first line put at the reader's line.
+function toggleReadingMode() {
+  const onText = view === 'text' && currentText;
+  const wasPaged = pages.active();
+  const held = !onText ? null
+    : wasPaged ? pages.capturePageAnchor() : pages.captureScrollAnchor(anchor.line());
+  scroll.stop();
+  applyPlayIcon();
+  anchor.abort();
+  set('readingMode', state.readingMode === 'pages' ? 'scroll' : 'pages');
+  pages.sync(held);
+  if (wasPaged && !pages.active()) landInScroll(held);
+}
+
+function landInScroll(held) {
+  const node = pages.resolve(held);
+  if (!node) return;
+  // Its portion is one the browser is skipping (content-visibility),
+  // which reports no geometry at all; it is laid out for the one
+  // measurement, and handed back to the browser once the reader is on it.
+  const sec = node.closest('section[data-section-id]');
+  if (sec) {
+    sec.style.contentVisibility = 'visible';
+    requestAnimationFrame(() => requestAnimationFrame(() => { sec.style.contentVisibility = ''; }));
+  }
+  const r = node.getBoundingClientRect();
+  const range = held.range && held.range.startContainer.isConnected ? held.range : null;
+  const at = range ? range.getBoundingClientRect().top : r.top;
+  anchor.land(node, anchor.line(), r.height > 0 ? Math.max(0, Math.min(1, (at - r.top) / r.height)) : 0);
 }
 
 // ── Interface language: the master selector (Yontendzo pattern) ─────
@@ -262,6 +304,11 @@ function applyUiLang() {
   $('btnHelp').title = t('helpOpen');
   $('helpOverlay').setAttribute('aria-label', t('helpOpen'));
   $('btnHelpClose').setAttribute('aria-label', t('helpDismiss'));
+  $('btnPage').setAttribute('aria-label', t('pageMode'));
+  $('btnPage').title = t('pageMode');
+  $('btnPrevPage').setAttribute('aria-label', t('pagePrevious'));
+  $('btnNextPage').setAttribute('aria-label', t('pageNext'));
+  $('pageNav').setAttribute('aria-label', t('pageNavigation'));
   buildUiLangMenu();
   // Re-apply every string the app writes itself. With English the only
   // populated table this changes nothing visible — it is the mechanism
@@ -320,7 +367,10 @@ function buildContents() {
     // exists. `offsetParent` is null for anything display:none, and is
     // unaffected by a portion the browser is merely skipping the layout
     // of (content-visibility), which is exactly the distinction wanted.
-    if (sec.offsetParent === null) return false;
+    // In page mode every portion but the one on the page is out of the
+    // layout, so page mode answers instead.
+    const paged = document.documentElement.classList.contains('paged-reading');
+    if (paged ? !pages.visible(sec) : sec.offsetParent === null) return false;
     const h = sec.querySelector('.section-heading');
     const label = h ? h.textContent.trim() : '';
     return label && label !== TODO;
@@ -353,6 +403,7 @@ function buildContents() {
 // correct and what BRIEF §9 asks for anyway: nothing in this app
 // animates except the auto-scroll.
 function jumpToSection(id) {
+  if (pages.active()) { pages.toSection(id); return; }
   const sec = document.querySelector(`#reader section[data-section-id="${CSS.escape(id)}"]`);
   if (!sec) return;
   const header = document.querySelector('.app-header');
@@ -362,9 +413,31 @@ function jumpToSection(id) {
   anchor.settle(sec, offset);
 }
 
+// Where the reader is now, so the list can say so: the portion on the
+// page in page mode, the last one whose heading has passed the reader's
+// line when scrolling.
+function currentSection() {
+  if (pages.active()) return pages.currentSectionId();
+  let id = null;
+  const line = anchor.line() + 1;
+  for (const sec of document.querySelectorAll('#reader section[data-section-id]')) {
+    if (sec.offsetParent === null) continue;
+    if (sec.getBoundingClientRect().top > line) break;
+    id = sec.dataset.sectionId;
+  }
+  return id;
+}
+
 function openContents() {
   buildContents();
   if ($('contentsGroup').hidden) return; // nothing to show
+  const here = currentSection();
+  $('contentsList').querySelectorAll('.contents-link').forEach((link) => {
+    const current = link.dataset.sectionId === here;
+    link.classList.toggle('is-current', current);
+    if (current) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
   $('contentsPanel').hidden = false;
   $('btnContents').setAttribute('aria-expanded', 'true');
   const first = $('contentsList').querySelector('.contents-link');
@@ -531,6 +604,7 @@ function showView(next) {
   document.body.dataset.view = next;
   applyMode();
   applyReturn();
+  pages.sync();
 }
 
 // Leaving a text for one of the doorway pages: stop the scroll, drop
@@ -609,7 +683,11 @@ async function openText(id, { keepOrigin = false, restore = null } = {}) {
     buildContents();
     scheduleEstimates(reader);
     scroll.resync();
-    if (restore) restoreBlock(restore.blockId, restore.offset);
+    if (pages.active()) {
+      // The text is on the surface now, so page mode can take it.
+      pages.sync();
+      if (restore) pages.toBlock(restore.blockId); else pages.toStart();
+    } else if (restore) restoreBlock(restore.blockId, restore.offset);
     else window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
@@ -654,6 +732,18 @@ async function boot() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     set('theme', dark ? 'light' : 'dark');
     applyTheme();
+  });
+  $('btnPage').addEventListener('click', toggleReadingMode);
+  $('btnPrevPage').addEventListener('click', () => pages.turn(-1));
+  $('btnNextPage').addEventListener('click', () => pages.turn(1));
+  pages.init({
+    text: () => view === 'text' && Boolean(currentText),
+    // Whatever has the reader's attention instead of the page.
+    blocked: () => !$('helpOverlay').hidden || !$('deityViewer').hidden
+      || !$('contentsPanel').hidden || !$('uiLangMenu').hidden || navIsOverlay()
+      || Boolean($('intro')),
+    resizeText: (delta) => changeFontSize(delta, 1),
+    changed: () => {},
   });
   $('btnSmaller').addEventListener('click', () => changeFontSize(-1));
   $('btnLarger').addEventListener('click', () => changeFontSize(1));
@@ -827,6 +917,7 @@ async function boot() {
     const wrap = btn.closest('.voice-collapsed');
     const open = wrap.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(open));
+    pages.queueLayout(); // a peeked rubric lengthens the page it is on
   });
 
   // Navigation

@@ -22,6 +22,7 @@ const PRECACHE = [
   'js/i18n.js',
   'js/install.js',
   'js/measure.js',
+  'js/pages.js',
   'js/render.js',
   'js/scroll.js',
   'js/store.js',

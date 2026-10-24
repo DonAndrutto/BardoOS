@@ -74,6 +74,8 @@ export function abort() {
 
 // Where the reader is looking: just under the sticky header, or the top
 // of the viewport where there is no header (Voice mode hides it).
+export function line() { return readerLine(); }
+
 function readerLine() {
   const header = document.querySelector('.app-header');
   const shown = header && header.offsetParent !== null;
@@ -232,9 +234,16 @@ export function keep(change) {
 // the way moves the target. One scroll gets close; the frames after it
 // arrive.
 export function settle(node, top) {
+  land(node, top, 0); // its top edge, not a place within it
+}
+
+// The same, for a place part way through the element: `frac` of its
+// height is put at `top`. Leaving page mode lands this way, so the line
+// the page began with is the line the scrolling reader is on.
+export function land(node, top, frac) {
   abort();
   if (!node) return;
-  const mark = { line: top, frac: 0 }; // its top edge, not a place within it
+  const mark = { line: top, frac };
   window.scrollBy(0, offsetOf(node.getBoundingClientRect(), mark));
   converge(node, mark);
 }

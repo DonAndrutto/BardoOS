@@ -1303,6 +1303,80 @@ body[data-view="home"] #sizeGroup { display: none; }
 body:not([data-view="text"]) .bar-inner { justify-content: center; }
 body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 
+/* Page mode is a way of reading a text; off one it is not offered. */
+body:not([data-view="text"]) #btnPage { display: none; }
+.bar-btn:disabled { opacity: 0.35; cursor: default; }
+
+/* ── Page mode: the text turned like a book (js/pages.js) ──
+   Ported from the owner's Ngöndro reader. The window stops scrolling;
+   the shell becomes the page, fixed between the header and the bar; and
+   the one portion being read is set in native columns exactly one page
+   wide and one page tall, so the browser breaks it at whole lines. A
+   page turn is a transform — nothing animates. */
+html.paged-reading, html.paged-reading body {
+  height: 100%;
+  overflow: hidden;
+  overflow-anchor: none;
+}
+.paged-reading *, .paged-reading *::before, .paged-reading *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+.paged-reading .shell {
+  position: fixed;
+  top: var(--page-top);
+  left: 0;
+  right: 0;
+  height: var(--page-height);
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+.paged-reading #reader { height: 100%; }
+.paged-reading #reader > * { display: none; }
+.paged-reading #reader > .page-current {
+  display: block;
+  width: var(--page-width);
+  height: 100%;
+  margin: 0;
+  column-width: var(--page-width);
+  column-gap: 32px;
+  column-fill: auto;
+  content-visibility: visible;
+}
+.paged-reading #reader .block { break-inside: auto; }
+.paged-reading #reader :is(.bo, .phon, .en) { orphans: 2; widows: 2; }
+.paged-reading #reader .section-heading { break-after: avoid-column; }
+.paged-reading #reader :is(.prayer-ref, .l0-marker, .run-label) { break-inside: avoid-column; }
+
+.page-nav {
+  max-width: 20rem;
+  margin: 0 auto var(--sp-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 2px var(--sp-1);
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: var(--radius-md);
+}
+/* display:flex above would otherwise defeat the hidden attribute. */
+.page-nav[hidden] { display: none; }
+.page-nav .bar-btn { width: 40px; height: 32px; }
+.page-position {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Content never hides behind the bar */
 .shell { padding-bottom: 7rem; }
 
@@ -1361,6 +1435,10 @@ body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 }
 @media (hover: hover) {
   .contents-link:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+}
+.contents-link.is-current {
+  color: var(--accent);
+  box-shadow: inset 3px 0 var(--accent);
 }
 .contents-link:focus { outline: none; }
 .contents-link:focus-visible {
