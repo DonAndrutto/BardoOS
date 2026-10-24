@@ -59,10 +59,21 @@ const deityIndex = new Map();      // deity id → record
 const depictionIndex = new Map();  // deity id → the depiction showing it
 const collections = [];            // in manifest order, each with its own list
 
+// A *plate* is a picture of a whole arising — the day-by-day clusters of
+// the *bardo* of *dharmatā*, one composite each. Where a deity is an
+// identity carried by a picture, a plate's identity and its picture are
+// the same thing: nothing to associate, no union to reconcile. A plate
+// is summoned from the section heading that names its day, never from a
+// word in the running text.
+const plateIndex = new Map();      // plate id → record
+const sets = [];                   // plate sets, in manifest order
+
 export async function loadDeities() {
   deityIndex.clear();
   depictionIndex.clear();
   collections.length = 0;
+  plateIndex.clear();
+  sets.length = 0;
   try {
     const manifest = await getJSON('assets/deities/MANIFEST.json');
     for (const c of manifest.collections || []) {
@@ -84,10 +95,27 @@ export async function loadDeities() {
         depictions: shown,
       });
     }
+    for (const s of manifest.plateSets || []) {
+      const held = [];
+      for (const p of s.plates || []) {
+        if (!p || !p.id || !p.image) continue;
+        const plate = { ...p, set: s.id };
+        held.push(plate);
+        plateIndex.set(p.id, plate);
+      }
+      if (!held.length) continue;
+      sets.push({
+        id: s.id,
+        label: s.label,
+        attribution: s.attribution || null,
+        license: s.license || null,
+        plates: held,
+      });
+    }
   } catch {
     // No manifest, no iconography. The texts read the same.
   }
-  return depictionIndex.size;
+  return depictionIndex.size + plateIndex.size;
 }
 
 // The record for a deity id, or null.
@@ -116,4 +144,30 @@ export function deityCollections() {
 
 export function collectionById(id) {
   return collections.find((c) => c.id === id) || null;
+}
+
+// The plate a section's heading names, or null when the manifest holds
+// none — which is what decides whether that heading is a way in at all.
+export function plateFor(plateId) {
+  return plateIndex.get(plateId) || null;
+}
+
+// Every plate set that has something to show, in manifest order; each
+// one's plates in the owner's numbering, which is the order the gallery
+// presents them in.
+export function plateSets() {
+  return sets;
+}
+
+export function plateSetById(id) {
+  return sets.find((s) => s.id === id) || null;
+}
+
+// Either shelf under Iconography, named as the manifest names it: the
+// collections of figures first, then the sets of plates.
+export function iconographyShelves() {
+  return [
+    ...deityCollections().map((c) => ({ id: c.id, label: c.label })),
+    ...sets.map((s) => ({ id: s.id, label: s.label })),
+  ];
 }

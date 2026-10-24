@@ -1256,5 +1256,64 @@
         }
       ]
     }
+  ],
+  "plateSets": [
+    {
+      "id": "days-1-7",
+      "label": "Days 1–7",
+      "attribution": null,
+      "license": null,
+      "plates": [
+        {
+          "number": 1,
+          "id": "day.01-vairocana",
+          "label": "The First Day — Vairocana",
+          "sourceFile": "THE FIRST DAY — VAIROCANA.png",
+          "image": "assets/deities/images/days/01-vairocana.webp"
+        },
+        {
+          "number": 2,
+          "id": "day.02-vajrasattva-akshobhya",
+          "label": "The Second Day — Vajrasattva-Akṣobhya",
+          "sourceFile": "THE SECOND DAY — VAJRASATTVA-AKṢOBHYA.png",
+          "image": "assets/deities/images/days/02-vajrasattva-akshobhya.webp"
+        },
+        {
+          "number": 3,
+          "id": "day.03-ratnasambhava",
+          "label": "The Third Day — Ratnasambhava",
+          "sourceFile": "THE THIRD DAY — RATNASAMBHAVA.png",
+          "image": "assets/deities/images/days/03-ratnasambhava.webp"
+        },
+        {
+          "number": 4,
+          "id": "day.04-amitabha",
+          "label": "The Fourth Day — Amitābha",
+          "sourceFile": "THE FOURTH DAY — AMITĀBHA.png",
+          "image": "assets/deities/images/days/04-amitabha.webp"
+        },
+        {
+          "number": 5,
+          "id": "day.05-amoghasiddhi",
+          "label": "The Fifth Day — Amoghasiddhi",
+          "sourceFile": "THE FIFTH DAY — AMOGHASIDDHI.png",
+          "image": "assets/deities/images/days/05-amoghasiddhi.webp"
+        },
+        {
+          "number": 6,
+          "id": "day.06-five-families-together",
+          "label": "The Sixth Day — The Five Families Together",
+          "sourceFile": "THE SIXTH DAY — THE FIVE FAMILIES TOGETHER.png",
+          "image": "assets/deities/images/days/06-five-families-together.webp"
+        },
+        {
+          "number": 7,
+          "id": "day.07-awareness-holders",
+          "label": "The Seventh Day — The Awareness Holders",
+          "sourceFile": "THE SEVENTH DAY — THE AWARENESS HOLDERS 1.png",
+          "image": "assets/deities/images/days/07-awareness-holders.webp"
+        }
+      ]
+    }
   ]
 }

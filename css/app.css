@@ -828,9 +828,48 @@ body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
-/* Each collection's heading is where its Iconography entry lands; the
-   margin keeps it clear of the top bar. */
-[id^="deities-"] { scroll-margin-top: calc(var(--sp-6) * 2.5); }
+/* A day's heading that carries a plate. The heading keeps its own size,
+   weight and colour — it is still the heading of that day — and the
+   glyph after the words is what says it opens. The dotted rule under
+   the words is the figures' own treatment, so both ways in read alike;
+   never colour alone, since the headings are all accent already. */
+.section-plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.section-plate-words {
+  text-decoration: underline dotted
+    color-mix(in srgb, var(--accent) 70%, transparent);
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 0.06em;
+}
+.section-plate-icon {
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  opacity: 0.75;
+}
+@media (hover: hover) {
+  .section-plate:hover .section-plate-words { text-decoration-style: solid; }
+  .section-plate:hover .section-plate-icon { opacity: 1; }
+}
+.section-plate:focus { outline: none; }
+.section-plate:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
 
 /* The gallery, off the Iconography shelf. The figures are cut out, so
    they stand on the page's own ground rather than in boxes. */
@@ -841,6 +880,9 @@ body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has
   max-width: var(--column);
   margin: 0 auto;
 }
+/* A plate is a whole assembly, not one figure: two to a row at most, or
+   the faces in it are too small to be worth showing. */
+.plate-grid { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); }
 .deity-tile {
   display: flex;
   flex-direction: column;
@@ -862,6 +904,12 @@ body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has
   width: 100%;
   max-width: 9rem;
   height: auto;
+}
+/* A plate carries its own ground where a cut-out does not, so the tile
+   gives it a corner rather than letting it end in a hard rectangle. */
+.plate-tile .deity-tile-image {
+  max-width: 100%;
+  border-radius: var(--radius-md);
 }
 .deity-collection-credit {
   max-width: var(--column);
@@ -942,6 +990,14 @@ body.voice #reader[data-text-id]:not(.show-phon):not(.show-en) .section:not(:has
   background: radial-gradient(ellipse at 50% 46%,
     color-mix(in srgb, var(--accent) 9%, transparent) 0%,
     transparent 68%);
+}
+/* A plate is a whole arising and brings its own ground — no radial
+   behind it, and a corner so a painted rectangle does not cut the page.
+   It gets the height a composite needs: the figures in it are small. */
+.deity-viewer-image.is-plate {
+  max-height: 74vh;
+  border-radius: var(--radius-md);
+  background: none;
 }
 /* Every deity the picture shows, named as the manifest names them —
    one line for a single figure, both for a couple in union. */
@@ -1247,6 +1303,80 @@ body[data-view="home"] #sizeGroup { display: none; }
 body:not([data-view="text"]) .bar-inner { justify-content: center; }
 body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 
+/* Page mode is a way of reading a text; off one it is not offered. */
+body:not([data-view="text"]) #btnPage { display: none; }
+.bar-btn:disabled { opacity: 0.35; cursor: default; }
+
+/* ── Page mode: the text turned like a book (js/pages.js) ──
+   Ported from the owner's Ngöndro reader. The window stops scrolling;
+   the shell becomes the page, fixed between the header and the bar; and
+   the one portion being read is set in native columns exactly one page
+   wide and one page tall, so the browser breaks it at whole lines. A
+   page turn is a transform — nothing animates. */
+html.paged-reading, html.paged-reading body {
+  height: 100%;
+  overflow: hidden;
+  overflow-anchor: none;
+}
+.paged-reading *, .paged-reading *::before, .paged-reading *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+.paged-reading .shell {
+  position: fixed;
+  top: var(--page-top);
+  left: 0;
+  right: 0;
+  height: var(--page-height);
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+.paged-reading #reader { height: 100%; }
+.paged-reading #reader > * { display: none; }
+.paged-reading #reader > .page-current {
+  display: block;
+  width: var(--page-width);
+  height: 100%;
+  margin: 0;
+  column-width: var(--page-width);
+  column-gap: 32px;
+  column-fill: auto;
+  content-visibility: visible;
+}
+.paged-reading #reader .block { break-inside: auto; }
+.paged-reading #reader :is(.bo, .phon, .en) { orphans: 2; widows: 2; }
+.paged-reading #reader .section-heading { break-after: avoid-column; }
+.paged-reading #reader :is(.prayer-ref, .l0-marker, .run-label) { break-inside: avoid-column; }
+
+.page-nav {
+  max-width: 20rem;
+  margin: 0 auto var(--sp-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 2px var(--sp-1);
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: var(--radius-md);
+}
+/* display:flex above would otherwise defeat the hidden attribute. */
+.page-nav[hidden] { display: none; }
+.page-nav .bar-btn { width: 40px; height: 32px; }
+.page-position {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Content never hides behind the bar */
 .shell { padding-bottom: 7rem; }
 
@@ -1305,6 +1435,10 @@ body:not([data-view="text"]) .bar-group { flex: 0 1 auto; }
 }
 @media (hover: hover) {
   .contents-link:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+}
+.contents-link.is-current {
+  color: var(--accent);
+  box-shadow: inset 3px 0 var(--accent);
 }
 .contents-link:focus { outline: none; }
 .contents-link:focus-visible {

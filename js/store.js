@@ -22,6 +22,7 @@ function defaults() {
     showEn: true,
     scrollSpeed: 2,
     mode: 'guide',        // 'guide' | 'voice'
+    readingMode: 'scroll', // 'scroll' | 'pages' — turned like a book's pages (js/pages.js)
     uiLang: 'en',         // interface language: 'bo' | 'en' | 'pl' (master selector)
     installAsked: false,  // the home-screen invitation is offered once, ever (js/install.js)
     supportAsked: false,  // the support note is offered once, ever (js/support.js)
@@ -42,6 +43,7 @@ function load() {
     merged.fontSize = clampFont(merged.fontSize);
     merged.scrollSpeed = Math.max(1, Math.min(10, Number(merged.scrollSpeed) || d.scrollSpeed));
     if (!['guide', 'voice'].includes(merged.mode)) merged.mode = 'guide';
+    if (!['scroll', 'pages'].includes(merged.readingMode)) merged.readingMode = 'scroll';
     if (![null, 'light', 'dark'].includes(merged.theme)) merged.theme = null;
     if (!['bo', 'en', 'pl'].includes(merged.uiLang)) merged.uiLang = 'en';
     merged.supportSeconds = Math.max(0, Number(merged.supportSeconds) || 0);

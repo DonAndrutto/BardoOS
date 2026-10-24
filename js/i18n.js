@@ -47,6 +47,9 @@ const STRINGS = {
     close: 'Close',
     figures: 'Figures',
     noDeitiesYet: 'No images have been supplied yet.',
+    // A day's heading that carries a plate: what the tap does, for a
+    // reader who hears the heading rather than sees it.
+    showPlate: 'Show this day',
     deityDay: 'Day',
     deityFamily: 'Family',
     deityConsort: 'Consort',
@@ -86,6 +89,13 @@ const STRINGS = {
     helpEnglish: 'English',
     helpSmaller: 'Smaller',
     helpLarger: 'Larger',
+    helpPages: 'Pages',
+    // Page mode (js/pages.js).
+    pageMode: 'Page turning mode',
+    pagePrevious: 'Previous page',
+    pageNext: 'Next page',
+    pageNavigation: 'Page navigation',
+    pagePosition: 'Page {page} of {count}, part {section} of {sections}',
   },
   // Tibetan and Polish interface strings are the owner's to supply.
   bo: {},

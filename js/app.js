@@ -4,7 +4,8 @@
 
 import {
   loadCycle, loadText, loadDeities, cycleEntry,
-  depictionFor, depictionDeities, deityCollections, collectionById,
+  depictionFor, depictionDeities, collectionById,
+  plateFor, plateSetById, iconographyShelves,
 } from './data.js';
 import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
@@ -14,6 +15,7 @@ import { layout as layoutHelp, warm as warmHelp } from './help.js';
 import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
 import * as anchor from './anchor.js';
+import * as pages from './pages.js';
 import { schedule as scheduleEstimates } from './estimate.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
 
@@ -23,6 +25,7 @@ const $ = (id) => document.getElementById(id);
 let currentText = null; // the loaded text JSON currently on screen
 let cycle = null;       // the manifest, once loaded
 let view = 'home';      // 'home' | 'texts' | 'text' — what is on the surface
+let shelf = null;       // which Iconography shelf the gallery is showing
 
 // ── Theme: a manual choice wins; otherwise follow the system ────────
 // Night is the default (owner's direction, 2026-07-19): the app is for
@@ -60,8 +63,12 @@ function applyFontSize() {
 // actually on, not merely the scroll offset, and it converges over the
 // following frames without forcing a layout inside one. Everything that
 // changes what the text looks like goes through `anchorKept`.
-const anchorKept = anchor.keep;
-const restoreBlock = anchor.restore;
+// In page mode the same promise is kept by text rather than by line:
+// the page shown afterwards is the one holding the character the reader
+// was on (js/pages.js).
+const anchorKept = (change) => (pages.active() ? pages.keep(change) : anchor.keep(change));
+const restoreBlock = (blockId, offset) =>
+  (pages.active() ? pages.toBlock(blockId) : anchor.restore(blockId, offset));
 
 // ── The way back ────────────────────────────────────────────────────
 // Shown while the reader is somewhere a cross-link sent them. The title
@@ -74,6 +81,7 @@ function applyReturn() {
     && !(currentText && currentText.id === from.textId);
   document.body.classList.toggle('has-return', showable);
   $('returnBar').hidden = !showable;
+  pages.queueLayout(); // the bar's height decides the page's
   if (!showable) return;
   const entry = cycleEntry(from.textId);
   const title = entry && entry.title !== TODO ? entry.title : from.textId;
@@ -93,10 +101,11 @@ function rerender() {
   } else if (view === 'texts' && cycle) {
     renderTexts(reader, cycle);
   } else if (view === 'deities') {
-    renderDeities(reader);
+    renderDeities(reader, shelf);
   } else if (view === 'home') {
     renderHome(reader);
   }
+  pages.queueLayout(); // new nodes; the page is found again by its text
 }
 
 // ── Mode ────────────────────────────────────────────────────────────
@@ -193,14 +202,49 @@ function changeSpeed(delta) {
 // One property write, and the reader's line held across the reflow it
 // causes. Nothing is re-rendered: the DOM after a size change is the
 // same DOM, node for node.
-function changeFontSize(delta) {
+// A pinch in page mode steps by a single pixel, as in the Ngöndro reader.
+function changeFontSize(delta, step = FONT_STEP) {
   anchorKept(() => {
-    set('fontSize', clampFont(state.fontSize + delta * FONT_STEP));
+    set('fontSize', clampFont(state.fontSize + delta * step));
     applyFontSize();
   });
   // The portions the browser is skipping remember a height measured at
   // the old size; pretext re-measures them at the new one, when idle.
   scheduleEstimates($('reader'));
+}
+
+// ── Reading mode: scrolled, or turned like a book's pages ───────────
+// The switch keeps the reader on the same words both ways: into pages,
+// the page that holds the line they were reading; back to scrolling,
+// that page's first line put at the reader's line.
+function toggleReadingMode() {
+  const onText = view === 'text' && currentText;
+  const wasPaged = pages.active();
+  const held = !onText ? null
+    : wasPaged ? pages.capturePageAnchor() : pages.captureScrollAnchor(anchor.line());
+  scroll.stop();
+  applyPlayIcon();
+  anchor.abort();
+  set('readingMode', state.readingMode === 'pages' ? 'scroll' : 'pages');
+  pages.sync(held);
+  if (wasPaged && !pages.active()) landInScroll(held);
+}
+
+function landInScroll(held) {
+  const node = pages.resolve(held);
+  if (!node) return;
+  // Its portion is one the browser is skipping (content-visibility),
+  // which reports no geometry at all; it is laid out for the one
+  // measurement, and handed back to the browser once the reader is on it.
+  const sec = node.closest('section[data-section-id]');
+  if (sec) {
+    sec.style.contentVisibility = 'visible';
+    requestAnimationFrame(() => requestAnimationFrame(() => { sec.style.contentVisibility = ''; }));
+  }
+  const r = node.getBoundingClientRect();
+  const range = held.range && held.range.startContainer.isConnected ? held.range : null;
+  const at = range ? range.getBoundingClientRect().top : r.top;
+  anchor.land(node, anchor.line(), r.height > 0 ? Math.max(0, Math.min(1, (at - r.top) / r.height)) : 0);
 }
 
 // ── Interface language: the master selector (Yontendzo pattern) ─────
@@ -260,6 +304,11 @@ function applyUiLang() {
   $('btnHelp').title = t('helpOpen');
   $('helpOverlay').setAttribute('aria-label', t('helpOpen'));
   $('btnHelpClose').setAttribute('aria-label', t('helpDismiss'));
+  $('btnPage').setAttribute('aria-label', t('pageMode'));
+  $('btnPage').title = t('pageMode');
+  $('btnPrevPage').setAttribute('aria-label', t('pagePrevious'));
+  $('btnNextPage').setAttribute('aria-label', t('pageNext'));
+  $('pageNav').setAttribute('aria-label', t('pageNavigation'));
   buildUiLangMenu();
   // Re-apply every string the app writes itself. With English the only
   // populated table this changes nothing visible — it is the mechanism
@@ -318,7 +367,10 @@ function buildContents() {
     // exists. `offsetParent` is null for anything display:none, and is
     // unaffected by a portion the browser is merely skipping the layout
     // of (content-visibility), which is exactly the distinction wanted.
-    if (sec.offsetParent === null) return false;
+    // In page mode every portion but the one on the page is out of the
+    // layout, so page mode answers instead.
+    const paged = document.documentElement.classList.contains('paged-reading');
+    if (paged ? !pages.visible(sec) : sec.offsetParent === null) return false;
     const h = sec.querySelector('.section-heading');
     const label = h ? h.textContent.trim() : '';
     return label && label !== TODO;
@@ -351,6 +403,7 @@ function buildContents() {
 // correct and what BRIEF §9 asks for anyway: nothing in this app
 // animates except the auto-scroll.
 function jumpToSection(id) {
+  if (pages.active()) { pages.toSection(id); return; }
   const sec = document.querySelector(`#reader section[data-section-id="${CSS.escape(id)}"]`);
   if (!sec) return;
   const header = document.querySelector('.app-header');
@@ -360,9 +413,31 @@ function jumpToSection(id) {
   anchor.settle(sec, offset);
 }
 
+// Where the reader is now, so the list can say so: the portion on the
+// page in page mode, the last one whose heading has passed the reader's
+// line when scrolling.
+function currentSection() {
+  if (pages.active()) return pages.currentSectionId();
+  let id = null;
+  const line = anchor.line() + 1;
+  for (const sec of document.querySelectorAll('#reader section[data-section-id]')) {
+    if (sec.offsetParent === null) continue;
+    if (sec.getBoundingClientRect().top > line) break;
+    id = sec.dataset.sectionId;
+  }
+  return id;
+}
+
 function openContents() {
   buildContents();
   if ($('contentsGroup').hidden) return; // nothing to show
+  const here = currentSection();
+  $('contentsList').querySelectorAll('.contents-link').forEach((link) => {
+    const current = link.dataset.sectionId === here;
+    link.classList.toggle('is-current', current);
+    if (current) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
   $('contentsPanel').hidden = false;
   $('btnContents').setAttribute('aria-expanded', 'true');
   const first = $('contentsList').querySelector('.contents-link');
@@ -383,18 +458,17 @@ function closeContents() {
 let deityScrollHeld = false;
 let deityOpener = null;
 
-function openDeity(deityId) {
-  const depiction = depictionFor(deityId);
-  if (!depiction) return;
-
+// One viewer for both kinds of picture: a cut-out figure, or a plate of
+// a whole day's arising. `plate` says which, and the only difference it
+// makes is the ground — a plate carries its own.
+function showFigure({ image, labels, credit, plate = false }) {
   const img = $('deityViewerImage');
-  const shown = depictionDeities(depiction);
-  const labels = shown.map((d) => d.label).filter(Boolean);
-  img.src = depiction.image;
+  img.src = image;
   img.alt = labels.join(' · ');
+  img.classList.toggle('is-plate', plate);
 
-  // Every deity the picture shows, named as the owner names them — one
-  // line for a single figure, both for a couple.
+  // Named as the owner names them — one line for a single figure, both
+  // for a couple in union, one for a plate.
   const name = $('deityViewerName');
   name.textContent = '';
   for (const label of labels) {
@@ -404,10 +478,6 @@ function openDeity(deityId) {
     name.appendChild(line);
   }
 
-  // Provenance is the collection's, because all its pictures share one.
-  const collection = collectionById(depiction.collection);
-  const credit = collection
-    ? [collection.attribution, collection.license].filter(Boolean).join(' · ') : '';
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
@@ -416,6 +486,35 @@ function openDeity(deityId) {
   if (deityScrollHeld) { scroll.stop(); applyPlayIcon(); }
   $('deityViewer').hidden = false;
   $('btnDeityClose').focus();
+}
+
+// Provenance belongs to the collection or the set, because all its
+// pictures share one.
+function creditOf(holder) {
+  return holder ? [holder.attribution, holder.license].filter(Boolean).join(' · ') : '';
+}
+
+function openDeity(deityId) {
+  const depiction = depictionFor(deityId);
+  if (!depiction) return;
+  showFigure({
+    image: depiction.image,
+    labels: depictionDeities(depiction).map((d) => d.label).filter(Boolean),
+    credit: creditOf(collectionById(depiction.collection)),
+  });
+}
+
+// A day's heading, or a tile in its gallery: the plate of that whole
+// arising, in the same viewer and under the same discipline.
+function openPlate(plateId) {
+  const plate = plateFor(plateId);
+  if (!plate) return;
+  showFigure({
+    image: plate.image,
+    labels: [plate.label].filter(Boolean),
+    credit: creditOf(plateSetById(plate.set)),
+    plate: true,
+  });
 }
 
 function closeDeity() {
@@ -505,6 +604,7 @@ function showView(next) {
   document.body.dataset.view = next;
   applyMode();
   applyReturn();
+  pages.sync();
 }
 
 // Leaving a text for one of the doorway pages: stop the scroll, drop
@@ -548,18 +648,17 @@ function showTexts() {
 // reader choosing a new course, so the way back goes. `restore` puts
 // them back on the passage they left.
 // The figures, off the Iconography shelf. Its own view, so the bottom
-// bar's existing data-view rules stand the reading controls down.
-// Every collection shares one gallery page; the entry the reader chose
-// decides where on it they land.
-function showDeities(collectionId) {
+// bar's existing data-view rules stand the reading controls down. Each
+// shelf entry opens its own set — the one the reader asked for, not
+// every picture in the manifest at once.
+function showDeities(shelfId = null) {
   leaveText();
+  shelf = shelfId;
   showView('deities');
-  renderDeities($('reader'));
+  renderDeities($('reader'), shelf);
   buildContents();
   applyPhonRelevance();
-  const target = collectionId && document.getElementById(`deities-${collectionId}`);
-  if (target) target.scrollIntoView();
-  else window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
 async function openText(id, { keepOrigin = false, restore = null } = {}) {
@@ -584,7 +683,11 @@ async function openText(id, { keepOrigin = false, restore = null } = {}) {
     buildContents();
     scheduleEstimates(reader);
     scroll.resync();
-    if (restore) restoreBlock(restore.blockId, restore.offset);
+    if (pages.active()) {
+      // The text is on the surface now, so page mode can take it.
+      pages.sync();
+      if (restore) pages.toBlock(restore.blockId); else pages.toStart();
+    } else if (restore) restoreBlock(restore.blockId, restore.offset);
     else window.scrollTo(0, 0);
   } catch (err) {
     currentText = null;
@@ -629,6 +732,18 @@ async function boot() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     set('theme', dark ? 'light' : 'dark');
     applyTheme();
+  });
+  $('btnPage').addEventListener('click', toggleReadingMode);
+  $('btnPrevPage').addEventListener('click', () => pages.turn(-1));
+  $('btnNextPage').addEventListener('click', () => pages.turn(1));
+  pages.init({
+    text: () => view === 'text' && Boolean(currentText),
+    // Whatever has the reader's attention instead of the page.
+    blocked: () => !$('helpOverlay').hidden || !$('deityViewer').hidden
+      || !$('contentsPanel').hidden || !$('uiLangMenu').hidden || navIsOverlay()
+      || Boolean($('intro')),
+    resizeText: (delta) => changeFontSize(delta, 1),
+    changed: () => {},
   });
   $('btnSmaller').addEventListener('click', () => changeFontSize(-1));
   $('btnLarger').addEventListener('click', () => changeFontSize(1));
@@ -791,11 +906,18 @@ async function boot() {
       openDeity(figure.dataset.deityRef);
       return;
     }
+    // A day's heading in the text, or its tile in the gallery.
+    const day = e.target.closest('.section-plate, .plate-tile');
+    if (day && day.dataset.plateRef) {
+      openPlate(day.dataset.plateRef);
+      return;
+    }
     const btn = e.target.closest('.l0-marker');
     if (!btn) return;
     const wrap = btn.closest('.voice-collapsed');
     const open = wrap.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(open));
+    pages.queueLayout(); // a peeked rubric lengthens the page it is on
   });
 
   // Navigation
@@ -869,8 +991,9 @@ async function boot() {
       }
     }
     // Iconography holds affordances, not texts: the Zhitro Mandala
-    // replays the opening arising (js/intro.js), and each roster — the
-    // peaceful deities, the wrathful — opens as a gallery of figures.
+    // replays the opening arising (js/intro.js), and each shelf of
+    // pictures — the peaceful deities, the wrathful, the days of
+    // dharmatā — opens as a gallery of its own.
     if (group.id === 'iconography') {
       const b = document.createElement('button');
       b.type = 'button';
@@ -882,14 +1005,14 @@ async function boot() {
       });
       cat.appendChild(b);
 
-      // One entry per collection that has something to show, named as
-      // the manifest names it.
-      for (const collection of deityCollections()) {
+      // One entry per shelf that has something to show, named as the
+      // manifest names it.
+      for (const entry of iconographyShelves()) {
         const g = document.createElement('button');
         g.type = 'button';
         g.className = 'nav-text';
-        g.textContent = collection.label;
-        g.addEventListener('click', () => showDeities(collection.id));
+        g.textContent = entry.label;
+        g.addEventListener('click', () => showDeities(entry.id));
         cat.appendChild(g);
       }
     }
