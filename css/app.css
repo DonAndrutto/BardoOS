@@ -388,70 +388,309 @@ body.nav-open .nav { display: block; }
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
 }
 
-/* ── The doorway: the screen the app opens on ─────────────
-   Two ways in, and nothing else to decide at 3 a.m. — the available
-   texts, or the Introduction. */
-.home {
+/* ── The landing page: the screen the app opens on ─────────
+   What this is, in the owner's words, the two ways in that matter at
+   3 a.m., and the whole cycle beneath them. Two columns where there is
+   room, one where there is not. Nothing on it moves (BRIEF §9): the
+   mandala the app opens with stands still here. */
+.landing {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: calc(100vh - 16rem);
-  min-height: calc(100svh - 16rem);
-  max-width: 34rem;
-  margin: 0 auto;
-  padding: var(--sp-6) 0;
+  gap: var(--sp-9);
+  padding: var(--sp-4) 0 var(--sp-6);
 }
-.home-options {
-  list-style: none;
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: var(--sp-5);
+  text-align: center;
+}
+.landing-mandala {
+  width: min(15rem, 62vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    color-mix(in srgb, var(--accent) 14%, transparent) 0%, transparent 70%);
+}
+.landing-mandala img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.landing-hero-body { max-width: 36rem; }
+.landing-bo {
+  font-family: var(--font-tibetan);
+  font-size: calc(var(--size-base) * 1.35);
+  line-height: var(--lh-tibetan);
+  color: var(--accent);
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
 }
-.home-option {
+.landing-title {
+  font-family: var(--font-body);
+  font-size: clamp(1.6rem, 1.1rem + 2vw, 2.35rem);
+  font-weight: 500;
+  line-height: var(--lh-tight);
+  color: var(--text);
+  margin: var(--sp-2) 0 var(--sp-4);
+  text-wrap: balance;
+}
+.landing-lede {
+  font-size: calc(var(--size-base) * 1.02);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
+  margin: 0;
+  min-height: 6lh; /* the paragraph arrives a moment later; nothing below jumps */
+  text-wrap: pretty;
+}
+.landing-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+.landing-action {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-4);
-  width: 100%;
-  min-height: 5rem;
-  padding: var(--sp-5);
-  text-align: left;
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: background var(--dur-2), border-color var(--dur-2);
-}
-@media (hover: hover) {
-  .home-option:hover {
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
-  }
-}
-.home-option:focus { outline: none; }
-.home-option:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
-.home-option-body { display: block; min-width: 0; }
-.home-option-title {
-  display: block;
+  gap: var(--sp-3);
+  min-height: 48px;
+  padding: 0 var(--sp-5);
   font-family: var(--font-ui);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--ls-caps);
   color: var(--accent);
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--dur-2), border-color var(--dur-2);
 }
-.home-option-note {
-  display: block;
-  font-size: calc(var(--size-base) * 0.9);
-  color: var(--text-muted);
-  margin-top: var(--sp-2);
+.landing-action .text-entry-body { display: contents; }
+.landing-action.primary {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.landing-action.primary .text-entry-icon { color: var(--bg); }
+@media (hover: hover) {
+  .landing-action:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+  .landing-action.primary:hover { background: color-mix(in srgb, var(--accent) 86%, var(--text)); }
+}
+.landing-action:focus, .landing-more:focus, .landing-shelf:focus { outline: none; }
+.landing-action:focus-visible, .landing-more:focus-visible, .landing-shelf:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
-/* ── The list of available texts ──────────────────────────
-   The readable half of the catalogue, on the reading surface: two
-   groups, each pointing-out naming the bardo it belongs to. */
+/* Room for two columns: the mandala beside the words. */
+@media (min-width: 48rem) {
+  .landing-hero {
+    grid-template-columns: minmax(13rem, 19rem) 1fr;
+    align-items: center;
+    justify-items: start;
+    gap: var(--sp-8);
+    text-align: left;
+    min-height: calc(100svh - 14rem);
+  }
+  .landing-mandala { width: 100%; }
+  .landing-actions { justify-content: flex-start; }
+}
+
+.landing-head { margin-bottom: var(--sp-5); }
+.landing-heading {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  color: var(--accent);
+  margin: 0;
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+}
+.landing-note {
+  margin: var(--sp-3) 0 0;
+  font-size: calc(var(--size-base) * 0.92);
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--sp-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.landing-card {
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  border-radius: var(--radius-lg);
+}
+.landing-card-heading {
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--sp-2);
+}
+.landing-card .landing-card-heading { color: var(--accent); }
+.landing-card .text-entry { padding-left: 0; padding-right: 0; }
+.landing-card-note {
+  margin: var(--sp-2) 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+/* The bardos with nothing to read yet: named, in order, and counted. */
+.landing-waiting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: var(--sp-5);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.landing-waiting-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+}
+.landing-waiting-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.landing-waiting-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+}
+.landing-waiting-count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+.landing-grid { align-items: start; }
+
+/* A prayer is a card in itself: the whole card is the way in. */
+/* Stated in full: .text-entry, later in the sheet, clears both. */
+.landing-prayers .text-entry.landing-card {
+  min-height: 5rem;
+  padding: var(--sp-4);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+  border-radius: var(--radius-lg);
+}
+@media (hover: hover) {
+  .landing-prayers .text-entry.landing-card:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+}
+
+.landing-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  min-height: 44px;
+  padding: 0 var(--sp-1);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .landing-more:hover span { text-decoration: underline; text-underline-offset: 0.3em; }
+}
+
+.landing-shelves {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(46%, 11rem), 1fr));
+  gap: var(--sp-4);
+}
+.landing-shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-3) var(--sp-2) var(--sp-4);
+  text-align: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .landing-shelf:hover {
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+  }
+}
+.landing-shelf-image {
+  display: block;
+  width: 100%;
+  max-width: 9rem;
+  aspect-ratio: 4 / 5;
+  margin-bottom: var(--sp-2);
+}
+.landing-shelf-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.landing-shelf-label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--accent);
+}
+.landing-shelf-note { font-size: calc(var(--size-base) * 0.82); color: var(--text-muted); }
+
+.landing-foot {
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: calc(var(--size-base) * 0.9);
+  color: var(--text-muted);
+}
+.landing-foot p { margin: 0 0 var(--sp-2); }
+.landing-donate {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps-sm);
+  color: var(--accent);
+  text-underline-offset: 0.3em;
+}
+
+/* ── The texts of the cycle ───────────────────────────────
+   The catalogue on the reading surface, bardo by bardo: what opens now,
+   and what is still in translation, quietly, beneath it. */
+.texts-summary {
+  margin: var(--sp-3) 0 0;
+  font-size: calc(var(--size-base) * 0.9);
+  font-style: italic;
+  color: var(--text-muted);
+}
+.text-entry.locked { cursor: default; color: var(--text-muted); }
+.text-entry.locked .text-entry-icon { color: var(--text-muted); opacity: 0.7; }
+@media (hover: hover) {
+  .text-entry.locked:hover { background: none; }
+}
 .page-title .en {
   font-family: var(--font-ui);
   font-style: normal;

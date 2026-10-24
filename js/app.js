@@ -103,7 +103,7 @@ function rerender() {
   } else if (view === 'deities') {
     renderDeities(reader, shelf);
   } else if (view === 'home') {
-    renderHome(reader);
+    renderHome(reader, cycle);
   }
   pages.queueLayout(); // new nodes; the page is found again by its text
 }
@@ -627,7 +627,7 @@ function leaveText() {
 function showHome() {
   leaveText();
   showView('home');
-  renderHome($('reader'));
+  renderHome($('reader'), cycle);
   buildContents();
   applyPhonRelevance();
   window.scrollTo(0, 0);
@@ -873,7 +873,15 @@ async function boot() {
   $('reader').addEventListener('click', (e) => {
     const go = e.target.closest('[data-go]');
     if (go) {
-      if (go.dataset.go === 'texts') showTexts(); else showHome();
+      if (go.dataset.go === 'texts') showTexts();
+      else if (go.dataset.go === 'mandala') replayIntro();
+      else showHome();
+      return;
+    }
+    // A shelf of the Iconography, from the landing page.
+    const shelfTile = e.target.closest('[data-shelf]');
+    if (shelfTile) {
+      showDeities(shelfTile.dataset.shelf);
       return;
     }
     const entry = e.target.closest('[data-open-text]');
