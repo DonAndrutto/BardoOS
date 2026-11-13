@@ -3,9 +3,19 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v29';
+const VERSION = 'bardo-os-v30-mandala-preview';
 
 const PRECACHE = [
+  // Mandala preview assets
+  "mandala/",
+  "mandala/index.html",
+  "mandala/styles.css",
+  "mandala/app.js",
+  "mandala/evidence.js",
+  "mandala/data/mandala-data.js",
+  "mandala/assets/diagram.svg",
+  "mandala/assets/mandala.jpeg",
+
   './',
   'index.html',
   'manifest.webmanifest',

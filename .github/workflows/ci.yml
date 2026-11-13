@@ -17,3 +17,6 @@ jobs:
           node-version: 20
       - name: Validate content against SCHEMA.md
         run: node scripts/validate.mjs
+
+      - name: Validate mandala preview
+        run: node scripts/check-mandala.mjs
