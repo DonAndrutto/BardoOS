@@ -13860,8 +13860,10 @@
         ],
         "label": "Indra Kaushika — Buddha of the God Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Indra Kaushika Devas.png",
+          "sourceSha256": "5441b693db82f02baf62ac4f717fe2537ec7482bdb1377f98334be3a7ce4831c",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],
@@ -13874,8 +13876,10 @@
         ],
         "label": "Vemachitra — Buddha of the Demi-God Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Vemacitra Asuras.png",
+          "sourceSha256": "3e1bdf40602c159e569761bf8e89a76da764b43f4446b0651bdea0f70e8a49fd",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],
@@ -13888,8 +13892,10 @@
         ],
         "label": "Shakyamuni — Buddha of the Human Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Shakyamuni Humans.png",
+          "sourceSha256": "15feb0799a872368cf4c20a0e1e28eaba3bac710da83a5b10dc70f0a071a20d8",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],
@@ -13902,8 +13908,10 @@
         ],
         "label": "Sthirasimha — Buddha of the Animal Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Sthirasimha Animals.png",
+          "sourceSha256": "b07a40c283234f108ff46e7099177dfe3c33494a5044dd981c23abd4606c90dd",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],
@@ -13916,8 +13924,10 @@
         ],
         "label": "Jvalamukha — Buddha of the Hungry Ghost Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Jvalamukha Pretas.png",
+          "sourceSha256": "e0b31f793cc02adf76041d1531cd4c71ff64966495403d7132160babfcdd5632",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],
@@ -13930,8 +13940,10 @@
         ],
         "label": "Dharmaraja — Buddha of the Hell Realm",
         "provenance": {
-          "sourceUrl": "https://raw.githubusercontent.com/DonAndrutto/BardoOS/f4858e792782b3ebb199ca5655d519fc4beff0f9/assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
-          "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9"
+          "kind": "owner-supplied-replacement",
+          "sourceFile": "6 Munis/Dharma Raja (Yama) Hells.png",
+          "sourceSha256": "bbac38bfd0a38c11e6e237e4a2b7deb98d8939b5fe968de23dca0abb626fe28e",
+          "conversion": "Lossless WebP; decoded RGBA verified pixel-identical to supplied PNG."
         }
       }
     ],

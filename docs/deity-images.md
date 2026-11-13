@@ -47,6 +47,16 @@ normal, never a warning, never filled with a placeholder, never shown.
 
 ## The images
 
+**Replacement on 13 November 2026:** the six munis (peaceful 29–34) now use
+the owner's `6 Munis` PNGs, at their supplied 1080×1350 resolution. These
+six WebPs use lossless conversion, with decoded RGBA pixels verified
+identical to each PNG. This preserves the supplied halos, backgrounds and
+palette transparency without adding or removing anything. The manifest
+records the replacement source filenames; the mandala atlas also records
+their source SHA-256 hashes. All six stable deity and depiction IDs remain
+unchanged. The older 540×675 conversion description below applies to the
+remaining original peaceful images.
+
 The owner supplied 36 PNGs at 540×675 RGBA, cut out with no background,
 24.2 MB in total. They ship as WebP at **quality 95** — **3.7 MB**, with
 the **alpha channel bit-identical** to the source on every one of the 36

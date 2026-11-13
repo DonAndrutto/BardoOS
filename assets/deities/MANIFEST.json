@@ -415,7 +415,7 @@
         },
         {
           "id": "zhiwa.depiction.29",
-          "sourceFile": "29_Indra_Kaushika_Buddha_of_the_God_Realm.png",
+          "sourceFile": "6 Munis/Indra Kaushika Devas.png",
           "image": "assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
           "deityIds": [
             "zhiwa.29-indra-kaushika"
@@ -423,7 +423,7 @@
         },
         {
           "id": "zhiwa.depiction.30",
-          "sourceFile": "30_Vemachitra_Buddha_of_the_Demi_God_Realm.png",
+          "sourceFile": "6 Munis/Vemacitra Asuras.png",
           "image": "assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
           "deityIds": [
             "zhiwa.30-vemachitra"
@@ -431,7 +431,7 @@
         },
         {
           "id": "zhiwa.depiction.31",
-          "sourceFile": "31_Shakyamuni_Buddha_of_the_Human_Realm.png",
+          "sourceFile": "6 Munis/Shakyamuni Humans.png",
           "image": "assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
           "deityIds": [
             "zhiwa.31-shakyamuni"
@@ -439,7 +439,7 @@
         },
         {
           "id": "zhiwa.depiction.32",
-          "sourceFile": "32_Sthirasimha_Buddha_of_the_Animal_Realm.png",
+          "sourceFile": "6 Munis/Sthirasimha Animals.png",
           "image": "assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
           "deityIds": [
             "zhiwa.32-sthirasimha"
@@ -447,7 +447,7 @@
         },
         {
           "id": "zhiwa.depiction.33",
-          "sourceFile": "33_Jvalamukha_Buddha_of_the_Hungry_Ghost_Realm.png",
+          "sourceFile": "6 Munis/Jvalamukha Pretas.png",
           "image": "assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
           "deityIds": [
             "zhiwa.33-jvalamukha"
@@ -455,7 +455,7 @@
         },
         {
           "id": "zhiwa.depiction.34",
-          "sourceFile": "34_Dharmaraja_Buddha_of_the_Hell_Realm.png",
+          "sourceFile": "6 Munis/Dharma Raja (Yama) Hells.png",
           "image": "assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
           "deityIds": [
             "zhiwa.34-dharmaraja"

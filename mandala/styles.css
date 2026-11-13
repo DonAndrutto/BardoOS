@@ -7,3 +7,24 @@
 
 /* Quiet exploration surface; evidence stays available on demand. */
 .editorial-marker{fill:inherit;stroke:#715e36!important;stroke-width:2!important;stroke-dasharray:3 2;fill-opacity:1!important}.map-target .editorial-marker{fill:revert-layer}.map-target.selected .editorial-marker{stroke:#c48c36!important;stroke-width:4!important}.research-details{margin-top:26px}.research-details>summary{font-size:12px;color:var(--muted)}.status-badge{font-size:10px;opacity:.72}.map-top-controls{flex-wrap:wrap;right:15px}.stage{background:#f3eee2!important}.map-target .group-outline{opacity:0}.map-target.selected .group-outline,.map-target:focus-visible .group-outline{opacity:1}.target-item small{font-size:9px;opacity:.65}
+
+/* Assembly visibility is independent of the palace and its enclosures. */
+.assembly-layers{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:0;border-top:1px solid #60716480;margin:0;padding:11px 7px 6px;min-width:0}
+.assembly-layers legend{float:left;font-size:10px;color:#bfc7b6;line-height:30px;margin-right:6px}
+.assembly-layers label{display:flex;align-items:center;gap:7px;min-height:32px;cursor:pointer;font-size:12px;white-space:nowrap}
+.assembly-layers input{accent-color:#cdaa69;width:17px;height:17px;margin:0;cursor:pointer}
+.assembly-layers small{font-size:10px;color:#bfc7b6}
+.layer-dot{width:7px;height:7px;border-radius:50%;display:inline-block}.layer-dot.peaceful{background:#e1d8ab}.layer-dot.wrathful{background:#d57852}
+.layer-action{font-size:10px;min-height:32px;border-bottom:1px solid #82927b80;color:#eee4c9;padding:4px 0;white-space:nowrap}
+#expand-map{margin-left:auto}.layer-note{font-size:10px;color:#bfc7b6;line-height:1.5;margin:0;padding:0 7px 11px}
+.stage{background:#263d56!important}
+.marker-shape{fill:var(--marker-color,#d2b56e);stroke:#3c382a;stroke-width:1;filter:none}
+.map-target.unresolved .marker-shape,.map-target.group .marker-shape{stroke-dasharray:none}
+.map-target .editorial-marker{fill:inherit;fill-opacity:1;stroke:#f5e5b7!important;stroke-width:1.2!important;stroke-dasharray:3 2}
+.map-target:hover .marker-shape,.map-target:focus-visible .marker-shape{fill:var(--marker-color,#d2b56e);stroke:#fff5d8;stroke-width:2.5}
+.map-target.selected .marker-shape{fill:var(--marker-color,#d2b56e);stroke:#fff3bc;stroke-width:3;filter:drop-shadow(0 0 3px #191f18)}
+.painting-view .map-target .marker-shape:not(.editorial-marker){fill:#fdf1c51a;stroke:#fff6d5;stroke-width:1.5;stroke-dasharray:3 2}
+.map-expanded .workspace{grid-template-columns:minmax(0,1fr)}.map-expanded .browse,.map-expanded .detail-panel{display:none}.map-expanded .map-section{padding:0 26px}.map-expanded #browse-toggle{display:none}
+@media(max-width:700px){.assembly-layers{gap:8px 15px;padding:6px 2px 3px}.assembly-layers legend{display:none}.assembly-layers label{font-size:11px}.assembly-layers .layer-action{font-size:9px}.layer-note{font-size:9px;padding:0 2px 7px}.map-section{height:72dvh;min-height:490px}.map-expanded .map-section{height:calc(100dvh - 62px);padding:0 10px}.map-top-controls{gap:5px}.glass-button{padding:7px 8px}.compass{transform:scale(.75)}.zoom-tools button{min-width:37px}}
+.assembly-layers legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;float:none}
+.map-target .editorial-marker{fill:var(--marker-color,#d2b56e)!important}
