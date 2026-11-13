@@ -13,7 +13,9 @@ half of a pair opens the one they share.
 - `images/zhiwa/` — the 42 peaceful deities of the *bardo* of
   *dharmatā*, in 36 WebP files, cut out with no background, converted
   from the owner's PNG masters with the alpha channel verified
-  bit-identical.
+  bit-identical. The six munis (29–34) were replaced with the owner's
+  higher-resolution, halo-bearing artwork on 13 November 2026; those
+  six are lossless and pixel-identical to the supplied PNGs.
 - `images/trowa/` — the 58 wrathful deities, in 53 WebP files (five
   heruka couples), cropped from the owner's Zhitro thangka with a
   feathered transparent edge; every crop box is recorded in its

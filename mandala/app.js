@@ -18,10 +18,12 @@
   const groupNames = { central: 'Central figures', 'directional-families': 'Four families', gauris: 'Eight Gaurīs', pisacis: 'Eight Piśācīs', 'six-realm-sages': 'Six realm sages', gatekeepers: 'Four inner gates', ishvaris: 'Twenty-eight Īśvarīs' };
   const groupOrder = ['central', 'directional-families', 'gauris', 'pisacis', 'six-realm-sages', 'gatekeepers', 'ishvaris'];
   const targetNodes = new Map();
-  const state = { selected: null, unlocated: null, visible: targets, markers: true, camera: { x: 0, y: 0, scale: 1 }, opener: null };
+  const state = { selected: null, unlocated: null, visible: targets, markers: true, painting: false, layers: { peaceful: true, wrathful: true }, camera: { x: 0, y: 0, scale: 1 }, opener: null };
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const cap = value => value ? value[0].toUpperCase() + value.slice(1) : '';
   const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const deityVisible = id => state.layers[id.startsWith('zhiwa.') ? 'peaceful' : 'wrathful'];
+  const visibleDeityIds = ids => ids.filter(deityVisible);
   const announce = message => { $('live-status').textContent = message; };
   const shortLabel = target => {
     if (target.kind === 'gate-assembly') return `${cap(target.candidateRitualDirection)} gate`;
@@ -44,9 +46,9 @@
       const group = svgNode('g', { class: `map-target ${target.evidenceStatus === 'provisional' ? 'provisional' : 'unresolved'} ${target.kind === 'single-observation' ? '' : 'group'}`, tabindex: '0', role: 'button', 'data-target': target.id, 'aria-label': `${shortLabel(target)}. ${targetStatus(target)}.` });
       const title = svgNode('title', {}); title.textContent = `${shortLabel(target)} — ${targetStatus(target)}`; group.append(title);
       // Ambiguous strip features are represented only by their parent petal outline.
-      if (target.designLocation) { const o = target.designLocation; group.append(svgNode('circle', {cx:o.x*SIZE,cy:o.y*SIZE,r:26,class:'marker-shape editorial-marker',fill:target.displayColor})); }
+      if (target.designLocation) { const o = target.designLocation; group.append(svgNode('circle', {cx:o.x*SIZE,cy:o.y*SIZE,r:26,class:'marker-shape editorial-marker',style:`--marker-color:${target.displayColor}`})); }
       const points = target.observationIds.map(id => observations.get(id)).filter(o => o.observationalStatus === 'observed-circle');
-      for (const o of points) group.append(svgNode('circle', { cx: o.x * SIZE, cy: o.y * SIZE, r: 22, class: 'marker-shape', 'data-observation': o.id }));
+      for (const o of points) group.append(svgNode('circle', { cx: o.x * SIZE, cy: o.y * SIZE, r: 22, class: 'marker-shape', 'data-observation': o.id, style: `--marker-color:rgb(${(o.approximateMedianRgb || [180,160,100]).join(',')})` }));
       if (!target.designLocation && target.kind !== 'single-observation') {
         const [x1, y1, x2, y2] = target.focusBoundsNormalized;
         group.prepend(svgNode('rect', { x: x1 * SIZE, y: y1 * SIZE, width: (x2 - x1) * SIZE, height: (y2 - y1) * SIZE, rx: 18, class: 'group-outline' }));
@@ -92,10 +94,10 @@
     $('zoom-level').textContent = `${scale.toFixed(1)}×`;
     $('zoom-out').disabled = scale <= 1;
     $('zoom-in').disabled = scale >= 18;
-    const minimumRadius = 5.5 / (screenScale() * scale);
+    const minimumRadius = 3 / (screenScale() * scale);
     for (const node of document.querySelectorAll('.marker-shape')) {
       const o = observations.get(node.dataset.observation);
-      node.setAttribute('r', Math.max(o?.approximateVisibleOutlineRadiusPixels || (node.classList.contains('editorial-marker') ? 26 : 22), minimumRadius));
+      node.setAttribute('r', Math.max(o?.approximateVisibleOutlineRadiusPixels || (node.classList.contains('editorial-marker') ? 26 : 18), minimumRadius));
     }
     hideTooltip();
   }
@@ -113,17 +115,32 @@
   }
   function focusInterior() { state.camera = { scale: 2.35, x: SIZE / 2 - SIZE * .505 * 2.35, y: SIZE / 2 - SIZE * .493 * 2.35 }; renderCamera(); }
 
-  function filters() { return { query: normalize($('search').value.trim()), group: $('group-filter').value, direction: $('direction-filter').value, collection: $('collection-filter').value }; }
+  function filters() { return { query: normalize($('search').value.trim()), group: $('group-filter').value, direction: $('direction-filter').value }; }
   function resetFilters() {
-    $('search').value = ''; $('group-filter').value = 'all'; $('direction-filter').value = 'all'; $('collection-filter').value = 'all'; applyFilters();
+    $('search').value = ''; $('group-filter').value = 'all'; $('direction-filter').value = 'all'; applyFilters();
+  }
+  function renderLayerState() {
+    for (const name of ['peaceful', 'wrathful']) $( `layer-${name}` ).checked = state.layers[name];
+    const names = Object.keys(state.layers).filter(name => state.layers[name]);
+    const label = names.length === 2 ? 'Both assemblies' : names.length === 1 ? `${cap(names[0])} assembly` : 'Palace only';
+    $('palace-only').textContent = names.length ? 'Palace only' : 'Show both';
+    $('layer-note').textContent = state.painting ? `${label} · the reference painting retains all its painted marks.` : `${label} · ${names.length ? 'select a location to see its deities.' : 'fire, vajra fence, charnel grounds, lotus and palace.'}`;
+    stage.classList.toggle('painting-view', state.painting);
+  }
+  function setLayers(layers) {
+    Object.assign(state.layers, layers);
+    hideTooltip(); renderLayerState(); applyFilters();
+    if (state.selected) renderPanel(byId.get(state.selected));
+    announce($('layer-note').textContent);
   }
   function applyFilters() {
     const f = filters();
     state.visible = targets.filter(t => {
-      const text = [shortLabel(t), t.label, groupNames[t.group], t.candidateRitualDirection, ...t.candidateDeityIds.map(id => deities.get(id).label), ...t.candidateDeityIds].join(' ');
-      return (f.group === 'all' || f.group === t.group) && (f.direction === 'all' || (f.direction === 'unknown' ? !t.candidateRitualDirection : f.direction === t.candidateRitualDirection)) && (f.collection === 'all' || t.candidateCollections.includes(f.collection)) && (!f.query || normalize(text).includes(f.query));
+      const ids = visibleDeityIds(t.candidateDeityIds);
+      const text = [shortLabel(t), t.label, groupNames[t.group], t.candidateRitualDirection, ...ids.map(id => deities.get(id).label), ...ids].join(' ');
+      return ids.length && (f.group === 'all' || f.group === t.group) && (f.direction === 'all' || (f.direction === 'unknown' ? !t.candidateRitualDirection : f.direction === t.candidateRitualDirection)) && (!f.query || normalize(text).includes(f.query));
     });
-    const unlocated = catalog.deities.filter(d => !scene.deityToCandidateTargets[d.id].length && (f.group === 'unlocated' || (f.group === 'all' && f.query)) && (f.direction === 'all' || f.direction === 'unknown') && (f.collection === 'all' || f.collection === 'wrathful') && (!f.query || normalize(d.label + ' ' + d.id + ' Ishvari Isvari unlocated').includes(f.query)));
+    const unlocated = catalog.deities.filter(d => deityVisible(d.id) && !scene.deityToCandidateTargets[d.id].length && (f.group === 'unlocated' || (f.group === 'all' && f.query)) && (f.direction === 'all' || f.direction === 'unknown') && (!f.query || normalize(d.label + ' ' + d.id + ' Ishvari Isvari unlocated').includes(f.query)));
     const visibleIds = new Set(state.visible.map(t => t.id));
     for (const [id, node] of targetNodes) {
       const exposed = visibleIds.has(id) && (state.markers || id === state.selected);
@@ -147,11 +164,12 @@
       html += '<div class="list-heading">Unlocated Īśvarīs</div>';
       for (const d of unlocated) html += `<button class="target-item" data-deity="${esc(d.id)}" aria-current="${state.unlocated === d.id}"><span class="target-icon" aria-hidden="true">–</span><span><strong>${esc(d.label)}</strong><small>Mandala position unassigned</small></span></button>`;
     }
-    $('target-list').innerHTML = html || '<p class="empty">No matching locations.<br>Try another name or reset the filters. Missing directions remain unassigned.</p>';
+    $('target-list').innerHTML = html || `<p class="empty">${!state.layers.peaceful && !state.layers.wrathful ? 'The deity layers are hidden. Switch an assembly on to explore its locations.' : 'No matching locations.<br>Try another name or reset the filters.'}</p>`;
     $('result-count').textContent = `${state.visible.length} ${state.visible.length === 1 ? 'location' : 'locations'}${unlocated.length ? ` · ${unlocated.length} unlocated` : ''}`;
   }
 
   function artCards(ids) {
+    ids = visibleDeityIds(ids);
     return `<div class="art-grid">${ids.map(id => {
       const deity = deities.get(id), artwork = bundle.artworkByDeityId[id]?.[0];
       return `<button class="art-card ${ids.length === 1 ? 'single' : ''}" data-art="${esc(id)}" aria-label="View artwork: ${esc(deity.label)}">${artwork ? `<img src="${esc(artwork.src)}" alt="${esc(deity.label)}" loading="lazy">` : '<div class="art-missing">Artwork unavailable</div>'}<span class="art-label">${esc(deity.label)}</span><span class="art-type">${id.startsWith('zhiwa.') ? 'Peaceful' : 'Wrathful'} assembly · view artwork ↗</span></button>`;
@@ -169,6 +187,7 @@
       notes:['The direction follows the Karma Lingpa text. This exact position is a schematic design choice, not an identified painted circle.','Pema Lingpa’s seven-per-direction roster is recorded separately.'],
       sources:bundle.mapping.sources.filter(s=>target.sourceIds.includes(s.id)).map(s=>({label:s.label||s.id,url:s.url}))
     } : window.MandalaEvidence.buildPanel(target, bundle);
+    panel.groups = panel.groups.map(group => ({ ...group, ids: visibleDeityIds(group.ids) })).filter(group => group.ids.length);
     const title = target.kind === 'single-observation' && ['central', 'six-realm-sages'].includes(target.group) ? shortLabel(target) : panel.title;
     $('detail-content').innerHTML = `<div class="detail-inner"><div class="detail-top"><p class="eyebrow">${esc(groupNames[target.group])}${target.candidateRitualDirection ? ` / ${esc(target.candidateRitualDirection)}` : ''}</p><button class="icon-button" data-close aria-label="Close location details">×</button></div><div class="status-badge">${esc(targetStatus(target))}</div><h2 class="detail-title" tabindex="-1">${esc(title)}</h2><p class="detail-summary">${esc(target.designLocation ? panel.summary : "Explore the figures associated with this part of the mandala.")}</p><button class="panel-action" data-focus="${esc(target.id)}">Center on this location <span aria-hidden="true">⌖</span></button>${panel.groups.map(group => `<p class="candidate-heading">${esc(group.label.replace(/Possible /g, "").replace("Candidate identities across alternatives", "Associated figures").replace("Possible identity", "Associated figure"))}</p>${artCards(group.ids)}`).join('')}<details class="research-details"><summary>Placement &amp; source notes</summary>${panel.unmappedCandidates.length ? `<h3>Also considered</h3><p class="evidence-note">${panel.unmappedCandidates.map(esc).join('<br>')}<br>No matching app artwork.</p>` : ''}<p class="subtle">${esc(panel.summary)}</p>${panel.notes.map(note => `<p class="evidence-note">${esc(note)}</p>`).join('')}${panel.alternatives.length ? `<h3>Possible interpretations</h3>${panel.alternatives.map(a => `<div class="alternative"><strong>${esc(a.label)}</strong><p>${esc(a.description)}</p></div>`).join('')}` : ''}<details><summary>Observed marks · ${panel.observations.length} ${panel.observations.length === 1 ? 'record' : 'records'}</summary>${panel.observations.map(o => `<div class="observation"><strong>${esc(o.id)}</strong> · ${esc(o.position)}<br>${esc(o.color)}</div>`).join('')}</details><details><summary>Supporting sources · ${panel.sources.length}</summary><ul class="source-links">${panel.sources.map(s => `<li>${sourceAnchor(s)}</li>`).join('')}</ul><p class="subtle">These texts support the comparison. They are not an identified key to this painting.</p></details></details></div>`;
     $('detail-panel').scrollTop = 0;
@@ -191,10 +210,14 @@
   function selectTarget(id, { focusPanel = false, push = true } = {}) {
     const target = byId.get(id); if (!target) return;
     state.opener = document.activeElement;
+    if (!target.candidateDeityIds.some(deityVisible)) {
+      state.layers[target.candidateCollections[0]] = true;
+      renderLayerState();
+    }
     if (!state.visible.some(t => t.id === id)) resetFilters();
     state.selected = id; state.unlocated = null;
     if (!state.markers) setMarkers(true);
-    renderPanel(target); updateSelectionAppearance(); focusTarget(target); closeBrowse();
+    setExpanded(false); renderPanel(target); updateSelectionAppearance(); focusTarget(target); closeBrowse();
     if (push) setHash(`#${encodeURIComponent(id)}`);
     announce(`${shortLabel(target)}. ${targetStatus(target)}. Details and artwork available.`);
     if (focusPanel) $('detail-content').querySelector('h2').focus({ preventScroll: true });
@@ -276,9 +299,10 @@
     let closest = null, distance = Infinity;
     for (const t of state.visible) {
       if (!state.markers && t.id !== state.selected) continue;
-      for (const id of t.observationIds) {
-        const o = observations.get(id), d = Math.hypot(point.x - o.x * SIZE, point.y - o.y * SIZE) * c.scale * screenScale();
-        const hitRadius = Math.max(24, (o.approximateVisibleOutlineRadiusPixels || 22) * c.scale * screenScale() + 6);
+      const points = t.designLocation ? [t.designLocation] : t.observationIds.map(id => observations.get(id)).filter(o => o.observationalStatus === 'observed-circle');
+      for (const o of points) {
+        const d = Math.hypot(point.x - o.x * SIZE, point.y - o.y * SIZE) * c.scale * screenScale();
+        const hitRadius = Math.max(24, (o.approximateVisibleOutlineRadiusPixels || (t.designLocation ? 26 : 22)) * c.scale * screenScale() + 6);
         if (d <= hitRadius && d < distance) { distance = d; closest = t; }
       }
     }
@@ -304,7 +328,15 @@
   $('markers-toggle').addEventListener('click', () => setMarkers(!state.markers));
   $('clear-filters').addEventListener('click', resetFilters);
   $('search').addEventListener('input', applyFilters);
-  for (const id of ['group-filter', 'direction-filter', 'collection-filter']) $(id).addEventListener('change', applyFilters);
+  for (const id of ['group-filter', 'direction-filter']) $(id).addEventListener('change', applyFilters);
+  for (const name of ['peaceful', 'wrathful']) $(`layer-${name}`).addEventListener('change', event => setLayers({ [name]: event.target.checked }));
+  $('palace-only').addEventListener('click', () => { const show = !state.layers.peaceful && !state.layers.wrathful; setLayers({ peaceful: show, wrathful: show }); });
+  function setExpanded(expanded) {
+    document.body.classList.toggle('map-expanded', expanded);
+    $('expand-map').setAttribute('aria-pressed', String(expanded));
+    $('expand-map').textContent = expanded ? 'Restore panels' : 'Expand view';
+  }
+  $('expand-map').addEventListener('click', () => setExpanded(!document.body.classList.contains('map-expanded')));
   $('browse-toggle').addEventListener('click', () => { const open = $('browse').classList.toggle('open'); $('browse-toggle').setAttribute('aria-expanded', String(open)); if (open) $('search').focus(); });
   document.addEventListener('click', event => {
     const button = event.target.closest('button'); if (!button) return;
@@ -330,11 +362,13 @@
   window.addEventListener('popstate', restoreHash);
   $('painting').addEventListener('error', () => { $('map-error').hidden = false; $('map-error').textContent = 'The mandala image could not load. Restore assets/mandala.jpeg; the location list and evidence panels remain available.'; });
   $('view-toggle').addEventListener('click', () => {
-    const painting = $('painting'); const showPainting = painting.style.display === 'none';
+    const painting = $('painting'); const showPainting = !state.painting;
+    state.painting = showPainting;
     painting.style.display = showPainting ? '' : 'none'; $('diagram').style.display = showPainting ? 'none' : '';
     $('view-toggle').textContent = showPainting ? 'Drawn mandala' : 'Original painting';
     $('view-toggle').setAttribute('aria-pressed', String(showPainting));
+    renderLayerState();
   });
-  makeMarkers(); showWelcome(); applyFilters(); renderCamera(); restoreHash();
+  makeMarkers(); renderLayerState(); showWelcome(); applyFilters(); renderCamera(); restoreHash();
   new ResizeObserver(renderCamera).observe(stage);
 })();

@@ -4,8 +4,8 @@
   "artifacts": [
     {
       "path": "assets/diagram.svg",
-      "bytes": 17677,
-      "sha256": "25ce5da16083eaa30557d62d4644471b56db5798910f7d60569dde9ad1e0b75b"
+      "bytes": 144923,
+      "sha256": "75931743fee692e7eb44e0df277b6efa529602882216ffeb163e4643dada6b70"
     },
     {
       "path": "assets/mandala.jpeg",
@@ -124,33 +124,33 @@
     },
     {
       "path": "../assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
-      "bytes": 65480,
-      "sha256": "8b758c3e5a04272d655a7a46da23f1845cdfafc9a86c470d6e8d9a3fa17e9118"
+      "bytes": 537004,
+      "sha256": "bf6ef9874d71f16994d6235f39e3dde08a8a8466124154f9392b9b476f92e841"
     },
     {
       "path": "../assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
-      "bytes": 67672,
-      "sha256": "ea8dd006c9b963ce962361951a497e416584721bc1d75fdef8b3ad9f6a5fc55b"
+      "bytes": 535756,
+      "sha256": "9714eb97991942d87f1f5ac6d35d9ead2c101e3a77beb7a3738a063f14f42e4b"
     },
     {
       "path": "../assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
-      "bytes": 67598,
-      "sha256": "5887c56781e634698fef7546823e184b064cdc6c8c2fea881779c2f7550a466b"
+      "bytes": 446390,
+      "sha256": "d8c60c2f95427fb652c0576f853abcb2052aafe4209cad012329e047cd7978d0"
     },
     {
       "path": "../assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
-      "bytes": 64966,
-      "sha256": "eb0fadce96a78ab2c3cdec1c29a7d11f0866e0918ce0d8ab474dad4f6dd40f23"
+      "bytes": 515904,
+      "sha256": "9e3eaee734e717966c5e565edfc527520dd025fb7b84968e163c668473ae592a"
     },
     {
       "path": "../assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
-      "bytes": 84794,
-      "sha256": "ae8605038ae8bd1b77ec793213bf0e40fbdb9b1c4a68fe386325499278de2e4c"
+      "bytes": 493390,
+      "sha256": "444765ea36d8c7b7b1bc9a62ecda286c063618b33c403391f17e0262831f1bde"
     },
     {
       "path": "../assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
-      "bytes": 77330,
-      "sha256": "ed9a9516a4fc0042c1558ded8dbb612699a7c77962bc3a0ce5d6314d4cac8583"
+      "bytes": 517210,
+      "sha256": "e1e62bc9154e6e35236a49a2a08884d2a7c43b2a014cfd55c085f7c60ef5239e"
     },
     {
       "path": "../assets/deities/images/zhiwa/35-vijaya-gatekeeper.webp",
