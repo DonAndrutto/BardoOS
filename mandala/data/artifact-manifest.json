@@ -1,0 +1,461 @@
+{
+  "kind": "integrated-mandala-assets",
+  "repositoryCommit": "f4858e792782b3ebb199ca5655d519fc4beff0f9",
+  "artifacts": [
+    {
+      "path": "assets/diagram.svg",
+      "bytes": 17677,
+      "sha256": "25ce5da16083eaa30557d62d4644471b56db5798910f7d60569dde9ad1e0b75b"
+    },
+    {
+      "path": "assets/mandala.jpeg",
+      "bytes": 3155856,
+      "sha256": "8428c0acf8c37f4b173faa110fa7ecbe90da52128588a38f245d36756bd47a4b"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/01-02-samantabhadra-and-samantabhadri.webp",
+      "bytes": 101978,
+      "sha256": "d4b04197f90f790fa2c64716502d8315b6f130acf89a3d7c12c726e1f9a1a6bf"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/03-04-vairochana-and-dhatvishvari.webp",
+      "bytes": 108200,
+      "sha256": "7cd3600f1cd3147f1be6b1fe2810e1369cbaa18313c2c1a48edd53517bf34669"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/05-06-akshobhya-and-buddhalochana.webp",
+      "bytes": 93738,
+      "sha256": "f2c43a16970ff0180416fe1fd22479622a9bdbcb1b250147c2bec1e9259e44d1"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/07-08-ratnasambhava-and-mamaki.webp",
+      "bytes": 94704,
+      "sha256": "3ec24ece182481787fbe6c28124b67e960e590bcd65a0c075a7dbb4c6ee37056"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/09-10-amitabha-and-pandaravasini.webp",
+      "bytes": 111628,
+      "sha256": "d0c96d5252ee9e20ec4f726fa24f2fb6f4100849adb02e2d99026201d12b97b9"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/11-12-amoghasiddhi-and-samayatara.webp",
+      "bytes": 107896,
+      "sha256": "3b6741face8012a8b8f9075a2376af1a499f2332a5ab3404341e01c7068b4aaf"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/13-kshitigarbha.webp",
+      "bytes": 100590,
+      "sha256": "ed5747e1138e105b8ffa3e9aac096b1100d525392951cefcf262225349c6d0be"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/14-maitreya.webp",
+      "bytes": 104650,
+      "sha256": "b5fc92b2591616b59b61f3ab8e08d2fa46320e2c82c933ac9ea6462b4d3dd0d5"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/15-samantabhadra-bodhisattva.webp",
+      "bytes": 104792,
+      "sha256": "03fd4b1c57f6b49cebea74d54fde672ed419acf065d47961c39bee68bd156726"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/16-akashagarbha.webp",
+      "bytes": 107450,
+      "sha256": "1593610f87505e84224a109856cc15c36fc05ee745fb7cdf0f39cd72fe983259"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/17-avalokiteshvara.webp",
+      "bytes": 113056,
+      "sha256": "7453eb591b09b672aaf5a2daf52f8747b9100f66bda52140e2436b5d69a0a8d2"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/18-manjushri.webp",
+      "bytes": 104904,
+      "sha256": "7091033d7b6036f7584c03f6f5a0335364d52248944949882fcc67a0f7b4d339"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/19-sarvanivaranavishkambhin.webp",
+      "bytes": 114554,
+      "sha256": "f9181475ac4c09d2e1220736b21b75eab80e134052183327ab83325bdb622d11"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/20-vajrapani.webp",
+      "bytes": 114514,
+      "sha256": "9ef677c06f6931934e9274b0debc71badb11e660efbd03715eaf5e0bde772c18"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/21-goddess-of-beauty-with-mirror.webp",
+      "bytes": 117544,
+      "sha256": "6f5be6afdb64b04347427634c57bdf08f0a3caeba77f68fe99f81d3377c78e84"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/22-goddess-of-flowers.webp",
+      "bytes": 120438,
+      "sha256": "dd1c8c7f7ef2471d4bf838030fb159c32c3a7fd6b5565ab43807ec5378932267"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/23-goddess-of-garlands.webp",
+      "bytes": 123386,
+      "sha256": "f9cf16f9e5f37c7323ebb2f53a988ba5fcf68fa827d9fcb32e905fc16df9cd1f"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/24-goddess-of-incense.webp",
+      "bytes": 123194,
+      "sha256": "cf26cd41fdeec1a7ef8173be6c366c55078ee5ee734197148dc3b8128186c790"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/25-goddess-of-song.webp",
+      "bytes": 97004,
+      "sha256": "5fab5e8a9b0388fc4444afe5de5edb1bcde752474c8de9a2ea89986e8bfcaf79"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/26-goddess-of-light.webp",
+      "bytes": 80098,
+      "sha256": "cd4ad069ca831bc5589c38cefbaadd0844dd3fef862487828b134400f0485b52"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/27-goddess-of-perfume.webp",
+      "bytes": 123354,
+      "sha256": "7e0752a6ae8ed58ca736ee4c3b37a54db226377babdd765968cb5775a68c7bab"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/28-goddess-of-food-and-taste.webp",
+      "bytes": 114506,
+      "sha256": "f1a940a9641f335e4e87fd8ea55c992dcaf4270b1793dba74d000d9e801640b5"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/29-indra-kaushika-buddha-of-the-god-realm.webp",
+      "bytes": 65480,
+      "sha256": "8b758c3e5a04272d655a7a46da23f1845cdfafc9a86c470d6e8d9a3fa17e9118"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/30-vemachitra-buddha-of-the-demi-god-realm.webp",
+      "bytes": 67672,
+      "sha256": "ea8dd006c9b963ce962361951a497e416584721bc1d75fdef8b3ad9f6a5fc55b"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/31-shakyamuni-buddha-of-the-human-realm.webp",
+      "bytes": 67598,
+      "sha256": "5887c56781e634698fef7546823e184b064cdc6c8c2fea881779c2f7550a466b"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/32-sthirasimha-buddha-of-the-animal-realm.webp",
+      "bytes": 64966,
+      "sha256": "eb0fadce96a78ab2c3cdec1c29a7d11f0866e0918ce0d8ab474dad4f6dd40f23"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/33-jvalamukha-buddha-of-the-hungry-ghost-realm.webp",
+      "bytes": 84794,
+      "sha256": "ae8605038ae8bd1b77ec793213bf0e40fbdb9b1c4a68fe386325499278de2e4c"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/34-dharmaraja-buddha-of-the-hell-realm.webp",
+      "bytes": 77330,
+      "sha256": "ed9a9516a4fc0042c1558ded8dbb612699a7c77962bc3a0ce5d6314d4cac8583"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/35-vijaya-gatekeeper.webp",
+      "bytes": 135414,
+      "sha256": "e7080af1ba5127f841abad54f20d9b0c4bbcc45ef4d5bfc4698c05512283a40a"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/36-yamantaka-gatekeeper.webp",
+      "bytes": 138312,
+      "sha256": "fa95bd53a59a9d7bcdffe4117042668044e44a8d126e4c03cf46663407d6f8d7"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/37-hayagriva-gatekeeper.webp",
+      "bytes": 140908,
+      "sha256": "cc438e84d183bddd1704cca251e8ba1b03b798a3ca6e9f9d835c080857aedcb4"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/38-amritakundali-gatekeeper.webp",
+      "bytes": 128092,
+      "sha256": "a60f967982d6bc5fee3255ffbf0a6d885875be455439a99f7783d88634534b74"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/39-ankusha-female-gatekeeper.webp",
+      "bytes": 134034,
+      "sha256": "f0b734ecaaa852f3b10e068253a18f8c0bb5bf281918f7713a62868137b1f146"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/40-pasha-female-gatekeeper.webp",
+      "bytes": 121768,
+      "sha256": "6b492830d432c8eb3a9895885c47488bdda08214811939237f82685f3613d149"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/41-shrinkhala-female-gatekeeper.webp",
+      "bytes": 119906,
+      "sha256": "f9cb482641f78dadffd285458f939d64cb0bc51b6cafaaade8c7c25591280b15"
+    },
+    {
+      "path": "../assets/deities/images/zhiwa/42-ghanta-female-gatekeeper.webp",
+      "bytes": 122440,
+      "sha256": "5f00025e28346247b5307357c6009d5979e58183b8919ab3d907210af436b78c"
+    },
+    {
+      "path": "../assets/deities/images/trowa/01-02-buddha-heruka-and-buddha-krodhishvari.webp",
+      "bytes": 114648,
+      "sha256": "bac2fe2c63ba2bf843b2a68eebd9faca628759a4804fd29a030fbe112b6793ee"
+    },
+    {
+      "path": "../assets/deities/images/trowa/03-04-vajra-heruka-and-vajra-krodhishvari.webp",
+      "bytes": 119228,
+      "sha256": "0c80056ce2ab512a9d2ed8a570627fb466c56ebeca91a338de6d3419e96c13d5"
+    },
+    {
+      "path": "../assets/deities/images/trowa/05-06-ratna-heruka-and-ratna-krodhishvari.webp",
+      "bytes": 112768,
+      "sha256": "1e9093bfec2576b77cf2a13ce4c88f17c9f78882bf411fb6c8f92575e1368fe8"
+    },
+    {
+      "path": "../assets/deities/images/trowa/07-08-padma-heruka-and-padma-krodhishvari.webp",
+      "bytes": 110254,
+      "sha256": "4d83197f13af74aadf10a2e351be5ae16c6da497790b69c3343b419f960300a5"
+    },
+    {
+      "path": "../assets/deities/images/trowa/09-10-karma-heruka-and-karma-krodhishvari.webp",
+      "bytes": 118800,
+      "sha256": "fba52e26a0caa33f77772a203b6bd2bab2378543218e18cf51add6a5b35c667f"
+    },
+    {
+      "path": "../assets/deities/images/trowa/11-gauri.webp",
+      "bytes": 77152,
+      "sha256": "b4759c3ff81d7a741270828cbd154564e7ae57df44ba7728d22e36edc5319f91"
+    },
+    {
+      "path": "../assets/deities/images/trowa/12-chauri.webp",
+      "bytes": 75760,
+      "sha256": "3389a80f048b776cd500bc2cd2b4d9feb4780d929bdcdbe524b44c711ba6441d"
+    },
+    {
+      "path": "../assets/deities/images/trowa/13-pramoha.webp",
+      "bytes": 82362,
+      "sha256": "4376a1e531bca91f462fdb55e9c0969f3f26a9b108286a735bd32fadcd82ccb8"
+    },
+    {
+      "path": "../assets/deities/images/trowa/14-vetali.webp",
+      "bytes": 74668,
+      "sha256": "b3afa4ff99b588542b51a9965140b7c067d9121c05371a50f07dc96acd945e67"
+    },
+    {
+      "path": "../assets/deities/images/trowa/15-pukkasi.webp",
+      "bytes": 77430,
+      "sha256": "6173487852d721fc81c86917c4ede5d3347b14bcec0ad97b27e534ccd69dba7f"
+    },
+    {
+      "path": "../assets/deities/images/trowa/16-ghasmari.webp",
+      "bytes": 70392,
+      "sha256": "d16b9d279093c44cab7afd418d3d469b8bb650941adbec1452d2859cdda1e1b2"
+    },
+    {
+      "path": "../assets/deities/images/trowa/17-chandali.webp",
+      "bytes": 74312,
+      "sha256": "cbc81bb63f36de90ea5e39a393d2a06336b6ff3e56eeb8145e5eb2c41bc04f1c"
+    },
+    {
+      "path": "../assets/deities/images/trowa/18-shmashani.webp",
+      "bytes": 74360,
+      "sha256": "cb4f7e65ef1e7b7d4de7200cf4e38beb82f199a06cbbbead74556ca5ddc363b8"
+    },
+    {
+      "path": "../assets/deities/images/trowa/19-simhamukhi.webp",
+      "bytes": 75460,
+      "sha256": "21b1d802e346e273c6e277c8679ac40e2c6be49764bb78325ceba0549ab68772"
+    },
+    {
+      "path": "../assets/deities/images/trowa/20-vyaghrimukhi.webp",
+      "bytes": 63200,
+      "sha256": "a412ae829f419a21dec2935f4c9835d01e546dad20cb2f0cf268c3c60c8ee18e"
+    },
+    {
+      "path": "../assets/deities/images/trowa/21-shrgalamukhi.webp",
+      "bytes": 69318,
+      "sha256": "c2a7528c69db2d5a03a7dbe63d51b6bf0dc8a15cfc15f048724331b535cfbc5a"
+    },
+    {
+      "path": "../assets/deities/images/trowa/22-shvanamukhi.webp",
+      "bytes": 68286,
+      "sha256": "0bd900c0ff18cb50943cd7ab2060e697c1a0d70dca0f2499cdd62dd428a9f590"
+    },
+    {
+      "path": "../assets/deities/images/trowa/23-grdhramukhi.webp",
+      "bytes": 72596,
+      "sha256": "443db9caf446a4d4bd0f81ec232396e72fda43b6db4b3402d192eb774f3d775e"
+    },
+    {
+      "path": "../assets/deities/images/trowa/24-kankamukhi.webp",
+      "bytes": 67292,
+      "sha256": "976e67db4e37d14ef567f2016d5694bf7975af87f15c89be15dc0e499e43bbfd"
+    },
+    {
+      "path": "../assets/deities/images/trowa/25-kakamukhi.webp",
+      "bytes": 74414,
+      "sha256": "e3f74a974b28be9b51167c655966e373172d1f2a710ec4aae44641ac341dd353"
+    },
+    {
+      "path": "../assets/deities/images/trowa/26-ulukamukhi.webp",
+      "bytes": 71836,
+      "sha256": "444388d23f50b1ee7ee8e2670746528e3f4efc8f0fef991874d1fdced2f0e997"
+    },
+    {
+      "path": "../assets/deities/images/trowa/27-ankusha.webp",
+      "bytes": 81178,
+      "sha256": "e23bef898dc280f37c286c7e6bb59f93f097fba1a6d854e951fc36bf10bc9fb1"
+    },
+    {
+      "path": "../assets/deities/images/trowa/28-pasha.webp",
+      "bytes": 75706,
+      "sha256": "327a54ee55df14372fa6a46a6415ae9d3db80d538d8bd71d226ef8f355c2b8be"
+    },
+    {
+      "path": "../assets/deities/images/trowa/29-sphota.webp",
+      "bytes": 81042,
+      "sha256": "11abd0d3ecf2c9b1e4657c99cdda63614fad7f3c15d0f086eda1c203f52c8c61"
+    },
+    {
+      "path": "../assets/deities/images/trowa/30-ghanta.webp",
+      "bytes": 82746,
+      "sha256": "91d9db53bff0e88d4698c593de926dcec703652b4d70098fb52a7199d974ff9a"
+    },
+    {
+      "path": "../assets/deities/images/trowa/31-rakshasi-east.webp",
+      "bytes": 63964,
+      "sha256": "30c4ef3e795f82641855bce422ab75683886315fc73ddb698e553e8878d8cb30"
+    },
+    {
+      "path": "../assets/deities/images/trowa/32-brahmani.webp",
+      "bytes": 59452,
+      "sha256": "40668a790b215a51d5103beab22ed6c2794806104883e8c2906dc41614401462"
+    },
+    {
+      "path": "../assets/deities/images/trowa/33-mahadevi.webp",
+      "bytes": 62482,
+      "sha256": "81c9eb2946a12728e812d193621fc715ce254b3efff8798e4f80219ac13221ce"
+    },
+    {
+      "path": "../assets/deities/images/trowa/34-vaishnavi.webp",
+      "bytes": 63212,
+      "sha256": "9ca51a7bef96644c205f02752ba7750d36d8aa88fa5c534dc546565e1a6e5ba4"
+    },
+    {
+      "path": "../assets/deities/images/trowa/35-kaumari.webp",
+      "bytes": 62120,
+      "sha256": "90d848c1223f0070c09ec1307e4bfe031ea6a39984c23c24e66972914cd6106e"
+    },
+    {
+      "path": "../assets/deities/images/trowa/36-indrani.webp",
+      "bytes": 70756,
+      "sha256": "924255e2ef918c288b303fa388a9a9b126f7c748f6f2d00a9338a5fe844781c7"
+    },
+    {
+      "path": "../assets/deities/images/trowa/37-rati-south.webp",
+      "bytes": 61422,
+      "sha256": "3e9e15cd31adb53cc69e3d71561966fcc135ac638f9631684da1f56fdeaaa673"
+    },
+    {
+      "path": "../assets/deities/images/trowa/38-shanti.webp",
+      "bytes": 63590,
+      "sha256": "d3d4254a3e3fc8c7472773b086596da9ba3ac94a6d1f2e963139c875e815412a"
+    },
+    {
+      "path": "../assets/deities/images/trowa/39-amrita.webp",
+      "bytes": 68630,
+      "sha256": "ac52fe5efcbad1ffa90af13dc142664cb31532fef6a7608272c8fe103ae14165"
+    },
+    {
+      "path": "../assets/deities/images/trowa/40-saumi.webp",
+      "bytes": 65656,
+      "sha256": "f52a3a504085515740a42787dca5b8fb28c41775430ff0e3f44c2426c39b2ff6"
+    },
+    {
+      "path": "../assets/deities/images/trowa/41-dandi.webp",
+      "bytes": 67916,
+      "sha256": "dcf2b9cc9cc5a2594cd0297f820342ff43fedc90371481b74899a124b1fd0cd3"
+    },
+    {
+      "path": "../assets/deities/images/trowa/42-rakshasi-south.webp",
+      "bytes": 66004,
+      "sha256": "8c2f8fd680a59db4f098f61105416b3f3ea3b18f497c50a5dcef53af8abf529d"
+    },
+    {
+      "path": "../assets/deities/images/trowa/43-bhakshasi.webp",
+      "bytes": 63890,
+      "sha256": "9c4f666f095ac91bf78e2be56ea66ad6759a12f4741fb90af877b296cee76311"
+    },
+    {
+      "path": "../assets/deities/images/trowa/44-rati-west.webp",
+      "bytes": 63526,
+      "sha256": "1258a04c2ed102dceffb0f3cd7c424c6e83f9665f390c4a58696c786abbb879f"
+    },
+    {
+      "path": "../assets/deities/images/trowa/45-mahabala.webp",
+      "bytes": 67308,
+      "sha256": "f8dce63fcb1f704744b0636d4628b3b71fead2796cab05bf525054901df94fd1"
+    },
+    {
+      "path": "../assets/deities/images/trowa/46-rakshasi-west.webp",
+      "bytes": 65018,
+      "sha256": "e241f7627bceb81cc92361247974a76c0cfc7dfe788f4ebdf752b890bb8a60cc"
+    },
+    {
+      "path": "../assets/deities/images/trowa/47-kama.webp",
+      "bytes": 65642,
+      "sha256": "529371807e18688db2cc81df49566909497722bb58557c2d9018a66d66e1bf59"
+    },
+    {
+      "path": "../assets/deities/images/trowa/48-vasurakshita.webp",
+      "bytes": 60830,
+      "sha256": "a9b16b9864b4c98602cf6a24348ca0c2e6d534a332966f75dad32b383e2c28b2"
+    },
+    {
+      "path": "../assets/deities/images/trowa/49-vayudevi.webp",
+      "bytes": 60378,
+      "sha256": "7ea7d02cdf1c42bfdafb5cc7659fe6864e53417a9158857104e40c7b19cfc469"
+    },
+    {
+      "path": "../assets/deities/images/trowa/50-nari.webp",
+      "bytes": 55468,
+      "sha256": "019e44774c747028efae7479658a469bb2aea3a28acde8b38991577cd4377be6"
+    },
+    {
+      "path": "../assets/deities/images/trowa/51-varahi.webp",
+      "bytes": 58902,
+      "sha256": "6533cf1d9f6c4772bce4b907c04ef6341cd228873df0ab9ef784af8a55fbab02"
+    },
+    {
+      "path": "../assets/deities/images/trowa/52-chamundi.webp",
+      "bytes": 62048,
+      "sha256": "5eff8b2362a38b0e3f713b304263c928ab306f727a87755bed4fad246997d0dd"
+    },
+    {
+      "path": "../assets/deities/images/trowa/53-mahanasa.webp",
+      "bytes": 60756,
+      "sha256": "85d073fe4096b8ca98948cab61afe1707a1aac613c47792015e43a834ebc52b8"
+    },
+    {
+      "path": "../assets/deities/images/trowa/54-varuni.webp",
+      "bytes": 58660,
+      "sha256": "3af1ae900167faf8661ba8d94ce80d9abfe0b981f9bc920f5ebbb50be2c3447d"
+    },
+    {
+      "path": "../assets/deities/images/trowa/55-mahakali.webp",
+      "bytes": 81894,
+      "sha256": "ffb63a90ff39e10b845689d447dc65db961e485c9c835ee4cdd10e786f22074f"
+    },
+    {
+      "path": "../assets/deities/images/trowa/56-mahachagala.webp",
+      "bytes": 83276,
+      "sha256": "23e0b913d7b8216546a7c9cb6fcc5e56f6697961fa9a90ac320862c29694655c"
+    },
+    {
+      "path": "../assets/deities/images/trowa/57-mahakumbhakarni.webp",
+      "bytes": 82398,
+      "sha256": "30bc7fe0f65c649be17d53ffff498398db7a40f9690d8369f9aac9ffdc007e6b"
+    },
+    {
+      "path": "../assets/deities/images/trowa/58-lambodara.webp",
+      "bytes": 79630,
+      "sha256": "8df4d42bbb1f5f33baf198c7d5d2c5275653f27d56138b711c5c4a557a92cd47"
+    }
+  ]
+}
