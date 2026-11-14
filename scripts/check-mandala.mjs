@@ -35,6 +35,18 @@ const svgIds=[...diagram.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(new Set(svgIds).size,svgIds.length,'SVG definitions must have unique IDs');
 for(const m of diagram.matchAll(/href="#([^"]+)"/g))assert(svgIds.includes(m[1]),`Missing drawing symbol ${m[1]}`);
 for(const layer of ['fire-ring','vajra-fence','water-wind','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
+const lotus = diagram.slice(diagram.indexOf('id="inner-lotuses"'));
+const lotusBands = [...lotus.matchAll(/data-inner-lotus-band="([^"]+)"[^]*?(?=data-inner-lotus-band=|<\/svg>)/g)];
+assert.deepEqual(lotusBands.map(([markup, name]) => [
+ name, Array.from(markup.matchAll(/transform="rotate\(([0-9]+)\)" data-lotus-petal/g), match => Number(match[1])),
+]), [
+ ['outer-green', [30, 90, 150, 210, 270, 330]],
+ ['orange', [0, 45, 90, 135, 180, 225, 270, 315]],
+ ['inner-green', [0, 45, 90, 135, 180, 225, 270, 315]],
+ ['family', [0, 90, 180, 270]],
+]);
+assert.deepEqual(Array.from(lotus.matchAll(/data-family-color="([^"]+)"/g), match => match[1]),
+ ['green', 'blue', 'green', 'blue']);
 const gateOrnaments = diagram.matchAll(/<g data-gate="([^"]+)"[^>]+>([^]*?)<\/g>/g);
 assert.deepEqual([...gateOrnaments].map(([, direction, content]) => [
  direction, Array.from(content.matchAll(/data-ornament="([^"]+)"/g), match => match[1]),

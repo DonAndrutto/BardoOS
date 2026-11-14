@@ -2,13 +2,14 @@
 // Geometry is illustrative. Observed deity marks live in app.js, never in this
 // background: turning off an assembly must remove its marks as well as its UI.
 import { center } from '../mandala/layout.mjs';
+import { drawInnerLotus, innerLotusDefs } from './draw-inner-lotus.mjs';
 import { drawPalaceScrollwork } from './draw-palace-scrollwork.mjs';
 import { drawGateCrown, drawGateSurround, palaceGateDefs } from './draw-palace-gates.mjs';
 import { drawProtectiveRings, protectiveRingDefs } from './draw-protective-rings.mjs';
 
 export function drawMandala() {
   const [c, cy] = center;
-  const ink = '#37352c', gold = '#dec27c';
+  const ink = '#37352c';
   const s = [];
   const add = x => s.push(x);
   const circle = (r, fill, stroke = ink, width = 3) => add(`<circle r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${width}"/>`);
@@ -42,17 +43,7 @@ export function drawMandala() {
     <pattern id="cloth" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 1H9M1 0V9" stroke="#f6e5b3" stroke-width=".8" opacity=".11"/></pattern>
     <clipPath id="interior-field"><path d="${interiorSector}"/></clipPath>
     <clipPath id="garland-frieze"><path d="${contour(wallBands[2].points)}"/></clipPath>
-    <g id="vajra-tip" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4-4H9L12-7V7L9 4H4Z" fill="#bb9452" stroke="#edcf85" stroke-width="1.4"/>
-      <path d="M12-5C17-13 26-13 32-1Q24-6 19-3L13-1M12 5C17 13 26 13 32 1Q24 6 19 3L13 1" fill="#c9a460" stroke="#f1d18b" stroke-width="1.4"/>
-      <path d="M12 0H33" stroke="#f1d18b" stroke-width="1.6"/>
-    </g>
-    <g id="vajra">
-      <path d="M-35 0H35" stroke="#272a25" stroke-width="4.5" stroke-linecap="round"/>
-      <use href="#vajra-tip"/><use href="#vajra-tip" transform="scale(-1 1)"/>
-      <ellipse rx="5.5" ry="6.5" fill="#d4ac64" stroke="#f1d18b" stroke-width="1.5"/>
-      <path d="M-1-3Q3 0-1 3" fill="none" stroke="#87623b" stroke-width="1.2"/>
-    </g>
+    ${innerLotusDefs}
     <g id="wall-garland" fill="none" stroke="#ddc389" stroke-linecap="round">
       <path d="M-41 0C-40 55 40 55 41 0M-34 0C-33 43 33 43 34 0" stroke-width="2.8"/>
       <path d="M-46 0C-45 72 45 72 46 0" stroke-width="4.8" stroke-dasharray="1 8"/>
@@ -123,20 +114,7 @@ export function drawMandala() {
   add('</g>');
   for (const [i, dir] of sides.entries()) drawGateCrown(dir, i * 90, { add, use });
 
-  add('<g id="inner-lotuses">');
-  circle(519,'#293f33',gold,5);
-  for(let i=0;i<64;i++) use('vajra',`rotate(${i*5.625}) translate(0 -508) scale(.48 .52)`);
-  circle(498,'#388f6b');
-  const petals=(inner,outer,n,color)=>{
-    for(let i=0;i<n;i++) add(`<path transform="rotate(${i*360/n})" d="M${point(inner,-90-180/n)} Q${point(outer+35,-90-180/n)} ${point(outer,-90)} Q${point(outer+35,-90+180/n)} ${point(inner,-90+180/n)} A${inner} ${inner} 0 0 0 ${point(inner,-90-180/n)}Z" fill="${typeof color==='function'?color(i):color}" stroke="#343b2c" stroke-width="3"/>`);
-  };
-  petals(437,497,8,'#4b9c70');circle(442,'#bb6047');circle(428,'#dc813d');
-  petals(342,427,8,'#dc813d');circle(341,'#bd5b44');circle(327,'#3f9b72');
-  petals(245,327,8,'#429e73');circle(247,'#d18642');circle(227,'#d3c36f');
-  // The painting's four large green/blue petals are deliberately preserved;
-  // directional family colours belong to the square palace fields outside.
-  for(let i=0;i<4;i++) add(`<path transform="rotate(${i*90})" d="M-58-96C-111-124-132-182-95-209C-60-234 60-234 95-209C132-182 111-124 58-96Z" fill="${i%2?'#2d83a2':'#39956b'}" stroke="#343b2c" stroke-width="4"/>`);
-  circle(121,'#d38543');circle(103,'#e1dfba','#74512e',4);
-  add('</g><circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>');
+  drawInnerLotus({ add, circle, use, point });
+  add('<circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>');
   return s.join('\n');
 }
