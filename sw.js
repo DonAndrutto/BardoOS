@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v36-mandala-palace-scrollwork';
+const VERSION = 'bardo-os-v37-mandala-protective-rings';
 
 const PRECACHE = [
   // Mandala preview assets

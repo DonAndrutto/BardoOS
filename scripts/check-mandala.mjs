@@ -40,7 +40,14 @@ assert.equal([...diagram.matchAll(/data-ornament="parasol"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-ornament="victory-banner"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-fire-panel="/g)].length,16);
 assert.equal([...diagram.matchAll(/data-ground="/g)].length,8);
-assert.equal([...diagram.matchAll(/data-ring-vajra="/g)].length,16);
+assert.equal([...diagram.matchAll(/data-ring-vajra="/g)].length,8);
+assert.equal([...diagram.matchAll(/data-ring-link="/g)].length,8);
+const fence = [...diagram.matchAll(/data-ring-position="([0-9.]+)">[^]*?data-ring-(vajra|link)=""/g)];
+assert.deepEqual(fence.map(([, angle, kind]) => [Number(angle), kind]), Array.from({length: 16}, (_, i) =>
+ [i * 22.5, i % 2 ? 'link' : 'vajra']));
+assert.equal([...diagram.matchAll(/data-fire-tongue="/g)].length,160);
+assert.equal([...diagram.matchAll(/data-water-gap="/g)].length,8);
+assert.equal([...diagram.matchAll(/data-lotus-crown="/g)].length,32);
 const observations = new Map(scene.observations.map(o => [o.id, o]));
 const layout = (target, painting = false) => markerLayout(target, observations, scene.image.width, painting);
 const central = Array.from(scene.selectionTargets).filter(t => t.group === 'central').flatMap(t => layout(t));
