@@ -1,26 +1,79 @@
 // Architectural reconstruction of the supplied Tsadra / Dzongsar reference.
 // Geometry is illustrative. Observed deity marks live in app.js, never in this
 // background: turning off an assembly must remove its marks as well as its UI.
+import { center } from '../mandala/layout.mjs';
+
 export function drawMandala() {
-  const c = 1605, cy = 1567;
+  const [c, cy] = center;
   const ink = '#37352c', gold = '#dec27c';
   const s = [];
   const add = x => s.push(x);
   const circle = (r, fill, stroke = ink, width = 3) => add(`<circle r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${width}"/>`);
   const point = (r, a) => [r * Math.cos(a * Math.PI / 180), r * Math.sin(a * Math.PI / 180)].map(n => n.toFixed(2)).join(' ');
   const use = (id, transform, extra = '') => add(`<use href="#${id}" transform="${transform}" ${extra}/>`);
-  const square = (a, g, e) => `M ${-a} ${-a} H ${-g} V ${-a-e} H ${g} V ${-a} H ${a} V ${-g} H ${a+e} V ${g} H ${a} V ${a} H ${g} V ${a+e} H ${-g} V ${a} H ${-a} V ${g} H ${-a-e} V ${-g} H ${-a} Z`;
-  const wall = (a, g, e, fill, stroke = ink, width = 3) => add(`<path d="${square(a,g,e)}" fill="${fill}" stroke="${stroke}" stroke-width="${width}"/>`);
+  const sides = ['west', 'north', 'east', 'south'];
+  const rotatePoint = ([x, y], turns) => [[x, y], [-y, x], [-x, -y], [y, -x]][turns];
+  // One side, including its gate return, generates the entire closed contour.
+  const edge = (a, neck, shoulder, head, end) => [
+    [-a, -a], [-neck, -a], [-neck, -shoulder], [-head, -shoulder],
+    [-head, -end], [head, -end], [head, -shoulder], [neck, -shoulder],
+    [neck, -a],
+  ];
+  const contour = side => 'M' + sides.flatMap((_, i) => side.map(p => rotatePoint(p, i).join(' '))).join('L') + 'Z';
+  const interior = edge(580, 68, 704, 132, 792);
+  const interiorSector = 'M0 0L' + [...interior, [580, -580]].map(p => p.join(' ')).join('L') + 'Z';
+  const wallBands = [
+    { fill: '#e5e7d8', points: edge(833, 257, 843, 257, 867) },
+    { fill: '#6fb6cb', points: edge(807, 234, 843, 234, 865) },
+    { fill: '#302d26', points: edge(773, 222, 841, 222, 857) },
+    { fill: '#dfc56a', points: edge(701, 204, 831, 204, 850) },
+    { fill: '#c65b44', points: edge(668, 183, 808, 183, 845) },
+    { fill: '#458f68', points: edge(605, 96, 730, 158, 821) },
+    { fill: '#a45a48', points: interior },
+  ];
   add(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3179 3179" role="img" aria-labelledby="title desc">
   <title id="title">Four-gated palace of the peaceful and wrathful mandala</title>
-  <desc id="desc">A drawn study of the supplied painting: coloured curling fire, vajra enclosure, eight schematic charnel-ground landscapes, lotus enclosure, four-coloured palace, nested lotus seats and central sanctuary. All four gates repeat the same inward-facing deer and eight-spoked Dharma wheel. Matching parasols flank the upper and lower gates; matching victory banners flank the side gates, following the painting. The landscapes are not identifications of a lineage-specific named set.</desc>
+  <desc id="desc">A drawn study of the supplied painting: coloured curling fire, a vajra enclosure, blue water and wind bands with eight schematic charnel-ground landscapes, lotus enclosure, four-coloured palace, nested lotus seats and central sanctuary. All four gates repeat the same inward-facing deer and eight-spoked Dharma wheel. Matching parasols flank the upper and lower gates; matching victory banners flank the side gates, following the painting. The landscapes are not identifications of a lineage-specific named set.</desc>
   <defs>
     <clipPath id="charnel-clip"><circle r="1413"/></clipPath>
     <pattern id="cloth" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 1H9M1 0V9" stroke="#f6e5b3" stroke-width=".8" opacity=".11"/></pattern>
-    <pattern id="scrolls" width="170" height="160" patternUnits="userSpaceOnUse"><path d="M-10 145C90 155 166 50 114 22C78 1 30 37 52 65C67 83 98 72 91 53C87 41 69 45 72 54M170 130C82 148 84 94 128 90C159 87 162 116 142 118M0 0C-10 50 30 53 35 90C43 134 5 140-8 120" fill="none" stroke="#f4d698" stroke-width="5" opacity=".48"/><path d="M-10 137C80 143 154 52 111 29C82 14 42 39 59 61" fill="none" stroke="#342f2b" stroke-width="2" opacity=".45"/></pattern>
-    <pattern id="pearls" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M0 8Q21 48 42 8M0 0Q21 40 42 0" fill="none" stroke="${gold}" stroke-width="2"/><circle cx="21" cy="28" r="3" fill="${gold}"/></pattern>
-    <g id="vajra" fill="none" stroke="${gold}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-25 0H25M-25 0C-16-2-19-12-8-7L-3 0L-8 7C-19 12-16 2-25 0M25 0C16-2 19-12 8-7L3 0L8 7C19 12 16 2 25 0M-25 0C-18-17-9-17-5-4M-25 0C-18 17-9 17-5 4M25 0C18-17 9-17 5-4M25 0C18 17 9 17 5 4"/><ellipse rx="5" ry="7" fill="${gold}"/>
+    <clipPath id="interior-field"><path d="${interiorSector}"/></clipPath>
+    <clipPath id="garland-frieze"><path d="${contour(wallBands[2].points)}"/></clipPath>
+    <radialGradient id="fire-tint" gradientUnits="userSpaceOnUse" r="1538"><stop offset=".946" stop-color="#633629" stop-opacity=".25"/><stop offset=".976" stop-color="#f1cb99" stop-opacity=".07"/><stop offset="1" stop-color="#fcdfae" stop-opacity=".68"/></radialGradient>
+    <radialGradient id="water" gradientUnits="userSpaceOnUse" r="1415"><stop offset=".9" stop-color="#347a9c"/><stop offset=".941" stop-color="#6eb9cd"/><stop offset=".977" stop-color="#498eaf"/><stop offset="1" stop-color="#285d81"/></radialGradient>
+    <g id="vajra-tip" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4-4H9L12-7V7L9 4H4Z" fill="#bb9452" stroke="#edcf85" stroke-width="1.4"/>
+      <path d="M12-5C17-13 26-13 32-1Q24-6 19-3L13-1M12 5C17 13 26 13 32 1Q24 6 19 3L13 1" fill="#c9a460" stroke="#f1d18b" stroke-width="1.4"/>
+      <path d="M12 0H33" stroke="#f1d18b" stroke-width="1.6"/>
+    </g>
+    <g id="vajra">
+      <path d="M-35 0H35" stroke="#272a25" stroke-width="4.5" stroke-linecap="round"/>
+      <use href="#vajra-tip"/><use href="#vajra-tip" transform="scale(-1 1)"/>
+      <ellipse rx="5.5" ry="6.5" fill="#d4ac64" stroke="#f1d18b" stroke-width="1.5"/>
+      <path d="M-1-3Q3 0-1 3" fill="none" stroke="#87623b" stroke-width="1.2"/>
+    </g>
+    <g id="wall-garland" fill="none" stroke="#ddc389" stroke-linecap="round">
+      <path d="M-41 0C-40 55 40 55 41 0M-34 0C-33 43 33 43 34 0" stroke-width="2.8"/>
+      <path d="M-46 0C-45 72 45 72 46 0" stroke-width="4.8" stroke-dasharray="1 8"/>
+      <path d="M-47 4l6 5m82 0 6-5M0 55v8" stroke-width="3.4"/>
+      <circle cy="60" r="2.7" fill="#e9d19b"/>
+    </g>
+    <g id="wall-flower" fill="none" stroke="#eac787" stroke-width="2.4">
+      ${Array.from({length: 8}, (_, i) => `<path transform="rotate(${i * 45})" d="M0-4C-13-11-11-23 0-22C11-23 13-11 0-4Z"/>`).join('')}
+      <circle r="5" fill="#eac787"/>
+      <path d="M-12 0C-28-16-48-14-46-5C-45 1-37 0-37-4M-12 0C-28 16-48 14-46 5C-45-1-37 0-37 4M12 0C28-16 48-14 46-5C45 1 37 0 37-4M12 0C28 16 48 14 46 5C45-1 37 0 37 4"/>
+    </g>
+    <g id="wall-corner" fill="none" stroke="#eac787" stroke-width="2.6">
+      <path d="M-23 14C-32 0-26-12-17-10C-8-8-9 6-18 5M-20-7C-22-20-9-24-4-16C0-9-5-2-12-4M-7-17C4-30 21-27 22-17C22-10 12-6 9-12M-21 16C-17 28 2 25 3 15C4 9-5 7-8 11M1 20C12 23 20 15 16 9C12 3 3 6 3 13M17 12L23 4M-14-22L-25-25"/>
+    </g>
+    <g id="field-scroll" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-68 34C-110 10-93-37-61-56C-26-77 25-72 51-49C85-20 71 26 35 40C7 52-24 37-25 16C-26-6 3-16 18-4C29 7 20 21 8 17C1 15 0 9 4 5" stroke="var(--scroll-ink)" stroke-width="6"/>
+      <path d="M-64 23C-99 0-74-41-45-52C-11-64 24-60 45-42C72-17 60 20 33 30C5 41-19 26-15 11" stroke="var(--scroll-light)" stroke-width="4"/>
+      <path d="M-94 10C-112 5-115-14-103-24C-91-32-80-20-88-12M-68 35C-55 37-45 53-58 60C-73 69-86 55-76 48M49 32C66 44 87 32 90 16C92 6 81 0 77 7" stroke="var(--scroll-ink)" stroke-width="4"/>
+    </g>
+    <g id="field-lobe" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-43 28C-66 14-54-13-36-18C-34-32-10-42 2-25C20-32 38-23 33-8C52 1 41 23 25 21C14 32-2 29-9 19C-17 31-34 31-43 28Z" fill="var(--scroll-light)" fill-opacity=".3" stroke="var(--scroll-ink)" stroke-width="3.4"/>
+      <path d="M-34 15C-35 2-22-5-15 2C-8 9-22 17-27 10M7 15C-6-4 6-14 15-10C21-6 19 1 14 3" fill="none" stroke="var(--scroll-ink)" stroke-width="3"/>
     </g>
     <linearGradient id="deer-gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9c37c"/><stop offset="1" stop-color="#bca15b"/></linearGradient>
     <linearGradient id="saffron-fold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e59a60"/><stop offset=".55" stop-color="#d5834e"/><stop offset="1" stop-color="#b9663d"/></linearGradient>
@@ -94,10 +147,6 @@ export function drawMandala() {
       <path d="M-29 10C-48 4-35-10-21-6Q-16-30-3-20Q-1-5 12-9Q29-22 39-15Q15-10 20 1Q10 12-7 7Q-15 19-29 10Z"/>
       <path d="M-25 5Q-14-8-5-3Q6 6 18-2" stroke="#edb473" fill="none"/>
     </g>
-    <g id="fire-seed" stroke="#745644" stroke-width="1.9" fill="#e2c592">
-      <path d="M0 12C-10 7-5-1 8-13C3-3 10 1 6 8Q4 12 0 12Z"/>
-      <path d="M1 7Q-2 3 4-5" fill="none" stroke="#a3694b" stroke-width="1.5"/>
-    </g>
   </defs>
   <rect width="3179" height="3179" fill="#263d56"/>
   <g transform="translate(${c} ${cy})" stroke-linejoin="round" stroke-linecap="round">`);
@@ -117,28 +166,48 @@ export function drawMandala() {
   const ribbonPath=(d,angle,radius,attrs)=>add(`<path d="${ribbon(d,angle,radius)}" ${attrs}/>`);
   const ringPlace=(id,x,y,angle,radius,extra='')=>use(id,`rotate(${angle+x/radius*180/Math.PI}) translate(0 ${-radius+y})`,extra);
 
-  // The painting uses broad coloured panels with inward curls and small flame
-  // seeds along their outer edge; the supplied 3D model clarifies this form.
-  add('<g id="fire-ring">');circle(1538,'#d5b68b','#544434',3);
-  const firePalette=[['#d98d53','#8b523b'],['#78aeb9','#3c7484'],['#d98468','#914b41'],['#8bb28c','#527c5c']];
-  for(let i=0;i<16;i++){
-    const a=i*22.5,[fill,stroke]=firePalette[i%4];
-    const from=a-101.25,to=a-78.75;
-    add(`<path d="M${point(1454,from)}A1454 1454 0 0 1 ${point(1454,to)}L${point(1538,to)}A1538 1538 0 0 0 ${point(1538,from)}Z" fill="${fill}" stroke="${stroke}" stroke-width="2.2" data-fire-panel="${i+1}"/>`);
-    for(const x of [-176,0,176]){
-      ribbonPath(`M${x-80} 1 C${x-107}-16 ${x-80}-47 ${x-32}-47 C${x+14}-49 ${x+70}-36 ${x+66}-17 C${x+64} 2 ${x+10} 1 ${x+5}-15 C${x-1}-29 ${x+31}-35 ${x+37}-22`,a,1454,`fill="none" stroke="${stroke}" stroke-width="3.1"`);
-      ribbonPath(`M${x-78}-6 C${x-92}-22 ${x-68}-40 ${x-32}-40 C${x+11}-43 ${x+55}-30 ${x+58}-17`,a,1454,`fill="none" stroke="#e7ce9c" stroke-width="1.6" opacity=".6"`);
+  // Feathered tongues and nested curls form the fire band. Each panel meets
+  // the same inner and outer boundaries, with a slanted seam in between.
+  add('<g id="fire-ring">');
+  const firePalette = [
+    ['#df9661', '#7a4837'], ['#6eacbf', '#294f6d'],
+    ['#d57c65', '#793e38'], ['#89ad85', '#42664f'],
+  ];
+  for (let i = 0; i < 16; i++) {
+    const angle = i * 22.5;
+    const [fill, stroke] = firePalette[i % firePalette.length];
+    const from = angle - 101.25, to = from + 22.5;
+    const panel = `M${point(1456, from)}A1456 1456 0 0 1 ${point(1456, to)}L${point(1538, to + 1.7)}A1538 1538 0 0 0 ${point(1538, from + 1.7)}Z`;
+    add(`<path d="${panel}" fill="${fill}" stroke="${stroke}" stroke-width="2.6" data-fire-panel="${i + 1}"/><path d="${panel}" fill="url(#fire-tint)"/>`);
+    for (const x of [-190, 0, 190]) {
+      ribbonPath(`M${x-83} 0 C${x-116}-24 ${x-61}-48 ${x-23}-48 C${x+30}-52 ${x+105}-29 ${x+79}-7 C${x+59} 9 ${x+14}-2 ${x+20}-20 C${x+24}-31 ${x+51}-29 ${x+56}-19`, angle, 1456, `fill="none" stroke="${stroke}" stroke-width="3"`);
+      ribbonPath(`M${x-67}-5 C${x-70}-28 ${x-24}-42 ${x+12}-36`, angle, 1456, 'fill="none" stroke="#f4d2a2" stroke-width="2" opacity=".65"');
     }
-    for(let j=0;j<8;j++) ringPlace('fire-seed',-246+j*70,-66,a,1454);
+    for (let j = 0; j < 11; j++) {
+      const x = -232 + j * 49;
+      ribbonPath(`M${x+14}-80 C${x+14}-67 ${x-16}-53 ${x-4}-47 C${x+11}-41 ${x+16}-59 ${x+7}-64`, angle, 1456, `fill="none" stroke="${stroke}" stroke-width="2.6"`);
+    }
   }
-  circle(1538,'none','#d7c39c',4);circle(1453,'none','#e4c681',5);
-  add('</g><g id="vajra-fence">');circle(1449,'#29332d','#8f784e',3);circle(1417,'none','#d3bd7b',3);
-  for(let i=0;i<96;i++){
-    ribbonPath('M-47 0Q-26 10 0 0Q26-10 47 0',i*3.75,1422,'fill="none" stroke="#ceb978" stroke-width="2"');
-    ribbonPath('M-47 0Q-26-10 0 0Q26 10 47 0',i*3.75,1441,'fill="none" stroke="#ceb978" stroke-width="2"');
+  circle(1538, 'none', '#e3c6a2', 4);
+  add('</g><g id="vajra-fence">');
+  circle(1455, '#2e2a25', '#9f814d', 3);
+  circle(1414, 'none', '#bca16a', 3);
+  // Point samples share exactly one start/end point at each turn.
+  for (const [r, phase] of [[1447, 0], [1420, Math.PI]]) {
+    const wave = Array.from({length: 96 * 8}, (_, i) =>
+      point(r + 3.7 * Math.sin(i * Math.PI / 4 + phase), i * 360 / (96 * 8)));
+    add(`<path d="M${wave.join('L')}Z" fill="none" stroke="#c7a76b" stroke-width="2.4"/>`);
   }
-  for(let i=0;i<16;i++) use('vajra',`rotate(${i*22.5}) translate(0 -1432) scale(1.65 .95)`);
-  add('</g><g id="charnel-grounds" clip-path="url(#charnel-clip)">');circle(1413,'#79b5c2');
+  for (let i = 0; i < 16; i++) use('vajra', `rotate(${i * 22.5}) translate(0 -1434) scale(1.55 1.15)`, 'data-ring-vajra=""');
+  add('</g><g id="charnel-grounds" clip-path="url(#charnel-clip)">');
+  circle(1413, 'url(#water)');
+  add('<g id="water-wind">');
+  for (let i = 0; i < 32; i++) {
+    const angle = i * 11.25;
+    ribbonPath('M-146 2C-85-24 29-28 146-2C51-16-30-7-87 21Z', angle, 1365, 'fill="#78b8cd" opacity=".62"');
+    ribbonPath('M-147 10C-75-10 39-25 145 2M-134 25C-77 13 8 0 88 10', angle, 1365, 'fill="none" stroke="#305e80" stroke-width="2.5" opacity=".9"');
+  }
+  add('</g>');
   // Eight low landscape sectors: the reference's green hills, striped pools,
   // clustered trees, coloured orbs and orange flame-like accents. The painting
   // supplies their visual vocabulary, but no named-ground key is asserted.
@@ -146,8 +215,8 @@ export function drawMandala() {
   for(let i=0;i<8;i++){
     const a=i*45,flip=i%2?-1:1;
     add(`<g data-ground="${i+1}">`);
-    ribbonPath('M-510 0L-510-98Q-365-134-220-103T65-111T340-106L510-99V0Z'.replace(/V0/,'L510 0'),a,1295,'fill="#b3d0bc" stroke="none"');
-    for(const [y,col] of [[-88,'#549ab2'],[-68,'#7dbdc8'],[-47,'#448ba6']]) ribbonPath(`M-510 ${y}Q-395 ${y-22}-279 ${y+3}T-35 ${y-2}T205 ${y+1}T510 ${y-8}`,a,1295,`fill="none" stroke="${col}" stroke-width="3"`);
+    ribbonPath('M-510 0L-510-98Q-365-134-220-103T65-111T340-106L510-99V0Z'.replace(/V0/,'L510 0'),a,1295,'fill="#b3d0bc" fill-opacity=".38" stroke="none"');
+    for(const [y,col] of [[-88,'#4a8eae'],[-68,'#97ccdb'],[-47,'#3d7b9b']]) ribbonPath(`M-510 ${y}Q-395 ${y-22}-279 ${y+3}T-35 ${y-2}T205 ${y+1}T510 ${y-8}`,a,1295,`fill="none" stroke="${col}" stroke-width="3"`);
     const hills=flip===1?'M-510 0Q-464-14-439-40C-410-70-389-95-364-78C-340-70-324-39-302-30Q-276-17-250-14C-211-21-188-116-146-105C-111-106-87-38-41-21C-4-3 31-25 47-49C68-74 87-92 107-71C126-48 138-21 169-17C205-10 221-33 247-66C271-106 289-102 309-75C333-45 355-38 392-27Q449-16 510 0Z':'M-510 0Q-468-10-438-31C-413-50-394-93-369-79C-347-68-329-30-302-23C-269-11-239-37-216-69C-195-101-173-112-153-87C-128-58-108-33-73-21C-34-6-3-27 18-58C47-99 70-115 98-82C123-50 142-27 179-19C216-14 235-35 259-63C288-92 305-79 328-49Q351-23 382-19Q446-5 510 0Z';
     ribbonPath(hills,a,1295,'fill="#92b88d" stroke="#3e5946" stroke-width="3.2"');
     const ridges=flip===1?'M-364-78Q-357-55-326-51M-146-105Q-151-73-117-65Q-93-60-89-45M107-71Q101-43 130-35M289-96Q282-59 320-52':'M-369-79Q-369-51-336-43M-177-103Q-184-71-150-62M70-103Q66-77 94-64Q119-52 118-40M283-78Q279-48 312-38';
@@ -171,7 +240,7 @@ export function drawMandala() {
   circle(1230,'#93b99a','#31473d',4);add('</g>');
 
   // Gate arches, paired parasols and repeated banners radiate from one design.
-  for(const [i,dir] of ['west','north','east','south'].entries()){
+  for(const [i,dir] of sides.entries()){
     add(`<g data-gate="${dir}" transform="rotate(${i*90})">`);
     add(`<path d="M-245-795V-1007C-245-1200 245-1200 245-1007V-795" fill="none" stroke="#594b36" stroke-width="20"/><path d="M-245-795V-1007C-245-1200 245-1200 245-1007V-795" fill="none" stroke="${['#ce8870','#87ac7d','#b8d4c9','#ddc77d'][i]}" stroke-width="13"/>`);
     for(const sign of [-1,1]){
@@ -189,20 +258,59 @@ export function drawMandala() {
   }
 
   add('<g id="palace-walls">');
-  wall(829,233,0,'#e5e9d5');wall(800,218,26,'#6baebc');wall(775,198,54,'#2d3830');
-  add(`<path d="${square(775,198,54)}" fill="url(#pearls)"/>`);
-  wall(716,181,112,'#d4bb64');wall(684,158,147,'#bd513b');wall(631,110,158,'#2c805a');wall(606,84,158,'#b7644e');
-  // Four square directional fields, with their T-shaped entrances.
-  for(const [i,color] of ['#c66e55','#478d65','#c8dbcf','#d4bc64'].entries()){
-    add(`<g transform="rotate(${i*90})"><path d="M0 0L-605-605H-84V-762H84V-605H605Z" fill="${color}"/><path d="M0 0L-605-605H-84V-762H84V-605H605Z" fill="url(#scrolls)"/></g>`);
+  for (const [index, { fill, points }] of wallBands.entries()) {
+    add(`<path d="${contour(points)}" fill="${fill}" stroke="#413a2c" stroke-width="3"/>`);
+    if (index !== 2) continue;
+    add('<g clip-path="url(#garland-frieze)">');
+    for (let side = 0; side < 4; side++) {
+      add(`<g transform="rotate(${side * 90})">`);
+      for (const x of [-734, -625, -516, -407, -298, 298, 407, 516, 625, 734]) {
+        use('wall-garland', `translate(${x} -773)`);
+      }
+      add('</g>');
+    }
+    add('</g>');
   }
-  // Red wall friezes carry matching vajras, rather than arbitrary flourishes.
-  for(let side=0;side<4;side++) for(const x of [-570,-390,-210,210,390,570]) use('vajra',`rotate(${side*90}) translate(${x} -657) scale(1.5)`);
+  const fieldColors = [
+    ['#c87460', '#783d36', '#e19a7b'],
+    ['#498965', '#2d654d', '#79a47c'],
+    ['#d9e2d3', '#4d87a7', '#a5c9d6'],
+    ['#d8bc67', '#836235', '#edcf88'],
+  ];
+  for (const [side, [fill, scrollInk, scrollLight]] of fieldColors.entries()) {
+    add(`<g transform="rotate(${side * 90})" clip-path="url(#interior-field)" style="--scroll-ink:${scrollInk};--scroll-light:${scrollLight}">`);
+    // The join strokes cover the shared edges. Clip scrolls to each field.
+    add(`<path d="${interiorSector}" fill="${fill}" stroke="${fill}" stroke-width="3"/>`);
+    for (const [x, y, turn, scale] of [
+      [-474, -533, -21, .78], [-291, -515, 12, 1.17],
+      [-109, -545, -26, .64], [106, -551, 26, .65],
+      [286, -505, -12, 1.17], [472, -533, 21, .77],
+      [-366, -434, 36, .62], [376, -435, -21, .64],
+      [-69, -752, -18, .56], [29, -712, 67, .66], [92, -755, 20, .4],
+    ]) use('field-scroll', `translate(${x} ${y}) rotate(${turn}) scale(${scale})`);
+    for (const [x, y, turn] of [
+      [-540, -557, -45], [-386, -555, 16], [-178, -567, -15],
+      [166, -565, 21], [402, -553, -14], [546, -553, 36],
+      [-457, -450, -27], [448, -448, 33],
+      [-30, -749, -15], [63, -770, 20],
+    ]) use('field-lobe', `translate(${x} ${y}) rotate(${turn}) scale(.61)`);
+    add('</g>');
+  }
+  add(`<path d="${contour(interior)}M-580-580L580 580M580-580L-580 580" fill="none" stroke="#493e32" stroke-width="2.4"/>`);
+  for (let side = 0; side < 4; side++) {
+    add(`<g transform="rotate(${side * 90})">`);
+    for (const x of [-366, 366]) use('wall-flower', `translate(${x} -640)`);
+    for (const sign of [-1, 1]) {
+      use('wall-corner', `translate(${sign * 638} -639) scale(${sign * .82} .82)`);
+      use('wall-corner', `translate(${sign * 119} -637) scale(${sign * .74} .74)`);
+    }
+    add('</g>');
+  }
   add('</g>');
-  for(const [i,dir] of ['west','north','east','south'].entries()){
+  for(const [i,dir] of sides.entries()){
     add(`<g transform="rotate(${i*90})" data-gate-crown="${dir}">`);
-    for(const [y,w,col] of [[-830,244,'#d9bc62'],[-862,211,'#3e8eab'],[-894,182,'#c85b40'],[-926,155,'#38845d']]) add(`<path d="M${-w} ${y}H${w}V${y-30}H${-w}Z" fill="${col}" stroke="#45402f" stroke-width="3"/>`);
-    add('<path d="M-100-830Q-133-875-72-888Q-39-958 0-937Q39-958 72-888Q133-875 100-830Z" fill="#26352e" stroke="#de9550" stroke-width="9"/>');
+    for(const [y,w,col] of [[-844,244,'#d9bc62'],[-874,211,'#3e8eab'],[-904,182,'#c85b40'],[-934,155,'#38845d']]) add(`<path d="M${-w} ${y}H${w}V${y-30}H${-w}Z" fill="${col}" stroke="#45402f" stroke-width="3"/>`);
+    add('<path d="M-100-839Q-133-875-72-888Q-39-958 0-937Q39-958 72-888Q133-875 100-839Z" fill="#26352e" stroke="#de9550" stroke-width="9"/>');
     use('vajra','translate(0 -881) rotate(90) scale(1.2)');
     use('wheel-and-deer','translate(0 -992)', 'data-ornament="wheel-and-deer"');
     // A small tiered finial behind the wheel echoes the original gate crown.
@@ -211,18 +319,18 @@ export function drawMandala() {
   }
 
   add('<g id="inner-lotuses">');
-  circle(533,'#293f33',gold,5);
-  for(let i=0;i<72;i++) use('vajra',`rotate(${i*5}) translate(0 -524) scale(.53 .5)`);
-  circle(512,'#388f6b');
+  circle(519,'#293f33',gold,5);
+  for(let i=0;i<64;i++) use('vajra',`rotate(${i*5.625}) translate(0 -508) scale(.48 .52)`);
+  circle(498,'#388f6b');
   const petals=(inner,outer,n,color)=>{
     for(let i=0;i<n;i++) add(`<path transform="rotate(${i*360/n})" d="M${point(inner,-90-180/n)} Q${point(outer+35,-90-180/n)} ${point(outer,-90)} Q${point(outer+35,-90+180/n)} ${point(inner,-90+180/n)} A${inner} ${inner} 0 0 0 ${point(inner,-90-180/n)}Z" fill="${typeof color==='function'?color(i):color}" stroke="#343b2c" stroke-width="3"/>`);
   };
-  petals(458,510,8,'#4b9c70');circle(463,'#bb6047');circle(445,'#dc813d');
-  petals(366,444,8,'#dc813d');circle(364,'#bd5b44');circle(348,'#3f9b72');
-  petals(245,348,8,'#429e73');circle(244,'#d18642');circle(222,'#d3c36f');
+  petals(437,497,8,'#4b9c70');circle(442,'#bb6047');circle(428,'#dc813d');
+  petals(342,427,8,'#dc813d');circle(341,'#bd5b44');circle(327,'#3f9b72');
+  petals(245,327,8,'#429e73');circle(247,'#d18642');circle(227,'#d3c36f');
   // The painting's four large green/blue petals are deliberately preserved;
   // directional family colours belong to the square palace fields outside.
-  for(let i=0;i<4;i++) add(`<path transform="rotate(${i*90})" d="M-62-104C-137-129-129-216-87-234C-43-250 43-250 87-234C129-216 137-129 62-104Z" fill="${i%2?'#2d83a2':'#39956b'}" stroke="#343b2c" stroke-width="4"/>`);
+  for(let i=0;i<4;i++) add(`<path transform="rotate(${i*90})" d="M-58-96C-111-124-132-182-95-209C-60-234 60-234 95-209C132-182 111-124 58-96Z" fill="${i%2?'#2d83a2':'#39956b'}" stroke="#343b2c" stroke-width="4"/>`);
   circle(121,'#d38543');circle(103,'#e1dfba','#74512e',4);
   add('</g><circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>');
   return s.join('\n');

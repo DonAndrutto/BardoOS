@@ -1,3 +1,5 @@
+import { center, markerLayout } from './layout.mjs';
+
 import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
 /* Bardo OS mandala atlas. Research records remain the source of truth. */
 (() => {
@@ -18,8 +20,8 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   const deities = new Map(catalog.deities.map(d => [d.id, d]));
   const groupNames = { central: 'Central figures', 'directional-families': 'Four families', gauris: 'Eight Gaurīs', pisacis: 'Eight Piśācīs', 'six-realm-sages': 'Six realm sages', gatekeepers: 'Four inner gates', ishvaris: 'Twenty-eight Īśvarīs' };
   const groupOrder = ['central', 'directional-families', 'gauris', 'pisacis', 'six-realm-sages', 'gatekeepers', 'ishvaris'];
-  const targetNodes = new Map();
-  const state = { selected: null, unlocated: null, visible: targets, markers: true, painting: false, layers: { peaceful: true, wrathful: true }, camera: { x: 0, y: 0, scale: 1 }, opener: null };
+  const targetNodes = new Map(), mapMarkers = new Map();
+  const state = { selected: null, selectedMarker: null, unlocated: null, visible: targets, markers: true, painting: false, layers: { peaceful: true, wrathful: true }, camera: { x: 0, y: 0, scale: 1 }, opener: null };
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const cap = value => value ? value[0].toUpperCase() + value.slice(1) : '';
   const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -47,65 +49,87 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     return node;
   };
 
-  function makeMarkers() {
-    for (const target of targets) {
-      const group = svgNode('g', { class: `map-target ${target.evidenceStatus === 'provisional' ? 'provisional' : 'unresolved'} ${target.kind === 'single-observation' ? '' : 'group'}`, tabindex: '0', role: 'button', 'data-target': target.id, 'aria-label': `${shortLabel(target)}. ${targetStatus(target)}.` });
+  function activateMarker(target, index, event) {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    event.stopPropagation();
+    selectTarget(target.id, { focusPanel: true, marker: index });
+  }
 
-      // Ambiguous strip features are represented only by their parent petal outline.
-      if (target.designLocation) { const o = target.designLocation; group.append(svgNode('circle', {cx:o.x*SIZE,cy:o.y*SIZE,r:26,class:'marker-shape editorial-marker',style:`--marker-color:${target.displayColor}`})); }
-      const points = target.observationIds.map(id => observations.get(id)).filter(o => o.observationalStatus === 'observed-circle');
-      for (const o of points) group.append(svgNode('circle', { cx: o.x * SIZE, cy: o.y * SIZE, r: 22, class: 'marker-shape', 'data-observation': o.id, style: `--marker-color:rgb(${(o.approximateMedianRgb || [180,160,100]).join(',')})` }));
-      for (const marker of group.querySelectorAll('.marker-shape')) {
-        const halo = svgNode('circle', { cx: marker.getAttribute('cx'), cy: marker.getAttribute('cy'), r: marker.getAttribute('r'), class: 'marker-halo', 'aria-hidden': 'true' });
-        marker.before(halo);
-      }
-      if (!target.designLocation && target.kind !== 'single-observation') {
-        const [x1, y1, x2, y2] = target.focusBoundsNormalized;
-        group.prepend(svgNode('rect', { x: x1 * SIZE, y: y1 * SIZE, width: (x2 - x1) * SIZE, height: (y2 - y1) * SIZE, rx: 18, class: 'group-outline' }));
-      }
-      group.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); selectTarget(target.id, { focusPanel: true }); }
+  function previewAtFocus(target, index, node) {
+    dismissedPreviewTarget = null;
+    const box = node.getBoundingClientRect();
+    showTooltip(target, index, { clientX: box.left + box.width / 2, clientY: box.top + box.height / 2 });
+  }
+
+  let renderedPixelScale;
+  function makeMarkers() {
+    renderedPixelScale = undefined;
+    $('markers').replaceChildren();
+    for (const target of targets) {
+      const label = shortLabel(target);
+      const group = svgNode('g', { class: 'map-target', 'data-target': target.id, 'aria-label': label });
+      const markers = markerLayout(target, observations, SIZE, state.painting).map((point, index) => {
+        const { x, y, radius, color, editorial } = point;
+        const circle = svgNode('g', { class: 'map-marker', 'data-marker': index, style: `--marker-color:${color}`, 'aria-label': `${label}, circle ${index + 1}` });
+        const halo = svgNode('circle', { cx: x, cy: y, r: radius, class: 'marker-halo', 'aria-hidden': 'true' });
+        const shape = svgNode('circle', { cx: x, cy: y, r: radius, class: `marker-shape${editorial ? ' editorial-marker' : ''}` });
+        circle.append(halo, shape);
+        circle.addEventListener('keydown', event => activateMarker(target, index, event));
+        circle.addEventListener('focus', () => previewAtFocus(target, index, circle));
+        circle.addEventListener('blur', hideTooltip);
+        group.append(circle);
+        return { ...point, circle, halo, shape };
       });
-      group.addEventListener('focus', () => {
-        dismissedPreviewTarget = null;
-        const box = group.getBoundingClientRect();
-        showTooltip(target, { clientX: box.left + box.width / 2, clientY: box.top + box.height / 2 });
-      });
-      group.addEventListener('blur', () => { dismissedPreviewTarget = null; hideTooltip(); });
-      $('markers').append(group);
+      const spacing = markers.length > 1 ? Math.min(...markers.flatMap((a, i) =>
+        markers.slice(i + 1).map(b => Math.hypot(a.x - b.x, a.y - b.y)))) : 0;
+      mapMarkers.set(target.id, { markers, spacing });
       targetNodes.set(target.id, group);
+      $('markers').append(group);
+      group.addEventListener('keydown', event => { if (event.target === group) activateMarker(target, null, event); });
+      group.addEventListener('focus', () => previewAtFocus(target, null, group));
+      group.addEventListener('blur', hideTooltip);
     }
   }
 
-  let previewTarget = null, previewHideTimer = null, dismissedPreviewTarget = null;
-  function showTooltip(target, event) {
+  let previewTarget = null, previewMarker = null, previewHideTimer = null, dismissedPreviewTarget = null;
+  const previewKey = (target, index) => `${target.id}:${index ?? ''}`;
+  const markerNode = (target, index) => index === null ? targetNodes.get(target.id) : mapMarkers.get(target.id).markers[index].circle;
+  function showTooltip(target, index, event) {
     if (event.pointerType === 'touch' || pointers.size || (!state.markers && state.selected !== target.id) || !state.visible.includes(target)) return;
-    if (dismissedPreviewTarget === target.id) return;
+    if (dismissedPreviewTarget === previewKey(target, index)) return;
     clearTimeout(previewHideTimer);
     const tooltip = $('map-tooltip');
-    if (previewTarget !== target.id) {
+    if (previewTarget !== target || previewMarker !== index) {
       hideTooltip();
       const { items, total } = window.MandalaPreview.artworksFor(target, bundle, state.layers);
+      previewTarget = target;
+      previewMarker = index;
+      const node = markerNode(target, index);
+      node.classList.add('hovered');
       if (!items.length) return;
-      previewTarget = target.id;
-      tooltip.innerHTML = `<p class="preview-title">${esc(shortLabel(target))}</p><p class="preview-status">${esc(targetStatus(target))} · Associated figures</p><div class="preview-artworks ${items.length === 1 ? 'single' : ''}">${items.map(item => `<figure><img src="${esc(item.src)}" alt="${esc(item.label)}" decoding="async"><figcaption>${esc(item.label)}</figcaption></figure>`).join('')}</div><p class="preview-note">${total > items.length ? `${total - items.length} more depictions. ` : ''}Select the circle for details.</p>`;
+      node.setAttribute('aria-describedby', 'map-tooltip');
+      tooltip.innerHTML = `<p class="preview-title">${esc(shortLabel(target))}</p><p class="preview-status">${index === null ? '' : `Circle ${index + 1} · `}${esc(targetStatus(target))} · Associated figures</p><div class="preview-artworks ${items.length === 1 ? 'single' : ''}">${items.map(item => `<figure><img src="${esc(item.src)}" alt="${esc(item.label)}" decoding="async"><figcaption>${esc(item.label)}</figcaption></figure>`).join('')}</div><p class="preview-note">${total > items.length ? `${total - items.length} more depictions. ` : ''}Select the circle for details.</p>`;
       for (const image of tooltip.querySelectorAll('img')) image.addEventListener('error', () => image.replaceWith(Object.assign(document.createElement('span'), { className: 'art-missing', textContent: 'Artwork unavailable' })));
-      targetNodes.get(target.id).classList.add('hovered');
-      targetNodes.get(target.id).setAttribute('aria-describedby', 'map-tooltip');
     }
+    if (!markerNode(target, index).hasAttribute('aria-describedby')) return;
     tooltip.hidden = false;
     const width = tooltip.offsetWidth, height = tooltip.offsetHeight, gap = 18;
-    const left = event.clientX + gap + width > window.innerWidth - 12 ? event.clientX - width - gap : event.clientX + gap;
+    const bounds = targetNodes.get(target.id).getBoundingClientRect();
+    const right = Math.max(event.clientX, bounds.right) + gap;
+    const left = right + width > window.innerWidth - 12 ? Math.min(event.clientX, bounds.left) - width - gap : right;
     tooltip.style.left = Math.max(12, Math.min(window.innerWidth - width - 12, left)) + 'px';
     tooltip.style.top = Math.max(12, Math.min(window.innerHeight - height - 12, event.clientY - 35)) + 'px';
   }
   function hideTooltip() {
     clearTimeout(previewHideTimer);
     if (previewTarget) {
-      targetNodes.get(previewTarget)?.classList.remove('hovered');
-      targetNodes.get(previewTarget)?.removeAttribute('aria-describedby');
+      const node = markerNode(previewTarget, previewMarker);
+      node.classList.remove('hovered');
+      node.removeAttribute('aria-describedby');
     }
     previewTarget = null;
+    previewMarker = null;
     $('map-tooltip').hidden = true;
   }
   function deferHideTooltip() { clearTimeout(previewHideTimer); previewHideTimer = setTimeout(hideTooltip, 140); }
@@ -132,15 +156,19 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     $('zoom-level').textContent = `${scale.toFixed(1)}×`;
     $('zoom-out').disabled = scale <= 1;
     $('zoom-in').disabled = scale >= 18;
-    const minimumRadius = 3 / (screenScale() * scale);
-    for (const node of document.querySelectorAll('.marker-shape')) {
-      const o = observations.get(node.dataset.observation);
-      const radius = Math.max(o?.approximateVisibleOutlineRadiusPixels || (node.classList.contains('editorial-marker') ? 26 : 18), minimumRadius);
-      node.setAttribute('r', radius);
-      node.previousElementSibling?.setAttribute('r', radius + 5 / (screenScale() * scale));
-    }
-    $('marker-blur').setAttribute('stdDeviation', 4 / (screenScale() * scale));
     hideTooltip();
+    const pixelsPerUnit = screenScale() * scale;
+    if (pixelsPerUnit === renderedPixelScale) return;
+    renderedPixelScale = pixelsPerUnit;
+    for (const { markers } of mapMarkers.values()) {
+      for (const { radius, halo, shape } of markers) {
+        const visibleRadius = Math.max(radius, (markers.length > 1 ? 1.7 : 2.7) / pixelsPerUnit);
+        shape.setAttribute('r', visibleRadius);
+        halo.setAttribute('r', visibleRadius + 3 / pixelsPerUnit);
+      }
+    }
+    $('marker-blur').setAttribute('stdDeviation', 3 / pixelsPerUnit);
+    updateSelectionAppearance();
   }
   function zoom(factor, point = { x: SIZE / 2, y: SIZE / 2 }) {
     const old = state.camera, scale = Math.max(1, Math.min(18, old.scale * factor)), ratio = scale / old.scale;
@@ -149,12 +177,15 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   }
   function fit() { state.camera = { x: 0, y: 0, scale: 1 }; renderCamera(); announce('Whole mandala fitted to the view.'); }
   function focusTarget(target) {
-    const [x1, y1, x2, y2] = target.focusBoundsNormalized;
+    const { markers } = mapMarkers.get(target.id);
+    const xs = markers.map(p => p.x), ys = markers.map(p => p.y);
+    const x = (Math.min(...xs) + Math.max(...xs)) / 2;
+    const y = (Math.min(...ys) + Math.max(...ys)) / 2;
     const scale = target.designLocation ? 2.5 : target.kind === 'petal-assembly' ? 8 : target.kind === 'gate-assembly' ? 5 : target.group === 'central' ? 10 : 5;
-    state.camera = { scale, x: SIZE / 2 - (x1 + x2) / 2 * SIZE * scale, y: SIZE / 2 - (y1 + y2) / 2 * SIZE * scale };
+    state.camera = { scale, x: SIZE / 2 - x * scale, y: SIZE / 2 - y * scale };
     renderCamera();
   }
-  function focusInterior() { state.camera = { scale: 2.35, x: SIZE / 2 - SIZE * .505 * 2.35, y: SIZE / 2 - SIZE * .493 * 2.35 }; renderCamera(); }
+  function focusInterior() { state.camera = { scale: 2.35, x: SIZE / 2 - center[0] * 2.35, y: SIZE / 2 - center[1] * 2.35 }; renderCamera(); }
 
   function filters() { return { query: normalize($('search').value.trim()), group: $('group-filter').value, direction: $('direction-filter').value }; }
   function resetFilters() {
@@ -185,12 +216,8 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     });
     const unlocated = catalog.deities.filter(d => deityVisible(d.id) && !scene.deityToCandidateTargets[d.id].length && (f.group === 'unlocated' || (f.group === 'all' && f.query)) && (f.direction === 'all' || f.direction === 'unknown') && (!f.query || normalize(d.label + ' ' + d.id + ' Ishvari Isvari unlocated').includes(f.query)));
     const visibleIds = new Set(state.visible.map(t => t.id));
-    for (const [id, node] of targetNodes) {
-      const exposed = visibleIds.has(id) && (state.markers || id === state.selected);
-      node.toggleAttribute('hidden', !visibleIds.has(id));
-      node.setAttribute('tabindex', exposed ? '0' : '-1');
-      node.setAttribute('aria-hidden', String(!exposed));
-    }
+    for (const [id, node] of targetNodes) node.toggleAttribute('hidden', !visibleIds.has(id));
+    updateSelectionAppearance();
     // A filtered-out selection is closed rather than leaving a hidden location active.
     if ((state.selected && !visibleIds.has(state.selected)) || (state.unlocated && !unlocated.some(d => d.id === state.unlocated))) {
       clearSelection({ push: false, restoreFocus: false });
@@ -240,17 +267,46 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   function attachImageFallbacks() {
     for (const image of $('detail-content').querySelectorAll('img')) image.addEventListener('error', () => { image.replaceWith(Object.assign(document.createElement('span'), { className: 'art-missing', textContent: 'Artwork could not load. Keep the assets folder with the preview.' })); });
   }
+  // Switch to individual hits when the closest centers are distinguishable
+  // in screen pixels. The same zoom can expose different detail on a phone.
+  function individualMarkers(id, pixelsPerUnit) {
+    return mapMarkers.get(id).spacing * pixelsPerUnit >= 16;
+  }
   function updateSelectionAppearance() {
+    const pixelsPerUnit = screenScale() * state.camera.scale;
     for (const [id, node] of targetNodes) {
-      node.classList.toggle('selected', id === state.selected); node.setAttribute('aria-pressed', String(id === state.selected));
-      const exposed = !node.hasAttribute('hidden') && (state.markers || id === state.selected);
-      node.setAttribute('aria-hidden', String(!exposed)); node.setAttribute('tabindex', exposed ? '0' : '-1');
+      const selected = state.selected === id;
+      const individual = individualMarkers(id, pixelsPerUnit);
+      const exposed = !node.hasAttribute('hidden') && (state.markers || selected);
+      const selectedIndex = selected && individual ? state.selectedMarker : null;
+      node.classList.toggle('selected', selected);
+      node.classList.toggle('group-selected', selected && selectedIndex === null);
+      node.setAttribute('role', individual ? 'group' : 'button');
+      if (individual) node.removeAttribute('aria-pressed');
+      else node.setAttribute('aria-pressed', String(selected));
+      node.setAttribute('aria-hidden', String(!exposed));
+      node.setAttribute('tabindex', exposed && !individual ? '0' : '-1');
+      for (const [index, { circle }] of mapMarkers.get(id).markers.entries()) {
+        circle.classList.toggle('selected', index === selectedIndex);
+        circle.setAttribute('tabindex', exposed && individual ? '0' : '-1');
+        circle.setAttribute('aria-hidden', String(!(exposed && individual)));
+        if (individual) {
+          circle.setAttribute('role', 'button');
+          circle.setAttribute('aria-pressed', String(index === selectedIndex));
+        } else {
+          circle.removeAttribute('role');
+          circle.removeAttribute('aria-pressed');
+        }
+      }
     }
+  }
+  function updateSelectionAppearanceAndList() {
+    updateSelectionAppearance();
     for (const node of $('target-list').querySelectorAll('[data-select],[data-deity]')) node.setAttribute('aria-current', String(node.dataset.select === state.selected || node.dataset.deity === state.unlocated));
   }
   function closeBrowse() { $('browse').classList.remove('open'); $('browse-toggle').setAttribute('aria-expanded', 'false'); }
   function setHash(hash) { if (location.hash !== hash) history.pushState(null, '', hash || location.pathname + location.search); }
-  function selectTarget(id, { focusPanel = false, push = true, scrollPanel = true } = {}) {
+  function selectTarget(id, { focusPanel = false, push = true, scrollPanel = true, marker = null } = {}) {
     const target = byId.get(id); if (!target) return;
     state.opener = document.activeElement;
     if (!target.candidateDeityIds.some(deityVisible)) {
@@ -258,27 +314,30 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
       renderLayerState();
     }
     if (!state.visible.some(t => t.id === id)) resetFilters();
-    state.selected = id; state.unlocated = null;
+    state.selected = id; state.selectedMarker = marker; state.unlocated = null;
     if (!state.markers) setMarkers(true);
-    setExpanded(false); renderPanel(target); updateSelectionAppearance(); focusTarget(target); closeBrowse();
+    setExpanded(false); renderPanel(target); updateSelectionAppearanceAndList();
+    if (marker === null) focusTarget(target);
+    closeBrowse();
     if (push) setHash(`#${encodeURIComponent(id)}`);
-    announce(`${shortLabel(target)}. ${targetStatus(target)}. Details and artwork available.`);
+    const label = marker === null ? shortLabel(target) : `${shortLabel(target)}, circle ${marker + 1}`;
+    announce(`${label}. ${targetStatus(target)}. Details and artwork available.`);
     if (focusPanel) $('detail-content').querySelector('h2').focus({ preventScroll: true });
     if (scrollPanel && window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant', block: 'start' });
   }
   function showUnlocated(id, { push = true } = {}) {
     const deity = deities.get(id); if (!deity || scene.deityToCandidateTargets[id].length) return;
-    state.opener = document.activeElement; state.selected = null; state.unlocated = id;
+    state.opener = document.activeElement; state.selected = null; state.selectedMarker = null; state.unlocated = id;
     $('detail-content').innerHTML = `<div class="detail-inner"><div class="detail-top"><p class="eyebrow">Unlocated Īśvarī</p><button class="icon-button" data-close aria-label="Close location details">${icon('close')}</button></div><div class="status-badge">Mandala position unassigned</div><h2 class="detail-title" tabindex="-1">${esc(deity.label)}</h2><p class="detail-summary">This identity is present in BardoOS, but no candidate location has been mapped in the surveyed areas. Its artwork is available here.</p>${artCards([id])}<p class="research-note">No circle is highlighted for this deity. The 28 Īśvarīs await a separate location study.</p></div>`;
-    attachImageFallbacks(); updateSelectionAppearance(); closeBrowse(); $('detail-panel').scrollTop = 0;
+    attachImageFallbacks(); updateSelectionAppearanceAndList(); closeBrowse(); $('detail-panel').scrollTop = 0;
     $('map-state').textContent = 'No mapped position';
     if (push) setHash(`#deity=${encodeURIComponent(id)}`);
     announce(`${deity.label}. Position unassigned.`);
     if (window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant' });
   }
   function clearSelection({ push = true, restoreFocus = true } = {}) {
-    const opener = state.opener; state.selected = null; state.unlocated = null;
-    showWelcome(); updateSelectionAppearance();
+    const opener = state.opener; state.selected = null; state.selectedMarker = null; state.unlocated = null;
+    showWelcome(); updateSelectionAppearanceAndList();
     if (push) setHash('');
     if (restoreFocus) {
       const hiddenBrowseOpener = opener?.closest?.('#browse') && !$('browse').classList.contains('open') && window.innerWidth <= 1160;
@@ -317,8 +376,8 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     // A small overview keeps the location visible alongside expanded artwork
     // even on phones, where the dialog covers the full-size map.
     const target = byId.get(state.selected);
-    const points = target?.designLocation ? [target.designLocation] : (target?.observationIds || []).map(k => observations.get(k));
-    $('art-location').innerHTML = `<svg viewBox="0 0 ${SIZE} ${SIZE}" role="img" aria-label="Highlighted working mandala location"><image href="assets/diagram.svg" width="${SIZE}" height="${SIZE}"/>${points.map(p => `<circle cx="${p.x * SIZE}" cy="${p.y * SIZE}" r="90" fill="#fff4" stroke="#fff" stroke-width="30"/>`).join('')}</svg><span>${esc(target ? shortLabel(target) : 'Position unassigned')}</span>`;
+    const points = target ? markerLayout(target, observations, SIZE) : [];
+    $('art-location').innerHTML = `<svg viewBox="0 0 ${SIZE} ${SIZE}" role="img" aria-label="Highlighted working mandala location"><image href="assets/diagram.svg" width="${SIZE}" height="${SIZE}"/>${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="90" fill="${esc(p.color)}" stroke="#fff" stroke-width="20"/>`).join('')}</svg><span>${esc(target ? shortLabel(target) : 'Position unassigned')}</span>`;
   }
   function openArtwork(id, { push = true } = {}) {
     if (!bundle.artworkByDeityId[id]?.[0]) return;
@@ -409,28 +468,33 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     const root = rootPoint(event.clientX, event.clientY), c = state.camera;
     const point = { x: (root.x - c.x) / c.scale, y: (root.y - c.y) / c.scale };
     let closest = null, distance = Infinity;
+    const pixelsPerUnit = c.scale * screenScale();
     for (const target of state.visible) {
       if (!state.markers && target.id !== state.selected) continue;
-      const points = target.designLocation ? [target.designLocation] : target.observationIds.map(id => observations.get(id)).filter(o => o.observationalStatus === 'observed-circle');
-      for (const pointOnMap of points) {
-        const d = Math.hypot(point.x - pointOnMap.x * SIZE, point.y - pointOnMap.y * SIZE) * c.scale * screenScale();
-        const hitRadius = Math.max(minimumHitRadius, (pointOnMap.approximateVisibleOutlineRadiusPixels || (target.designLocation ? 26 : 22)) * c.scale * screenScale() + 6);
-        if (d <= hitRadius && d < distance) { distance = d; closest = target; }
+      const { markers } = mapMarkers.get(target.id);
+      const individual = individualMarkers(target.id, pixelsPerUnit);
+      for (const [index, mark] of markers.entries()) {
+        const d = Math.hypot(point.x - mark.x, point.y - mark.y) * pixelsPerUnit;
+        const hitRadius = Math.max(minimumHitRadius, mark.radius * pixelsPerUnit + 6);
+        if (d <= hitRadius && d < distance) {
+          distance = d;
+          closest = { target, index: individual ? index : null };
+        }
       }
     }
     return closest;
   }
   svg.addEventListener('pointermove', event => {
     if (event.pointerType === 'touch' || pointers.size || event.buttons) return;
-    const target = nearestTarget(event, 10);
-    if (target?.id !== dismissedPreviewTarget) dismissedPreviewTarget = null;
-    if (target) showTooltip(target, event);
+    const hit = nearestTarget(event, 10);
+    if (!hit || previewKey(hit.target, hit.index) !== dismissedPreviewTarget) dismissedPreviewTarget = null;
+    if (hit) showTooltip(hit.target, hit.index, event);
     else deferHideTooltip();
   });
   svg.addEventListener('click', event => {
     if (Date.now() - lastGesture < 300) return;
-    const closest = nearestTarget(event);
-    if (closest) selectTarget(closest.id);
+    const hit = nearestTarget(event);
+    if (hit) selectTarget(hit.target.id, { marker: hit.index });
   });
   svg.addEventListener('wheel', event => { event.preventDefault(); zoom(Math.exp(-Math.max(-200, Math.min(200, event.deltaY)) * .0025), rootPoint(event.clientX, event.clientY)); }, { passive: false });
   svg.addEventListener('keydown', event => {
@@ -468,7 +532,7 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     else if (button.hasAttribute('data-close')) clearSelection();
   });
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && previewTarget) { event.preventDefault(); dismissedPreviewTarget = previewTarget; hideTooltip(); return; }
+    if (event.key === 'Escape' && previewTarget) { event.preventDefault(); dismissedPreviewTarget = previewKey(previewTarget, previewMarker); hideTooltip(); return; }
     if (event.key === 'Escape' && !$('art-dialog').open && !$('about-dialog').open) { closeBrowse(); if (state.selected || state.unlocated) { event.preventDefault(); clearSelection(); } }
   });
   $('about-button').addEventListener('click', () => $('about-dialog').showModal());
@@ -486,11 +550,16 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   $('painting').addEventListener('error', () => { $('map-error').hidden = false; $('map-error').textContent = 'The mandala image could not load. Restore assets/mandala.jpeg; the location list and evidence panels remain available.'; });
   $('view-toggle').addEventListener('click', () => {
     const painting = $('painting'); const showPainting = !state.painting;
+    hideTooltip();
     state.painting = showPainting;
+    state.selectedMarker = null;
     painting.style.display = showPainting ? '' : 'none'; $('diagram').style.display = showPainting ? 'none' : '';
     $('view-toggle').textContent = showPainting ? 'Drawn mandala' : 'Original painting';
     $('view-toggle').setAttribute('aria-pressed', String(showPainting));
+    makeMarkers();
     renderLayerState();
+    applyFilters();
+    renderCamera();
   });
   makeMarkers(); renderLayerState(); showWelcome(); applyFilters(); renderCamera(); restoreHash();
   new ResizeObserver(renderCamera).observe(stage);

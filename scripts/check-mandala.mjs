@@ -5,6 +5,7 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
 import {drawMandala} from './draw-mandala.mjs';
+import {center, markerLayout} from '../mandala/layout.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'), base=resolve(root,'mandala');
 const read=p=>readFileSync(resolve(base,p),'utf8');
 const context={window:{}};vm.createContext(context);vm.runInContext(read('data/mandala-data.js'),context);vm.runInContext(read('evidence.js'),context);
@@ -33,12 +34,37 @@ assert.equal(diagram,drawMandala(),'Rebuild the architectural drawing');
 const svgIds=[...diagram.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(new Set(svgIds).size,svgIds.length,'SVG definitions must have unique IDs');
 for(const m of diagram.matchAll(/href="#([^"]+)"/g))assert(svgIds.includes(m[1]),`Missing drawing symbol ${m[1]}`);
-for(const layer of ['fire-ring','vajra-fence','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
+for(const layer of ['fire-ring','vajra-fence','water-wind','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
 assert.equal([...diagram.matchAll(/data-ornament="wheel-and-deer"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-ornament="parasol"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-ornament="victory-banner"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-fire-panel="/g)].length,16);
 assert.equal([...diagram.matchAll(/data-ground="/g)].length,8);
+assert.equal([...diagram.matchAll(/data-ring-vajra="/g)].length,16);
+const observations = new Map(scene.observations.map(o => [o.id, o]));
+const layout = (target, painting = false) => markerLayout(target, observations, scene.image.width, painting);
+const central = Array.from(scene.selectionTargets).filter(t => t.group === 'central').flatMap(t => layout(t));
+assert.deepEqual(central.map(p => p.x), Array(4).fill(center[0]));
+assert.deepEqual(central.map(p => p.y - center[1]), [-69, -23, 23, 69]);
+const petalCoordinates = [[0, -138], [0, -158], [0, -178], [0, -198], [-39, -168], [39, -168]];
+const orientations = ['west', 'north', 'east', 'south'];
+for (const target of scene.selectionTargets) {
+ const circles = Array.from(layout(target));
+ assert(circles.length > 0);
+ assert(circles.every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.radius > 0 && p.color));
+ if (target.kind === 'petal-assembly') {
+  assert.equal(circles.length, 6);
+  const direction = orientations.indexOf(target.candidateRitualDirection);
+  assert.deepEqual(circles.map(p => [p.x - center[0], p.y - center[1]]), petalCoordinates.map(([x, y]) =>
+   [[x, y], [-y, x], [-x, -y], [y, -x]][direction].map(n => n || 0)));
+ }
+ if (!target.designLocation) {
+  const observed = target.observationIds.map(id => observations.get(id))
+   .filter(o => o.observationalStatus === 'observed-circle');
+  assert.deepEqual(Array.from(layout(target, true), p => [p.x, p.y]), Array.from(observed, o =>
+   [o.x * scene.image.width, o.y * scene.image.height]));
+ }
+}
 assert(!/data-observation|editorial-marker|NaN|undefined/.test(diagram),'Deity marks belong to the interactive layers, not the architectural background');
 assert.equal(catalog.deities.length,100);assert.equal(scene.selectionTargets.length,62);assert.equal(scene.observations.length,59);
 const ids=new Set(catalog.deities.map(d=>d.id)),owners=[];
@@ -64,4 +90,4 @@ for(const d of munis){
 for(const a of artifactManifest.artifacts){const bytes=readFileSync(resolve(base,a.path));assert.equal(createHash('sha256').update(bytes).digest('hex'),a.sha256);}
 assert(!/\/Users\/|\/private\/tmp\/|docs\.google\.com/.test(read('data/mandala-data.js')));
 for(const match of readFileSync(resolve(root,'sw.js'),'utf8').matchAll(/"(mandala\/[^"\n]*)"/g))assert(existsSync(resolve(root,match[1])));
-console.log('PASS: 62 targets, 59 observations, 28 schematic placements, 100 identities, layer-aware artwork previews, six replacement munis, repeated gate ornaments, architectural layers, artifact hashes, portable source and offline paths.');
+console.log('PASS: 62 targets, 59 observations, 28 schematic placements, 100 identities, symmetric drawn positions, painting overlays, layer-aware artwork previews, six replacement munis, repeated gate ornaments, architectural layers, artifact hashes, portable source and offline paths.');

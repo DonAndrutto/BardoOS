@@ -2,6 +2,14 @@
 
 The current implementation is a buildless feature at `mandala/`, reached from the home page's Iconography shelf, the Iconography navigation menu and the reader-header link. It shares the reader's typography, colour tokens, header treatment and saved day/night preference. It opens a drawn SVG mandala with zoom, pan, keyboard controls, filters, individual/group panels and owner-supplied artwork. A toggle displays the source painting. Evidence and alternatives are collapsed by default. The back link returns directly to Iconography; the brand returns home.
 
+## Drawn geometry and production updates — 14 November 2026
+
+The atlas uses `mandala/layout.mjs` for the evenly spaced central circles, six circles per family petal and symmetric ring and gate seats. In Original painting mode, the overlay follows the recorded observations. Close zoom exposes individual circles once their centers are at least 16 screen pixels apart. Their highlights use the circle color, and each opens the associated location panel with its existing placement notes.
+
+The shared palace contour defines four identical gate returns. The red frieze has gold flowers and corner scrolls, the dark frieze has beaded garlands, and the four wall fields have scrolls in the painting's directional colors. The protective enclosure has curling flame tongues, a continuous vajra fence, and blue water and wind ribbons behind the landscape scenes.
+
+BardoOS is linked to Vercel. PR branches get previews and merges into `main` publish automatically to [the live atlas](https://bardo-os.vercel.app/mandala/). Commit the regenerated bundle, diagram and manifest alongside source changes. The mandala CI check verifies that they match the source. Bump the service-worker version when updating atlas runtime files so installed copies refresh.
+
 ## App integration and artwork previews — 14 November 2026
 
 - Replaced the separate atlas branding and palette with the existing Bardo OS header, Inter/EB Garamond typography, warm backgrounds, accent colour and restrained controls. Removed ornamental character icons, using consistent SVG controls where an icon is useful.
@@ -11,7 +19,7 @@ The current implementation is a buildless feature at `mandala/`, reached from th
 - Added bright cream-white marker outlines and a soft light halo for hovered, keyboard-focused and selected circles. Halo dimensions remain readable while zooming. The drawn disc blends into the app background; the original painting remains unmodified.
 - Kept a three-column desktop view and a small-screen Locations drawer, map and details flow. Artwork dialogs use the same app styling.
 - `mandala/preview.js` contains the preview selection helper. `check-mandala.mjs` exercises all 62 locations across all four layer combinations, checking image deduplication, valid labels, hidden assemblies and the empty palace-only state.
-- Current service-worker cache: `bardo-os-v33-mandala-app-integration-r2`. Both new scripts are precached.
+- This revision used service-worker cache `bardo-os-v33-mandala-app-integration-r2` and precached both new scripts.
 
 Browser review covered desktop and narrow layouts, Iconography entry/return, both colour themes, keyboard-triggered artwork previews, Escape dismissal, assembly-filtered previews, location search, artwork viewing and palace-only/show-both controls. Preview images loaded, focus did not select or zoom, and the final page had no console errors. Pointer hover uses the same preview renderer and nearest-location hit testing; direct mouse-hover automation was unavailable. Physical touch gestures and airplane-mode use remain untested. Screenshot: `/tmp/bardo-atlas-ui-desktop.jpg` (temporary QA file).
 
