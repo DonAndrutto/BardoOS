@@ -254,4 +254,6 @@ export function replayIntro() {
   start();
 }
 
-start();
+// Returning from the atlas should reveal its shelf immediately.
+if (location.hash === '#iconography') document.getElementById('intro')?.remove();
+else start();

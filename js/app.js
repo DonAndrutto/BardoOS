@@ -1003,6 +1003,11 @@ async function boot() {
     // pictures — the peaceful deities, the wrathful, the days of
     // dharmatā — opens as a gallery of its own.
     if (group.id === 'iconography') {
+      const atlas = document.createElement('a');
+      atlas.className = 'nav-text';
+      atlas.href = 'mandala/';
+      atlas.textContent = t('mandalaAtlas');
+      cat.appendChild(atlas);
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'nav-text';
@@ -1029,6 +1034,15 @@ async function boot() {
   // The app opens on the doorway, not on a text: two ways in, chosen by
   // the reader (owner's direction, 2026-07-30).
   showHome();
+
+  // The atlas returns directly to its Iconography shelf.
+  if (location.hash === '#iconography') {
+    requestAnimationFrame(() => {
+      const section = document.getElementById('iconography');
+      section?.scrollIntoView({ block: 'start' });
+      section?.focus({ preventScroll: true });
+    });
+  }
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});

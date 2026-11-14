@@ -9,6 +9,23 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'), base=resolve(r
 const read=p=>readFileSync(resolve(base,p),'utf8');
 const context={window:{}};vm.createContext(context);vm.runInContext(read('data/mandala-data.js'),context);vm.runInContext(read('evidence.js'),context);
 const b=context.window.MANDALA_DATA,{scene,catalog}=b;
+vm.runInContext(read('preview.js'),context);
+// Preview real catalog targets with every layer combination. Hidden deities
+// must never leak into a hover card; paired artwork must appear only once.
+for(const target of scene.selectionTargets) for(const layers of [
+ {peaceful:true,wrathful:true},{peaceful:true,wrathful:false},
+ {peaceful:false,wrathful:true},{peaceful:false,wrathful:false}
+]){
+ const preview=context.window.MandalaPreview.artworksFor(target,b,layers);
+ assert(preview.items.length<=4);
+ assert.equal(new Set(preview.items.map(item=>item.src)).size,preview.items.length);
+ for(const item of preview.items){
+  assert(item.ids.length>0);
+  assert(item.ids.every(id=>layers[id.startsWith('zhiwa.')?'peaceful':'wrathful']));
+  assert(item.label && !item.label.includes('undefined'));
+ }
+ if(!layers.peaceful&&!layers.wrathful)assert.equal(preview.total,0);
+}
 const source=JSON.parse(read('data/atlas-source.json'));
 const {artifactManifest,...data}=JSON.parse(JSON.stringify(b));assert.deepEqual(data,source,'Rebuild bundle after editing source');
 const diagram=read('assets/diagram.svg');
@@ -47,4 +64,4 @@ for(const d of munis){
 for(const a of artifactManifest.artifacts){const bytes=readFileSync(resolve(base,a.path));assert.equal(createHash('sha256').update(bytes).digest('hex'),a.sha256);}
 assert(!/\/Users\/|\/private\/tmp\/|docs\.google\.com/.test(read('data/mandala-data.js')));
 for(const match of readFileSync(resolve(root,'sw.js'),'utf8').matchAll(/"(mandala\/[^"\n]*)"/g))assert(existsSync(resolve(root,match[1])));
-console.log('PASS: 62 targets, 59 observations, 28 schematic placements, 100 identities, six replacement munis, repeated gate ornaments, architectural layers, artifact hashes, portable source and offline paths.');
+console.log('PASS: 62 targets, 59 observations, 28 schematic placements, 100 identities, layer-aware artwork previews, six replacement munis, repeated gate ornaments, architectural layers, artifact hashes, portable source and offline paths.');

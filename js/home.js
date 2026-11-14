@@ -201,11 +201,13 @@ function iconography(home) {
   ].filter((s) => s.image);
   const sec = el('section', 'landing-section', home);
   sectionHead(sec, t('iconography'), t('iconographyNote'));
+  sec.id = 'iconography';
+  sec.tabIndex = -1;
   const grid = el('div', 'landing-shelves', sec);
   const tile = (attrs, image, label, note) => {
-    const btn = el('button', 'landing-shelf', grid);
-    btn.type = 'button';
-    Object.assign(btn.dataset, attrs);
+    const btn = el(attrs.href ? 'a' : 'button', 'landing-shelf', grid);
+    if (attrs.href) btn.href = attrs.href;
+    else { btn.type = 'button'; Object.assign(btn.dataset, attrs); }
     const img = el('img', null, el('span', 'landing-shelf-image', btn));
     img.src = image;
     img.alt = '';
@@ -213,6 +215,7 @@ function iconography(home) {
     el('span', 'landing-shelf-label', btn).textContent = label;
     if (note) el('span', 'landing-shelf-note', btn).textContent = note;
   };
+  tile({ href: 'mandala/' }, 'mandala/assets/diagram.svg', t('mandalaAtlas'), t('mandalaAtlasNote'));
   tile({ go: 'mandala' }, 'assets/intro/mandala.webp', t('mandala'), t('mandalaNote'));
   for (const s of shelves) tile({ shelf: s.id }, s.image, s.label, count('nPictures', s.n));
 }
