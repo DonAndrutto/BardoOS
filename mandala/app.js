@@ -1,48 +1,36 @@
-import { center, markerLayout } from './layout.mjs';
-
 import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
-/* Bardo OS mandala atlas. Research records remain the source of truth. */
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
   const bundle = window.MANDALA_DATA;
-  if (!bundle || !window.MandalaEvidence || !window.MandalaPreview) {
+  if (!bundle || !window.MandalaPreview) {
     $('map-error').hidden = false;
     $('map-error').textContent = 'The mandala data could not load. Reload the page to try again.';
     return;
   }
   const { scene, catalog } = bundle;
-  const SIZE = scene.image.width;
+  const { width: SIZE, center } = scene.image;
   const svg = $('map'), world = $('world'), stage = $('stage');
   const targets = scene.selectionTargets;
   const byId = new Map(targets.map(t => [t.id, t]));
-  const observations = new Map(scene.observations.map(o => [o.id, o]));
   const deities = new Map(catalog.deities.map(d => [d.id, d]));
   const groupNames = { central: 'Central figures', 'directional-families': 'Four families', gauris: 'Eight Gaurīs', pisacis: 'Eight Piśācīs', 'six-realm-sages': 'Six realm sages', gatekeepers: 'Four inner gates', ishvaris: 'Twenty-eight Īśvarīs' };
   const groupOrder = ['central', 'directional-families', 'gauris', 'pisacis', 'six-realm-sages', 'gatekeepers', 'ishvaris'];
   const targetNodes = new Map(), mapMarkers = new Map();
-  const state = { selected: null, selectedMarker: null, unlocated: null, visible: targets, markers: true, painting: false, layers: { peaceful: true, wrathful: true }, camera: { x: 0, y: 0, scale: 1 }, opener: null };
+  const state = { selected: null, selectedMarker: null, artworkOnly: null, visible: targets, markers: true, painting: false, layers: { peaceful: true, wrathful: true }, camera: { x: 0, y: 0, scale: 1 }, opener: null };
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const cap = value => value ? value[0].toUpperCase() + value.slice(1) : '';
   const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  const deityVisible = id => state.layers[id.startsWith('zhiwa.') ? 'peaceful' : 'wrathful'];
+  const assemblyOf = id => id.startsWith('zhiwa.') ? 'peaceful' : 'wrathful';
+  const deityVisible = id => state.layers[assemblyOf(id)];
   const visibleDeityIds = ids => ids.filter(deityVisible);
   const announce = message => { $('live-status').textContent = message; };
-  const shortLabel = target => {
-    if (target.kind === 'gate-assembly') return `${cap(target.candidateRitualDirection)} gate`;
-    if (target.kind === 'petal-assembly') return `${cap(target.candidateRitualDirection)} · ${target.candidateFamily} family`;
-    if (target.group === 'central') return ({ 'target-marker-001': 'Ochre central circle', 'target-marker-002': 'Red central circle', 'target-marker-003': 'White central circle', 'target-marker-004': 'Blue central circle' })[target.id];
-    if (target.group === 'six-realm-sages') return `${cap(observations.get(target.observationIds[0]).screenPosition.replaceAll('-', ' '))} annulus`;
-    return target.label;
-  };
-  const targetStatus = target => target.kind === 'schematic-location' ? 'Working placement' : 'Working map';
   const icons = {
     next: '<path d="m9 5 7 7-7 7"/>',
     close: '<path d="m6 6 12 12M6 18 18 6"/>',
     center: '<circle cx="12" cy="12" r="6"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>',
   };
   const icon = name => `<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">${icons[name]}</svg>`;
-  const sourceAnchor = source => !source.url ? `<span>${esc(source.label)}</span>` : `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.label)}</a>`;
   const svgNode = (name, attrs) => {
     const node = document.createElementNS('http://www.w3.org/2000/svg', name);
     for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
@@ -67,9 +55,9 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     renderedPixelScale = undefined;
     $('markers').replaceChildren();
     for (const target of targets) {
-      const label = shortLabel(target);
+      const label = target.label;
       const group = svgNode('g', { class: 'map-target', 'data-target': target.id, 'aria-label': label });
-      const markers = markerLayout(target, observations, SIZE, state.painting).map((point, index) => {
+      const markers = (state.painting ? target.paintingMarkers : target.markers).map((point, index) => {
         const { x, y, radius, color, editorial } = point;
         const circle = svgNode('g', { class: 'map-marker', 'data-marker': index, style: `--marker-color:${color}`, 'aria-label': `${label}, circle ${index + 1}` });
         const halo = svgNode('circle', { cx: x, cy: y, r: radius, class: 'marker-halo', 'aria-hidden': 'true' });
@@ -109,7 +97,7 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
       node.classList.add('hovered');
       if (!items.length) return;
       node.setAttribute('aria-describedby', 'map-tooltip');
-      tooltip.innerHTML = `<p class="preview-title">${esc(shortLabel(target))}</p><p class="preview-status">${index === null ? '' : `Circle ${index + 1} · `}${esc(targetStatus(target))} · Associated figures</p><div class="preview-artworks ${items.length === 1 ? 'single' : ''}">${items.map(item => `<figure><img src="${esc(item.src)}" alt="${esc(item.label)}" decoding="async"><figcaption>${esc(item.label)}</figcaption></figure>`).join('')}</div><p class="preview-note">${total > items.length ? `${total - items.length} more depictions. ` : ''}Select the circle for details.</p>`;
+      tooltip.innerHTML = `<p class="preview-title">${esc(target.label)}</p>${index === null ? '' : `<p class="preview-status">Circle ${index + 1}</p>`}<div class="preview-artworks ${items.length === 1 ? 'single' : ''}">${items.map(item => `<figure><img src="${esc(item.src)}" alt="${esc(item.label)}" decoding="async"><figcaption>${esc(item.label)}</figcaption></figure>`).join('')}</div><p class="preview-note">${total > items.length ? `${total - items.length} more depictions. ` : ''}Select the circle for details.</p>`;
       for (const image of tooltip.querySelectorAll('img')) image.addEventListener('error', () => image.replaceWith(Object.assign(document.createElement('span'), { className: 'art-missing', textContent: 'Artwork unavailable' })));
     }
     if (!markerNode(target, index).hasAttribute('aria-describedby')) return;
@@ -181,7 +169,7 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     const xs = markers.map(p => p.x), ys = markers.map(p => p.y);
     const x = (Math.min(...xs) + Math.max(...xs)) / 2;
     const y = (Math.min(...ys) + Math.max(...ys)) / 2;
-    const scale = target.designLocation ? 2.5 : target.kind === 'petal-assembly' ? 8 : target.kind === 'gate-assembly' ? 5 : target.group === 'central' ? 10 : 5;
+    const scale = target.kind === 'courtyard-location' ? 2.5 : target.kind === 'petal-assembly' ? 8 : target.kind === 'gate-assembly' ? 5 : target.group === 'central' ? 10 : 5;
     state.camera = { scale, x: SIZE / 2 - x * scale, y: SIZE / 2 - y * scale };
     renderCamera();
   }
@@ -210,16 +198,19 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     hideTooltip();
     const f = filters();
     state.visible = targets.filter(t => {
-      const ids = visibleDeityIds(t.candidateDeityIds);
-      const text = [shortLabel(t), t.label, groupNames[t.group], t.candidateRitualDirection, ...ids.map(id => deities.get(id).label), ...ids].join(' ');
-      return ids.length && (f.group === 'all' || f.group === t.group) && (f.direction === 'all' || (f.direction === 'unknown' ? !t.candidateRitualDirection : f.direction === t.candidateRitualDirection)) && (!f.query || normalize(text).includes(f.query));
+      const ids = visibleDeityIds(t.deityIds);
+      const text = [t.label, groupNames[t.group], t.direction, ...ids.map(id => deities.get(id).label), ...ids].join(' ');
+      return ids.length && (f.group === 'all' || f.group === t.group) && (f.direction === 'all' || f.direction === t.direction) && (!f.query || normalize(text).includes(f.query));
     });
-    const unlocated = catalog.deities.filter(d => deityVisible(d.id) && !scene.deityToCandidateTargets[d.id].length && (f.group === 'unlocated' || (f.group === 'all' && f.query)) && (f.direction === 'all' || f.direction === 'unknown') && (!f.query || normalize(d.label + ' ' + d.id + ' Ishvari Isvari unlocated').includes(f.query)));
+    const artworkOnly = f.query && f.group === 'all' && f.direction === 'all'
+      ? catalog.deities.filter(d => deityVisible(d.id) && !scene.locationsByDeity[d.id]?.length &&
+          normalize(d.label + ' ' + d.id).includes(f.query))
+      : [];
     const visibleIds = new Set(state.visible.map(t => t.id));
     for (const [id, node] of targetNodes) node.toggleAttribute('hidden', !visibleIds.has(id));
     updateSelectionAppearance();
     // A filtered-out selection is closed rather than leaving a hidden location active.
-    if ((state.selected && !visibleIds.has(state.selected)) || (state.unlocated && !unlocated.some(d => d.id === state.unlocated))) {
+    if ((state.selected && !visibleIds.has(state.selected)) || (state.artworkOnly && !artworkOnly.some(d => d.id === state.artworkOnly))) {
       clearSelection({ push: false, restoreFocus: false });
       history.replaceState(null, '', location.pathname + location.search);
     }
@@ -228,14 +219,14 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
       const members = state.visible.filter(t => t.group === group);
       if (!members.length) continue;
       html += `<div class="list-heading">${esc(groupNames[group])}</div>`;
-      for (const t of members) html += `<button class="target-item" data-select="${esc(t.id)}" aria-current="${state.selected === t.id}"><span><strong>${esc(shortLabel(t))}</strong><small>${esc(targetStatus(t))}</small></span>${icon('next')}</button>`;
+      for (const t of members) html += `<button class="target-item" data-select="${esc(t.id)}" aria-current="${state.selected === t.id}"><span><strong>${esc(t.label)}</strong></span>${icon('next')}</button>`;
     }
-    if (unlocated.length) {
-      html += '<div class="list-heading">Unlocated Īśvarīs</div>';
-      for (const d of unlocated) html += `<button class="target-item" data-deity="${esc(d.id)}" aria-current="${state.unlocated === d.id}"><span><strong>${esc(d.label)}</strong><small>Mandala position unassigned</small></span></button>`;
+    if (artworkOnly.length) {
+      html += '<div class="list-heading">Artwork</div>';
+      for (const d of artworkOnly) html += `<button class="target-item" data-deity="${esc(d.id)}" aria-current="${state.artworkOnly === d.id}"><span><strong>${esc(d.label)}</strong></span></button>`;
     }
     $('target-list').innerHTML = html || `<p class="empty">${!state.layers.peaceful && !state.layers.wrathful ? 'The deity layers are hidden. Switch an assembly on to explore its locations.' : 'No matching locations.<br>Try another name or reset the filters.'}</p>`;
-    $('result-count').textContent = `${state.visible.length} ${state.visible.length === 1 ? 'location' : 'locations'}${unlocated.length ? ` · ${unlocated.length} unlocated` : ''}`;
+    $('result-count').textContent = `${state.visible.length} ${state.visible.length === 1 ? 'location' : 'locations'}${artworkOnly.length ? ` · ${artworkOnly.length} artworks` : ''}`;
   }
 
   function artCards(ids) {
@@ -246,26 +237,27 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     }).join('')}</div>`;
   }
   function showWelcome() {
-    $('detail-content').innerHTML = `<div class="detail-inner"><p class="eyebrow">Karma Lingpa Zhitro</p><h2 class="welcome-title">Explore the mandala</h2><p class="intro-lead">The peaceful and wrathful assemblies within the four-gated palace.</p><p class="subtle">Hover over a circle to preview its figures. Select it to open the artwork and source notes. Use the layers to study either assembly or the palace alone.</p><div class="welcome-rule"></div><p class="eyebrow">Explore by location</p><button class="start-link" data-select="gate-east-assembly">The eastern gate ${icon('next')}</button><button class="start-link" data-select="ishvari-31">The outer courtyard ${icon('next')}</button><button class="start-link" data-select="petal-east-family">The Vajra family ${icon('next')}</button><button class="start-link" data-select="target-marker-005">Gaurī and the inner ring ${icon('next')}</button><div class="coverage"><div><strong>100</strong><span>deities</span></div><div><strong>28</strong><span>Īśvarīs of the courtyard</span></div></div><p class="research-note">Working arrangement. Placement notes are available within each location.</p></div>`;
+    $('detail-content').innerHTML = `<div class="detail-inner"><p class="eyebrow">Karma Lingpa Zhitro</p><h2 class="welcome-title">Explore the mandala</h2><p class="intro-lead">The peaceful and wrathful assemblies within the four-gated palace.</p><p class="subtle">Hover over a circle to preview its figures. Select it to view the artwork. Use the layers to study either assembly or the palace alone.</p><div class="welcome-rule"></div><p class="eyebrow">Explore by location</p><button class="start-link" data-select="gate-east-assembly">The eastern gate ${icon('next')}</button><button class="start-link" data-select="ishvari-31">The outer courtyard ${icon('next')}</button><button class="start-link" data-select="petal-east-family">The Vajra family ${icon('next')}</button><button class="start-link" data-select="target-marker-005">Gaurī and the inner ring ${icon('next')}</button><div class="coverage"><div><strong>100</strong><span>deities</span></div><div><strong>28</strong><span>Īśvarīs of the courtyard</span></div></div></div>`;
     $('map-state').textContent = 'Explore the mandala';
   }
   function renderPanel(target) {
-    const panel = target.designLocation ? {
-      title: target.label, statusLabel:'Working placement',
-      summary: `${cap(target.candidateRitualDirection)} ${target.role === 'outer-gate' ? 'outer gatekeeper' : 'courtyard yoginī'} · One of the twenty-eight Īśvarīs in the wrathful assembly.`,
-      groups:[{label:'',ids:target.candidateDeityIds}],unmappedCandidates:[],observations:[],alternatives:[],
-      notes:['The direction follows the Karma Lingpa text. This exact position is a schematic design choice, not an identified painted circle.','Pema Lingpa’s seven-per-direction roster is recorded separately.'],
-      sources:bundle.mapping.sources.filter(s=>target.sourceIds.includes(s.id)).map(s=>({label:s.label||s.id,url:s.url}))
-    } : window.MandalaEvidence.buildPanel(target, bundle);
-    panel.groups = panel.groups.map(group => ({ ...group, ids: visibleDeityIds(group.ids) })).filter(group => group.ids.length);
-    const title = target.kind === 'single-observation' && ['central', 'six-realm-sages'].includes(target.group) ? shortLabel(target) : panel.title;
-    $('detail-content').innerHTML = `<div class="detail-inner"><div class="detail-top"><p class="eyebrow">${esc(groupNames[target.group])}${target.candidateRitualDirection ? ` / ${esc(target.candidateRitualDirection)}` : ''}</p><button class="icon-button" data-close aria-label="Close location details">${icon('close')}</button></div><div class="status-badge">${esc(targetStatus(target))}</div><h2 class="detail-title" tabindex="-1">${esc(title)}</h2><p class="detail-summary">${esc(target.designLocation ? panel.summary : "Explore the figures associated with this part of the mandala.")}</p><button class="panel-action" data-focus="${esc(target.id)}">Center on this location ${icon('center')}</button>${panel.groups.map(group => `<p class="candidate-heading">${esc(group.label.replace(/Possible /g, "").replace("Candidate identities across alternatives", "Associated figures").replace("Possible identity", "Associated figure"))}</p>${artCards(group.ids)}`).join('')}<details class="research-details"><summary>Placement &amp; source notes</summary>${panel.unmappedCandidates.length ? `<h3>Also considered</h3><p class="evidence-note">${panel.unmappedCandidates.map(esc).join('<br>')}<br>No matching app artwork.</p>` : ''}<p class="subtle">${esc(panel.summary)}</p>${panel.notes.map(note => `<p class="evidence-note">${esc(note)}</p>`).join('')}${panel.alternatives.length ? `<h3>Possible interpretations</h3>${panel.alternatives.map(a => `<div class="alternative"><strong>${esc(a.label)}</strong><p>${esc(a.description)}</p></div>`).join('')}` : ''}<details><summary>Observed marks · ${panel.observations.length} ${panel.observations.length === 1 ? 'record' : 'records'}</summary>${panel.observations.map(o => `<div class="observation"><strong>${esc(o.id)}</strong> · ${esc(o.position)}<br>${esc(o.color)}</div>`).join('')}</details><details><summary>Supporting sources · ${panel.sources.length}</summary><ul class="source-links">${panel.sources.map(s => `<li>${sourceAnchor(s)}</li>`).join('')}</ul><p class="subtle">These texts support the comparison. They are not an identified key to this painting.</p></details></details></div>`;
+    const groups = target.artworkGroups.map(group => ({
+      label: group.label,
+      ids: visibleDeityIds(group.deityIds),
+    })).filter(group => group.ids.length);
+    const heading = [groupNames[target.group], target.direction && cap(target.direction)].filter(Boolean).join(' · ');
+    $('detail-content').innerHTML = `<div class="detail-inner">
+      <div class="detail-top"><p class="eyebrow">${esc(heading)}</p><button class="icon-button" data-close aria-label="Close location details">${icon('close')}</button></div>
+      <h2 class="detail-title" tabindex="-1">${esc(target.label)}</h2>
+      <button class="panel-action" data-focus="${esc(target.id)}">Center on this location ${icon('center')}</button>
+      ${groups.map(({ label, ids }) => `${label ? `<h3 class="art-group-title">${esc(label)}</h3>` : ''}${artCards(ids)}`).join('')}
+    </div>`;
     $('detail-panel').scrollTop = 0;
-    $('map-state').textContent = shortLabel(target);
+    $('map-state').textContent = target.label;
     attachImageFallbacks();
   }
   function attachImageFallbacks() {
-    for (const image of $('detail-content').querySelectorAll('img')) image.addEventListener('error', () => { image.replaceWith(Object.assign(document.createElement('span'), { className: 'art-missing', textContent: 'Artwork could not load. Keep the assets folder with the preview.' })); });
+    for (const image of $('detail-content').querySelectorAll('img')) image.addEventListener('error', () => { image.replaceWith(Object.assign(document.createElement('span'), { className: 'art-missing', textContent: 'Artwork unavailable' })); });
   }
   // Switch to individual hits when the closest centers are distinguishable
   // in screen pixels. The same zoom can expose different detail on a phone.
@@ -302,41 +294,45 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   }
   function updateSelectionAppearanceAndList() {
     updateSelectionAppearance();
-    for (const node of $('target-list').querySelectorAll('[data-select],[data-deity]')) node.setAttribute('aria-current', String(node.dataset.select === state.selected || node.dataset.deity === state.unlocated));
+    for (const node of $('target-list').querySelectorAll('[data-select],[data-deity]')) node.setAttribute('aria-current', String(node.dataset.select === state.selected || node.dataset.deity === state.artworkOnly));
   }
   function closeBrowse() { $('browse').classList.remove('open'); $('browse-toggle').setAttribute('aria-expanded', 'false'); }
   function setHash(hash) { if (location.hash !== hash) history.pushState(null, '', hash || location.pathname + location.search); }
   function selectTarget(id, { focusPanel = false, push = true, scrollPanel = true, marker = null } = {}) {
     const target = byId.get(id); if (!target) return;
     state.opener = document.activeElement;
-    if (!target.candidateDeityIds.some(deityVisible)) {
-      state.layers[target.candidateCollections[0]] = true;
+    if (!target.deityIds.some(deityVisible)) {
+      state.layers[assemblyOf(target.deityIds[0])] = true;
       renderLayerState();
     }
     if (!state.visible.some(t => t.id === id)) resetFilters();
-    state.selected = id; state.selectedMarker = marker; state.unlocated = null;
+    state.selected = id; state.selectedMarker = marker; state.artworkOnly = null;
     if (!state.markers) setMarkers(true);
     setExpanded(false); renderPanel(target); updateSelectionAppearanceAndList();
     if (marker === null) focusTarget(target);
     closeBrowse();
     if (push) setHash(`#${encodeURIComponent(id)}`);
-    const label = marker === null ? shortLabel(target) : `${shortLabel(target)}, circle ${marker + 1}`;
-    announce(`${label}. ${targetStatus(target)}. Details and artwork available.`);
+    const label = marker === null ? target.label : `${target.label}, circle ${marker + 1}`;
+    announce(`${label}. Artwork available.`);
     if (focusPanel) $('detail-content').querySelector('h2').focus({ preventScroll: true });
     if (scrollPanel && window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant', block: 'start' });
   }
-  function showUnlocated(id, { push = true } = {}) {
-    const deity = deities.get(id); if (!deity || scene.deityToCandidateTargets[id].length) return;
-    state.opener = document.activeElement; state.selected = null; state.selectedMarker = null; state.unlocated = id;
-    $('detail-content').innerHTML = `<div class="detail-inner"><div class="detail-top"><p class="eyebrow">Unlocated Īśvarī</p><button class="icon-button" data-close aria-label="Close location details">${icon('close')}</button></div><div class="status-badge">Mandala position unassigned</div><h2 class="detail-title" tabindex="-1">${esc(deity.label)}</h2><p class="detail-summary">This identity is present in BardoOS, but no candidate location has been mapped in the surveyed areas. Its artwork is available here.</p>${artCards([id])}<p class="research-note">No circle is highlighted for this deity. The 28 Īśvarīs await a separate location study.</p></div>`;
+  function showArtworkDetails(id, { push = true } = {}) {
+    const deity = deities.get(id); if (!deity || scene.locationsByDeity[id]?.length) return;
+    state.opener = document.activeElement; state.selected = null; state.selectedMarker = null; state.artworkOnly = id;
+    $('detail-content').innerHTML = `<div class="detail-inner">
+      <div class="detail-top"><p class="eyebrow">Artwork</p><button class="icon-button" data-close aria-label="Close artwork details">${icon('close')}</button></div>
+      <h2 class="detail-title" tabindex="-1">${esc(deity.label)}</h2>
+      ${artCards([id])}
+    </div>`;
     attachImageFallbacks(); updateSelectionAppearanceAndList(); closeBrowse(); $('detail-panel').scrollTop = 0;
-    $('map-state').textContent = 'No mapped position';
+    $('map-state').textContent = deity.label;
     if (push) setHash(`#deity=${encodeURIComponent(id)}`);
-    announce(`${deity.label}. Position unassigned.`);
+    announce(deity.label);
     if (window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant' });
   }
   function clearSelection({ push = true, restoreFocus = true } = {}) {
-    const opener = state.opener; state.selected = null; state.selectedMarker = null; state.unlocated = null;
+    const opener = state.opener; state.selected = null; state.selectedMarker = null; state.artworkOnly = null;
     showWelcome(); updateSelectionAppearanceAndList();
     if (push) setHash('');
     if (restoreFocus) {
@@ -353,12 +349,11 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   }
   let artItems = [], artIndex = 0, artReturnToMap = false;
   function selectDeity(id) {
-    const candidates = (scene.deityToCandidateTargets[id] || []).map(candidate => candidate.targetId);
-    // Retain the location from which an ambiguous depiction was opened.
-    const targetId = candidates.includes(state.selected) ? state.selected : candidates[0];
+    const locations = scene.locationsByDeity[id] || [];
+    const targetId = locations.includes(state.selected) ? state.selected : locations[0];
     const opener = state.opener;
     if (targetId) selectTarget(targetId, { push: false, scrollPanel: false });
-    else showUnlocated(id, { push: false });
+    else showArtworkDetails(id, { push: false });
     state.opener = opener;
   }
   function renderArtwork(id) {
@@ -368,20 +363,20 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     const shown = art.deityIds.filter(deityVisible);
     $('art-title').textContent = shown.map(k => deities.get(k).label).join(' · ');
     $('art-image').src = art.src; $('art-image').alt = art.deityIds.map(k => deities.get(k).label).join(' and ');
-    $('art-links').innerHTML = shown.map(k => `<div><span>${esc(deities.get(k).label)}</span><div class="figure-links"><a href="#deity=${encodeURIComponent(k)}" data-show-location="${esc(k)}">Show in mandala</a><a href="${figureTextHref(k, '../')}">Show in text</a></div></div>`).join('');
+    $('art-links').innerHTML = shown.map(k => `<div><span>${esc(deities.get(k).label)}</span><div class="figure-links">${scene.locationsByDeity[k]?.length ? `<a href="#deity=${encodeURIComponent(k)}" data-show-location="${esc(k)}">Show in mandala</a>` : ''}<a href="${figureTextHref(k, '../')}">Show in text</a></div></div>`).join('');
     $('art-position').textContent = `${artIndex + 1} / ${artItems.length}`;
     $('art-previous').disabled = artItems.length < 2;
     $('art-next').disabled = artItems.length < 2;
-    $('art-caption').textContent = 'Existing BardoOS artwork. The highlighted location is a working placement, not a verified identification.';
     // A small overview keeps the location visible alongside expanded artwork
     // even on phones, where the dialog covers the full-size map.
     const target = byId.get(state.selected);
-    const points = target ? markerLayout(target, observations, SIZE) : [];
-    $('art-location').innerHTML = `<svg viewBox="0 0 ${SIZE} ${SIZE}" role="img" aria-label="Highlighted working mandala location"><image href="assets/diagram.svg" width="${SIZE}" height="${SIZE}"/>${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="90" fill="${esc(p.color)}" stroke="#fff" stroke-width="20"/>`).join('')}</svg><span>${esc(target ? shortLabel(target) : 'Position unassigned')}</span>`;
+    const points = target ? target.markers : [];
+    $('art-location').hidden = !target;
+    $('art-location').innerHTML = target ? `<svg viewBox="0 0 ${SIZE} ${SIZE}" role="img" aria-label="Mandala location"><image href="assets/diagram.svg" width="${SIZE}" height="${SIZE}"/>${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="90" fill="${esc(p.color)}" stroke="#fff" stroke-width="20"/>`).join('')}</svg><span>${esc(target.label)}</span>` : '';
   }
   function openArtwork(id, { push = true } = {}) {
     if (!bundle.artworkByDeityId[id]?.[0]) return;
-    const layer = id.startsWith('zhiwa.') ? 'peaceful' : 'wrathful';
+    const layer = assemblyOf(id);
     if (!state.layers[layer]) { state.layers[layer] = true; renderLayerState(); applyFilters(); }
     // Browse the enabled assemblies in catalog order, once per shared image.
     const seen = new Set();
@@ -526,14 +521,14 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
   document.addEventListener('click', event => {
     const button = event.target.closest('button'); if (!button) return;
     if (button.dataset.select) selectTarget(button.dataset.select, { focusPanel: true });
-    else if (button.dataset.deity) showUnlocated(button.dataset.deity);
+    else if (button.dataset.deity) showArtworkDetails(button.dataset.deity);
     else if (button.dataset.art) openArtwork(button.dataset.art);
     else if (button.dataset.focus) { focusTarget(byId.get(button.dataset.focus)); if (window.innerWidth <= 700) document.querySelector('.map-section').scrollIntoView({ behavior: 'instant', block: 'start' }); }
     else if (button.hasAttribute('data-close')) clearSelection();
   });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && previewTarget) { event.preventDefault(); dismissedPreviewTarget = previewKey(previewTarget, previewMarker); hideTooltip(); return; }
-    if (event.key === 'Escape' && !$('art-dialog').open && !$('about-dialog').open) { closeBrowse(); if (state.selected || state.unlocated) { event.preventDefault(); clearSelection(); } }
+    if (event.key === 'Escape' && !$('art-dialog').open && !$('about-dialog').open) { closeBrowse(); if (state.selected || state.artworkOnly) { event.preventDefault(); clearSelection(); } }
   });
   $('about-button').addEventListener('click', () => $('about-dialog').showModal());
   $('about-close').addEventListener('click', () => $('about-dialog').close());
@@ -547,7 +542,7 @@ import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
     else clearSelection({ push: false, restoreFocus: false });
   }
   window.addEventListener('hashchange', restoreHash);
-  $('painting').addEventListener('error', () => { $('map-error').hidden = false; $('map-error').textContent = 'The mandala image could not load. Restore assets/mandala.jpeg; the location list and evidence panels remain available.'; });
+  $('painting').addEventListener('error', () => { $('map-error').hidden = false; $('map-error').textContent = 'The original painting could not load. You can still explore the drawn mandala.'; });
   $('view-toggle').addEventListener('click', () => {
     const painting = $('painting'); const showPainting = !state.painting;
     hideTooltip();

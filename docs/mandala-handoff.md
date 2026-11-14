@@ -1,10 +1,16 @@
 # Mandala preview: continuation handoff
 
-The current implementation is a buildless feature at `mandala/`, reached from the home page's Iconography shelf, the Iconography navigation menu and the reader-header link. It shares the reader's typography, colour tokens, header treatment and saved day/night preference. It opens a drawn SVG mandala with zoom, pan, keyboard controls, filters, individual/group panels and owner-supplied artwork. A toggle displays the source painting. Evidence and alternatives are collapsed by default. The back link returns directly to Iconography; the brand returns home.
+The current implementation is a buildless feature at `mandala/`, reached from the home page's Iconography shelf, the Iconography navigation menu and the reader-header link. It shares the reader's typography, colour tokens, header treatment and saved day/night preference. It opens a drawn SVG mandala with zoom, pan, keyboard controls, filters, individual/group panels and owner-supplied artwork. A toggle displays the source painting. The atlas shows locations and artwork. Research records and the evidence panel helper are kept under `docs/mandala/`, outside the app deployment. The back link returns directly to Iconography; the brand returns home.
+
+## Palace walls and the reader-facing atlas
+
+The square wall bands use shared mitered contours. A diagonal vajra sits at each turn of the red frieze. The black frieze has a quarter garland at each corner, and the gate returns alternate cream/red and yellow/green.
+
+The runtime contains display coordinates, location names, and artwork links. The original placement records and evidence helper remain under `docs/mandala/`. Vercel excludes those files and the atlas handoff from app deployments.
 
 ## Drawn geometry and production updates — 14 November 2026
 
-The atlas uses `mandala/layout.mjs` for the evenly spaced central circles, six circles per family petal and symmetric ring and gate seats. In Original painting mode, the overlay follows the recorded observations. Close zoom exposes individual circles once their centers are at least 16 screen pixels apart. Their highlights use the circle color, and each opens the associated location panel with its existing placement notes.
+The atlas uses `scripts/mandala-layout.mjs` for the evenly spaced central circles, six circles per family petal and symmetric ring and gate seats. In Original painting mode, the overlay follows the recorded observations. Close zoom exposes individual circles once their centers are at least 16 screen pixels apart. Their highlights use the circle color, and each opens the associated location panel with its existing placement notes.
 
 The shared palace contour defines four identical gate returns. The red frieze has gold flowers and corner scrolls, the dark frieze has beaded garlands, and the four wall fields have scrolls in the painting's directional colors. The protective enclosure has curling flame tongues, a continuous vajra fence, and blue water and wind ribbons behind the landscape scenes.
 
@@ -55,7 +61,7 @@ Browser review covered desktop and narrow layouts, Iconography entry/return, bot
 
 ## Files and regeneration
 
-`mandala/data/atlas-source.json` is the portable, editable research/scene/catalog snapshot. `scripts/draw-mandala.mjs` owns the architectural drawing and its repeated symbols. `scripts/build-mandala.mjs` regenerates that SVG, builds the runtime bundle and hashes the locally available assets. Artwork is reused from the existing app directory. The original local research documents, private document links and PDF copies are not published in this package. Bibliographic labels without public links remain readable.
+`docs/mandala/atlas-source.json` is the portable, editable research/scene/catalog snapshot. `scripts/draw-mandala.mjs` owns the architectural drawing and its repeated symbols. `scripts/build-mandala.mjs` regenerates that SVG, builds the runtime bundle and hashes the locally available assets. Artwork is reused from the existing app directory. The original local research documents, private document links and PDF copies are not published in this package. Bibliographic labels without public links remain readable.
 
 Run `node scripts/build-mandala.mjs`, `node scripts/check-mandala.mjs`, and `node scripts/validate.mjs`. Serve the repository with `python3 -m http.server 43188 --bind 127.0.0.1`, then open `/mandala/`. Runtime files are precached by the service worker; bump its version for later changes.
 

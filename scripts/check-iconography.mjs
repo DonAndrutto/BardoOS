@@ -5,7 +5,7 @@ const { firstFigureMention, textForFigure, figureTextHref } = await import(
   `data:text/javascript;base64,${Buffer.from(read('js/iconography.js')).toString('base64')}`
 );
 const manifest = JSON.parse(read('assets/deities/MANIFEST.json'));
-const atlas = JSON.parse(read('mandala/data/atlas-source.json'));
+const atlas = JSON.parse(read('docs/mandala/atlas-source.json'));
 let figures = 0;
 for (const collection of manifest.collections) {
   for (const deity of collection.deities) {

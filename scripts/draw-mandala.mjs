@@ -1,9 +1,10 @@
 // Architectural reconstruction of the supplied Tsadra / Dzongsar reference.
 // Geometry is illustrative. Observed deity marks live in app.js, never in this
 // background: turning off an assembly must remove its marks as well as its UI.
-import { center } from '../mandala/layout.mjs';
+import { center } from './mandala-layout.mjs';
 import { drawInnerLotus, innerLotusDefs } from './draw-inner-lotus.mjs';
 import { drawPalaceScrollwork } from './draw-palace-scrollwork.mjs';
+import { drawPalaceWallBands, drawPalaceWallOrnaments, palaceInteriorSector, palaceSides, palaceWallDefs } from './draw-palace-walls.mjs';
 import { drawGateCrown, drawGateSurround, palaceGateDefs } from './draw-palace-gates.mjs';
 import { drawProtectiveRings, protectiveRingDefs } from './draw-protective-rings.mjs';
 
@@ -15,49 +16,14 @@ export function drawMandala() {
   const circle = (r, fill, stroke = ink, width = 3) => add(`<circle r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${width}"/>`);
   const point = (r, a) => [r * Math.cos(a * Math.PI / 180), r * Math.sin(a * Math.PI / 180)].map(n => n.toFixed(2)).join(' ');
   const use = (id, transform, extra = '') => add(`<use href="#${id}" transform="${transform}" ${extra}/>`);
-  const sides = ['west', 'north', 'east', 'south'];
-  const rotatePoint = ([x, y], turns) => [[x, y], [-y, x], [-x, -y], [y, -x]][turns];
-  // One side, including its gate return, generates the entire closed contour.
-  const edge = (a, neck, shoulder, head, end) => [
-    [-a, -a], [-neck, -a], [-neck, -shoulder], [-head, -shoulder],
-    [-head, -end], [head, -end], [head, -shoulder], [neck, -shoulder],
-    [neck, -a],
-  ];
-  const contour = side => 'M' + sides.flatMap((_, i) => side.map(p => rotatePoint(p, i).join(' '))).join('L') + 'Z';
-  const interior = edge(580, 68, 704, 132, 792);
-  const interiorSector = 'M0 0L' + [...interior, [580, -580]].map(p => p.join(' ')).join('L') + 'Z';
-  const wallBands = [
-    { fill: '#e5e7d8', points: edge(833, 257, 843, 257, 867) },
-    { fill: '#6fb6cb', points: edge(807, 234, 843, 234, 865) },
-    { fill: '#302d26', points: edge(773, 222, 841, 222, 857) },
-    { fill: '#dfc56a', points: edge(701, 204, 831, 204, 850) },
-    { fill: '#c65b44', points: edge(668, 183, 808, 183, 845) },
-    { fill: '#458f68', points: edge(605, 96, 730, 158, 821) },
-    { fill: '#a45a48', points: interior },
-  ];
   add(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3179 3179" role="img" aria-labelledby="title desc">
   <title id="title">Four-gated palace of the peaceful and wrathful mandala</title>
-  <desc id="desc">A drawn study of the supplied painting: coloured curling fire, a vajra enclosure, blue water and wind bands with eight schematic charnel-ground landscapes, lotus enclosure, four-coloured palace, nested lotus seats and central sanctuary. Low reclining deer flank an eight-spoked Dharma wheel beneath a small canopy at each gate. Wide saffron parasols flank the upper and lower gates, while tiered victory banners and orange streamers flank the side gates. The landscapes are not identifications of a lineage-specific named set.</desc>
+  <desc id="desc">A drawn study of the supplied painting: coloured fire, a vajra enclosure, blue water and wind bands, charnel grounds, lotus enclosures and the four-gated palace with gold vajras at its corners. Low reclining deer flank an eight-spoked Dharma wheel beneath a small canopy at each gate. Wide saffron parasols flank the upper and lower gates, while tiered victory banners and orange streamers flank the side gates.</desc>
   <defs>
     ${protectiveRingDefs}
     <pattern id="cloth" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 1H9M1 0V9" stroke="#f6e5b3" stroke-width=".8" opacity=".11"/></pattern>
-    <clipPath id="interior-field"><path d="${interiorSector}"/></clipPath>
-    <clipPath id="garland-frieze"><path d="${contour(wallBands[2].points)}"/></clipPath>
     ${innerLotusDefs}
-    <g id="wall-garland" fill="none" stroke="#ddc389" stroke-linecap="round">
-      <path d="M-41 0C-40 55 40 55 41 0M-34 0C-33 43 33 43 34 0" stroke-width="2.8"/>
-      <path d="M-46 0C-45 72 45 72 46 0" stroke-width="4.8" stroke-dasharray="1 8"/>
-      <path d="M-47 4l6 5m82 0 6-5M0 55v8" stroke-width="3.4"/>
-      <circle cy="60" r="2.7" fill="#e9d19b"/>
-    </g>
-    <g id="wall-flower" fill="none" stroke="#eac787" stroke-width="2.4">
-      ${Array.from({length: 8}, (_, i) => `<path transform="rotate(${i * 45})" d="M0-4C-13-11-11-23 0-22C11-23 13-11 0-4Z"/>`).join('')}
-      <circle r="5" fill="#eac787"/>
-      <path d="M-12 0C-28-16-48-14-46-5C-45 1-37 0-37-4M-12 0C-28 16-48 14-46 5C-45-1-37 0-37 4M12 0C28-16 48-14 46-5C45 1 37 0 37-4M12 0C28 16 48 14 46 5C45-1 37 0 37 4"/>
-    </g>
-    <g id="wall-corner" fill="none" stroke="#eac787" stroke-width="2.6">
-      <path d="M-23 14C-32 0-26-12-17-10C-8-8-9 6-18 5M-20-7C-22-20-9-24-4-16C0-9-5-2-12-4M-7-17C4-30 21-27 22-17C22-10 12-6 9-12M-21 16C-17 28 2 25 3 15C4 9-5 7-8 11M1 20C12 23 20 15 16 9C12 3 3 6 3 13M17 12L23 4M-14-22L-25-25"/>
-    </g>
+    ${palaceWallDefs}
     ${palaceGateDefs}
   </defs>
   <rect width="3179" height="3179" fill="#263d56"/>
@@ -82,37 +48,16 @@ export function drawMandala() {
 
   drawProtectiveRings({ add, circle, point, use, ribbonPath, ringPlace });
 
-  for (const [i, dir] of sides.entries()) drawGateSurround(dir, i * 90, { add, use });
+  for (const [i, dir] of palaceSides.entries()) drawGateSurround(dir, i * 90, { add, use });
 
   add('<g id="palace-walls">');
-  for (const [index, { fill, points }] of wallBands.entries()) {
-    add(`<path d="${contour(points)}" fill="${fill}" stroke="#413a2c" stroke-width="3"/>`);
-    if (index !== 2) continue;
-    add('<g clip-path="url(#garland-frieze)">');
-    for (let side = 0; side < 4; side++) {
-      add(`<g transform="rotate(${side * 90})">`);
-      for (const x of [-734, -625, -516, -407, -298, 298, 407, 516, 625, 734]) {
-        use('wall-garland', `translate(${x} -773)`);
-      }
-      add('</g>');
-    }
-    add('</g>');
+  drawPalaceWallBands({ add, use });
+  for (const [side, direction] of palaceSides.entries()) {
+    add(drawPalaceScrollwork(direction, side * 90, palaceInteriorSector));
   }
-  for (const [side, direction] of sides.entries()) {
-    add(drawPalaceScrollwork(direction, side * 90, interiorSector));
-  }
-  add(`<path d="${contour(interior)}M-580-580L580 580M580-580L-580 580" fill="none" stroke="#493e32" stroke-width="2.4"/>`);
-  for (let side = 0; side < 4; side++) {
-    add(`<g transform="rotate(${side * 90})">`);
-    for (const x of [-366, 366]) use('wall-flower', `translate(${x} -640)`);
-    for (const sign of [-1, 1]) {
-      use('wall-corner', `translate(${sign * 638} -639) scale(${sign * .82} .82)`);
-      use('wall-corner', `translate(${sign * 119} -637) scale(${sign * .74} .74)`);
-    }
-    add('</g>');
-  }
+  drawPalaceWallOrnaments({ add, use });
   add('</g>');
-  for (const [i, dir] of sides.entries()) drawGateCrown(dir, i * 90, { add, use });
+  for (const [i, dir] of palaceSides.entries()) drawGateCrown(dir, i * 90, { add, use });
 
   drawInnerLotus({ add, circle, use });
   add('<circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>');

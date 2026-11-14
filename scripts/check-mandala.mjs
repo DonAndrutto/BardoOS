@@ -5,19 +5,32 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
 import {drawMandala} from './draw-mandala.mjs';
-import {center, markerLayout} from '../mandala/layout.mjs';
+import {makeMandalaRuntime} from './mandala-runtime.mjs';
+import {center, markerLayout} from './mandala-layout.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'), base=resolve(root,'mandala');
 const read=p=>readFileSync(resolve(base,p),'utf8');
-const context={window:{}};vm.createContext(context);vm.runInContext(read('data/mandala-data.js'),context);vm.runInContext(read('evidence.js'),context);
-const b=context.window.MANDALA_DATA,{scene,catalog}=b;
+const b=JSON.parse(readFileSync(resolve(root,'docs/mandala/atlas-source.json'),'utf8'));
+const {scene,catalog}=b;
+const artifactManifest=JSON.parse(read('data/artifact-manifest.json'));
+const context={window:{}};
+vm.createContext(context);
+vm.runInContext(read('data/mandala-data.js'),context);
+vm.runInContext(readFileSync(resolve(root,'docs/mandala/evidence.js'),'utf8'),context);
 vm.runInContext(read('preview.js'),context);
+const runtime=JSON.parse(JSON.stringify(context.window.MANDALA_DATA));
+assert.deepEqual(runtime,makeMandalaRuntime(b),'Rebuild runtime after editing source');
+assert(!/verified|unresolved|provisional|ambiguity|hypotheses|sourceIds|candidate/i.test(read('data/mandala-data.js')));
+for (const target of runtime.scene.selectionTargets) {
+ assert(target.label, `Missing label for ${target.id}`);
+ assert.deepEqual(target.artworkGroups.flatMap(group => group.deityIds).sort(), [...target.deityIds].sort());
+}
 // Preview real catalog targets with every layer combination. Hidden deities
 // must never leak into a hover card; paired artwork must appear only once.
-for(const target of scene.selectionTargets) for(const layers of [
+for(const target of runtime.scene.selectionTargets) for(const layers of [
  {peaceful:true,wrathful:true},{peaceful:true,wrathful:false},
  {peaceful:false,wrathful:true},{peaceful:false,wrathful:false}
 ]){
- const preview=context.window.MandalaPreview.artworksFor(target,b,layers);
+ const preview=context.window.MandalaPreview.artworksFor(target,runtime,layers);
  assert(preview.items.length<=4);
  assert.equal(new Set(preview.items.map(item=>item.src)).size,preview.items.length);
  for(const item of preview.items){
@@ -27,14 +40,14 @@ for(const target of scene.selectionTargets) for(const layers of [
  }
  if(!layers.peaceful&&!layers.wrathful)assert.equal(preview.total,0);
 }
-const source=JSON.parse(read('data/atlas-source.json'));
-const {artifactManifest,...data}=JSON.parse(JSON.stringify(b));assert.deepEqual(data,source,'Rebuild bundle after editing source');
 const diagram=read('assets/diagram.svg');
 assert.equal(diagram,drawMandala(),'Rebuild the architectural drawing');
 const svgIds=[...diagram.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(new Set(svgIds).size,svgIds.length,'SVG definitions must have unique IDs');
 for(const m of diagram.matchAll(/href="#([^"]+)"/g))assert(svgIds.includes(m[1]),`Missing drawing symbol ${m[1]}`);
 for(const layer of ['fire-ring','vajra-fence','water-wind','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
+assert.deepEqual(Array.from(diagram.matchAll(/data-corner-vajra="([^"]+)"/g), match => match[1]),
+ ['west', 'north', 'east', 'south']);
 const lotus = diagram.slice(diagram.indexOf('id="inner-lotuses"'));
 assert.deepEqual(Array.from(lotus.matchAll(/href="#vajra" transform="([^"]+)"/g), match => match[1]),
  Array.from({length: 64}, (_, i) => `rotate(${i * 5.625}) translate(0 -508) scale(.48 .52)`));

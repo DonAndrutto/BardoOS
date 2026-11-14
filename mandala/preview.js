@@ -4,7 +4,7 @@
   function artworksFor(target, bundle, layers, limit = 4) {
     const labels = new Map(bundle.catalog.deities.map(d => [d.id, d.label]));
     const byImage = new Map();
-    for (const id of target.candidateDeityIds) {
+    for (const id of target.deityIds) {
       if (!layers[collection(id)]) continue;
       const art = bundle.artworkByDeityId[id]?.[0];
       if (!art || byImage.has(art.src)) continue;

@@ -1,0 +1,5 @@
+# Keep atlas research and handoff notes out of the reader deployment.
+/docs/mandala/
+/docs/mandala-handoff.md
+/docs/iconography-navigation.md
+/scripts/
