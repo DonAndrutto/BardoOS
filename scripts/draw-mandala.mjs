@@ -2,6 +2,7 @@
 // Geometry is illustrative. Observed deity marks live in app.js, never in this
 // background: turning off an assembly must remove its marks as well as its UI.
 import { center } from '../mandala/layout.mjs';
+import { drawPalaceScrollwork } from './draw-palace-scrollwork.mjs';
 
 export function drawMandala() {
   const [c, cy] = center;
@@ -65,15 +66,6 @@ export function drawMandala() {
     </g>
     <g id="wall-corner" fill="none" stroke="#eac787" stroke-width="2.6">
       <path d="M-23 14C-32 0-26-12-17-10C-8-8-9 6-18 5M-20-7C-22-20-9-24-4-16C0-9-5-2-12-4M-7-17C4-30 21-27 22-17C22-10 12-6 9-12M-21 16C-17 28 2 25 3 15C4 9-5 7-8 11M1 20C12 23 20 15 16 9C12 3 3 6 3 13M17 12L23 4M-14-22L-25-25"/>
-    </g>
-    <g id="field-scroll" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-68 34C-110 10-93-37-61-56C-26-77 25-72 51-49C85-20 71 26 35 40C7 52-24 37-25 16C-26-6 3-16 18-4C29 7 20 21 8 17C1 15 0 9 4 5" stroke="var(--scroll-ink)" stroke-width="6"/>
-      <path d="M-64 23C-99 0-74-41-45-52C-11-64 24-60 45-42C72-17 60 20 33 30C5 41-19 26-15 11" stroke="var(--scroll-light)" stroke-width="4"/>
-      <path d="M-94 10C-112 5-115-14-103-24C-91-32-80-20-88-12M-68 35C-55 37-45 53-58 60C-73 69-86 55-76 48M49 32C66 44 87 32 90 16C92 6 81 0 77 7" stroke="var(--scroll-ink)" stroke-width="4"/>
-    </g>
-    <g id="field-lobe" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-43 28C-66 14-54-13-36-18C-34-32-10-42 2-25C20-32 38-23 33-8C52 1 41 23 25 21C14 32-2 29-9 19C-17 31-34 31-43 28Z" fill="var(--scroll-light)" fill-opacity=".3" stroke="var(--scroll-ink)" stroke-width="3.4"/>
-      <path d="M-34 15C-35 2-22-5-15 2C-8 9-22 17-27 10M7 15C-6-4 6-14 15-10C21-6 19 1 14 3" fill="none" stroke="var(--scroll-ink)" stroke-width="3"/>
     </g>
     <linearGradient id="deer-gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9c37c"/><stop offset="1" stop-color="#bca15b"/></linearGradient>
     <linearGradient id="saffron-fold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e59a60"/><stop offset=".55" stop-color="#d5834e"/><stop offset="1" stop-color="#b9663d"/></linearGradient>
@@ -271,30 +263,8 @@ export function drawMandala() {
     }
     add('</g>');
   }
-  const fieldColors = [
-    ['#c87460', '#783d36', '#e19a7b'],
-    ['#498965', '#2d654d', '#79a47c'],
-    ['#d9e2d3', '#4d87a7', '#a5c9d6'],
-    ['#d8bc67', '#836235', '#edcf88'],
-  ];
-  for (const [side, [fill, scrollInk, scrollLight]] of fieldColors.entries()) {
-    add(`<g transform="rotate(${side * 90})" clip-path="url(#interior-field)" style="--scroll-ink:${scrollInk};--scroll-light:${scrollLight}">`);
-    // The join strokes cover the shared edges. Clip scrolls to each field.
-    add(`<path d="${interiorSector}" fill="${fill}" stroke="${fill}" stroke-width="3"/>`);
-    for (const [x, y, turn, scale] of [
-      [-474, -533, -21, .78], [-291, -515, 12, 1.17],
-      [-109, -545, -26, .64], [106, -551, 26, .65],
-      [286, -505, -12, 1.17], [472, -533, 21, .77],
-      [-366, -434, 36, .62], [376, -435, -21, .64],
-      [-69, -752, -18, .56], [29, -712, 67, .66], [92, -755, 20, .4],
-    ]) use('field-scroll', `translate(${x} ${y}) rotate(${turn}) scale(${scale})`);
-    for (const [x, y, turn] of [
-      [-540, -557, -45], [-386, -555, 16], [-178, -567, -15],
-      [166, -565, 21], [402, -553, -14], [546, -553, 36],
-      [-457, -450, -27], [448, -448, 33],
-      [-30, -749, -15], [63, -770, 20],
-    ]) use('field-lobe', `translate(${x} ${y}) rotate(${turn}) scale(.61)`);
-    add('</g>');
+  for (const [side, direction] of sides.entries()) {
+    add(drawPalaceScrollwork(direction, side * 90, interiorSector));
   }
   add(`<path d="${contour(interior)}M-580-580L580 580M580-580L-580 580" fill="none" stroke="#493e32" stroke-width="2.4"/>`);
   for (let side = 0; side < 4; side++) {
