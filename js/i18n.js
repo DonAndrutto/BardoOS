@@ -100,6 +100,8 @@ const STRINGS = {
     iconographyNote: 'Liberation upon seeing: the mandala, the peaceful and wrathful deities, and the days of their arising.',
     mandala: 'Zhitro Mandala',
     mandalaNote: 'Liberation upon Seeing',
+    mandalaAtlas: 'Mandala atlas',
+    mandalaAtlasNote: 'Explore the palace and its deities',
     nPictures: '{n} pictures',
     offeredFreely: 'The translations and this app are offered freely.',
     textsSummary: '{n} to read now · {m} in translation',

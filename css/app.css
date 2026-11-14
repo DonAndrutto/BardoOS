@@ -319,7 +319,7 @@ body.nav-open .nav { display: block; }
 .nav-cat-collection summary:hover { color: var(--accent); }
 .nav-cat-collection button.nav-text { font-weight: 600; }
 
-.nav button.nav-text {
+.nav :is(button,a).nav-text {
   display: block;
   width: 100%;
   text-align: left;
@@ -332,10 +332,10 @@ body.nav-open .nav { display: block; }
   padding: var(--sp-2) var(--sp-3);
   cursor: pointer;
 }
-.nav button.nav-text:hover { background: var(--bg-secondary); }
-.nav button.nav-text.active { color: var(--accent); background: var(--bg-secondary); }
-.nav button.nav-text:focus { outline: none; }
-.nav button.nav-text:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.nav :is(button,a).nav-text:hover { background: var(--bg-secondary); }
+.nav :is(button,a).nav-text.active { color: var(--accent); background: var(--bg-secondary); }
+.nav :is(button,a).nav-text:focus { outline: none; }
+.nav :is(button,a).nav-text:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 
 /* Forthcoming: present but locked — never color alone (icon + note) */
 .nav-text.locked {
@@ -1823,3 +1823,13 @@ body.voice .section-heading { opacity: 0.6; }
     scroll-behavior: auto !important;
   }
 }
+
+/* Atlas entry shares the existing Iconography shelf and catalogue. */
+a.landing-shelf, .nav a.nav-text { color: inherit; text-decoration: none; }
+#iconography { scroll-margin-top: 64px; }
+
+#iconography:focus { outline: none; }
+a.landing-shelf[href="mandala/"] .landing-shelf-image img { clip-path: circle(48.5% at 50.5% 49.3%); }
+
+a.landing-shelf[href="mandala/"] .landing-shelf-image { display: grid; align-items: center; }
+a.landing-shelf[href="mandala/"] .landing-shelf-image img { height: auto; aspect-ratio: 1; }

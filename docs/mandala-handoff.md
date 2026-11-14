@@ -1,6 +1,21 @@
 # Mandala preview: continuation handoff
 
-The current implementation is an optional, buildless feature at `mandala/`, reached by a small reader-header link. It opens a drawn SVG mandala with zoom, pan, keyboard controls, filters, individual/group panels and owner-supplied artwork. A toggle displays the source painting. Evidence and alternatives are collapsed by default. The brand returns to the reader.
+The current implementation is a buildless feature at `mandala/`, reached from the home page's Iconography shelf, the Iconography navigation menu and the reader-header link. It shares the reader's typography, colour tokens, header treatment and saved day/night preference. It opens a drawn SVG mandala with zoom, pan, keyboard controls, filters, individual/group panels and owner-supplied artwork. A toggle displays the source painting. Evidence and alternatives are collapsed by default. The back link returns directly to Iconography; the brand returns home.
+
+## App integration and artwork previews — 14 November 2026
+
+- Replaced the separate atlas branding and palette with the existing Bardo OS header, Inter/EB Garamond typography, warm backgrounds, accent colour and restrained controls. Removed ornamental character icons, using consistent SVG controls where an icon is useful.
+- Added a dedicated Mandala atlas entry in the home Iconography shelf and navigation. Preserved the existing Zhitro Mandala introduction entry. Returning to `/#iconography` skips the introduction and restores the Iconography section.
+- Added `mandala/shell.js` to share the reader's theme preference and service-worker registration. The atlas's day/night switch persists through the same settings store.
+- Hovering a dot, or focusing it with the keyboard, loads an artwork preview without selecting the location or moving the map. Shared depictions appear once with both names, and shared locations preview both assemblies when enabled. Filtering either assembly removes its figures from previews. The preview is dismissible with Escape and can be hovered itself.
+- Added bright cream-white marker outlines and a soft light halo for hovered, keyboard-focused and selected circles. Halo dimensions remain readable while zooming. The drawn disc blends into the app background; the original painting remains unmodified.
+- Kept a three-column desktop view and a small-screen Locations drawer, map and details flow. Artwork dialogs use the same app styling.
+- `mandala/preview.js` contains the preview selection helper. `check-mandala.mjs` exercises all 62 locations across all four layer combinations, checking image deduplication, valid labels, hidden assemblies and the empty palace-only state.
+- Current service-worker cache: `bardo-os-v33-mandala-app-integration-r2`. Both new scripts are precached.
+
+Browser review covered desktop and narrow layouts, Iconography entry/return, both colour themes, keyboard-triggered artwork previews, Escape dismissal, assembly-filtered previews, location search, artwork viewing and palace-only/show-both controls. Preview images loaded, focus did not select or zoom, and the final page had no console errors. Pointer hover uses the same preview renderer and nearest-location hit testing; direct mouse-hover automation was unavailable. Physical touch gestures and airplane-mode use remain untested. Screenshot: `/tmp/bardo-atlas-ui-desktop.jpg` (temporary QA file).
+
+`check-mandala.mjs`, JavaScript syntax checks, `git diff --check` and `validate.mjs` pass. The content validator retains its existing 13 warnings and 9 declared gaps. Canonical texts, deity IDs and placement qualifications are unchanged.
 
 ## Visual refinement — 13 November 2026
 
