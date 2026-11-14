@@ -35,9 +35,16 @@ const svgIds=[...diagram.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(new Set(svgIds).size,svgIds.length,'SVG definitions must have unique IDs');
 for(const m of diagram.matchAll(/href="#([^"]+)"/g))assert(svgIds.includes(m[1]),`Missing drawing symbol ${m[1]}`);
 for(const layer of ['fire-ring','vajra-fence','water-wind','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
+const gateOrnaments = diagram.matchAll(/<g data-gate="([^"]+)"[^>]+>([^]*?)<\/g>/g);
+assert.deepEqual([...gateOrnaments].map(([, direction, content]) => [
+ direction, Array.from(content.matchAll(/data-ornament="([^"]+)"/g), match => match[1]),
+]), [
+ ['west', ['parasol', 'parasol']],
+ ['north', ['victory-banner', 'victory-banner']],
+ ['east', ['parasol', 'parasol']],
+ ['south', ['victory-banner', 'victory-banner']],
+]);
 assert.equal([...diagram.matchAll(/data-ornament="wheel-and-deer"/g)].length,4);
-assert.equal([...diagram.matchAll(/data-ornament="parasol"/g)].length,4);
-assert.equal([...diagram.matchAll(/data-ornament="victory-banner"/g)].length,4);
 assert.equal([...diagram.matchAll(/data-fire-panel="/g)].length,16);
 assert.equal([...diagram.matchAll(/data-ground="/g)].length,8);
 assert.equal([...diagram.matchAll(/data-ring-vajra="/g)].length,8);
