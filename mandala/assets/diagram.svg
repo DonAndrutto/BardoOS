@@ -75,9 +75,17 @@
     <radialGradient id="lotus-heart" cx="40%" cy="35%" r="71%">
       <stop stop-color="#eae6c4"/><stop offset=".78" stop-color="#e1e1b9"/><stop offset="1" stop-color="#ccce9e"/>
     </radialGradient>
-    <g id="lotus-rim-links" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-21 0C-14-9-7-9-3 0C1 9 12 10 20 0C12-9 1-9-3 0C-7 10-14 9-21 0Z" stroke="#d8bd7c" stroke-width="2.8"/>
-      <path d="M-24 0H-20M18 0H24" stroke="#f0d499" stroke-width="2.5"/>
+    <clipPath id="inner-lotus-edge"><circle r="498"/></clipPath>
+    <g id="vajra-tip" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4-4H9L12-7V7L9 4H4Z" fill="#bb9452" stroke="#edcf85" stroke-width="1.4"/>
+      <path d="M12-5C17-13 26-13 32-1Q24-6 19-3L13-1M12 5C17 13 26 13 32 1Q24 6 19 3L13 1" fill="#c9a460" stroke="#f1d18b" stroke-width="1.4"/>
+      <path d="M12 0H33" stroke="#f1d18b" stroke-width="1.6"/>
+    </g>
+    <g id="vajra">
+      <path d="M-35 0H35" stroke="#272a25" stroke-width="4.5" stroke-linecap="round"/>
+      <use href="#vajra-tip"/><use href="#vajra-tip" transform="scale(-1 1)"/>
+      <ellipse rx="5.5" ry="6.5" fill="#d4ac64" stroke="#f1d18b" stroke-width="1.5"/>
+      <path d="M-1-3Q3 0-1 3" fill="none" stroke="#87623b" stroke-width="1.2"/>
     </g>
     <g id="wall-garland" fill="none" stroke="#ddc389" stroke-linecap="round">
       <path d="M-41 0C-40 55 40 55 41 0M-34 0C-33 43 33 43 34 0" stroke-width="2.8"/>
@@ -1272,34 +1280,72 @@
 <path d="M-10-925C-27-926-31-902-49-899M10-925C27-926 31-902 49-899M0-929V-874" fill="none" stroke="#c7ac74" stroke-width="4.3" stroke-linecap="round" stroke-dasharray="2 7"/>
 </g>
 <g id="inner-lotuses">
-<circle r="519" fill="#333933" stroke="#555942" stroke-width="3"/>
-<circle r="514" fill="none" stroke="#8d7b54" stroke-width="1.8"/>
-<circle r="503" fill="none" stroke="#736448" stroke-width="1.8"/>
-<path d="M510.00 0.00L511.63 8.37L512.13 16.77L511.08 25.11L508.91 33.36L506.60 41.54L505.16 49.75L504.97 58.09L505.64 66.57L506.16 75.08L505.56 83.47L503.43 91.60L500.20 99.50L496.85 107.31L494.34 115.26L493.07 123.51L492.62 132.00L492.03 140.51L490.34 148.74L487.17 156.53L482.93 163.93L478.59 171.24L475.07 178.80L472.73 186.81L471.18 195.17L469.48 203.53L466.73 211.47L462.57 218.78L457.41 225.57L452.14 232.25L447.66 239.28L444.30 246.91L441.67 255.00L438.90 263.06L435.13 270.58L430.05 277.28L424.05 283.34L417.96 289.28L412.60 295.67L408.27 302.80L404.61 310.47L400.81 318.10L396.09 325.06L390.18 331.05L383.44 336.27L376.63 341.36L370.48 346.99L365.26 353.50L360.62 360.62L355.86 367.70L350.27 373.98L343.63 379.14L336.27 383.44L328.85 387.59L322.02 392.38L315.99 398.15L310.47 404.61L304.82 411.00L298.46 416.50L291.21 420.75L283.34 424.05L275.45 427.20L268.05 431.06L261.32 435.99L255.00 441.67L248.56 447.27L241.54 451.90L233.80 455.16L225.57 457.41L217.33 459.50L209.49 462.35L202.18 466.37L195.17 471.18L188.06 475.89L180.49 479.56L172.39 481.79L163.93 482.93L155.49 483.94L147.35 485.74L139.57 488.76L132.00 492.62L124.33 496.36L116.35 499.01L108.03 500.16L99.50 500.20L90.99 500.09L82.69 500.82L74.58 502.80L66.57 505.64L58.48 508.34L50.22 509.93L41.82 509.99L33.36 508.91L24.94 507.69L16.61 507.33L8.32 508.23L0.00 510.00L-8.37 511.63L-16.77 512.13L-25.11 511.08L-33.36 508.91L-41.54 506.60L-49.75 505.16L-58.09 504.97L-66.57 505.64L-75.08 506.16L-83.47 505.56L-91.60 503.43L-99.50 500.20L-107.31 496.85L-115.26 494.34L-123.51 493.07L-132.00 492.62L-140.51 492.03L-148.74 490.34L-156.53 487.17L-163.93 482.93L-171.24 478.59L-178.80 475.07L-186.81 472.73L-195.17 471.18L-203.53 469.48L-211.47 466.73L-218.78 462.57L-225.57 457.41L-232.25 452.14L-239.28 447.66L-246.91 444.30L-255.00 441.67L-263.06 438.90L-270.58 435.13L-277.28 430.05L-283.34 424.05L-289.28 417.96L-295.67 412.60L-302.80 408.27L-310.47 404.61L-318.10 400.81L-325.06 396.09L-331.05 390.18L-336.27 383.44L-341.36 376.63L-346.99 370.48L-353.50 365.26L-360.62 360.62L-367.70 355.86L-373.98 350.27L-379.14 343.63L-383.44 336.27L-387.59 328.85L-392.38 322.02L-398.15 315.99L-404.61 310.47L-411.00 304.82L-416.50 298.46L-420.75 291.21L-424.05 283.34L-427.20 275.45L-431.06 268.05L-435.99 261.32L-441.67 255.00L-447.27 248.56L-451.90 241.54L-455.16 233.80L-457.41 225.57L-459.50 217.33L-462.35 209.49L-466.37 202.18L-471.18 195.17L-475.89 188.06L-479.56 180.49L-481.79 172.39L-482.93 163.93L-483.94 155.49L-485.74 147.35L-488.76 139.57L-492.62 132.00L-496.36 124.33L-499.01 116.35L-500.16 108.03L-500.20 99.50L-500.09 90.99L-500.82 82.69L-502.80 74.58L-505.64 66.57L-508.34 58.48L-509.93 50.22L-509.99 41.82L-508.91 33.36L-507.69 24.94L-507.33 16.61L-508.23 8.32L-510.00 0.00L-511.63 -8.37L-512.13 -16.77L-511.08 -25.11L-508.91 -33.36L-506.60 -41.54L-505.16 -49.75L-504.97 -58.09L-505.64 -66.57L-506.16 -75.08L-505.56 -83.47L-503.43 -91.60L-500.20 -99.50L-496.85 -107.31L-494.34 -115.26L-493.07 -123.51L-492.62 -132.00L-492.03 -140.51L-490.34 -148.74L-487.17 -156.53L-482.93 -163.93L-478.59 -171.24L-475.07 -178.80L-472.73 -186.81L-471.18 -195.17L-469.48 -203.53L-466.73 -211.47L-462.57 -218.78L-457.41 -225.57L-452.14 -232.25L-447.66 -239.28L-444.30 -246.91L-441.67 -255.00L-438.90 -263.06L-435.13 -270.58L-430.05 -277.28L-424.05 -283.34L-417.96 -289.28L-412.60 -295.67L-408.27 -302.80L-404.61 -310.47L-400.81 -318.10L-396.09 -325.06L-390.18 -331.05L-383.44 -336.27L-376.63 -341.36L-370.48 -346.99L-365.26 -353.50L-360.62 -360.62L-355.86 -367.70L-350.27 -373.98L-343.63 -379.14L-336.27 -383.44L-328.85 -387.59L-322.02 -392.38L-315.99 -398.15L-310.47 -404.61L-304.82 -411.00L-298.46 -416.50L-291.21 -420.75L-283.34 -424.05L-275.45 -427.20L-268.05 -431.06L-261.32 -435.99L-255.00 -441.67L-248.56 -447.27L-241.54 -451.90L-233.80 -455.16L-225.57 -457.41L-217.33 -459.50L-209.49 -462.35L-202.18 -466.37L-195.17 -471.18L-188.06 -475.89L-180.49 -479.56L-172.39 -481.79L-163.93 -482.93L-155.49 -483.94L-147.35 -485.74L-139.57 -488.76L-132.00 -492.62L-124.33 -496.36L-116.35 -499.01L-108.03 -500.16L-99.50 -500.20L-90.99 -500.09L-82.69 -500.82L-74.58 -502.80L-66.57 -505.64L-58.48 -508.34L-50.22 -509.93L-41.82 -509.99L-33.36 -508.91L-24.94 -507.69L-16.61 -507.33L-8.32 -508.23L-0.00 -510.00L8.37 -511.63L16.77 -512.13L25.11 -511.08L33.36 -508.91L41.54 -506.60L49.75 -505.16L58.09 -504.97L66.57 -505.64L75.08 -506.16L83.47 -505.56L91.60 -503.43L99.50 -500.20L107.31 -496.85L115.26 -494.34L123.51 -493.07L132.00 -492.62L140.51 -492.03L148.74 -490.34L156.53 -487.17L163.93 -482.93L171.24 -478.59L178.80 -475.07L186.81 -472.73L195.17 -471.18L203.53 -469.48L211.47 -466.73L218.78 -462.57L225.57 -457.41L232.25 -452.14L239.28 -447.66L246.91 -444.30L255.00 -441.67L263.06 -438.90L270.58 -435.13L277.28 -430.05L283.34 -424.05L289.28 -417.96L295.67 -412.60L302.80 -408.27L310.47 -404.61L318.10 -400.81L325.06 -396.09L331.05 -390.18L336.27 -383.44L341.36 -376.63L346.99 -370.48L353.50 -365.26L360.62 -360.62L367.70 -355.86L373.98 -350.27L379.14 -343.63L383.44 -336.27L387.59 -328.85L392.38 -322.02L398.15 -315.99L404.61 -310.47L411.00 -304.82L416.50 -298.46L420.75 -291.21L424.05 -283.34L427.20 -275.45L431.06 -268.05L435.99 -261.32L441.67 -255.00L447.27 -248.56L451.90 -241.54L455.16 -233.80L457.41 -225.57L459.50 -217.33L462.35 -209.49L466.37 -202.18L471.18 -195.17L475.89 -188.06L479.56 -180.49L481.79 -172.39L482.93 -163.93L483.94 -155.49L485.74 -147.35L488.76 -139.57L492.62 -132.00L496.36 -124.33L499.01 -116.35L500.16 -108.03L500.20 -99.50L500.09 -90.99L500.82 -82.69L502.80 -74.58L505.64 -66.57L508.34 -58.48L509.93 -50.22L509.99 -41.82L508.91 -33.36L507.69 -24.94L507.33 -16.61L508.23 -8.32Z" fill="none" stroke="#b49b65" stroke-width="2.1"/>
-<use href="#lotus-rim-links" transform="rotate(0) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(15) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(30) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(45) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(60) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(75) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(90) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(105) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(120) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(135) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(150) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(165) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(180) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(195) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(210) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(225) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(240) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(255) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(270) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(285) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(300) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(315) translate(0 -510) scale(1 .86)" />
-<use href="#lotus-rim-links" transform="rotate(330) translate(0 -510) scale(.76 .67)" />
-<use href="#lotus-rim-links" transform="rotate(345) translate(0 -510) scale(.76 .67)" />
+<circle r="519" fill="#293f33" stroke="#dec27c" stroke-width="5"/>
+<use href="#vajra" transform="rotate(0) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(5.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(11.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(16.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(22.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(28.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(33.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(39.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(45) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(50.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(56.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(61.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(67.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(73.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(78.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(84.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(90) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(95.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(101.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(106.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(112.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(118.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(123.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(129.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(135) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(140.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(146.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(151.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(157.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(163.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(168.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(174.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(180) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(185.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(191.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(196.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(202.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(208.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(213.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(219.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(225) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(230.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(236.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(241.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(247.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(253.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(258.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(264.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(270) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(275.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(281.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(286.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(292.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(298.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(303.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(309.375) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(315) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(320.625) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(326.25) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(331.875) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(337.5) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(343.125) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(348.75) translate(0 -508) scale(.48 .52)" />
+<use href="#vajra" transform="rotate(354.375) translate(0 -508) scale(.48 .52)" />
+<g clip-path="url(#inner-lotus-edge)">
 <g data-inner-lotus-band="outer-green">
 <circle r="502" fill="#459069" stroke="none" stroke-width="3"/>
 <g transform="rotate(30)" data-lotus-petal="">
@@ -1427,5 +1473,7 @@
 <circle r="126" fill="#e08346" stroke="#95543a" stroke-width="4.2"/>
 <circle r="120" fill="none" stroke="#f0a469" stroke-width="2.8"/>
 <circle r="104" fill="url(#lotus-heart)" stroke="#93664b" stroke-width="4.1"/>
+</g>
+<circle r="498" fill="none" stroke="#37352c" stroke-width="3"/>
 </g>
 <circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>

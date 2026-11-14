@@ -52,25 +52,27 @@ export const innerLotusDefs = `<radialGradient id="lotus-outer-green" gradientUn
     <radialGradient id="lotus-heart" cx="40%" cy="35%" r="71%">
       <stop stop-color="#eae6c4"/><stop offset=".78" stop-color="#e1e1b9"/><stop offset="1" stop-color="#ccce9e"/>
     </radialGradient>
-    <g id="lotus-rim-links" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-21 0C-14-9-7-9-3 0C1 9 12 10 20 0C12-9 1-9-3 0C-7 10-14 9-21 0Z" stroke="#d8bd7c" stroke-width="2.8"/>
-      <path d="M-24 0H-20M18 0H24" stroke="#f0d499" stroke-width="2.5"/>
+    <clipPath id="inner-lotus-edge"><circle r="498"/></clipPath>
+    <g id="vajra-tip" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4-4H9L12-7V7L9 4H4Z" fill="#bb9452" stroke="#edcf85" stroke-width="1.4"/>
+      <path d="M12-5C17-13 26-13 32-1Q24-6 19-3L13-1M12 5C17 13 26 13 32 1Q24 6 19 3L13 1" fill="#c9a460" stroke="#f1d18b" stroke-width="1.4"/>
+      <path d="M12 0H33" stroke="#f1d18b" stroke-width="1.6"/>
+    </g>
+    <g id="vajra">
+      <path d="M-35 0H35" stroke="#272a25" stroke-width="4.5" stroke-linecap="round"/>
+      <use href="#vajra-tip"/><use href="#vajra-tip" transform="scale(-1 1)"/>
+      <ellipse rx="5.5" ry="6.5" fill="#d4ac64" stroke="#f1d18b" stroke-width="1.5"/>
+      <path d="M-1-3Q3 0-1 3" fill="none" stroke="#87623b" stroke-width="1.2"/>
     </g>`;
 
-export function drawInnerLotus({ add, circle, use, point }) {
+export function drawInnerLotus({ add, circle, use }) {
   add('<g id="inner-lotuses">');
-
-  circle(519, '#333933', '#555942', 3);
-  circle(514, 'none', '#8d7b54', 1.8);
-  circle(503, 'none', '#736448', 1.8);
-  // The small gold links share the same strand around the dark rim.
-  const strand = Array.from({length: 384}, (_, i) =>
-    point(510 + 2.4 * Math.sin(i * Math.PI / 4), i * 360 / 384));
-  add(`<path d="M${strand.join('L')}Z" fill="none" stroke="#b49b65" stroke-width="2.1"/>`);
-  for (let i = 0; i < 24; i++) {
-    use('lotus-rim-links', `rotate(${i * 15}) translate(0 -510) scale(${i % 3 ? '.76 .67' : '1 .86'})`);
+  circle(519, '#293f33', '#dec27c', 5);
+  for (let i = 0; i < 64; i++) {
+    use('vajra', `rotate(${i * 5.625}) translate(0 -508) scale(.48 .52)`);
   }
 
+  add('<g clip-path="url(#inner-lotus-edge)">');
   for (const { name, count, offset, groundRadius, ground, fill, ink, path, highlight } of bands) {
     add(`<g data-inner-lotus-band="${name}">`);
     circle(groundRadius, ground, 'none');
@@ -115,5 +117,7 @@ export function drawInnerLotus({ add, circle, use, point }) {
   circle(126, '#e08346', '#95543a', 4.2);
   circle(120, 'none', '#f0a469', 2.8);
   circle(104, 'url(#lotus-heart)', '#93664b', 4.1);
+  add('</g>');
+  circle(498, 'none', '#37352c');
   add('</g>');
 }

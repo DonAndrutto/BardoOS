@@ -36,6 +36,8 @@ assert.equal(new Set(svgIds).size,svgIds.length,'SVG definitions must have uniqu
 for(const m of diagram.matchAll(/href="#([^"]+)"/g))assert(svgIds.includes(m[1]),`Missing drawing symbol ${m[1]}`);
 for(const layer of ['fire-ring','vajra-fence','water-wind','charnel-grounds','outer-lotus','palace-walls','inner-lotuses'])assert(svgIds.includes(layer));
 const lotus = diagram.slice(diagram.indexOf('id="inner-lotuses"'));
+assert.deepEqual(Array.from(lotus.matchAll(/href="#vajra" transform="([^"]+)"/g), match => match[1]),
+ Array.from({length: 64}, (_, i) => `rotate(${i * 5.625}) translate(0 -508) scale(.48 .52)`));
 const lotusBands = [...lotus.matchAll(/data-inner-lotus-band="([^"]+)"[^]*?(?=data-inner-lotus-band=|<\/svg>)/g)];
 assert.deepEqual(lotusBands.map(([markup, name]) => [
  name, Array.from(markup.matchAll(/transform="rotate\(([0-9]+)\)" data-lotus-petal/g), match => Number(match[1])),

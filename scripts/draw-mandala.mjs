@@ -114,7 +114,7 @@ export function drawMandala() {
   add('</g>');
   for (const [i, dir] of sides.entries()) drawGateCrown(dir, i * 90, { add, use });
 
-  drawInnerLotus({ add, circle, use, point });
+  drawInnerLotus({ add, circle, use });
   add('<circle r="1538" fill="url(#cloth)" pointer-events="none"/></g></svg>');
   return s.join('\n');
 }

@@ -4,8 +4,8 @@
   "artifacts": [
     {
       "path": "assets/diagram.svg",
-      "bytes": 248152,
-      "sha256": "21a12d7d25677d77494524156b20daec5030c798bc4dcf881a3aecd7c26950fb"
+      "bytes": 246046,
+      "sha256": "905d25e7ffa0de60a6fc91a94e41806bcbda191b7e0adf5cb9464ab764091eeb"
     },
     {
       "path": "assets/mandala.jpeg",
