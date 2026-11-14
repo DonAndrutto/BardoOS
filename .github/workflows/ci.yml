@@ -20,3 +20,6 @@ jobs:
 
       - name: Validate mandala preview
         run: node scripts/check-mandala.mjs
+
+      - name: Validate iconography navigation
+        run: node scripts/check-iconography.mjs

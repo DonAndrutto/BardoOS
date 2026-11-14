@@ -1,3 +1,4 @@
+import { bindFigureNavigation, figureTextHref } from '../js/iconography.js';
 /* Bardo OS mandala atlas. Research records remain the source of truth. */
 (() => {
   'use strict';
@@ -249,7 +250,7 @@
   }
   function closeBrowse() { $('browse').classList.remove('open'); $('browse-toggle').setAttribute('aria-expanded', 'false'); }
   function setHash(hash) { if (location.hash !== hash) history.pushState(null, '', hash || location.pathname + location.search); }
-  function selectTarget(id, { focusPanel = false, push = true } = {}) {
+  function selectTarget(id, { focusPanel = false, push = true, scrollPanel = true } = {}) {
     const target = byId.get(id); if (!target) return;
     state.opener = document.activeElement;
     if (!target.candidateDeityIds.some(deityVisible)) {
@@ -263,7 +264,7 @@
     if (push) setHash(`#${encodeURIComponent(id)}`);
     announce(`${shortLabel(target)}. ${targetStatus(target)}. Details and artwork available.`);
     if (focusPanel) $('detail-content').querySelector('h2').focus({ preventScroll: true });
-    if (window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant', block: 'start' });
+    if (scrollPanel && window.innerWidth <= 700) $('detail-panel').scrollIntoView({ behavior: 'instant', block: 'start' });
   }
   function showUnlocated(id, { push = true } = {}) {
     const deity = deities.get(id); if (!deity || scene.deityToCandidateTargets[id].length) return;
@@ -291,13 +292,83 @@
     $('markers-toggle').setAttribute('aria-pressed', String(value)); $('markers-toggle').textContent = value ? 'Markers on' : 'Markers off';
     updateSelectionAppearance();
   }
-  function openArtwork(id) {
-    const deity = deities.get(id), art = bundle.artworkByDeityId[id]?.[0]; if (!art) return;
-    $('art-title').textContent = deity.label;
-    $('art-image').src = art.src; $('art-image').alt = art.deityIds.map(k => deities.get(k).label).join(' and ');
-    $('art-caption').textContent = `${art.deityIds.length > 1 ? 'Shared depiction: ' + art.deityIds.map(k => deities.get(k).label).join(' and ') + '. ' : ''}Existing BardoOS artwork. Its appearance does not verify the candidate mandala location.`;
-    $('art-dialog').showModal();
+  let artItems = [], artIndex = 0, artReturnToMap = false;
+  function selectDeity(id) {
+    const candidates = (scene.deityToCandidateTargets[id] || []).map(candidate => candidate.targetId);
+    // Retain the location from which an ambiguous depiction was opened.
+    const targetId = candidates.includes(state.selected) ? state.selected : candidates[0];
+    const opener = state.opener;
+    if (targetId) selectTarget(targetId, { push: false, scrollPanel: false });
+    else showUnlocated(id, { push: false });
+    state.opener = opener;
   }
+  function renderArtwork(id) {
+    const art = bundle.artworkByDeityId[id]?.[0]; if (!art) return;
+    selectDeity(id);
+    hideTooltip();
+    const shown = art.deityIds.filter(deityVisible);
+    $('art-title').textContent = shown.map(k => deities.get(k).label).join(' · ');
+    $('art-image').src = art.src; $('art-image').alt = art.deityIds.map(k => deities.get(k).label).join(' and ');
+    $('art-links').innerHTML = shown.map(k => `<div><span>${esc(deities.get(k).label)}</span><div class="figure-links"><a href="#deity=${encodeURIComponent(k)}" data-show-location="${esc(k)}">Show in mandala</a><a href="${figureTextHref(k, '../')}">Show in text</a></div></div>`).join('');
+    $('art-position').textContent = `${artIndex + 1} / ${artItems.length}`;
+    $('art-previous').disabled = artItems.length < 2;
+    $('art-next').disabled = artItems.length < 2;
+    $('art-caption').textContent = 'Existing BardoOS artwork. The highlighted location is a working placement, not a verified identification.';
+    // A small overview keeps the location visible alongside expanded artwork
+    // even on phones, where the dialog covers the full-size map.
+    const target = byId.get(state.selected);
+    const points = target?.designLocation ? [target.designLocation] : (target?.observationIds || []).map(k => observations.get(k));
+    $('art-location').innerHTML = `<svg viewBox="0 0 ${SIZE} ${SIZE}" role="img" aria-label="Highlighted working mandala location"><image href="assets/diagram.svg" width="${SIZE}" height="${SIZE}"/>${points.map(p => `<circle cx="${p.x * SIZE}" cy="${p.y * SIZE}" r="90" fill="#fff4" stroke="#fff" stroke-width="30"/>`).join('')}</svg><span>${esc(target ? shortLabel(target) : 'Position unassigned')}</span>`;
+  }
+  function openArtwork(id, { push = true } = {}) {
+    if (!bundle.artworkByDeityId[id]?.[0]) return;
+    const layer = id.startsWith('zhiwa.') ? 'peaceful' : 'wrathful';
+    if (!state.layers[layer]) { state.layers[layer] = true; renderLayerState(); applyFilters(); }
+    // Browse the enabled assemblies in catalog order, once per shared image.
+    const seen = new Set();
+    artItems = catalog.deities.filter(d => deityVisible(d.id)).map(d => d.id).filter(k => {
+      const src = bundle.artworkByDeityId[k]?.[0]?.src;
+      if (!src || seen.has(src)) return false;
+      seen.add(src); return true;
+    });
+    artIndex = artItems.findIndex(k => bundle.artworkByDeityId[k][0].src === bundle.artworkByDeityId[id][0].src);
+    renderArtwork(id);
+    if (push) setHash(`#deity=${encodeURIComponent(id)}`);
+    if (!$('art-dialog').open) $('art-dialog').showModal();
+  }
+  function moveArtwork(delta) {
+    if (!artItems.length) return;
+    const focused = document.activeElement;
+    artIndex = (artIndex + delta + artItems.length) % artItems.length;
+    const id = artItems[artIndex];
+    renderArtwork(id);
+    if (!focused.isConnected) $(delta < 0 ? 'art-previous' : 'art-next').focus();
+    history.replaceState(null, '', `#deity=${encodeURIComponent(id)}`);
+  }
+  bindFigureNavigation({ surface: $('art-dialog'), previous: $('art-previous'), next: $('art-next'),
+    active: () => $('art-dialog').open, move: moveArtwork });
+  $('art-links').addEventListener('click', event => {
+    const link = event.target.closest('[data-show-location]');
+    if (!link) return;
+    event.preventDefault();
+    selectDeity(link.dataset.showLocation);
+    artReturnToMap = true;
+    history.replaceState(null, '', `#deity=${encodeURIComponent(link.dataset.showLocation)}`);
+    $('art-dialog').close();
+    document.querySelector('.map-section').scrollIntoView({ block: 'start' });
+    targetNodes.get(state.selected)?.focus({ preventScroll: true });
+  });
+  $('art-dialog').addEventListener('close', () => {
+    if (artReturnToMap) {
+      artReturnToMap = false;
+      (targetNodes.get(state.selected) || svg).focus({ preventScroll: true });
+      return;
+    }
+    // Panel rendering replaces the opener. Restore focus to its new card.
+    const id = artItems[artIndex];
+    const card = [...$('detail-content').querySelectorAll('[data-art]')].find(el => el.dataset.art === id);
+    (card || targetNodes.get(state.selected) || svg).focus({ preventScroll: true });
+  });
 
   // Pointer events cover mouse drag, single-finger pan and two-finger pinch.
   const pointers = new Map(); let dragStart = null, pinchStart = null, lastGesture = 0;
@@ -406,11 +477,12 @@
   for (const dialog of [$('art-dialog'), $('about-dialog')]) dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
   function restoreHash() {
     let hash; try { hash = decodeURIComponent(location.hash.slice(1)); } catch { hash = ''; }
+    if ($('art-dialog').open) $('art-dialog').close();
     if (byId.has(hash)) selectTarget(hash, { push: false });
-    else if (hash.startsWith('deity=') && deities.has(hash.slice(6))) showUnlocated(hash.slice(6), { push: false });
+    else if (hash.startsWith('deity=') && deities.has(hash.slice(6))) openArtwork(hash.slice(6), { push: false });
     else clearSelection({ push: false, restoreFocus: false });
   }
-  window.addEventListener('popstate', restoreHash);
+  window.addEventListener('hashchange', restoreHash);
   $('painting').addEventListener('error', () => { $('map-error').hidden = false; $('map-error').textContent = 'The mandala image could not load. Restore assets/mandala.jpeg; the location list and evidence panels remain available.'; });
   $('view-toggle').addEventListener('click', () => {
     const painting = $('painting'); const showPainting = !state.painting;

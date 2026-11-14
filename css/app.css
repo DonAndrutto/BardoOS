@@ -1833,3 +1833,14 @@ a.landing-shelf[href="mandala/"] .landing-shelf-image img { clip-path: circle(48
 
 a.landing-shelf[href="mandala/"] .landing-shelf-image { display: grid; align-items: center; }
 a.landing-shelf[href="mandala/"] .landing-shelf-image img { height: auto; aspect-ratio: 1; }
+
+/* Expanded iconography: shared browsing and quiet cross-links. */
+.figure-navigation { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: .5rem 0; }
+.figure-navigation button { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 50%; background: var(--bg-secondary); color: var(--text); cursor: pointer; }
+.figure-navigation output { min-width: 4rem; font: .75rem var(--font-ui); color: var(--text-muted); text-align: center; }
+.figure-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1rem; margin: .3rem 0 .7rem; font: .75rem var(--font-ui); }
+.figure-links a { color: var(--accent); text-decoration: underline; text-underline-offset: .2em; padding: .5rem 0; }
+.figure-passage { box-shadow: -3px 0 0 var(--accent); }
+.deity-sheet { overscroll-behavior: contain; }
+.deity-viewer-image { max-height: 52dvh; }
+.deity-viewer-image.is-plate { max-height: 58dvh; }
