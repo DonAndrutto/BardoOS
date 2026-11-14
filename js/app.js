@@ -7,6 +7,7 @@ import {
   depictionFor, depictionDeities, collectionById,
   plateFor, plateSetById, iconographyShelves,
 } from './data.js';
+import { bindFigureNavigation, firstFigureMention, textForFigure, figureTextHref } from './iconography.js';
 import { remember, origin, forget } from './trail.js';
 import { renderHome, renderTexts, renderDeities } from './home.js';
 import { UI_LANGS, UI_LANG_BY_CODE, uiLangReady, t } from './i18n.js';
@@ -16,7 +17,7 @@ import { replayIntro } from './intro.js';
 import * as scroll from './scroll.js';
 import * as anchor from './anchor.js';
 import * as pages from './pages.js';
-import { schedule as scheduleEstimates } from './estimate.js';
+import { schedule as scheduleEstimates, refresh as refreshEstimates } from './estimate.js';
 import { state, set, clampFont, effectiveFontSize, FONT_STEP } from './store.js';
 
 const TODO = 'TODO_CONTENT';
@@ -457,11 +458,14 @@ function closeContents() {
 // restores both it and the focus.
 let deityScrollHeld = false;
 let deityOpener = null;
+let figureItems = [];
+let figureIndex = 0;
+let figureKind = null;
 
 // One viewer for both kinds of picture: a cut-out figure, or a plate of
 // a whole day's arising. `plate` says which, and the only difference it
 // makes is the ground — a plate carries its own.
-function showFigure({ image, labels, credit, plate = false }) {
+function showFigure({ image, labels, ids, credit, plate = false }) {
   const img = $('deityViewerImage');
   img.src = image;
   img.alt = labels.join(' · ');
@@ -471,21 +475,46 @@ function showFigure({ image, labels, credit, plate = false }) {
   // for a couple in union, one for a plate.
   const name = $('deityViewerName');
   name.textContent = '';
-  for (const label of labels) {
+  for (const [i, label] of labels.entries()) {
     const line = document.createElement('span');
     line.className = 'deity-name-line';
     line.textContent = label;
     name.appendChild(line);
+    const links = document.createElement('span');
+    links.className = 'figure-links';
+    if (!plate) {
+      const mandala = document.createElement('a');
+      mandala.href = `mandala/#deity=${encodeURIComponent(ids[i])}`;
+      mandala.textContent = 'Show in mandala';
+      links.append(mandala);
+    }
+    const text = document.createElement('a');
+    text.href = figureTextHref(ids[i]);
+    text.textContent = 'Show in text';
+    text.addEventListener('click', event => {
+      event.preventDefault();
+      deityScrollHeld = false;
+      closeDeity();
+      if (location.hash === text.hash) openFigureText(ids[i]);
+      else location.hash = text.hash;
+    });
+    links.append(text);
+    name.append(links);
   }
+  $('deityViewerPosition').textContent = `${figureIndex + 1} / ${figureItems.length}`;
+  $('btnDeityPrevious').disabled = figureItems.length < 2;
+  $('btnDeityNext').disabled = figureItems.length < 2;
 
   $('deityViewerCredit').textContent = credit;
   $('deityViewerCredit').hidden = !credit;
 
-  deityOpener = document.activeElement;
-  deityScrollHeld = scroll.isRunning();
-  if (deityScrollHeld) { scroll.stop(); applyPlayIcon(); }
-  $('deityViewer').hidden = false;
-  $('btnDeityClose').focus();
+  if ($('deityViewer').hidden) {
+    deityOpener = document.activeElement;
+    deityScrollHeld = scroll.isRunning();
+    if (deityScrollHeld) { scroll.stop(); applyPlayIcon(); }
+    $('deityViewer').hidden = false;
+    $('btnDeityClose').focus();
+  }
 }
 
 // Provenance belongs to the collection or the set, because all its
@@ -494,27 +523,43 @@ function creditOf(holder) {
   return holder ? [holder.attribution, holder.license].filter(Boolean).join(' · ') : '';
 }
 
-function openDeity(deityId) {
-  const depiction = depictionFor(deityId);
-  if (!depiction) return;
+function renderFigure() {
+  const item = figureItems[figureIndex];
+  const plate = figureKind === 'plate';
+  const deities = plate ? [] : depictionDeities(item);
   showFigure({
-    image: depiction.image,
-    labels: depictionDeities(depiction).map((d) => d.label).filter(Boolean),
-    credit: creditOf(collectionById(depiction.collection)),
+    image: item.image,
+    labels: plate ? [item.label] : deities.map(d => d.label),
+    ids: plate ? [item.id] : deities.map(d => d.id),
+    credit: creditOf(plate ? plateSetById(item.set) : collectionById(item.collection)),
+    plate,
   });
 }
 
-// A day's heading, or a tile in its gallery: the plate of that whole
-// arising, in the same viewer and under the same discipline.
+function openDeity(deityId) {
+  const depiction = depictionFor(deityId);
+  if (!depiction) return;
+  figureKind = 'deity';
+  figureItems = collectionById(depiction.collection).depictions;
+  figureIndex = figureItems.indexOf(depiction);
+  renderFigure();
+}
+
 function openPlate(plateId) {
   const plate = plateFor(plateId);
   if (!plate) return;
-  showFigure({
-    image: plate.image,
-    labels: [plate.label].filter(Boolean),
-    credit: creditOf(plateSetById(plate.set)),
-    plate: true,
-  });
+  figureKind = 'plate';
+  figureItems = plateSetById(plate.set).plates;
+  figureIndex = figureItems.indexOf(plate);
+  renderFigure();
+}
+
+function moveFigure(delta) {
+  if (!figureItems.length) return;
+  const focused = document.activeElement;
+  figureIndex = (figureIndex + delta + figureItems.length) % figureItems.length;
+  renderFigure();
+  if (!focused.isConnected) $(delta < 0 ? 'btnDeityPrevious' : 'btnDeityNext').focus();
 }
 
 function closeDeity() {
@@ -661,7 +706,7 @@ function showDeities(shelfId = null) {
   window.scrollTo(0, 0);
 }
 
-async function openText(id, { keepOrigin = false, restore = null } = {}) {
+async function openText(id, { keepOrigin = false, restore = null, loadedText = null } = {}) {
   if (!keepOrigin && !restore) forget();
   scroll.stop();
   // The docked sidebar stays; the overlay gets out of the way.
@@ -678,7 +723,7 @@ async function openText(id, { keepOrigin = false, restore = null } = {}) {
     }
   });
   try {
-    currentText = await loadText(id);
+    currentText = loadedText || await loadText(id);
     renderText(currentText, reader);
     buildContents();
     scheduleEstimates(reader);
@@ -696,6 +741,58 @@ async function openText(id, { keepOrigin = false, restore = null } = {}) {
   }
   applyPhonRelevance();
   applyReturn();
+}
+
+async function openFigureText(id) {
+  if (!depictionFor(id) && !plateFor(id)) return;
+  try {
+    const text = await loadText(textForFigure(id));
+    const blockId = firstFigureMention(text, id);
+    if (!blockId) return;
+    // The canonical marked names are in English. Reveal that layer so the
+    // linked mention is visible even after a Tibetan-only reading session.
+    set('showEn', true);
+    applyLangs();
+    const blockData = text.sections.flatMap(section => section.blocks).find(block => block.id === blockId);
+    if (!['L1', 'L2'].includes(blockData.layer)) set('mode', 'guide');
+    await openText(text.id, { loadedText: text });
+    const block = [...$('reader').querySelectorAll('[data-block-id]')].find(el => el.dataset.blockId === blockId);
+    const mention = [...(block?.querySelectorAll('.en .deity-name') || [])].find(el => el.dataset.deityRef === id);
+    const destination = mention || block;
+    await document.fonts.ready;
+    if (!destination?.isConnected) return;
+    if (pages.active()) {
+      const range = document.createRange();
+      range.selectNodeContents(destination);
+      pages.layout({ block, blockId, range });
+    } else {
+      // A distant section may still have an estimated height. Lay out the
+      // destination before measuring an inline name inside a long paragraph.
+      try { refreshEstimates($('reader')); } catch { /* native layout remains available */ }
+      const section = destination.closest('section[data-section-id]');
+      if (section) section.style.contentVisibility = 'visible';
+      destination.scrollIntoView({ block: 'center', behavior: 'instant' });
+      anchor.land(destination, anchor.line(), 0);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (section) section.style.contentVisibility = '';
+      }));
+    }
+    destination?.classList.add('figure-passage');
+    if (!mention) destination?.setAttribute('tabindex', '-1');
+    destination?.focus({ preventScroll: true });
+  } catch (err) {
+    note($('reader'), `${t('couldNotLoadText')} (${err.message}).`);
+  }
+}
+
+function followFigureHash() {
+  const params = new URLSearchParams(location.hash.slice(1));
+  const id = params.get('deity') || params.get('plate');
+  if (id) return openFigureText(id);
+  if (location.hash === '#iconography') {
+    showHome();
+    document.getElementById('iconography')?.scrollIntoView({ block: 'start' });
+  }
 }
 
 // Back to the passage the reader left. If that text is somehow already
@@ -789,6 +886,8 @@ async function boot() {
   // The deity viewer: the close button, a tap outside the sheet, or
   // Escape (handled with the other overlays below — it sits on top, so
   // it closes first).
+  bindFigureNavigation({ surface: $('deityViewer'), previous: $('btnDeityPrevious'), next: $('btnDeityNext'),
+    active: () => !$('deityViewer').hidden, move: moveFigure, trapFocus: true });
   $('btnDeityClose').addEventListener('click', closeDeity);
   $('deityViewer').addEventListener('click', (e) => {
     if (!e.target.closest('.deity-sheet')) closeDeity();
@@ -1034,6 +1133,9 @@ async function boot() {
   // The app opens on the doorway, not on a text: two ways in, chosen by
   // the reader (owner's direction, 2026-07-30).
   showHome();
+
+  window.addEventListener('hashchange', followFigureHash);
+  await followFigureHash();
 
   // The atlas returns directly to its Iconography shelf.
   if (location.hash === '#iconography') {

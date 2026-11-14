@@ -3,7 +3,7 @@
 //
 // VERSION discipline: bump this string with any change to app files or
 // content, or readers keep the old cache (docs/content-entry.md, step 8).
-const VERSION = 'bardo-os-v33-mandala-app-integration-r2';
+const VERSION = 'bardo-os-v34-deity-navigation';
 
 const PRECACHE = [
   // Mandala preview assets
@@ -25,6 +25,7 @@ const PRECACHE = [
   'css/app.css',
   'css/intro.css',
   'js/app.js',
+  'js/iconography.js',
   'js/intro.js',
   'js/anchor.js',
   'js/data.js',

@@ -14,7 +14,7 @@
   <script defer src="data/mandala-data.js"></script>
   <script defer src="evidence.js"></script>
   <script defer src="preview.js"></script>
-  <script defer src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </head>
 <body class="atlas-page">
   <a class="skip" href="#target-list">Skip to the selectable locations</a>
@@ -57,7 +57,7 @@
     <aside id="detail-panel" class="detail-panel" aria-label="Selected location details"><div id="detail-content"></div></aside>
   </main>
   <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
-  <dialog id="art-dialog" aria-labelledby="art-title"><div class="dialog-top"><div><p class="eyebrow">Bardo OS iconography</p><h2 id="art-title"></h2></div><button id="art-close" class="icon-button" aria-label="Close artwork"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><img id="art-image" alt=""><p id="art-caption"></p></dialog>
+  <dialog id="art-dialog" aria-labelledby="art-title"><div class="dialog-top"><div><p class="eyebrow">Bardo OS iconography</p><h2 id="art-title" aria-live="polite"></h2></div><button id="art-close" class="icon-button" aria-label="Close artwork"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><div class="art-with-location"><img id="art-image" alt=""><div id="art-location"></div></div><nav class="figure-navigation" aria-label="Browse images"><button id="art-previous" aria-label="Previous image">←</button><output id="art-position" aria-live="polite"></output><button id="art-next" aria-label="Next image">→</button></nav><div id="art-links"></div><p id="art-caption"></p></dialog>
   <dialog id="about-dialog" aria-labelledby="about-title"><div class="dialog-top"><div><p class="eyebrow">About the atlas</p><h2 id="about-title">A map in progress</h2></div><button id="about-close" class="icon-button" aria-label="Close about"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div><p>This interactive study follows the Karma Lingpa Zhitro mandala image hosted by Tsadra. The working orientation is east at the bottom.</p><p>The concentric enclosures lead inward through fire, the vajra fence, eight charnel-ground vignettes and lotus petals to the four-gated palace and its central sanctuary. The drawing follows the supplied painting; the repeated charnel-ground vignettes are symbolic and do not identify a particular named set.</p><p>Toggle the peaceful and wrathful assemblies independently, or choose Palace only to study the architecture. Shared family and gate locations remain visible when either relevant assembly is on. Their individual painted marks have not been assigned to one assembly. The original painting is an unchanged reference, so its painted marks cannot be hidden.</p><p>The atlas includes all 100 catalog identities. Its 28 courtyard positions are a schematic working arrangement. Locations are compared with Tsadra ritual texts and BardoOS. No individual placement has been verified against a key to this painting.</p><p><a href="https://rtz.tsadra.org/index.php/Zab_chos_zhi_khro_dgongs_pa_rang_grol" target="_blank" rel="noopener noreferrer">Tsadra source</a> · <a href="data/artifact-manifest.json" target="_blank">Asset provenance</a></p></dialog>
   <noscript>The mandala atlas needs JavaScript enabled to show the interactive map.</noscript>
 </body>

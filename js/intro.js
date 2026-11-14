@@ -255,5 +255,5 @@ export function replayIntro() {
 }
 
 // Returning from the atlas should reveal its shelf immediately.
-if (location.hash === '#iconography') document.getElementById('intro')?.remove();
+if (/^#(iconography$|deity=|plate=)/.test(location.hash)) document.getElementById('intro')?.remove();
 else start();
